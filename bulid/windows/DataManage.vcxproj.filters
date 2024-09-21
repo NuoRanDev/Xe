@@ -13,9 +13,27 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\compress">
+      <UniqueIdentifier>{9c4d1df7-29fc-47ff-b3e0-7738054604c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\decompress">
+      <UniqueIdentifier>{dd53abc8-6495-498e-81ae-e7057582ef9d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\DataManage\XeDataManage.h">
+    <ClInclude Include="..\..\DataManage\inc\compress\compress.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DataManage\inc\decompress\decompress.h">
+      <Filter>Header Files\decompress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DataManage\inc\xeCompressFileStruct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DataManage\inc\xeDataManage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DataManage\inc\xeDataManageConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

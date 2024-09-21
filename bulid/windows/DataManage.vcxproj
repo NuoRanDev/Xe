@@ -127,7 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\DataManage\XeDataManage.h" />
+    <ClInclude Include="..\..\DataManage\inc\compress\compress.h" />
+    <ClInclude Include="..\..\DataManage\inc\decompress\decompress.h" />
+    <ClInclude Include="..\..\DataManage\inc\xeCompressFileStruct.h" />
+    <ClInclude Include="..\..\DataManage\inc\xeDataManage.h" />
+    <ClInclude Include="..\..\DataManage\inc\xeDataManageConfig.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
