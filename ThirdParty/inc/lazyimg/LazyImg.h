@@ -9,6 +9,8 @@
 #ifndef _INC_LAZY_IMG_READER_H_
 #define _INC_LAZY_IMG_READER_H_
 
+#define NOT_ADD_WINDOW_SHOW_MODULES
+#define READ_ONLY
 
 #include "LazyMat.h"
 #include "LazyImgio.h"

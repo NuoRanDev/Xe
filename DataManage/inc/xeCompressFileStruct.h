@@ -35,7 +35,7 @@ namespace gamedb
 		uint64_t MODEL_ASSET_FILE_HEADER	= xeGetCompressType("MODEL\0\0");
 		uint64_t DATABASE_ASSET_FILE_HEADER = xeGetCompressType("DB\0\0\0\0\0");
 		uint64_t OTHER_ASSET_FILE_HEADER	= 0;
-		};
+	};
 
 	// File block eare
 	// start offset and size

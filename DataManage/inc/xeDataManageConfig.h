@@ -1,7 +1,12 @@
 #ifndef _INC_XE_DATA_MANAGE_H_
 #define _INC_XE_DATA_MANAGE_H_
 
+#include <cmath>
 #include <cstdint>
+#include <cstdio>
+#include <format>
+#include <mutex>
+#include <thread>
 
 namespace gamedb
 {

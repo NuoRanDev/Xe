@@ -19,6 +19,9 @@
     <Filter Include="Header Files\decompress">
       <UniqueIdentifier>{dd53abc8-6495-498e-81ae-e7057582ef9d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\compress">
+      <UniqueIdentifier>{af29755a-2dca-4d3c-9bb2-de9184d1fd6e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\DataManage\inc\compress\compress.h">
@@ -40,6 +43,9 @@
   <ItemGroup>
     <ClCompile Include="..\..\DataManage\src\xeDataManage.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DataManage\src\compress\compress.cpp">
+      <Filter>Source Files\compress</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
