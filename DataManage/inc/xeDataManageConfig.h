@@ -2,16 +2,18 @@
 #define _INC_XE_DATA_MANAGE_H_
 
 #include <cmath>
-#include <cstdint>
 #include <cstdio>
 #include <format>
 #include <mutex>
 #include <thread>
+#include <fstream>
+#include <iostream>
+#include <format>
 
-namespace gamedb
+#include "xeCore.h"
+
+namespace xe
 {
-	using offsetptr_t = uint64_t;
-	using byte_t = uint8_t;
 }
 
 #endif // _INC_XE_DATA_MANAGE_H_ IS EOF
