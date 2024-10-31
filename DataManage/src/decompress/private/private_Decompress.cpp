@@ -6,53 +6,25 @@ namespace xe
 	// compress by lzma
 	bool DecompressLZMA(byte_t* input, byte_t* output, void* start, uint64_t compress_data_offset, uint64_t _not_compress_size)
 	{
-		pTestData = "DEADBEEF|askjd9827x34bnzkj#%wioeruxo3b84nxijlhwqdzhwerzu39b87r#_3b9p78bznor83y4fr";
-		size_t nTestDataLen = _not_compress_size;
-		unsigned char pPropsBuf[LZMA_PROPS_SIZE];
-		size_t nPropsBufLen = LZMA_PROPS_SIZE;
-		ELzmaStatus Status;
-		SRes rc;
-		int err = 0;
-		memset(pCompBuf, 0, COMP_BUFLEN);
-		memset(pUnCompBuf, 0, UNCOMP_BUFLEN); /* Initialize compressor (aka encoder) properties... */
-
-		LzmaEncProps_Init(&stProps);
-
-
-		/* Decompress compressed data from previous step */
-		   //nCompBufLen += LZMA_PROPS_SIZE;
-		nUnCompBufLen = nTestDataLen;
-		rc = LzmaDecode(pUnCompBuf, &nUnCompBufLen, pCompBuf + LZMA_PROPS_SIZE, &compress_data_offset, pPropsBuf, nPropsBufLen, LZMA_FINISH_ANY, &Status, &stAllocator);
-
-		if (rc != SZ_OK)
+		output = new byte_t[_not_compress_size];
+		LzmaALLData* lzma_data = reinterpret_cast<LzmaALLData*>(input);
+		uint64_t decompress_size = _not_compress_size;
+		if(LzmaUncompress(output, &decompress_size, lzma_data->data, &compress_data_offset, lzma_data->props, PROPS_SIZE)!= SZ_OK)
 		{
-			printf("\nLZMA decompression failed (rc=%d, status=%d).\n", rc, Status);
-			err = 1;
+#ifdef _DEBUG
+			std::cout << "ERROR : Decompressing file Failed\n";
+#endif // _DEBUG
+			throw "ERROR : Decompressing file Failed\n";
+			return false;
 		}
-
-		if ((nUnCompBufLen != nTestDataLen) || memcmp(pTestData, pUnCompBuf, nTestDataLen))
+		if(decompress_size != _not_compress_size)
 		{
-			printf("Compression and/or decompression failed!\n");
-			printf("\tInput data length [nTestDataLen] : %d\n", nTestDataLen);
-			printf("\tCompressed data length [nCompBufLen] : %d\n", nCompBufLen);
-			printf("\tUncompressed data length [nUnCompBufLen]: %d\n", nUnCompBufLen);
-
-			if (memcmp(pTestData, pUnCompBuf, nTestDataLen))
-				printf("\tpTestData and pUnCompBuf contain different data!\n");
-			else
-			{
-				printf("\ndest_len:%d\n,dest_data:%s\n,src_src:%s\n", nUnCompBufLen, pUnCompBuf, pTestData);
-			}
-
-			err = 1;
+#ifdef _DEBUG
+			std::cout << std::format("ERROR : Decmpressed file is broken | source size: {0} ,decommpress: {1}\n", _not_compress_size, compress_data_offset);
+#endif // _DEBUG
+			throw std::format("ERROR : Decompressed file is broken | source size: {0} ,decommpress: {1}\n", _not_compress_size, compress_data_offset);
+			return false;
 		}
-
-		printf("\ndest_len:%d\n,dest_data:%s\n,src_src:%s\n", nUnCompBufLen, pUnCompBuf, pTestData);
-
-		if (!err)
-			printf("\nOK!\n");
-
-		return 0;
 		return true;
 	}
 	// compress by zstd

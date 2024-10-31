@@ -2,6 +2,7 @@
 
 #include "decompress/private/private_FileType.h"
 #include "decompress/private/private_ImageFileReader.h"
+#include "decompress/private/private_Decompress.h"
 
 namespace xe
 {
@@ -76,13 +77,32 @@ namespace xe
 	{
 		Testure* poutput_testure = new Testure[number];
 		byte_t* compressed_data = nullptr;
+
+		uint64_t offset = 0;
+		uint64_t source_data_size = 0;
+
 		for (uint64_t i = 0; i < number; i++)
 		{
+			for (uint64_t j = 0; i < file_map->file_number; i++)
+			{
+				if (strcmp((char*)file_tree->file_name, (char*)(file_name_list[i].data)) == 0)
+				{
+					goto FIND_FILE;
+				}
+			}
+#ifdef _DEBUG
+			std::cout << std::format("Not find file NAME:{0}\n", (char*)(file_name_list[i].data));
+#endif // _DEBUG
+			poutput_testure = nullptr;
+			continue;
+		FIND_FILE:
 			if (GetNameExtension((char*)(file_name_list->data), file_name_list->_size, ".jpeg", 6) ||
 				GetNameExtension((char*)(file_name_list->data), file_name_list->_size, ".jpg", 5))
 			{
+				DecompressLZMA()
 				//DecompressJPEG(&(poutput_testure[i]));
 			}
+			continue;
 		}
 		return poutput_testure;
 	}

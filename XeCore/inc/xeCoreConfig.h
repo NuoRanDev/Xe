@@ -22,6 +22,10 @@ namespace xe
 {
 	using offsetptr_t = uint64_t;
 	using byte_t = uint8_t;
+
+	constexpr uint64_t KB = 1024;
+	constexpr uint64_t MB = 1024 * 1024;
+	constexpr uint64_t GB = 1024 * 1024 * 1024;
 }
 
 #if defined(_MSC_VER) // MSVC
@@ -35,11 +39,11 @@ namespace xe
 
 struct CsharpString
 {
-	uint64_t _size;
+	int64_t _size;
 	char* data;
 };
 
-#define XE_EXPORT_API EXPORT_HEAD extern"C"
+#define XE_EXPORT_API EXPORT_HEAD extern"C" __stdcall
 
 #elif defined(EXPORT_C_PLUS_PLUS_API)
 
