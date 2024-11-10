@@ -18,7 +18,7 @@
     <ClInclude Include="..\..\XeCore\inc\xeCoreConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\XeCore\inc\MmapFstream.h">
+    <ClInclude Include="..\..\XeCore\inc\xeMmapFstream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\XeCore\inc\XeCore.h">
@@ -26,7 +26,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\XeCore\src\MmapFstream.cpp">
+    <ClCompile Include="..\..\XeCore\src\xeMmapFstream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

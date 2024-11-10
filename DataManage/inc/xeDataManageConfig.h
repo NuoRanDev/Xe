@@ -9,6 +9,7 @@
 #include <fstream>
 #include <iostream>
 #include <format>
+#include <vector>
 
 #include "xeCore.h"
 

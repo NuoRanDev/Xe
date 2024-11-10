@@ -141,12 +141,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\XeCore\inc\MmapFstream.h" />
+    <ClInclude Include="..\..\XeCore\inc\xeMmapFstream.h" />
     <ClInclude Include="..\..\XeCore\inc\XeCore.h" />
     <ClInclude Include="..\..\XeCore\inc\xeCoreConfig.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\XeCore\src\MmapFstream.cpp" />
+    <ClCompile Include="..\..\XeCore\src\xeMmapFstream.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

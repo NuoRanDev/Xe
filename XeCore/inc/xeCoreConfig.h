@@ -20,7 +20,7 @@
 
 namespace xe
 {
-	using offsetptr_t = uint64_t;
+	using offsetptr_t = void*;
 	using byte_t = uint8_t;
 
 	constexpr uint64_t KB = 1024;
@@ -34,6 +34,7 @@ namespace xe
 #define EXPORT_HEAD __attribute__((visibility("default")))
 #endif // API EXPORT IS END
 
+#define XE_PRIVATE_API				EXPORT_HEAD
 
 #if defined(EXPORT_C_SHARP_API)
 
@@ -43,11 +44,13 @@ struct CsharpString
 	char* data;
 };
 
-#define XE_EXPORT_API EXPORT_HEAD extern"C" __stdcall
+#define XE_EXPORT_C_SHARP_API		EXPORT_HEAD extern"C" __stdcall
+#define XE_EXPORT_C_PLUS_PLUS_API
 
 #elif defined(EXPORT_C_PLUS_PLUS_API)
 
-#define XE_EXPORT_API EXPORT_HEAD
+#define XE_EXPORT_C_SHARP_API
+#define XE_EXPORT_C_PLUS_PLUS_API	EXPORT_HEAD
 
 #endif
 

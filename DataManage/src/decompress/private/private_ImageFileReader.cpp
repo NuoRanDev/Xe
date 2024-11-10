@@ -30,25 +30,28 @@ namespace xe
 		width = cinfo.output_width;
 		height = cinfo.output_height;
 
+		img->x = width;
+		img->y = height;
+		img->channel = RGB_PIXEL_OFFSET;
+		img->channel_size = 8;
+
 		// USE RGB COLOR SPACE
 		rgb_buffer = new byte_t[width * height * RGB_PIXEL_OFFSET];
 		line_ofset = width * RGB_PIXEL_OFFSET;
 
-		byte_line* pppixel_line_data = new byte_line;
+		byte_line* ppixel_line_data = nullptr;
 
 		img->pixel_data = rgb_buffer;
 
 		while (cinfo.output_scanline < cinfo.output_height)
 		{
-			pppixel_line_data[0] = rgb_buffer;
-			jpeg_read_scanlines(&cinfo, pppixel_line_data, 1);
+			ppixel_line_data = &rgb_buffer;
+			jpeg_read_scanlines(&cinfo, ppixel_line_data, 1);
 			rgb_buffer = rgb_buffer + line_ofset;
 		}
 
 		jpeg_finish_decompress(&cinfo);
 		jpeg_destroy_decompress(&cinfo);
-
-		delete pppixel_line_data;
 
 		return 0;
 	}

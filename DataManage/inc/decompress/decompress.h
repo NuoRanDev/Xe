@@ -4,6 +4,8 @@
 #include "xeDataManageConfig.h"
 #include "xeCompressFileStruct.h"
 
+#include "xeMmapFstream.h"
+
 namespace xe
 {
 	class TestureData;
@@ -13,6 +15,7 @@ namespace xe
 	{
 	public:
 		friend TestureData;
+		friend AudioData;
 
 		GameData(char* file_path);
 
@@ -23,9 +26,6 @@ namespace xe
 		~GameData();
 	private:
 
-		// Header Files
-		uint64_t file_tree_header_size;
-
 		// File Data
 		xeOtherCompressFileHeaderFormat* file_map;
 
@@ -33,7 +33,7 @@ namespace xe
 		xeCompressFileBlockInfo* file_tree;
 
 		// File Stream
-		std::ifstream fs;
+		iMmapfstream* fs;
 	};
 
 	class TestureData : public GameData
@@ -44,9 +44,11 @@ namespace xe
 		// Testure IO
 #if defined(EXPORT_C_SHARP_API)
 		Testure* GetTestureDataCsharp(CsharpString* file_name_list, uint64_t number);
-#elif defined(EXPORT_C_PLUS_PLUS_API)
+#endif // defined C_SHARP_API  IS END
+
+#if defined(EXPORT_C_PLUS_PLUS_API)
 		std::vector<Testure> GetTestureData(std::vector<std::string>& file_name_list);
-#endif // defined(C_SHARP_API) IS END
+#endif // defined EXPORT_C_PLUS_PLUS_API  IS END
 
 		~TestureData();
 	};
@@ -58,9 +60,11 @@ namespace xe
 
 		// Testure IO
 #if defined(EXPORT_C_SHARP_API)
-		Testure* GetTestureDataCsharp(char** file_name_list, int number);
-#elif defined(EXPORT_C_PLUS_PLUS_API)
-		std::vector<Testure> GetTestureData(std::vector<std::string>& file_name_list);
+		Audio* GetTestureDataCsharp(CsharpString* file_name_list, uint64_t number);
+#endif // defined C_SHARP_API  IS END
+
+#if defined(EXPORT_C_PLUS_PLUS_API)
+		std::vector<Audio> GetTestureData(std::vector<std::string>& file_name_list);
 #endif // defined(C_SHARP_API) IS END
 
 		~AudioData();

@@ -14,6 +14,15 @@ namespace xe
 		LZMA = 2
 	};
 
+	enum class xeAudioCompressSolution :uint32_t
+	{
+		ERROR = 0,
+
+		WAV = 1,
+		MP4 = 2,
+		OGG = 3
+	};
+
 	namespace xeAssetFileType
 	{
 
@@ -42,7 +51,7 @@ namespace xe
 	struct xeCompressFileBlockInfo
 	{
 		uint8_t file_name[512];
-		offsetptr_t _compress_start;
+		uint64_t _block_start;
 		uint64_t _compress_size;
 		uint64_t _not_compress_size;
 	};
@@ -129,12 +138,21 @@ namespace xe
 		uint64_t file_number;
 	};
 
+	// pxiel imgae
 	struct Testure 
 	{
 		uint32_t x, y;
 		uint32_t channel;
 		uint32_t channel_size;
-		byte_t *pixel_data;
+		byte_t* pixel_data;
+	};
+
+	// Audio
+	struct Audio
+	{
+		xeAudioCompressSolution solution;
+		size_t _size;
+		byte_t* data;
 	};
 }
 
