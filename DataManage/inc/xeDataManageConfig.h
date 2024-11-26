@@ -1,17 +1,9 @@
-#ifndef _INC_XE_DATA_MANAGE_H_
-#define _INC_XE_DATA_MANAGE_H_
+#ifndef _INC_XE_DATA_MANAGE_CONFIG_H_
+#define _INC_XE_DATA_MANAGE_CONFIG_H_
 
-#include <cmath>
-#include <cstdio>
-#include <format>
-#include <mutex>
-#include <thread>
-#include <fstream>
-#include <iostream>
-#include <format>
-#include <vector>
+#include <xeCore.hpp>
 
-#include "xeCore.h"
+#undef XE_PRIVATE_API
 
 namespace xe
 {

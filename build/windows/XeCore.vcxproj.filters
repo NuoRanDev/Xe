@@ -21,12 +21,18 @@
     <ClInclude Include="..\..\XeCore\inc\xeMmapFstream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\XeCore\inc\XeCore.h">
+    <ClInclude Include="..\..\XeCore\inc\XeCore.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XeCore\inc\XeCoreClrOutput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\XeCore\src\xeMmapFstream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XeCore\src\XeCoreClrOutput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

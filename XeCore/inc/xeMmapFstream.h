@@ -5,14 +5,11 @@
 
 namespace xe
 {
-	XE_PRIVATE_API class iMmapfstream;
-	XE_PRIVATE_API class basicMmapfstream;
-
-	class iMmapfstream
+	class XE_CORE_PRIVATE_API oMmapfstream
 	{
 	public:
 
-		iMmapfstream() = default;
+		oMmapfstream() = default;
 		
 		bool GetFilePtr(char* str);
 		
@@ -26,7 +23,7 @@ namespace xe
 		
 		void Release();
 		
-		~iMmapfstream();
+		~oMmapfstream();
 	private:
 		size_t file_size;
 
@@ -36,7 +33,7 @@ namespace xe
 #endif // _WIN32
 	};
 
-	class oMmapfstream
+	class iMmapfstream
 	{
 	};
 }

@@ -60,16 +60,16 @@
     <ClInclude Include="..\..\DataManage\inc\decompress\private\private_Decompress.h">
       <Filter>Header Files\decompress\private</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\DataManage\inc\xeBasicData.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DataManage\inc\xeDataMangeCsharpAPI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\DataManage\src\xeDataManage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\DataManage\src\compress\compress.cpp">
       <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\DataManage\src\decompress\decompress.cpp">
-      <Filter>Source Files\decompress</Filter>
     </ClCompile>
     <ClCompile Include="..\..\DataManage\src\decompress\private\private_ImageFileReader.cpp">
       <Filter>Source Files\decompress\private</Filter>
@@ -79,6 +79,9 @@
     </ClCompile>
     <ClCompile Include="..\..\DataManage\src\decompress\private\private_Decompress.cpp">
       <Filter>Source Files\decompress\private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DataManage\src\decompress\decompress.cpp">
+      <Filter>Source Files\decompress</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

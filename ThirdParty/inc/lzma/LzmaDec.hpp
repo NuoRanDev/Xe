@@ -11,6 +11,12 @@
 /* #include "CpuArch.h" */
 #include "LzmaDec.h"
 
+#ifdef _WIN32
+#pragma warning( push )
+#pragma warning( disable : 4200 )
+#endif // _WIN32
+
+
 // #define kNumTopBits 24
 #define kTopValue ((UInt32)1 << 24)
 
@@ -1384,7 +1390,7 @@ SRes LzmaUncompress(unsigned char* dest, size_t* destLen, const unsigned char* s
 struct LzmaALLData
 {
     unsigned char props[PROPS_SIZE];
-    unsigned char data[0];
+    unsigned char data[];
 };
 
 #endif // _LZMA_DEC_HPP_ IS EOF

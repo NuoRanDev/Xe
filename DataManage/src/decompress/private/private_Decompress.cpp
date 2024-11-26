@@ -1,6 +1,8 @@
 #include "decompress/private/private_Decompress.h"
 #include "lzma/LzmaDec.hpp"
 
+#include "XeCoreClrOutput.h"
+
 namespace xe
 {
 	// compress by lzma
@@ -11,18 +13,12 @@ namespace xe
 		uint64_t decompress_size = _not_compress_size;
 		if(LzmaUncompress(output, &decompress_size, lzma_data->data, &compress_data_offset, lzma_data->props, PROPS_SIZE)!= SZ_OK)
 		{
-#ifdef _DEBUG
-			std::cout << "ERROR : Decompressing file Failed\n";
-#endif // _DEBUG
-			throw "ERROR : Decompressing file Failed\n";
+			XE_ERROR_OUTPUT("Decompressing file Failed\n");
 			return false;
 		}
 		if(decompress_size != _not_compress_size)
 		{
-#ifdef _DEBUG
-			std::cout << std::format("ERROR : Decmpressed file is broken | source size: {0} ,decommpress: {1}\n", _not_compress_size, compress_data_offset);
-#endif // _DEBUG
-			throw std::format("ERROR : Decompressed file is broken | source size: {0} ,decommpress: {1}\n", _not_compress_size, compress_data_offset);
+			XE_ERROR_OUTPUT(std::format("Decmpressed file is broken | source size: {0} ,decommpress: {1}\n", _not_compress_size, compress_data_offset).c_str());
 			return false;
 		}
 		return true;

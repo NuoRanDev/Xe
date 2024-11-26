@@ -18,8 +18,8 @@ namespace xe
 	{
 		ERROR = 0,
 
-		WAV = 1,
-		MP4 = 2,
+		FLAC = 1,
+		MP3 = 2,
 		OGG = 3
 	};
 
@@ -31,7 +31,7 @@ namespace xe
 			uint64_t output = 0;
 			for (int i = 0; i < 8; i++)
 			{
-				output = output << 8 + data[i];
+				output = (output << 8) + data[i];
 			}
 			return output;
 		}
@@ -76,7 +76,7 @@ namespace xe
 		uint64_t file_number;
 	};
 
-	// Video file suppor mp4 flv webp
+	// Video file suppor mp4 webp
 	struct xeVideoCompressFileHeaderFormat
 	{
 		// File Info

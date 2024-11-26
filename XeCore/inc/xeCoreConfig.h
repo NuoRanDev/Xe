@@ -1,20 +1,30 @@
 #ifndef _INC_XE_CORE_CONFIG_H_
 #define _INC_XE_CORE_CONFIG_H_
 
-#include <cstdint>
-#include <cstdio>
-#include <cstring>
 #include <format>
 #include <iostream>
 #include <locale>
 #include <string>
+#include <mutex>
+#include <thread>
+#include <vector>
+#include <filesystem>
+#include <functional>
+#include <string_view>
 
+#include <stdint.h>
+#include <stdio.h>
+#include <string.h>
 /************************************************
 *                  Macro List
-*  EXPORT_C_PLUS_PLUS_API export cpp api
-*  EXPORT_C_SHARP_API has exported C api to c-sharp link  
+*  want to export cpp api
+*  MACRO:	EXPORT_C_PLUS_PLUS_API
 * 
+*  want to export C api to c-sharp link  
+*  MACRO:	EXPORT_C_SHARP_API
 * 
+*  BUILD THIS PROJECT MUST DEFINEED 
+*  MACRO:	USE_PROJECT_PRIVATE_API
 * 
 *************************************************/
 
@@ -26,6 +36,25 @@ namespace xe
 	constexpr uint64_t KB = 1024;
 	constexpr uint64_t MB = 1024 * 1024;
 	constexpr uint64_t GB = 1024 * 1024 * 1024;
+
+	template<typename T> void DeleteArray(T* input)
+	{
+		if (input != nullptr)
+		{
+			delete[] input;
+		}
+		input = nullptr;
+	}
+
+	template<typename T> void DeleteSingla(T* input)
+	{
+		if (input != nullptr)
+		{
+			delete input;
+		}
+		input = nullptr;
+	}
+
 }
 
 #if defined(_MSC_VER) // MSVC
@@ -34,7 +63,19 @@ namespace xe
 #define EXPORT_HEAD __attribute__((visibility("default")))
 #endif // API EXPORT IS END
 
-#define XE_PRIVATE_API				EXPORT_HEAD
+#if defined(USE_PROJECT_PRIVATE_API)
+#define XE_CORE_PRIVATE_API				EXPORT_HEAD
+#else
+#define XE_CORE_PRIVATE_API
+#endif // USE_PROJECT_PRIVATE_API IS END
+
+#define EXTERN_C_STMT				extern"C"
+
+#if defined(WIN32) || defined(_WIN32)
+#define XE_CALL __stdcall
+#else
+#define XE_CALL __cdecl
+#endif
 
 #if defined(EXPORT_C_SHARP_API)
 
@@ -44,7 +85,8 @@ struct CsharpString
 	char* data;
 };
 
-#define XE_EXPORT_C_SHARP_API		EXPORT_HEAD extern"C" __stdcall
+
+#define XE_EXPORT_C_SHARP_API(ret_type) EXTERN_C_STMT EXPORT_HEAD ret_type XE_CALL
 #define XE_EXPORT_C_PLUS_PLUS_API
 
 #elif defined(EXPORT_C_PLUS_PLUS_API)

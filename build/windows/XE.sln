@@ -4,20 +4,41 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Audio", "Audio.vcxproj", "{B514AF01-8436-4D6A-A4BA-E37CA91F0259}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2F83EAC3-D1AC-4676-8A06-FFE4A6FEE176} = {2F83EAC3-D1AC-4676-8A06-FFE4A6FEE176}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DataManage", "DataManage.vcxproj", "{74D2884D-E11F-42BA-83E9-5DF72DC97E4E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2F83EAC3-D1AC-4676-8A06-FFE4A6FEE176} = {2F83EAC3-D1AC-4676-8A06-FFE4A6FEE176}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IO", "IO.vcxproj", "{BC8FDB3C-D165-4191-8904-47B71FA97847}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2F83EAC3-D1AC-4676-8A06-FFE4A6FEE176} = {2F83EAC3-D1AC-4676-8A06-FFE4A6FEE176}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Physical", "Physical.vcxproj", "{3DB7EBF8-442A-4718-AA75-BF3E216DB5F3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2F83EAC3-D1AC-4676-8A06-FFE4A6FEE176} = {2F83EAC3-D1AC-4676-8A06-FFE4A6FEE176}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Render", "Render.vcxproj", "{0B5D15D2-0DCF-477C-8604-A2D570FEAC7E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2F83EAC3-D1AC-4676-8A06-FFE4A6FEE176} = {2F83EAC3-D1AC-4676-8A06-FFE4A6FEE176}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XeStudio", "XeStudio.vcxproj", "{0023A6FA-EFBB-4BA9-A317-0F38E9EBD74A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0B5D15D2-0DCF-477C-8604-A2D570FEAC7E} = {0B5D15D2-0DCF-477C-8604-A2D570FEAC7E}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XeCore", "XeCore.vcxproj", "{2F83EAC3-D1AC-4676-8A06-FFE4A6FEE176}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MainLoop", "MainLoop.vcxproj", "{CDFF4D3E-C976-48A1-8762-4967CA950E0C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2F83EAC3-D1AC-4676-8A06-FFE4A6FEE176} = {2F83EAC3-D1AC-4676-8A06-FFE4A6FEE176}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

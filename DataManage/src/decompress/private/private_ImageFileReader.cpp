@@ -1,12 +1,28 @@
 #include "decompress/private/private_ImageFileReader.h"
 
 // LIBJPEG
+#include <csetjmp>
+
 #include "jpeglib.h"
+
 namespace xe
 {
+	struct my_error_mgr
+	{
+		struct jpeg_error_mgr pub;
+		jmp_buf setjmp_buffer;
+	};
+	typedef struct my_error_mgr* my_error_ptr;
+	static void my_error_exit(j_common_ptr cinfo)
+	{
+		my_error_ptr myerr = (my_error_ptr)cinfo->err;
+		(*cinfo->err->output_message) (cinfo);
+		longjmp(myerr->setjmp_buffer, 1);
+	}
+
 	constexpr uint64_t RGB_PIXEL_OFFSET = 3;
 
-	int DecompressJPEG(Testure* img, byte_t* jpeg_buffer)
+	bool DecompressJPEG(Testure* img, byte_t* jpeg_buffer)
 	{
 		int width = 0;
 		int height = 0;
@@ -15,9 +31,15 @@ namespace xe
 		byte_t* rgb_buffer = nullptr;
 
 		jpeg_decompress_struct cinfo;
-		jpeg_error_mgr jerr;
+		my_error_mgr jerr;
 
-		cinfo.err = jpeg_std_error(&jerr);
+		cinfo.err = jpeg_std_error(&jerr.pub);
+		jerr.pub.error_exit = my_error_exit;
+		if (setjmp(jerr.setjmp_buffer))
+		{
+			jpeg_destroy_decompress(&cinfo);
+			return false;
+		}
 
 		jpeg_create_decompress(&cinfo);
 
@@ -53,6 +75,6 @@ namespace xe
 		jpeg_finish_decompress(&cinfo);
 		jpeg_destroy_decompress(&cinfo);
 
-		return 0;
+		return true;
 	}
 }

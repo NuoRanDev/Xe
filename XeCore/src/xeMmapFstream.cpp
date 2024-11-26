@@ -1,36 +1,32 @@
 #include "xeMmapFstream.h"
-
+#include "XeCoreClrOutput.h"
 #if _WIN32
 #include <Windows.h>
 #endif // _WIN32
 
 namespace xe
 {
-	bool iMmapfstream::GetFilePtr(char* str)
+	bool oMmapfstream::GetFilePtr(char* str)
 	{
 #ifdef _WIN32
 		hfile_mapping = OpenFileMapping(FILE_MAP_READ, FALSE, L"ShareFile");
 		if (hfile_mapping == nullptr)
 		{
-#ifdef _DEBUG
-			std::cout << std::format("Open file mapping failed , ERROR CODE:{0}\n", GetLastError());
-#endif // DEBUG IS END
+			XE_ERROR_OUTPUT(std::format("Open file mapping failed , SYSTEM ERROR CODE:{0}\n", GetLastError()).c_str());
 			return false;
 		}
 #endif // _WIN32
 		pfile_start = MapViewOfFile(hfile_mapping, FILE_MAP_READ, 0, 0, 0);
 		if (pfile_start == nullptr)
 		{
-#ifdef _DEBUG
-			std::cout << std::format("Map file mapping failed , ERROR CODE:{0}\n", GetLastError());
-#endif // DEBUG IS END
+			XE_ERROR_OUTPUT(std::format("Map file mapping failed ,SYSTEM ERROR CODE:{0}\n", GetLastError()).c_str());
 			CloseHandle(hfile_mapping);
-			return -1;
+			return false;
 		}
 		return true;
 	}
 
-	bool iMmapfstream::FstraemByteMemcpy(byte_t* dst, size_t start, size_t offset)
+	bool oMmapfstream::FstraemByteMemcpy(byte_t* dst, size_t start, size_t offset)
 	{
 		if (file_size > start + offset)
 		{
@@ -40,7 +36,7 @@ namespace xe
 		return true;
 	}
 
-	void iMmapfstream::Release()
+	void oMmapfstream::Release()
 	{
 		if (pfile_start == nullptr)
 			UnmapViewOfFile(pfile_start);
@@ -50,43 +46,37 @@ namespace xe
 		hfile_mapping = nullptr;
 	}
 
-	iMmapfstream::~iMmapfstream()
+	oMmapfstream::~oMmapfstream()
 	{
 		Release();
 	}
 
-	template<typename T> inline T* xe::iMmapfstream::GetFstreamPtr(size_t start)
+	template<typename T> T* oMmapfstream::GetFstreamPtr(size_t offset_byte)
 	{
-		if (start > file_size)
+		if (offset_byte > file_size)
 		{
-#ifdef _DEBUG
-			std::cout << std::format("Out of memry ERROR :start {0}, file size {1}\n", start, file_size);
-#endif // DEBUG IS END
+			XE_ERROR_OUTPUT(std::format("Out of memry : offset size {0}, file size {1}\n", offset_byte, file_size).c_str());
 			return nullptr;
 		}
-		return pfile_start + file_size;
+		return (T*)((byte_t*)pfile_start + offset_byte);
 	}
 
-	template<typename T> bool iMmapfstream::FstraemStartMemcpy(T* dst, size_t number)
+	template<typename T> bool oMmapfstream::FstraemStartMemcpy(T* dst, size_t number)
 	{
-		if (start > file_size)
+		if (number * sizeof(T) > file_size)
 		{
-#ifdef _DEBUG
-			std::cout << std::format("Out of memry ERROR :start {0}, file size {1}\n", sizeof(T) * number, file_size);
-#endif // DEBUG IS END
+			XE_ERROR_OUTPUT(std::format("Out of memry : offset size {0}, file size {1}\n", sizeof(T) * number, file_size).c_str());
 			return false;
 		}
 		memcpy(dst, pfile_start, sizeof(T) * number);
 		return true;
 	}
 
-	template<typename T> bool iMmapfstream::FstraemMemcpy(T* dst, size_t start, size_t number)
+	template<typename T> bool oMmapfstream::FstraemMemcpy(T* dst, size_t start, size_t number)
 	{
 		if (file_size > (start + number * sizeof(T)))
 		{
-#ifdef _DEBUG
-			std::cout << std::format("Out of memry ERROR :start {0}, file size {1}\n", sizeof(T) * number, file_size);
-#endif // DEBUG IS END
+			XE_ERROR_OUTPUT(std::format("Out of memry : offset size {0}, file size {1}\n", sizeof(T) * number, file_size).c_str());
 			return false;
 		}
 		memcpy(dst, (byte_t*)pfile_start + start, number * sizeof(T));

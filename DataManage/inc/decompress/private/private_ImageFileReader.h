@@ -6,7 +6,7 @@
 
 namespace xe
 {
-	int DecompressJPEG(Testure* img, byte_t* jpeg_buffer);
+	bool DecompressJPEG(Testure* img, byte_t* jpeg_buffer);
 
 	using byte_line = byte_t*;
 }
