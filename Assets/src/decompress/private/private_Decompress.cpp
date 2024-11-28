@@ -1,8 +1,6 @@
 #include "decompress/private/private_Decompress.h"
 #include "lzma/LzmaDec.hpp"
 
-#include "XeCoreClrOutput.h"
-
 namespace xe
 {
 	// compress by lzma

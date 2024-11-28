@@ -22,6 +22,9 @@
     <ClInclude Include="..\..\Render\inc\XeRender.h" />
     <ClInclude Include="..\..\Render\inc\xeWindow.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Render\src\xeWindow.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

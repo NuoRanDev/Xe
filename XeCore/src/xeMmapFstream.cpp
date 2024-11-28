@@ -15,7 +15,6 @@ namespace xe
 			XE_ERROR_OUTPUT(std::format("Open file mapping failed , SYSTEM ERROR CODE:{0}\n", GetLastError()).c_str());
 			return false;
 		}
-#endif // _WIN32
 		pfile_start = MapViewOfFile(hfile_mapping, FILE_MAP_READ, 0, 0, 0);
 		if (pfile_start == nullptr)
 		{
@@ -23,6 +22,7 @@ namespace xe
 			CloseHandle(hfile_mapping);
 			return false;
 		}
+#endif // _WIN32 FUNCTION IS END
 		return true;
 	}
 
@@ -38,10 +38,12 @@ namespace xe
 
 	void oMmapfstream::Release()
 	{
+#ifdef _WIN32
 		if (pfile_start == nullptr)
 			UnmapViewOfFile(pfile_start);
 		if (hfile_mapping == nullptr)
 			CloseHandle(hfile_mapping);
+#endif // _WIN32 FUNCTION IS END
 		pfile_start = nullptr;
 		hfile_mapping = nullptr;
 	}

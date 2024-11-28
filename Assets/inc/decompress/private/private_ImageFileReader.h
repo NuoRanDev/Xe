@@ -1,7 +1,7 @@
 #ifndef __PRIVATE__IMAGE_FILE_READER_H_
 #define __PRIVATE__IMAGE_FILE_READER_H_
 
-#include "xeDataManageConfig.h"
+#include "xeAssetsConfig.h"
 #include "xeCompressFileStruct.h"
 
 namespace xe

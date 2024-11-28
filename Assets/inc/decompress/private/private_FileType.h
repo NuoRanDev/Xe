@@ -1,7 +1,7 @@
 #ifndef __PRIVATE__FILE_TYPE_H_
 #define __PRIVATE__FILE_TYPE_H_
 
-#include "xeDataManageConfig.h"
+#include "xeAssetsConfig.h"
 
 namespace xe
 {

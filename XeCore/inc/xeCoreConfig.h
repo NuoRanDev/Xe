@@ -56,7 +56,7 @@ namespace xe
 	}
 
 }
-
+// Export function data
 #if defined(_MSC_VER) // MSVC
 #define EXPORT_HEAD __declspec(dllexport)
 #elif defined(__GNUC__) //GCC

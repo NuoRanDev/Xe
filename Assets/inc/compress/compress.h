@@ -1,7 +1,7 @@
 #ifndef _INC_COMPRESS_H_
 #define _INC_COMPRESS_H_
 
-#include "xeDataManageConfig.h"
+#include "xeAssetsConfig.h"
 #include "xeCompressFileStruct.h"
 
 namespace xe

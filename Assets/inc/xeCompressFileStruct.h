@@ -1,7 +1,7 @@
 #ifndef _INC_XE_COMPRESS_FILE_STRUCT_H_
 #define _INC_XE_COMPRESS_FILE_STRUCT_H_
 
-#include "xeDataManageConfig.h"
+#include "xeAssetsConfig.h"
 
 namespace xe
 {
@@ -12,15 +12,6 @@ namespace xe
 		NONE = 0,
 		ZSTD = 1,
 		LZMA = 2
-	};
-
-	enum class xeAudioCompressSolution :uint32_t
-	{
-		ERROR = 0,
-
-		FLAC = 1,
-		MP3 = 2,
-		OGG = 3
 	};
 
 	namespace xeAssetFileType
@@ -90,7 +81,7 @@ namespace xe
 	struct xeShaderCompressFileHeaderFormat
 	{
 		// File Info
-		const char header[8] = "SHADER\0";
+		const char header[8] = "SHADER";
 		// Shader compressing's solution is defaulted the ZSTD
 		xeCompressSolution compress_solution = xeCompressSolution::ZSTD;
 		uint64_t file_number;
@@ -130,7 +121,7 @@ namespace xe
 	struct xeOtherCompressFileHeaderFormat
 	{
 		// File Info
-		uint64_t header;
+		uint64_t header = xeAssetFileType::OTHER_ASSET_FILE_HEADER;
 
 		// Other compressing's solution is defaulted the ZSTD
 		xeCompressSolution compress_solution;
@@ -138,22 +129,7 @@ namespace xe
 		uint64_t file_number;
 	};
 
-	// pxiel imgae
-	struct Testure 
-	{
-		uint32_t x, y;
-		uint32_t channel;
-		uint32_t channel_size;
-		byte_t* pixel_data;
-	};
 
-	// Audio
-	struct Audio
-	{
-		xeAudioCompressSolution solution;
-		size_t _size;
-		byte_t* data;
-	};
 }
 
 #endif // _INC_XE_COMPRESS_FILE_STRUCT_H_ IS EOF

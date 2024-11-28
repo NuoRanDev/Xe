@@ -42,13 +42,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>ClangCL</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>ClangCL</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -71,17 +71,17 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)..\DataManage\inc;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\Assets\inc;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)..\DataManage\inc;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\Assets\inc;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\..\ThirdParty\inc\;$(ProjectDir)..\..\XeCore\inc\;$(ProjectDir)..\..\Assets\inc\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Platform)$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\..\ThirdParty\inc\;$(ProjectDir)..\..\XeCore\inc\;$(ProjectDir)..\..\Assets\inc\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Platform)$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -92,18 +92,13 @@
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
   </PropertyGroup>
-  <PropertyGroup Label="Vcpkg">
-    <VcpkgAutoLink>false</VcpkgAutoLink>
-    <VcpkgEnableManifest>false</VcpkgEnableManifest>
-    <VcpkgXUseBuiltInApplocalDeps>false</VcpkgXUseBuiltInApplocalDeps>
-  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\DataManage\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Assets\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
@@ -120,7 +115,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\DataManage\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Assets\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
@@ -137,7 +132,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>EXPORT_C_PLUS_PLUS_API;EXPORT_C_SHARP_API;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\ThirdParty\inc\;$(ProjectDir)..\..\XeCore\inc\;$(ProjectDir)..\..\DataManage\inc\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\ThirdParty\inc\;$(ProjectDir)..\..\XeCore\inc\;$(ProjectDir)..\..\Assets\inc\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
@@ -157,7 +152,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>EXPORT_C_PLUS_PLUS_API;EXPORT_C_SHARP_API;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\ThirdParty\inc\;$(ProjectDir)..\..\XeCore\inc\;$(ProjectDir)..\..\DataManage\inc\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\ThirdParty\inc\;$(ProjectDir)..\..\XeCore\inc\;$(ProjectDir)..\..\Assets\inc\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <Optimization>MaxSpeed</Optimization>
@@ -173,23 +168,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\DataManage\inc\xeBasicData.hpp" />
-    <ClInclude Include="..\..\DataManage\inc\compress\compress.h" />
-    <ClInclude Include="..\..\DataManage\inc\decompress\decompress.h" />
-    <ClInclude Include="..\..\DataManage\inc\decompress\private\private_Decompress.h" />
-    <ClInclude Include="..\..\DataManage\inc\decompress\private\private_FileType.h" />
-    <ClInclude Include="..\..\DataManage\inc\decompress\private\private_ImageFileReader.h" />
-    <ClInclude Include="..\..\DataManage\inc\xeCompressFileStruct.h" />
-    <ClInclude Include="..\..\DataManage\inc\xeDataManage.h" />
-    <ClInclude Include="..\..\DataManage\inc\xeDataManageConfig.h" />
-    <ClInclude Include="..\..\DataManage\inc\xeDataMangeCsharpAPI.h" />
+    <ClInclude Include="..\..\Assets\inc\xeBasicData.hpp" />
+    <ClInclude Include="..\..\Assets\inc\compress\compress.h" />
+    <ClInclude Include="..\..\Assets\inc\decompress\decompress.h" />
+    <ClInclude Include="..\..\Assets\inc\decompress\private\private_Decompress.h" />
+    <ClInclude Include="..\..\Assets\inc\decompress\private\private_FileType.h" />
+    <ClInclude Include="..\..\Assets\inc\decompress\private\private_ImageFileReader.h" />
+    <ClInclude Include="..\..\Assets\inc\xeCompressFileStruct.h" />
+    <ClInclude Include="..\..\Assets\inc\xeAssets.h" />
+    <ClInclude Include="..\..\Assets\inc\xeAssetsConfig.h" />
+    <ClInclude Include="..\..\Assets\inc\xeAssetCsharpAPI.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\DataManage\src\compress\compress.cpp" />
-    <ClCompile Include="..\..\DataManage\src\decompress\decompress.cpp" />
-    <ClCompile Include="..\..\DataManage\src\decompress\private\private_Decompress.cpp" />
-    <ClCompile Include="..\..\DataManage\src\decompress\private\private_FileType.cpp" />
-    <ClCompile Include="..\..\DataManage\src\decompress\private\private_ImageFileReader.cpp" />
+    <ClCompile Include="..\..\Assets\src\compress\compress.cpp" />
+    <ClCompile Include="..\..\Assets\src\decompress\decompress.cpp" />
+    <ClCompile Include="..\..\Assets\src\decompress\private\private_Decompress.cpp" />
+    <ClCompile Include="..\..\Assets\src\decompress\private\private_FileType.cpp" />
+    <ClCompile Include="..\..\Assets\src\decompress\private\private_ImageFileReader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,7 +1,7 @@
 #ifndef __PRIVATE__DECOMPRESS_H_
 #define __PRIVATE__DECOMPRESS_H_
 
-#include "xeDataManageConfig.h"
+#include "xeAssetsConfig.h"
 
 namespace xe
 {

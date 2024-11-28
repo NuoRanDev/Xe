@@ -3,6 +3,8 @@
 
 #include "xeCoreConfig.h"
 #include "xeMmapFstream.h"
+#include "xeApplication.h"
+#include "xeBaseDataType.h"
 #include "XeCoreClrOutput.h"
 
 

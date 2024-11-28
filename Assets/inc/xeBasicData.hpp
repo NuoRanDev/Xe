@@ -1,7 +1,7 @@
 #ifndef _BASIC_DATA_HPP_
 #define _BASIC_DATA_HPP_
 
-#include "xeDataManageConfig.h"
+#include "xeAssetsConfig.h"
 #include "xeCompressFileStruct.h"
 
 #include "XeCore.hpp"
