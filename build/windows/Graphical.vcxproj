@@ -19,11 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Render\inc\XeRender.h" />
-    <ClInclude Include="..\..\Render\inc\xeWindow.h" />
+    <ClInclude Include="..\..\Graphical\inc\Render\xeRender.h" />
+    <ClInclude Include="..\..\Graphical\inc\xeWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Render\src\xeWindow.cpp" />
+    <ClCompile Include="..\..\Graphical\src\Render\xeRender.cpp" />
+    <ClCompile Include="..\..\Graphical\src\xeWindow.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -77,6 +78,14 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(ProjectDir)..\..\XeCore\inc\;$(ProjectDir)..\..\Graphical\inc\;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)$(Platform)$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(ProjectDir)..\..\XeCore\inc\;$(ProjectDir)..\..\Graphical\inc\;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)$(Platform)$(Configuration)\</OutDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -111,6 +120,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\XeCore\inc\;$(ProjectDir)..\..\Graphical\inc\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -125,6 +135,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\XeCore\inc\;$(ProjectDir)..\..\Graphical\inc\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
