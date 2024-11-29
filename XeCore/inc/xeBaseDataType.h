@@ -6,20 +6,27 @@ namespace xe
 {
 	enum class xeAudioCompressSolution :uint32_t
 	{
-		ERROR = 0,
+		ERROR	= 0,
 
-		FLAC = 1,
-		MP3 = 2,
-		OGG = 3
+		FLAC	= 1,
+		MP3		= 2,
+		OGG		= 3
+	};
+
+	enum class xeColorChannel :uint32_t
+	{
+		GRAY	= 1,
+		RGB		= 3,
+		RGBA	= 4
 	};
 
 	// pxiel imgae
 	struct Testure
 	{
-		uint32_t x, y;
-		uint32_t channel;
-		uint32_t channel_size;
-		byte_t* pixel_data;
+		uint32_t		x, y;
+		xeColorChannel	channel;
+		uint32_t		channel_byte_size = 1;
+		byte_t*			pixel_data;
 	};
 
 	// Audio

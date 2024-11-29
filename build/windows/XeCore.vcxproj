@@ -150,14 +150,14 @@
   <ItemGroup>
     <ClInclude Include="..\..\XeCore\inc\xeApplication.h" />
     <ClInclude Include="..\..\XeCore\inc\xeBaseDataType.h" />
-    <ClInclude Include="..\..\XeCore\inc\XeCoreClrOutput.h" />
+    <ClInclude Include="..\..\XeCore\inc\xeCoreClrOutput.h" />
     <ClInclude Include="..\..\XeCore\inc\xeMmapFstream.h" />
-    <ClInclude Include="..\..\XeCore\inc\XeCore.hpp" />
+    <ClInclude Include="..\..\XeCore\inc\xeCore.hpp" />
     <ClInclude Include="..\..\XeCore\inc\xeCoreConfig.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\XeCore\src\xeApplication.cpp" />
-    <ClCompile Include="..\..\XeCore\src\XeCoreClrOutput.cpp" />
+    <ClCompile Include="..\..\XeCore\src\xeCoreClrOutput.cpp" />
     <ClCompile Include="..\..\XeCore\src\xeMmapFstream.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

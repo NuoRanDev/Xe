@@ -63,6 +63,9 @@
     <ClInclude Include="..\..\Assets\inc\xeAssetCsharpAPI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Assets\inc\XeBasicAsset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Assets\src\compress\compress.cpp">
@@ -79,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Assets\src\decompress\decompress.cpp">
       <Filter>Source Files\decompress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Assets\src\XeBasicAsset.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@
 #include "xeMmapFstream.h"
 #include "xeApplication.h"
 #include "xeBaseDataType.h"
-#include "XeCoreClrOutput.h"
+#include "xeCoreClrOutput.h"
 
 
 #endif // !INC_XE_CORE_H_

@@ -9,6 +9,7 @@
 #include <thread>
 #include <vector>
 #include <filesystem>
+#include <fstream>
 #include <functional>
 #include <string_view>
 
@@ -36,6 +37,11 @@ namespace xe
 	constexpr uint64_t KB = 1024;
 	constexpr uint64_t MB = 1024 * 1024;
 	constexpr uint64_t GB = 1024 * 1024 * 1024;
+
+	template<typename T> uint32_t ARRAYSIZE(T* _ARR)
+	{
+		return ((int)(sizeof(_ARR) / sizeof(*(_ARR))));
+	}
 
 	template<typename T> void DeleteArray(T* input)
 	{

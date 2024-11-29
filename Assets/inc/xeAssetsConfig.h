@@ -1,7 +1,7 @@
 #ifndef _INC_XE_ASSETS_CONFIG_H_
 #define _INC_XE_ASSETS_CONFIG_H_
 
-#include <xeCore.hpp>
+#include "xeCore.hpp"
 
 namespace xe
 {

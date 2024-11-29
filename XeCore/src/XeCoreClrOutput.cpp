@@ -1,6 +1,14 @@
-#include "XeCoreClrOutput.h"
+#include "xeCoreClrOutput.h"
+
+#include "xeApplication.h"
 
 #include <fstream>
+
+// Clang warnings with -Weverything
+#if defined(__clang__)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-const-variable"
+#endif
 
 namespace xe 
 {
@@ -13,22 +21,25 @@ namespace xe
 	constexpr std::string_view BLUE = "\033[34m";
 	constexpr std::string_view WHITE = "\033[37m";
 
-	void SetLogOutput()
-	{
-#ifdef _DEBUG
-		return;
-#endif // _DEBUG
-		std::cout.rdbuf(g_log.rdbuf());
-		return;
-	}
-
 	void XE_ERROR_OUTPUT(const char* output_text)
 	{
-		std::cout << std::string(RED) + "ERROR" + ":\t" + std::string(WHITE) + output_text << std::endl;
+#ifdef _DEBUG
+		std::cout << std::string(RED) + "ERROR" + ":\t" + std::string(WHITE) + output_text + "\n";
+		return;
+#endif // _DEBUG
+		std::string out_text = std::string("ERROR") + ":\t" + output_text + "\n";
+		Application::GetLogFile()->write(out_text.c_str(), out_text.size());
+		return;
 	}
 
 	void XE_WARNING_OUTPUT(const char* output_text)
 	{
-		std::cout << std::string(RED) + "WARNING" + ":\t" + std::string(WHITE) + output_text << std::endl;
+#ifdef _DEBUG
+		std::cout << std::string(YELLOW) + "WARNING" + ":\t" + std::string(WHITE) + output_text + "\n";
+		return;
+#endif // _DEBUG
+		std::string out_text = std::string("WARNING") + ":\t" + output_text + "\n";
+		Application::GetLogFile()->write(out_text.c_str(), out_text.size());
+		return;
 	}
 }

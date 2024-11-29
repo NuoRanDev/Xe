@@ -11,12 +11,12 @@ namespace xe
 		uint64_t decompress_size = _not_compress_size;
 		if(LzmaUncompress(output, &decompress_size, lzma_data->data, &compress_data_offset, lzma_data->props, PROPS_SIZE)!= SZ_OK)
 		{
-			XE_ERROR_OUTPUT("Decompressing file Failed\n");
+			XE_ERROR_OUTPUT("Decompressing file Failed");
 			return false;
 		}
 		if(decompress_size != _not_compress_size)
 		{
-			XE_ERROR_OUTPUT(std::format("Decmpressed file is broken | source size: {0} ,decommpress: {1}\n", _not_compress_size, compress_data_offset).c_str());
+			XE_ERROR_OUTPUT(std::format("Decmpressed file is broken | source size: {0} ,decommpress: {1}", _not_compress_size, compress_data_offset).c_str());
 			return false;
 		}
 		return true;

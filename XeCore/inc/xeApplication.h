@@ -7,7 +7,15 @@ namespace xe
 {
 	namespace Application
 	{
-		void LaodApplication(int argc, char* argv[]);
+		void LaodApplication(int argc, char** argv, const char* out_log_name);
+
+		std::string GetApplicationPath();
+
+		std::string GetApplicationName();
+
+		std::fstream* GetLogFile();
+
+		int DestroyApplication();
 	}
 }
 
