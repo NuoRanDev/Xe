@@ -43,7 +43,7 @@ namespace xe
 	public:
 		explicit GameDataReader() :GameBasicData() {}
 
-		bool LoadFile(char* file_path) 
+		bool LoadFile(SystemDefaultString* file_path)
 		{
 			// Free
 			if (data_block_info_list.empty())
@@ -59,7 +59,7 @@ namespace xe
 				return false;
 			}
 			// Read File Header
-			if(fs->FstraemStartMemcpy(&file_info_list, sizeof(xeOtherCompressFileHeaderFormat)))
+			if(fs->FstraemStartMemcpyOut(&file_info_list, sizeof(xeOtherCompressFileHeaderFormat)))
 			{
 				XE_ERROR_OUTPUT(std::format("READING FILE FAILED! FILE {0}", file_path).c_str());
 				return false;

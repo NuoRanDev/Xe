@@ -102,4 +102,12 @@ struct CsharpString
 
 #endif
 
+#if defined(_WIN32)
+// Windows use 16-bits string (utf-16)
+using SystemDefaultString = wchar_t;
+#else
+// Other Systems use 8-bits string (utf-8)
+using SystemDefaultString = char;
+#endif //String Support
+
 #endif // _INC_XE_CORE_CONFIG_H_ IS EOF
