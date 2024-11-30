@@ -20,9 +20,7 @@ namespace xe
 		longjmp(myerr->setjmp_buffer, 1);
 	}
 
-	constexpr uint64_t RGB_PIXEL_OFFSET = 3;
-
-	bool DecompressJPEG(Testure* img, byte_t* jpeg_buffer)
+	bool DecompressJPEG(Testure* img, byte_t* jpeg_buffer, xeColorChannel out_channel)
 	{
 		int width = 0;
 		int height = 0;
@@ -54,12 +52,11 @@ namespace xe
 
 		img->x = width;
 		img->y = height;
-		img->channel = RGB_PIXEL_OFFSET;
-		img->channel_size = 8;
+		img->channel = out_channel;
 
 		// USE RGB COLOR SPACE
-		rgb_buffer = new byte_t[width * height * RGB_PIXEL_OFFSET];
-		line_ofset = width * RGB_PIXEL_OFFSET;
+		rgb_buffer = new byte_t[width * height * static_cast<int>(out_channel)];
+		line_ofset = width * static_cast<int>(out_channel);
 
 		byte_line* ppixel_line_data = nullptr;
 

@@ -55,20 +55,20 @@ namespace xe
 			// Get File Header
 			if (!fs->GetFilePtr(file_path))
 			{
-				XE_ERROR_OUTPUT(std::format("CAN NOT FIND FILE! FILE {0}", file_path).c_str());
+				//XE_ERROR_OUTPUT(std::format("CAN NOT FIND FILE! FILE {0}", file_path).c_str());
 				return false;
 			}
 			// Read File Header
 			if(fs->FstraemStartMemcpyOut(&file_info_list, sizeof(xeOtherCompressFileHeaderFormat)))
 			{
-				XE_ERROR_OUTPUT(std::format("READING FILE FAILED! FILE {0}", file_path).c_str());
+				//XE_ERROR_OUTPUT(std::format("READING FILE FAILED! FILE {0}", file_path).c_str());
 				return false;
 			}
 			// Read file tree
 			xeCompressFileBlockInfo* pdata_block_info_list = fs->GetFstreamPtr<xeCompressFileBlockInfo>(sizeof(xeOtherCompressFileHeaderFormat));
 			if (pdata_block_info_list == nullptr)
 			{
-				XE_ERROR_OUTPUT(std::format("READING BLOCK DATA INFO FAILED! FILE {0}", file_path).c_str());
+				//XE_ERROR_OUTPUT(std::format("READING BLOCK DATA INFO FAILED! FILE {0}", file_path).c_str());
 				return false;
 			}
 			data_block_info_list = std::vector<xeCompressFileBlockInfo>(pdata_block_info_list, pdata_block_info_list + file_info_list.file_number);

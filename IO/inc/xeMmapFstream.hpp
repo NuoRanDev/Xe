@@ -6,7 +6,7 @@
 
 namespace xe
 {
-	class BasicMmapfstream
+	class XE_EXPORT_C_PLUS_PLUS_API BasicMmapfstream
 	{
 	public:
 		BasicMmapfstream() = default;

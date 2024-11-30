@@ -18,7 +18,7 @@
     <ClInclude Include="..\..\IO\inc\xeIO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\IO\inc\xeMmapFstream.h">
+    <ClInclude Include="..\..\IO\inc\xeMmapFstream.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
