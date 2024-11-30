@@ -9,11 +9,11 @@ namespace xe
 	void BasicMmapfstream::Release()
 	{
 #ifdef _WIN32
-		if (pfile_start == nullptr)
+		if (pfile_start != nullptr)
 			UnmapViewOfFile(pfile_start);
-		if (hfile_mapping == nullptr)
+		if (hfile_mapping != nullptr)
 			CloseHandle(hfile_mapping);
-		if (c_dumpFileDescriptor == nullptr)
+		if (c_dumpFileDescriptor != nullptr)
 			CloseHandle(c_dumpFileDescriptor);
 #endif // _WIN32 FUNCTION IS END
 		pfile_start = nullptr;

@@ -1,7 +1,7 @@
 #ifndef _INC_MMAP_F_STREAM_H_
 #define _INC_MMAP_F_STREAM_H_
 
-#include "xeCoreConfig.h"
+#include "xeCore.hpp"
 #include "xeCoreClrOutput.h"
 
 namespace xe
@@ -38,7 +38,8 @@ namespace xe
 #endif // _WIN32
 	};
 
-	class XE_CORE_PRIVATE_API oMmapfstream :virtual public BasicMmapfstream
+#ifndef XE_FILE_IO_WRITE_ONLY
+	class XE_EXPORT_C_PLUS_PLUS_API oMmapfstream :virtual public BasicMmapfstream
 	{
 	public:
 		virtual bool GetFilePtr(const SystemDefaultString* str);
@@ -65,8 +66,10 @@ namespace xe
 			return true;
 		}
 	};
+#endif // XE_FILE_IO_READ_ONLY IS END
 
-	class XE_CORE_PRIVATE_API iMmapfstream :virtual public BasicMmapfstream
+#ifndef XE_FILE_IO_READ_ONLY
+	class XE_EXPORT_C_PLUS_PLUS_API iMmapfstream :virtual public BasicMmapfstream
 	{
 	public:
 		virtual bool GetFilePtr(const SystemDefaultString* str);
@@ -87,12 +90,20 @@ namespace xe
 			return true;
 		}
 	};
+#endif // XE_FILE_IO_WRITE_ONLY IS END
 
-	class XE_CORE_PRIVATE_API ioMmapfstream :virtual public BasicMmapfstream, public iMmapfstream, public oMmapfstream
+#if !defined(XE_FILE_IO_WRITE_ONLY) && !defined(XE_FILE_IO_READ_ONLY)
+	class XE_EXPORT_C_PLUS_PLUS_API ioMmapfstream :virtual public BasicMmapfstream, public iMmapfstream, public oMmapfstream
 	{
 	public:
 		virtual bool GetFilePtr(const SystemDefaultString* str);
 	};
+#endif // DEFAULT FILE IO IS END
 }
+
+#ifdef EXPORT_C_SHARP_API
+
+#endif // EXPORT_C_SHARP_API IS END
+
 
 #endif // !_INC_MMAP_F_STREAM_H_
