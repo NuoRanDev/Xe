@@ -21,9 +21,15 @@
     <ClInclude Include="..\..\IO\inc\xeMmapFstream.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\IO\inc\xeIOCsharpAPI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\IO\src\xeMmapFstream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\IO\src\xeIOCsharpAPI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

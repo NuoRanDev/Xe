@@ -1,0 +1,13 @@
+C:\Users\Wunuo\Desktop\Xe\SDK\bin\Release_csharp\XeCsharpAPI.exe
+C:\Users\Wunuo\Desktop\Xe\SDK\bin\Release_csharp\XeCsharpAPI.deps.json
+C:\Users\Wunuo\Desktop\Xe\SDK\bin\Release_csharp\XeCsharpAPI.runtimeconfig.json
+C:\Users\Wunuo\Desktop\Xe\SDK\bin\Release_csharp\XeCsharpAPI.dll
+C:\Users\Wunuo\Desktop\Xe\SDK\bin\Release_csharp\XeCsharpAPI.pdb
+C:\Users\Wunuo\Desktop\Xe\XeCsharpAPI\obj\Release_csharp\XeCsharpAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Wunuo\Desktop\Xe\XeCsharpAPI\obj\Release_csharp\XeCsharpAPI.AssemblyInfoInputs.cache
+C:\Users\Wunuo\Desktop\Xe\XeCsharpAPI\obj\Release_csharp\XeCsharpAPI.AssemblyInfo.cs
+C:\Users\Wunuo\Desktop\Xe\XeCsharpAPI\obj\Release_csharp\XeCsharpAPI.csproj.CoreCompileInputs.cache
+C:\Users\Wunuo\Desktop\Xe\XeCsharpAPI\obj\Release_csharp\XeCsharpAPI.sourcelink.json
+C:\Users\Wunuo\Desktop\Xe\XeCsharpAPI\obj\Release_csharp\XeCsharpAPI.dll
+C:\Users\Wunuo\Desktop\Xe\XeCsharpAPI\obj\Release_csharp\XeCsharpAPI.pdb
+C:\Users\Wunuo\Desktop\Xe\XeCsharpAPI\obj\Release_csharp\XeCsharpAPI.genruntimeconfig.cache

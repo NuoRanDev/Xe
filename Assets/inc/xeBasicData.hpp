@@ -43,7 +43,7 @@ namespace xe
 	public:
 		explicit GameDataReader() :GameBasicData() {}
 
-		bool LoadFile(SystemDefaultString* file_path)
+		bool LoadFile(const char* file_path)
 		{
 			// Free
 			if (data_block_info_list.empty())

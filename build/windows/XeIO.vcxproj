@@ -278,12 +278,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\IO\inc\xeIO.h" />
+    <ClInclude Include="..\..\IO\inc\xeIOCsharpAPI.h" />
     <ClInclude Include="..\..\IO\inc\xeMmapFstream.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\IO\src\xeIOCsharpAPI.cpp" />
     <ClCompile Include="..\..\IO\src\xeMmapFstream.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+  </Target>
 </Project>

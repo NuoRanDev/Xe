@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Wunuo\\Desktop\\Xe\\IO\\csharp\\IO_csharp.csproj",
-      "projectName": "IO_csharp",
-      "projectPath": "C:\\Users\\Wunuo\\Desktop\\Xe\\IO\\csharp\\IO_csharp.csproj",
+      "projectUniqueName": "C:\\Users\\Wunuo\\Desktop\\Xe\\XeCsharpAPI\\XeCsharpAPI.csproj",
+      "projectName": "XeCsharpAPI",
+      "projectPath": "C:\\Users\\Wunuo\\Desktop\\Xe\\XeCsharpAPI\\XeCsharpAPI.csproj",
       "packagesPath": "C:\\Users\\Wunuo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Wunuo\\Desktop\\Xe\\IO\\csharp\\obj\\",
+      "outputPath": "C:\\Users\\Wunuo\\Desktop\\Xe\\XeCsharpAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

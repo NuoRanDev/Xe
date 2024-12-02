@@ -10,6 +10,7 @@
 #include <vector>
 #include <filesystem>
 #include <fstream>
+#include <map>
 #include <functional>
 #include <string_view>
 
@@ -70,27 +71,23 @@ namespace xe
 #endif // API EXPORT IS END
 
 #if defined(USE_PROJECT_PRIVATE_API)
-#define XE_CORE_PRIVATE_API				EXPORT_HEAD
+#define XE_PRIVATE_FUNCTION		EXPORT_HEAD
 #else
-#define XE_CORE_PRIVATE_API
+#define XE_PRIVATE_FUNCTION
 #endif // USE_PROJECT_PRIVATE_API IS END
 
 #define EXTERN_C_STMT				extern"C"
 
+#ifndef XE_CALL
 #if defined(WIN32) || defined(_WIN32)
 #define XE_CALL __stdcall
 #else
 #define XE_CALL __cdecl
 #endif
+#endif
+
 
 #if defined(EXPORT_C_SHARP_API)
-
-struct CsharpString
-{
-	int64_t _size;
-	char* data;
-};
-
 
 #define XE_EXPORT_C_SHARP_API(ret_type) EXTERN_C_STMT EXPORT_HEAD ret_type XE_CALL
 #define XE_EXPORT_C_PLUS_PLUS_API
