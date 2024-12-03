@@ -82,7 +82,7 @@ namespace xe
 		}
 
 #if defined(EXPORT_C_SHARP_API)
-		out_type* GetDataPtr(CsharpString* need_data_block, uint64_t number)
+		out_type* GetDataPtr(char* need_data_block, uint64_t number)
 		{
 			out_type* poutput_testures = new Testure[number];
 			byte_t* compressed_data = nullptr;
@@ -91,12 +91,13 @@ namespace xe
 			uint64_t compressed_size = 0;
 			uint64_t not_compressed_size = 0;
 			uint64_t block_start = 0;
+
 			for (uint64_t i = 0; i < number; i++)
 			{
 				// According input name the loop will find data block
 				for (auto& data_block_info : data_block_info_list)
 				{
-					if (strcmp((char*)(data_block_info.file_name), (char*)(need_data_block[i].data)) == 0)
+					if (strcmp((char*)(data_block_info.file_name), need_data_block[i]) == 0)
 					{
 						compressed_size = data_block_info._compress_size;
 						not_compressed_size = data_block_info._not_compress_size;
@@ -106,7 +107,7 @@ namespace xe
 				}
 				// If do not find data block , it will jump the next loop
 				// Note warning in CLR
-				XE_WARNING_OUTPUT(std::format("Not find data block:{0}", (char*)(need_data_block[i].data)).c_str());
+				XE_WARNING_OUTPUT(std::format("Not find data block:{0}", need_data_block[i]));
 				poutput_testures[i] = { 0 };
 				continue;
 				// If found ,get data type
@@ -114,7 +115,7 @@ namespace xe
 				compressed_data = fs->GetFstreamPtr<byte_t>(block_start);
 				if (compressed_data == nullptr)
 				{
-					XE_WARNING_OUTPUT(std::format("read data block failed :{0}", (char*)(need_data_block[i].data)).c_str());
+					XE_WARNING_OUTPUT(std::format("read data block failed :{0}", need_data_block[i]));
 					poutput_testures[i] = { 0 };
 					continue;
 				}
