@@ -323,13 +323,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Assets\inc\decompress\decompress.h" />
+    <ClInclude Include="..\..\Assets\inc\decompress\private_Decompress.h" />
+    <ClInclude Include="..\..\Assets\inc\decompress\private_ImageFileReader.h" />
     <ClInclude Include="..\..\Assets\inc\XeBasicAsset.h" />
     <ClInclude Include="..\..\Assets\inc\xeBasicData.hpp" />
     <ClInclude Include="..\..\Assets\inc\compress\compress.h" />
-    <ClInclude Include="..\..\Assets\inc\decompress\decompress.h" />
-    <ClInclude Include="..\..\Assets\inc\decompress\private\private_Decompress.h" />
-    <ClInclude Include="..\..\Assets\inc\decompress\private\private_FileType.h" />
-    <ClInclude Include="..\..\Assets\inc\decompress\private\private_ImageFileReader.h" />
     <ClInclude Include="..\..\Assets\inc\xeCompressFileStruct.h" />
     <ClInclude Include="..\..\Assets\inc\xeAssets.h" />
     <ClInclude Include="..\..\Assets\inc\xeAssetsConfig.h" />
@@ -338,9 +337,8 @@
   <ItemGroup>
     <ClCompile Include="..\..\Assets\src\compress\compress.cpp" />
     <ClCompile Include="..\..\Assets\src\decompress\decompress.cpp" />
-    <ClCompile Include="..\..\Assets\src\decompress\private\private_Decompress.cpp" />
-    <ClCompile Include="..\..\Assets\src\decompress\private\private_FileType.cpp" />
-    <ClCompile Include="..\..\Assets\src\decompress\private\private_ImageFileReader.cpp" />
+    <ClCompile Include="..\..\Assets\src\decompress\private_Decompress.cpp" />
+    <ClCompile Include="..\..\Assets\src\decompress\private_ImageFileReader.cpp" />
     <ClCompile Include="..\..\Assets\src\XeBasicAsset.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

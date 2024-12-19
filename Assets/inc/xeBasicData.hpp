@@ -5,6 +5,7 @@
 #include "xeCompressFileStruct.h"
 
 #include "XeCore.hpp"
+#include "xeIO.h"
 
 namespace xe
 {
@@ -37,7 +38,6 @@ namespace xe
 		// 
 		std::string										path;
 	};
-	template<typename out_type, class type_tab>
 	class GameDataReader :GameBasicData
 	{
 	public:
@@ -81,80 +81,71 @@ namespace xe
 			fs->Release();
 		}
 
-#if defined(EXPORT_C_SHARP_API)
-		out_type* GetDataPtr(char* need_data_block, uint64_t number)
+		int64_t GetDecompressedDataIndex(const char* need_data_block_name)
 		{
-			out_type* poutput_testures = new Testure[number];
+			// According input name the loop will find data block
+			for (uint64_t i = 0; i < data_block_info_list.size(); i++)
+			{
+				if (strcmp((char*)(data_block_info_list[i].file_name), need_data_block_name) == 0)
+				{
+					return i;
+				}
+			}
+			// If do not find data block , it will jump the next loop
+			// Note warning in CLR
+			// And return -1
+			XE_WARNING_OUTPUT(std::format("Not find data block:{0}", need_data_block_name).c_str());
+			return -1;
+		}
+
+		const char* GetDecompressedDataName(int64_t index)
+		{
+			return (const char*)data_block_info_list[index].file_name;
+		}
+
+#if defined(EXPORT_C_PLUS_PLUS_API)
+		virtual out_type *GetDataVector(std::string& file_name_list)
+		{
+			return GetDataPtr(file_name_list.c_str());
+		}
+#endif // defined EXPORT_C_PLUS_PLUS_API  IS END
+		// If want use cpp api 
+#if !defined(EXPORT_C_SHARP_API)
+	private:
+#endif // defined C_SHARP_API  IS END
+	protected:
+		// File Stream
+		oMmapfstream* fs;
+		// Fist, decompress all file
+		std::function<bool(byte_t*, int64_t, byte_t*, int64_t)> DecompressFunction;
+		//
+		byte_t* GetDecompressedData(int64_t index)
+		{
 			byte_t* compressed_data = nullptr;
 			byte_t* not_compressed_data = nullptr;
 
-			uint64_t compressed_size = 0;
-			uint64_t not_compressed_size = 0;
-			uint64_t block_start = 0;
+			uint64_t compressed_size = data_block_info_list[index]._compress_size;
+			uint64_t not_compressed_size = data_block_info_list[index]._not_compress_size;
+			uint64_t block_start = data_block_info_list[index]._block_start;
 
-			for (uint64_t i = 0; i < number; i++)
+			compressed_data = fs->GetFstreamPtr<byte_t>(block_start);
+			if (compressed_data == nullptr)
 			{
-				// According input name the loop will find data block
-				for (auto& data_block_info : data_block_info_list)
-				{
-					if (strcmp((char*)(data_block_info.file_name), need_data_block[i]) == 0)
-					{
-						compressed_size = data_block_info._compress_size;
-						not_compressed_size = data_block_info._not_compress_size;
-						block_start = data_block_info._block_start;
-						goto IS_FIND_FILE;
-					}
-				}
-				// If do not find data block , it will jump the next loop
-				// Note warning in CLR
-				XE_WARNING_OUTPUT(std::format("Not find data block:{0}", need_data_block[i]));
-				poutput_testures[i] = { 0 };
-				continue;
-				// If found ,get data type
-			IS_FIND_FILE:
-				compressed_data = fs->GetFstreamPtr<byte_t>(block_start);
-				if (compressed_data == nullptr)
-				{
-					XE_WARNING_OUTPUT(std::format("read data block failed :{0}", need_data_block[i]));
-					poutput_testures[i] = { 0 };
-					continue;
-				}
-				not_compressed_data = new byte_t[not_compressed_size];
-				if(!FirstDecompressFunction(compressed_data, compressed_size, not_compressed_data, not_compressed_size))
-				{
-					delete[]not_compressed_data;
-					XE_WARNING_OUTPUT("first compress faild!");
-					continue;
-				}
-				if (!SecondDecompressFunction())
-				{
-					delete[]not_compressed_data;
-					XE_WARNING_OUTPUT("second compressed faild!");
-					continue;
-				}
+				XE_WARNING_OUTPUT(std::format("read data block failed :{0}", index).c_str());
+				return nullptr;
 			}
+			not_compressed_data = new byte_t[not_compressed_size];
+			if (!DecompressFunction(compressed_data, compressed_size, not_compressed_data, not_compressed_size))
+			{
+				delete[]not_compressed_data;
+				XE_WARNING_OUTPUT("decompress faild!");
+				return nullptr;
+			}
+			return not_compressed_data;
 		}
-#endif // defined C_SHARP_API  IS END
-
-#if defined(EXPORT_C_PLUS_PLUS_API)
-		std::vector<out_type> GetDataVector(std::vector<std::string>& file_name_list)
-		{}
-#endif // defined EXPORT_C_PLUS_PLUS_API  IS END
-	protected:
-		// File Stream
-		oMmapfstream*										fs;
-		// Fist, decompress all file
-		virtual bool FirstDecompressFunction(byte_t* compressed_data, int64_t compressed_size, byte_t* not_compressed_data, int64_t not_compressed_size)
+		void FreeDecompressedData(byte_t* decompressed_data)
 		{
-			// If do not compressed this data, this function will copy data from compress data to not compressed data
-			// So the comressed size must equal not-compressed size
-			memcpy(not_compressed_data, compressed_data, compressed_size);
-			return true;
-		}
-		// Second, according to file-type or file name decompress a single file
-		virtual bool SecondDecompressFunction(out_type* out_data, type_tab in_tab)
-		{
-			return false;
+			decompressed_data = DeleteArray<byte_t>(decompressed_data);
 		}
 	};
 }

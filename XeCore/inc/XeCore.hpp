@@ -5,6 +5,7 @@
 #include "xeApplication.h"
 #include "xeBaseDataType.h"
 #include "xeCoreClrOutput.h"
+#include "xeFileName.h"
 
 
 #endif // !INC_XE_CORE_H_

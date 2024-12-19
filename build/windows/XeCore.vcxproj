@@ -292,10 +292,12 @@
     <ClInclude Include="..\..\XeCore\inc\xeCoreClrOutput.h" />
     <ClInclude Include="..\..\XeCore\inc\xeCore.hpp" />
     <ClInclude Include="..\..\XeCore\inc\xeCoreConfig.h" />
+    <ClInclude Include="..\..\XeCore\inc\xeFileName.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\XeCore\src\xeApplication.cpp" />
     <ClCompile Include="..\..\XeCore\src\xeCoreClrOutput.cpp" />
+    <ClCompile Include="..\..\XeCore\src\xeFileName.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

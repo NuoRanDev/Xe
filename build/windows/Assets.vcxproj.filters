@@ -25,12 +25,6 @@
     <Filter Include="Source Files\decompress">
       <UniqueIdentifier>{b6b63ea1-0797-4ced-a739-0e322878b310}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\decompress\private">
-      <UniqueIdentifier>{e7ce34f7-51a1-4a76-83d2-a9c1864b756e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\decompress\private">
-      <UniqueIdentifier>{5fb52792-7328-4d67-bf6d-e7b5695381e9}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Assets\inc\compress\compress.h">
@@ -45,18 +39,6 @@
     <ClInclude Include="..\..\Assets\inc\xeAssetsConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Assets\inc\decompress\decompress.h">
-      <Filter>Header Files\decompress</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Assets\inc\decompress\private\private_ImageFileReader.h">
-      <Filter>Header Files\decompress\private</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Assets\inc\decompress\private\private_FileType.h">
-      <Filter>Header Files\decompress\private</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Assets\inc\decompress\private\private_Decompress.h">
-      <Filter>Header Files\decompress\private</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Assets\inc\xeBasicData.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -66,25 +48,31 @@
     <ClInclude Include="..\..\Assets\inc\XeBasicAsset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Assets\inc\decompress\private_Decompress.h">
+      <Filter>Header Files\decompress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Assets\inc\decompress\private_ImageFileReader.h">
+      <Filter>Header Files\decompress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Assets\inc\decompress\decompress.h">
+      <Filter>Header Files\decompress</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Assets\src\compress\compress.cpp">
       <Filter>Source Files\compress</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Assets\src\decompress\private\private_ImageFileReader.cpp">
-      <Filter>Source Files\decompress\private</Filter>
+    <ClCompile Include="..\..\Assets\src\XeBasicAsset.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Assets\src\decompress\private\private_FileType.cpp">
-      <Filter>Source Files\decompress\private</Filter>
+    <ClCompile Include="..\..\Assets\src\decompress\private_Decompress.cpp">
+      <Filter>Source Files\decompress</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Assets\src\decompress\private\private_Decompress.cpp">
-      <Filter>Source Files\decompress\private</Filter>
+    <ClCompile Include="..\..\Assets\src\decompress\private_ImageFileReader.cpp">
+      <Filter>Source Files\decompress</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Assets\src\decompress\decompress.cpp">
       <Filter>Source Files\decompress</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Assets\src\XeBasicAsset.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

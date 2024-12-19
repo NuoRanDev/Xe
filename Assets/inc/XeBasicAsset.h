@@ -6,11 +6,12 @@
 
 namespace xe
 {
-	class TestureReader :GameDataReader<Testure, xeColorChannel>
+	class TestureReader :GameDataReader
 	{
+	public:
+		Testure* GetTesture(const int64_t index);
 	protected:
-		virtual bool FirstDecompressFunction(byte_t* compressed_data, int64_t compressed_size, byte_t* not_compressed_data, int64_t not_compressed_size);
-		virtual bool SecondDecompressFunction(Testure* out_data, xeColorChannel in_tab);
+		virtual bool DecompressFunction(byte_t* compressed_data, int64_t compressed_size, byte_t* not_compressed_data, int64_t not_compressed_size);
 	};
 }
 

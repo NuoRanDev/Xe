@@ -30,12 +30,18 @@
     <ClInclude Include="..\..\XeCore\inc\xeBaseDataType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\XeCore\inc\xeFileName.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\XeCore\src\xeCoreClrOutput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\XeCore\src\xeApplication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XeCore\src\xeFileName.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -44,22 +44,24 @@ namespace xe
 		return ((int)(sizeof(_ARR) / sizeof(*(_ARR))));
 	}
 
-	template<typename T> void DeleteArray(T* input)
+	template<typename T> T* DeleteArray(T* input)
 	{
 		if (input != nullptr)
 		{
 			delete[] input;
 		}
 		input = nullptr;
+		return nullptr;
 	}
 
-	template<typename T> void DeleteSingla(T* input)
+	template<typename T> T* DeleteSingla(T* input)
 	{
 		if (input != nullptr)
 		{
 			delete input;
 		}
 		input = nullptr;
+		return nullptr;
 	}
 
 }
