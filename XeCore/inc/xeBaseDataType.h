@@ -4,7 +4,7 @@
 
 namespace xe
 {
-	enum class xeAudioCompressSolution :uint32_t
+	enum class xeAudioCompressSolution :uint8_t
 	{
 		ERROR	= 0,
 
@@ -15,7 +15,7 @@ namespace xe
 	// pxiel imgae
 	using byte_line = byte_t*;
 
-	enum class xeColorChannel :uint32_t
+	enum class xeColorChannel :uint8_t
 	{
 		BOOL = 1,
 		GRAY16 = 2,

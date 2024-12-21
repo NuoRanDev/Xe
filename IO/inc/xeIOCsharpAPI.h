@@ -6,8 +6,9 @@
 * DO NOT INCLUDE THIS FILE
 * THIS FILE IS EXPORT DLL FUNCTION TO CSHRAP
 ============================================*/
-#include "xeCore.hpp"
+
 #include "xeIO.h"
+#include "xeIOConfing.h"
 
 #ifdef EXPORT_C_SHARP_API
 XE_EXPORT_C_SHARP_API(xe::ioMmapfstream*) GetMmapClassObj();

@@ -5,7 +5,7 @@
 namespace xe
 {
 	// compress by lzma
-	bool DecompressLZMA(byte_t* input, byte_t* output, uint64_t compress_data_size, uint64_t _not_compress_size)
+	bool DecompressLZMA(byte_t* input, uint64_t compress_data_size, byte_t* output, uint64_t _not_compress_size)
 	{
 		//output = new byte_t[_not_compress_size];
 		LzmaALLData* lzma_data = reinterpret_cast<LzmaALLData*>(input);
@@ -23,7 +23,7 @@ namespace xe
 		return true;
 	}
 	// compress by zstd
-	bool DecompressZSTD(byte_t* input, byte_t* output, uint64_t compress_data_size, uint64_t _not_compress_size)
+	bool DecompressZSTD(byte_t* input, uint64_t compress_data_size, byte_t* output, uint64_t _not_compress_size)
 	{
 		uint64_t decompress_size = ZSTD_getFrameContentSize(input, compress_data_size);
 		if (decompress_size != _not_compress_size)
@@ -39,7 +39,7 @@ namespace xe
 		return true;
 	}
 	// not compress
-	bool DecompressNone(byte_t* input, byte_t* output, uint64_t compress_data_size, uint64_t _not_compress_size)
+	bool DecompressNone(byte_t* input, uint64_t compress_data_size, byte_t* output, uint64_t _not_compress_size)
 	{
 		// If do not compressed this data, this function will copy data from compress data to not compressed data
 		// So the comressed size must equal not-compressed size

@@ -9,6 +9,7 @@
 
 namespace xe
 {
+	using DecompressFunction = std::function<bool(byte_t*, uint64_t, byte_t*, uint64_t)>;
 	// 
 	class GameBasicData
 	{
@@ -81,6 +82,21 @@ namespace xe
 			fs->Release();
 		}
 
+		const char* GetDecompressedDataName(int64_t index)
+		{
+			return (const char*)data_block_info_list[index].file_name;
+		}
+
+#if defined(EXPORT_C_PLUS_PLUS_API)
+		int64_t GetDecompressedDataIndex(std::string need_data_block_name)
+		{
+			return GetDecompressedDataIndex(need_data_block_name.c_str());
+		}
+#endif // defined EXPORT_C_PLUS_PLUS_API  IS END
+		// If want use cpp api 
+#if !defined(EXPORT_C_SHARP_API)
+	protected:
+#endif // defined C_SHARP_API  IS END
 		int64_t GetDecompressedDataIndex(const char* need_data_block_name)
 		{
 			// According input name the loop will find data block
@@ -97,27 +113,11 @@ namespace xe
 			XE_WARNING_OUTPUT(std::format("Not find data block:{0}", need_data_block_name).c_str());
 			return -1;
 		}
-
-		const char* GetDecompressedDataName(int64_t index)
-		{
-			return (const char*)data_block_info_list[index].file_name;
-		}
-
-#if defined(EXPORT_C_PLUS_PLUS_API)
-		virtual out_type *GetDataVector(std::string& file_name_list)
-		{
-			return GetDataPtr(file_name_list.c_str());
-		}
-#endif // defined EXPORT_C_PLUS_PLUS_API  IS END
-		// If want use cpp api 
-#if !defined(EXPORT_C_SHARP_API)
-	private:
-#endif // defined C_SHARP_API  IS END
 	protected:
 		// File Stream
 		oMmapfstream* fs;
 		// Fist, decompress all file
-		std::function<bool(byte_t*, int64_t, byte_t*, int64_t)> DecompressFunction;
+		DecompressFunction CB_decompressfunction;
 		//
 		byte_t* GetDecompressedData(int64_t index)
 		{
@@ -135,7 +135,7 @@ namespace xe
 				return nullptr;
 			}
 			not_compressed_data = new byte_t[not_compressed_size];
-			if (!DecompressFunction(compressed_data, compressed_size, not_compressed_data, not_compressed_size))
+			if (!CB_decompressfunction(compressed_data, compressed_size, not_compressed_data, not_compressed_size))
 			{
 				delete[]not_compressed_data;
 				XE_WARNING_OUTPUT("decompress faild!");

@@ -1,12 +1,11 @@
 #ifndef _INC_MMAP_F_STREAM_H_
 #define _INC_MMAP_F_STREAM_H_
 
-#include "xeCore.hpp"
-#include "xeCoreClrOutput.h"
+#include "xeIOConfing.h"
 
 namespace xe
 {
-	class XE_EXPORT_C_PLUS_PLUS_API BasicMmapfstream
+	class XE_IO_EXPORT_C_PLUS_PLUS_API BasicMmapfstream
 	{
 	public:
 		BasicMmapfstream();
@@ -43,7 +42,7 @@ namespace xe
 	};
 
 #ifndef XE_FILE_IO_WRITE_ONLY
-	class XE_EXPORT_C_PLUS_PLUS_API oMmapfstream :virtual public BasicMmapfstream
+	class XE_IO_EXPORT_C_PLUS_PLUS_API oMmapfstream :virtual public BasicMmapfstream
 	{
 	public:
 		virtual bool GetFilePtr(const char* str);
@@ -85,7 +84,7 @@ namespace xe
 #endif // XE_FILE_IO_READ_ONLY IS END
 
 #ifndef XE_FILE_IO_READ_ONLY
-	class XE_EXPORT_C_PLUS_PLUS_API iMmapfstream :virtual public BasicMmapfstream
+	class XE_IO_EXPORT_C_PLUS_PLUS_API iMmapfstream :virtual public BasicMmapfstream
 	{
 	public:
 		virtual bool GetFilePtr(const char* str);
@@ -113,7 +112,7 @@ namespace xe
 #endif // XE_FILE_IO_WRITE_ONLY IS END
 
 #if !defined(XE_FILE_IO_WRITE_ONLY) && !defined(XE_FILE_IO_READ_ONLY)
-	class XE_EXPORT_C_PLUS_PLUS_API ioMmapfstream :virtual public BasicMmapfstream, public iMmapfstream, public oMmapfstream
+	class XE_IO_EXPORT_C_PLUS_PLUS_API ioMmapfstream :virtual public BasicMmapfstream, public iMmapfstream, public oMmapfstream
 	{
 	public:
 		virtual bool GetFilePtr(const char* str);

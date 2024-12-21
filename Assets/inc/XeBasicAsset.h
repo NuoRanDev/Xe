@@ -4,14 +4,29 @@
 #include "xeAssetsConfig.h"
 #include "XeBasicData.hpp"
 
+#include "decompress/decompress.h"
+
 namespace xe
 {
-	class TestureReader :GameDataReader
+	class XE_ASSETS_EXPORT_C_PLUS_PLUS_API TestureReader :GameDataReader
 	{
 	public:
+		explicit TestureReader()
+		{
+			CB_decompressfunction = DecompressFunction(&DecompressLZMA);
+		}
 		Testure* GetTesture(const int64_t index);
-	protected:
-		virtual bool DecompressFunction(byte_t* compressed_data, int64_t compressed_size, byte_t* not_compressed_data, int64_t not_compressed_size);
+		Testure* GetTesture(const char* name);
+	};
+	class XE_ASSETS_EXPORT_C_PLUS_PLUS_API AudioReader :GameDataReader
+	{
+	public:
+		explicit AudioReader()
+		{
+			CB_decompressfunction = DecompressFunction(&DecompressZSTD);
+		}
+		Audio* GetAudio(const int64_t index);
+		Audio* GetAudio(const char* name);
 	};
 }
 

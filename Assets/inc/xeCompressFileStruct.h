@@ -63,7 +63,7 @@ namespace xe
 		// File Info
 		uint64_t header = xeAssetFileType::AUDIO_ASSET_FILE_HEADER;
 		// Audio compressing's solution is defaulted the NONE
-		xeCompressSolution compress_solution = xeCompressSolution::NONE;
+		xeCompressSolution compress_solution = xeCompressSolution::ZSTD;
 		uint64_t file_number;
 	};
 

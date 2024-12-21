@@ -37,8 +37,6 @@ namespace xe
 		int width = 0;
 		int height = 0;
 		int64_t jpeg_size = 0;
-		uint64_t line_ofset = 0;
-		byte_t* rgb_buffer = nullptr;
 
 		jpeg_decompress_struct cinfo;
 		Jpeg::JpegErrorMgr jerr;
@@ -63,10 +61,6 @@ namespace xe
 		height = cinfo.output_height;
 
 		img = new Testure(width, height, xeColorChannel::RGB);
-
-		// USE RGB COLOR SPACE
-		rgb_buffer = img->GetData();
-		line_ofset = img->GetLineSize();
 
 		// Get line data point start and read image
 		byte_line* img_data_lines = new byte_line[img->y];

@@ -3,9 +3,9 @@
 
 namespace xe
 {
-	constexpr char VEC3[4] = { 'v','e','c','3' };
-	constexpr char VEC4[4] = { 'v','e','c','4' };
-	constexpr char BOOL[4] = { 'b','o','o','l' };
+	constexpr char IMG_VEC3[4] = { 'v','e','c','3' };
+	constexpr char IMG_VEC4[4] = { 'v','e','c','4' };
+	constexpr char IMG_BOOL[4] = { 'b','o','o','l' };
 	Testure* TestureReader::GetTesture(const int64_t index)
 	{
 		Testure* output = nullptr;
@@ -16,35 +16,64 @@ namespace xe
 		{
 			return nullptr;
 		}
-		if(Is4Extension(file_name, strlen(file_name), VEC3))
+		if(Is4Extension(file_name, strlen(file_name), IMG_VEC3))
 		{
 			if (!DecompressJPEG(output, decompress_data))goto IMGDECOMPRESS_FAILED;
 			return output;
 		}
-		if (Is4Extension(file_name, strlen(file_name), VEC4))
+		if (Is4Extension(file_name, strlen(file_name), IMG_VEC4))
 		{
 			if (!DecompressPNG(output, decompress_data))goto IMGDECOMPRESS_FAILED;
 			return output;
 		}
-		if (Is4Extension(file_name, strlen(file_name), BOOL))
+		if (Is4Extension(file_name, strlen(file_name), IMG_BOOL))
 		{
 			if (!DecompressPNG(output, decompress_data))goto IMGDECOMPRESS_FAILED;
 			return output;
 		}
 		else
 		{
-			XE_WARNING_OUTPUT(std::format("CAN'T SUPPORTED THIS FILE: {0}", file_name).c_str());
+			XE_WARNING_OUTPUT(std::format("{0} FILE NAME IS BROKEN", file_name).c_str());
+			return nullptr;
 		}
 	IMGDECOMPRESS_FAILED:
 		return nullptr;
 	}
-	bool TestureReader::DecompressFunction(byte_t* compressed_data, int64_t compressed_size, byte_t* not_compressed_data, int64_t not_compressed_size)
+	Testure* TestureReader::GetTesture(const char* name)
 	{
-		if(!DecompressLZMA(compressed_data, not_compressed_data, compressed_size, not_compressed_size))
+		const int64_t index = GetDecompressedDataIndex(name);
+		return GetTesture(index);
+	}
+
+	constexpr char AUDIO_OGG8[4] = { 'o','g','g','8' };
+	constexpr char AUDIO_FLAC[4] = { 'f','l','a','c' };
+	Audio* AudioReader::GetAudio(const int64_t index)
+	{
+		Audio* output = nullptr;
+		byte_t* decompress_data = nullptr;
+		const char* file_name = GetDecompressedDataName(index);
+		decompress_data = GetDecompressedData(index);
+		if (!decompress_data)
 		{
-			XE_ERROR_OUTPUT("decompress faild!\n");
-			return false;
+			return nullptr;
 		}
-		return true;
+		if (Is4Extension(file_name, strlen(file_name), AUDIO_OGG8))
+		{
+			output->solution = xeAudioCompressSolution::OGG;
+			return output;
+		}
+		if (Is4Extension(file_name, strlen(file_name), AUDIO_FLAC))
+		{
+			output->solution = xeAudioCompressSolution::FLAC;
+			return output;
+		}
+		// NAME BROKEN
+		XE_WARNING_OUTPUT(std::format("{0} FILE NAME IS BROKEN", file_name).c_str());
+		return nullptr;
+	}
+	Audio* AudioReader::GetAudio(const char* name)
+	{
+		const int64_t index = GetDecompressedDataIndex(name);
+		return GetAudio(index);
 	}
 }

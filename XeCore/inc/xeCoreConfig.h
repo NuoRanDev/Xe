@@ -28,6 +28,9 @@
 *  BUILD THIS PROJECT MUST DEFINEED 
 *  MACRO:	USE_PROJECT_PRIVATE_API
 * 
+*  current porject
+*  MACRO:	PROJECT_IS_XE_CORE
+* 
 *************************************************/
 
 namespace xe
@@ -72,11 +75,13 @@ namespace xe
 #define EXPORT_HEAD __attribute__((visibility("default")))
 #endif // API EXPORT IS END
 
+/*
 #if defined(USE_PROJECT_PRIVATE_API)
 #define XE_PRIVATE_FUNCTION		EXPORT_HEAD
 #else
 #define XE_PRIVATE_FUNCTION
 #endif // USE_PROJECT_PRIVATE_API IS END
+*/
 
 #define EXTERN_C_STMT				extern"C"
 
@@ -100,7 +105,7 @@ namespace xe
 #define XE_EXPORT_C_PLUS_PLUS_API	EXPORT_HEAD
 
 #endif
-
+/*
 #if defined(_WIN32)
 // Windows use 16-bits string (utf-16)
 using SystemDefaultString = wchar_t;
@@ -108,5 +113,11 @@ using SystemDefaultString = wchar_t;
 // Other Systems use 8-bits string (utf-8)
 using SystemDefaultString = char;
 #endif //String Support
+*/
+#ifdef PROJECT_IS_XE_CORE
+#define XE_CORE_EXPORT_C_PLUS_PLUS_API XE_EXPORT_C_PLUS_PLUS_API
+#else
+#define XE_CORE_EXPORT_C_PLUS_PLUS_API
+#endif // PROJECT_IS_XE_ASSETS IS END
 
 #endif // _INC_XE_CORE_CONFIG_H_ IS EOF
