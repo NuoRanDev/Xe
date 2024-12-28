@@ -2,8 +2,6 @@
 
 #include "xeApplication.h"
 
-#include <fstream>
-
 // Clang warnings with -Weverything
 #if defined(__clang__)
 #pragma clang diagnostic push
@@ -14,12 +12,12 @@ namespace xe
 {
 	static std::ofstream g_log("program_output.log");
 
-	constexpr std::string_view RESET = "\033[0m";
-	constexpr std::string_view RED = "\033[31m";
-	constexpr std::string_view GREEN = "\033[32m";
-	constexpr std::string_view YELLOW = "\033[33m";
-	constexpr std::string_view BLUE = "\033[34m";
-	constexpr std::string_view WHITE = "\033[37m";
+	constexpr const char RESET[]	= "\033[0m";
+	constexpr const char RED[]		= "\033[31m";
+	constexpr const char GREEN[]	= "\033[32m";
+	constexpr const char YELLOW[]	= "\033[33m";
+	constexpr const char BLUE[]		= "\033[34m";
+	constexpr const char WHITE[]	= "\033[37m";
 
 	void XE_ERROR_OUTPUT(const char* output_text)
 	{

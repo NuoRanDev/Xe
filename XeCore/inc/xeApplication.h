@@ -7,15 +7,15 @@ namespace xe
 {
 	namespace Application
 	{
-		XE_CORE_EXPORT_C_PLUS_PLUS_API void LaodApplication(int argc, char** argv, const char* out_log_name);
+		EXTERN_C_STMT XE_EXPORT_C_PLUS_PLUS_API void LaodApplication(int argc, char** argv, const char* out_log_name);
 
-		XE_CORE_EXPORT_C_PLUS_PLUS_API std::string GetApplicationPath();
+		EXTERN_C_STMT XE_EXPORT_C_PLUS_PLUS_API const char* GetApplicationPath();
 
-		XE_CORE_EXPORT_C_PLUS_PLUS_API std::string GetApplicationName();
+		EXTERN_C_STMT XE_EXPORT_C_PLUS_PLUS_API const char* GetApplicationName();
 
-		XE_CORE_EXPORT_C_PLUS_PLUS_API std::fstream* GetLogFile();
+		EXTERN_C_STMT XE_EXPORT_C_PLUS_PLUS_API std::fstream* GetLogFile();
 
-		XE_CORE_EXPORT_C_PLUS_PLUS_API int DestroyApplication();
+		EXTERN_C_STMT XE_EXPORT_C_PLUS_PLUS_API int DestroyApplication();
 	}
 }
 

@@ -119,7 +119,7 @@ namespace xe
 		// Fist, decompress all file
 		DecompressFunction CB_decompressfunction;
 		//
-		byte_t* GetDecompressedData(int64_t index)
+		byte_t* GetDecompressedData(int64_t index, uint64_t& size_out)
 		{
 			byte_t* compressed_data = nullptr;
 			byte_t* not_compressed_data = nullptr;
@@ -128,9 +128,12 @@ namespace xe
 			uint64_t not_compressed_size = data_block_info_list[index]._not_compress_size;
 			uint64_t block_start = data_block_info_list[index]._block_start;
 
+			size_out = not_compressed_size;
+
 			compressed_data = fs->GetFstreamPtr<byte_t>(block_start);
 			if (compressed_data == nullptr)
 			{
+				size_out = 0;
 				XE_WARNING_OUTPUT(std::format("read data block failed :{0}", index).c_str());
 				return nullptr;
 			}
@@ -138,6 +141,7 @@ namespace xe
 			if (!CB_decompressfunction(compressed_data, compressed_size, not_compressed_data, not_compressed_size))
 			{
 				delete[]not_compressed_data;
+				size_out = 0;
 				XE_WARNING_OUTPUT("decompress faild!");
 				return nullptr;
 			}

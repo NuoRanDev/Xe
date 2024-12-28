@@ -17,14 +17,14 @@ namespace xe
 			log_file = new std::fstream(log_file_path, std::ios_base::in | std::ios_base::out | std::ios_base::trunc);
 		}
 
-		std::string GetApplicationPath()
+		const char* GetApplicationPath()
 		{
-			return application_path;
+			return application_path.c_str();
 		}
 
-		std::string GetApplicationName()
+		const char* GetApplicationName()
 		{
-			return application_name;
+			return application_name.c_str();
 		}
 
 		std::fstream* GetLogFile()

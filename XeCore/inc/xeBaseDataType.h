@@ -15,7 +15,7 @@ namespace xe
 	// pxiel imgae
 	using byte_line = byte_t*;
 
-	enum class xeColorChannel :uint8_t
+	enum class xeColorChannel :uint32_t
 	{
 		BOOL = 1,
 		GRAY16 = 2,
@@ -24,46 +24,15 @@ namespace xe
 	};
 
 
-	class Testure
+	struct TestureFile
 	{
-	public:
-		uint32_t		x, y;
-		xeColorChannel	channel;
-		uint32_t		channel_byte_size;
-		byte_t* pixel_data;
-		Testure() = default;
-		Testure(uint32_t i_x, uint32_t i_y, xeColorChannel i_channel)
-		{
-			x = i_x; y = i_y; channel = i_channel; channel_byte_size = 1;
-			pixel_data = new byte_t[i_x * i_y * static_cast<uint32_t>(i_channel)];
-		}
-		~Testure()
-		{
-			delete[]pixel_data;
-		}
-		constexpr byte_t* GetData()
-		{
-			return pixel_data;
-		}
-		constexpr uint32_t GetLineSize()
-		{
-			return x * static_cast<uint32_t>(channel) * channel_byte_size;
-		}
-		constexpr uint32_t GetTestureSize()
-		{
-			return GetLineSize() * y;
-		}
-		void GetlineStart(byte_line* dst)
-		{
-			for (uint32_t i = 0; i < y; i++)
-			{
-				dst[i] = pixel_data + i * GetLineSize();
-			}
-		}
+		xeColorChannel encodesolution;
+		size_t _size;
+		byte_t* data;
 	};
 
 	// Audio
-	struct Audio
+	struct AudioFile
 	{
 		xeAudioCompressSolution solution;
 		size_t _size;
@@ -161,13 +130,7 @@ namespace xe
 			return *internal == *external;
 		}
 		xeFastExtension() = default;
-		constexpr xeFastExtension(const char str[5])
-		{
-			n1 = str[0];
-			n2 = str[1];
-			n3 = str[2];
-			n4 = str[3];
-		}
+		constexpr xeFastExtension(const char str[4]) :vec4_i8(str[0], str[1], str[2], str[3]) {}
 	};
 }
 
