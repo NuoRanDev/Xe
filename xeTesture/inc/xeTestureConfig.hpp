@@ -1,5 +1,5 @@
-#ifndef _INC_XE_TESTURE_CONFIG_H_
-#define _INC_XE_TESTURE_CONFIG_H_
+#ifndef _INC_XE_TESTURE_CONFIG_HPP_
+#define _INC_XE_TESTURE_CONFIG_HPP_
 
 /********************************************
 * current porject
@@ -18,4 +18,4 @@ namespace xe
 #endif // PROJECT_IS_XE_ASSETS IS END
 }
 
-#endif // _INC_XE_TESTURE_CONFIG_H_ IS EOF
+#endif // _INC_XE_TESTURE_CONFIG_HPP_ IS EOF

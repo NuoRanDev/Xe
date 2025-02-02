@@ -1,7 +1,7 @@
-#ifndef _INC_PRIVATE_IMAGE_FILE_READER_H_
-#define _INC_PRIVATE_IMAGE_FILE_READER_H_
+#ifndef _INC_PRIVATE_IMAGE_FILE_READER_HPP_
+#define _INC_PRIVATE_IMAGE_FILE_READER_HPP_
 
-#include "xeTestureConfig.h"
+#include "xeTestureConfig.hpp"
 #include "xeTestureCore.hpp"
 
 namespace xe
@@ -12,4 +12,4 @@ namespace xe
 	bool DecompressPNG(Testure* img, byte_t* png_buffer, size_t file_size);
 }
 
-#endif // _INC_PRIVATE_IMAGE_FILE_READER_H_ IS EOF
+#endif // _INC_PRIVATE_IMAGE_FILE_READER_HPP_ IS EOF

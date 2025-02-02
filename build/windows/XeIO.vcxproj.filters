@@ -15,16 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\IO\inc\xeIO.h">
+    <ClInclude Include="..\..\IO\inc\xeIO.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\IO\inc\xeMmapFstream.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\IO\inc\xeIOCsharpAPI.h">
+    <ClInclude Include="..\..\IO\inc\xeIOCsharpAPI.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\IO\inc\xeIOConfing.h">
+    <ClInclude Include="..\..\IO\inc\xeIOConfing.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

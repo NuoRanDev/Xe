@@ -1,7 +1,7 @@
-#ifndef _INC_BUTTON_H_
-#define _INC_BUTTON_H_
+#ifndef _INC_BUTTON_HPP_
+#define _INC_BUTTON_HPP_
 
-#include "xeGraphicalConfig.h"
+#include "xeGraphicalConfig.hpp"
 
 namespace xe
 {
@@ -16,4 +16,4 @@ namespace xe
 	};
 }
 
-#endif // _INC_BUTTON_H_ IS EOF
+#endif // _INC_BUTTON_HPP_ IS EOF

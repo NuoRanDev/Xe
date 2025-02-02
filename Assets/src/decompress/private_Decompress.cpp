@@ -1,4 +1,4 @@
-#include "decompress/private_Decompress.h"
+#include "decompress/private_Decompress.hpp"
 #include "lzma/LzmaDec.hpp"
 #include "zstd.h"
 

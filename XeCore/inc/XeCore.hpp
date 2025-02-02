@@ -1,11 +1,15 @@
-#ifndef INC_XE_CORE_H_
-#define INC_XE_CORE_H_
+#ifndef INC_XE_CORE_HPP_
+#define INC_XE_CORE_HPP_
 
-#include "xeCoreConfig.h"
-#include "xeApplication.h"
-#include "xeBaseDataType.h"
-#include "xeCoreClrOutput.h"
-#include "xeFileName.h"
+#include "xeCoreConfig.hpp"
+#include "xeApplication.hpp"
+#include "xeBaseDataType.hpp"
+#include "xeCoreClrOutput.hpp"
+#include "xeFileName.hpp"
+#include "xeString.hpp"
+
+// instead of malloc
+#include "xeAlloc.hpp"
 
 
-#endif // !INC_XE_CORE_H_
+#endif // !INC_XE_CORE_HPP_

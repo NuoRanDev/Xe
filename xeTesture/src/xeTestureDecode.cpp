@@ -1,6 +1,6 @@
-#include "xeTestureDecode.h"
+#include "xeTestureDecode.hpp"
 
-#include "decode/private_ImageFileReader.h"
+#include "decode/private_ImageFileReader.hpp"
 
 namespace xe
 {

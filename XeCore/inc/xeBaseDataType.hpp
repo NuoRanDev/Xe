@@ -1,6 +1,6 @@
-#ifndef _INC_XE_BASE_DATA_TYPE_H_
-#define _INC_XE_BASE_DATA_TYPE_H_
-#include "xeCoreConfig.h"
+#ifndef _INC_XE_BASE_DATA_TYPE_HPP_
+#define _INC_XE_BASE_DATA_TYPE_HPP_
+#include "xeCoreConfig.hpp"
 
 namespace xe
 {
@@ -134,4 +134,4 @@ namespace xe
 	};
 }
 
-#endif // _INC_XE_BASE_DATA_TYPE_H_ IS EOF
+#endif // _INC_XE_BASE_DATA_TYPE_HPP_ IS EOF

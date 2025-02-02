@@ -279,9 +279,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\IO\inc\xeIO.h" />
-    <ClInclude Include="..\..\IO\inc\xeIOConfing.h" />
-    <ClInclude Include="..\..\IO\inc\xeIOCsharpAPI.h" />
+    <ClInclude Include="..\..\IO\inc\xeIO.hpp" />
+    <ClInclude Include="..\..\IO\inc\xeIOConfing.hpp" />
+    <ClInclude Include="..\..\IO\inc\xeIOCsharpAPI.hpp" />
     <ClInclude Include="..\..\IO\inc\xeMmapFstream.hpp" />
   </ItemGroup>
   <ItemGroup>

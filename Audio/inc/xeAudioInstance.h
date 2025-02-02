@@ -1,5 +1,5 @@
-#ifndef _INC_XE_AUDIO_INSTANCE_H_
-#define _INC_XE_AUDIO_INSTANCE_H_
+#ifndef _INC_XE_AUDIO_INSTANCE_HPP_
+#define _INC_XE_AUDIO_INSTANCE_HPP_
 #include "xeAudioConfig.hpp"
 
-#endif // _INC_XE_AUDIO_INSTANCE_H_ IS EOF
+#endif // _INC_XE_AUDIO_INSTANCE_HPP_ IS EOF

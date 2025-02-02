@@ -230,7 +230,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>xeCore.lib;jpeg.lib;spng_static.lib;zlidb.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>xeCore.lib;jpeg.lib;spng_static.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_csharp|x64'">
@@ -247,7 +247,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>xeCore.lib;jpeg.lib;spng_static.lib;zlidb.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>xeCore.lib;jpeg.lib;spng_static.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_cpp|x64'">
@@ -302,11 +302,11 @@
     <ClCompile Include="..\..\xeTesture\src\xeTestureDecode.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\xeTesture\inc\decode\private_ImageFileReader.h" />
-    <ClInclude Include="..\..\xeTesture\inc\xeTesture.h" />
-    <ClInclude Include="..\..\xeTesture\inc\xeTestureConfig.h" />
+    <ClInclude Include="..\..\xeTesture\inc\decode\private_ImageFileReader.hpp" />
+    <ClInclude Include="..\..\xeTesture\inc\xeTesture.hpp" />
+    <ClInclude Include="..\..\xeTesture\inc\xeTestureConfig.hpp" />
     <ClInclude Include="..\..\xeTesture\inc\xeTestureCore.hpp" />
-    <ClInclude Include="..\..\xeTesture\inc\xeTestureDecode.h" />
+    <ClInclude Include="..\..\xeTesture\inc\xeTestureDecode.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

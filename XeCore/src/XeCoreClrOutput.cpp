@@ -1,6 +1,7 @@
-#include "xeCoreClrOutput.h"
+#include "xeCoreClrOutput.hpp"
 
-#include "xeApplication.h"
+#include "xeApplication.hpp"
+//#include "xeString.hpp"
 
 // Clang warnings with -Weverything
 #if defined(__clang__)
@@ -26,7 +27,7 @@ namespace xe
 		return;
 #endif // _DEBUG
 		std::string out_text = std::string("ERROR") + ":\t" + output_text + "\n";
-		Application::GetLogFile()->write(out_text.c_str(), out_text.size());
+		Application::GetLogFile()->write(out_text.c_str(), out_text.length() - 1);
 		return;
 	}
 
@@ -37,7 +38,7 @@ namespace xe
 		return;
 #endif // _DEBUG
 		std::string out_text = std::string("WARNING") + ":\t" + output_text + "\n";
-		Application::GetLogFile()->write(out_text.c_str(), out_text.size());
+		Application::GetLogFile()->write(out_text.c_str(), out_text.length());
 		return;
 	}
 }

@@ -223,11 +223,12 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\inc\;$(SolutionDir)..\..\XeCore\inc\;$(SolutionDir)..\..\Graphical\inc\;$(SolutionDir)..\..\IO\inc\;$(SolutionDir)..\..\Assets\inc\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>xeCore.lib;IO.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>XeCore.lib;XeIO.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -240,11 +241,12 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\inc\;$(SolutionDir)..\..\XeCore\inc\;$(SolutionDir)..\..\Graphical\inc\;$(SolutionDir)..\..\IO\inc\;$(SolutionDir)..\..\Assets\inc\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>xeCore.lib;IO.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>XeCore.lib;XeIO.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -259,13 +261,14 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\inc\;$(SolutionDir)..\..\XeCore\inc\;$(SolutionDir)..\..\Graphical\inc\;$(SolutionDir)..\..\IO\inc\;$(SolutionDir)..\..\Assets\inc\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>xeCore.lib;IO.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>XeCore.lib;XeIO.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -280,13 +283,14 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\inc\;$(SolutionDir)..\..\XeCore\inc\;$(SolutionDir)..\..\Graphical\inc\;$(SolutionDir)..\..\IO\inc\;$(SolutionDir)..\..\Assets\inc\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>xeCore.lib;IO.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>XeCore.lib;XeIO.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

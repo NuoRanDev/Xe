@@ -1,4 +1,4 @@
-#include "xeIOCsharpAPI.h"
+#include "xeIOCsharpAPI.hpp"
 
 #ifdef EXPORT_C_SHARP_API
 xe::ioMmapfstream* XE_CALL GetMmapClassObj()

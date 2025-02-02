@@ -1,5 +1,5 @@
-#ifndef _INC_XE_GRAPHICAL_CONFIG_H_
-#define _INC_XE_GRAPHICAL_CONFIG_H_
+#ifndef _INC_XE_GRAPHICAL_CONFIG_HPP_
+#define _INC_XE_GRAPHICAL_CONFIG_HPP_
 
 #include "xeCore.hpp"
 
@@ -7,4 +7,4 @@
 #include <vulkan/vulkan.hpp>
 #endif
 
-#endif // _INC_XE_GRAPHICAL_CONFIG_H_ IS END
+#endif // _INC_XE_GRAPHICAL_CONFIG_HPP_ IS END

@@ -1,5 +1,5 @@
-#include "xeBasicAsset.h"
-#include "decompress/decompress.h"
+#include "xeBasicAsset.hpp"
+#include "decompress/decompress.hpp"
 
 namespace xe
 {

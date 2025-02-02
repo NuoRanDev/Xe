@@ -1,11 +1,11 @@
 #ifndef _BASIC_DATA_HPP_
 #define _BASIC_DATA_HPP_
 
-#include "xeAssetsConfig.h"
-#include "xeCompressFileStruct.h"
+#include "xeAssetsConfig.hpp"
+#include "xeCompressFileStruct.hpp"
 
 #include "XeCore.hpp"
-#include "xeIO.h"
+#include "xeIO.hpp"
 
 namespace xe
 {
@@ -31,14 +31,15 @@ namespace xe
 	protected:
 
 		// File information
-		xeOtherCompressFileHeaderFormat					file_info_list;
+		xeDefaultCompressAssetFileHeaderFormat			file_info_list;
 
 		// File tree
 		std::vector<xeCompressFileBlockInfo>			data_block_info_list;
 
 		// 
-		std::string										path;
+		xeString										path;
 	};
+
 	class GameDataReader :GameBasicData
 	{
 	public:
@@ -56,20 +57,21 @@ namespace xe
 			// Get File Header
 			if (!fs->GetFilePtr(file_path))
 			{
-				//XE_ERROR_OUTPUT(std::format("CAN NOT FIND FILE! FILE {0}", file_path).c_str());
+				XE_ERROR_OUTPUT(std::format("CAN NOT FIND FILE! FILE {0}", file_path).c_str());
 				return false;
 			}
 			// Read File Header
-			if(fs->FstraemStartMemcpyOut(&file_info_list, sizeof(xeOtherCompressFileHeaderFormat)))
+			if(fs->FstraemStartMemcpyOut<xeDefaultCompressAssetFileHeaderFormat>(&file_info_list, sizeof(xeDefaultCompressAssetFileHeaderFormat)))
 			{
-				//XE_ERROR_OUTPUT(std::format("READING FILE FAILED! FILE {0}", file_path).c_str());
+				XE_ERROR_OUTPUT(std::format("READING FILE FAILED! FILE {0}", file_path).c_str());
 				return false;
 			}
+
 			// Read file tree
-			xeCompressFileBlockInfo* pdata_block_info_list = fs->GetFstreamPtr<xeCompressFileBlockInfo>(sizeof(xeOtherCompressFileHeaderFormat));
+			xeCompressFileBlockInfo* pdata_block_info_list = fs->GetFstreamPtr<xeCompressFileBlockInfo>(sizeof(xeDefaultCompressAssetFileHeaderFormat));
 			if (pdata_block_info_list == nullptr)
 			{
-				//XE_ERROR_OUTPUT(std::format("READING BLOCK DATA INFO FAILED! FILE {0}", file_path).c_str());
+				XE_ERROR_OUTPUT(std::format("READING BLOCK DATA INFO FAILED! FILE {0}", file_path).c_str());
 				return false;
 			}
 			data_block_info_list = std::vector<xeCompressFileBlockInfo>(pdata_block_info_list, pdata_block_info_list + file_info_list.file_number);
@@ -88,7 +90,7 @@ namespace xe
 		}
 
 #if defined(EXPORT_C_PLUS_PLUS_API)
-		int64_t GetDecompressedDataIndex(std::string need_data_block_name)
+		int64_t GetDecompressedDataIndex(xeString need_data_block_name)
 		{
 			return GetDecompressedDataIndex(need_data_block_name.c_str());
 		}
@@ -153,4 +155,4 @@ namespace xe
 		}
 	};
 }
-#endif // _BASIC_DATA_H_ IS EOF
+#endif // _BASIC_DATA_HPP_ IS EOF

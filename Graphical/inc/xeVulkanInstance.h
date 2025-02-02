@@ -1,7 +1,7 @@
-#ifndef _INC_XE_VULKAN_INSTANCE_H_
-#define _INC_XE_VULKAN_INSTANCE_H_
+#ifndef _INC_XE_VULKAN_INSTANCE_HPP_
+#define _INC_XE_VULKAN_INSTANCE_HPP_
 
-#include "xeGraphicalConfig.h"
+#include "xeGraphicalConfig.hpp"
 
 namespace xe 
 {
@@ -38,4 +38,4 @@ namespace xe
 	};
 }
 
-#endif // _INC_XE_VULKAN_INSTANCE_H_ IS EOF
+#endif // _INC_XE_VULKAN_INSTANCE_HPP_ IS EOF

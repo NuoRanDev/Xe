@@ -1,4 +1,4 @@
-#include "decode/private_ImageFileReader.h"
+#include "decode/private_ImageFileReader.hpp"
 
 // LIBJPEG
 #include <csetjmp>

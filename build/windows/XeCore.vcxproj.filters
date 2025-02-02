@@ -15,22 +15,31 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\XeCore\inc\xeCoreConfig.h">
+    <ClInclude Include="..\..\XeCore\inc\xeCoreConfig.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\XeCore\inc\xeCore.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\XeCore\inc\xeCoreClrOutput.h">
+    <ClInclude Include="..\..\XeCore\inc\xeCoreClrOutput.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\XeCore\inc\xeApplication.h">
+    <ClInclude Include="..\..\XeCore\inc\xeApplication.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\XeCore\inc\xeBaseDataType.h">
+    <ClInclude Include="..\..\XeCore\inc\xeBaseDataType.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\XeCore\inc\xeFileName.h">
+    <ClInclude Include="..\..\XeCore\inc\xeFileName.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XeCore\inc\xeString.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XeCore\inc\xeCompiler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XeCore\inc\xeAlloc.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -42,6 +51,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\XeCore\src\xeFileName.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XeCore\src\xeString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XeCore\src\xeAlloc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

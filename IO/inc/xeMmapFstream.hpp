@@ -1,7 +1,7 @@
-#ifndef _INC_MMAP_F_STREAM_H_
-#define _INC_MMAP_F_STREAM_H_
+#ifndef _INC_MMAP_F_STREAM_HPP_
+#define _INC_MMAP_F_STREAM_HPP_
 
-#include "xeIOConfing.h"
+#include "xeIOConfing.hpp"
 
 namespace xe
 {
@@ -120,4 +120,4 @@ namespace xe
 #endif // DEFAULT FILE IO IS END
 }
 
-#endif // !_INC_MMAP_F_STREAM_H_
+#endif // !_INC_MMAP_F_STREAM_HPP_

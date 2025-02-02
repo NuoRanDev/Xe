@@ -1,10 +1,10 @@
-#ifndef _XE_BASIC_ASSET_H_
-#define _XE_BASIC_ASSET_H_
+#ifndef _XE_BASIC_ASSET_HPP_
+#define _XE_BASIC_ASSET_HPP_
 
-#include "xeAssetsConfig.h"
+#include "xeAssetsConfig.hpp"
 #include "xeBasicData.hpp"
 
-#include "decompress/decompress.h"
+#include "decompress/decompress.hpp"
 
 namespace xe
 {
@@ -30,4 +30,4 @@ namespace xe
 	};
 }
 
-#endif // _XE_BASIC_ASSET_H_ IS EOF
+#endif // _XE_BASIC_ASSET_HPP_ IS EOF

@@ -1,5 +1,5 @@
-#ifndef _CSHARP_API_XE_ASSET_CSHARP_H_
-#define _CSHARP_API_XE_ASSET_CSHARP_H_
+#ifndef _CSHARP_API_XE_ASSET_CSHARP_HPP_
+#define _CSHARP_API_XE_ASSET_CSHARP_HPP_
 
 /*===========================================
 *                   Note 
@@ -8,6 +8,6 @@
 * THIS FILE IS EXPORT DLL FUNCTION TO CSHRAP
 ============================================*/
 
-#include "xeAssets.h"
+#include "xeAssets.hpp"
 
-#endif // _CSHARP_API_XE_DATA_MANGE_CSHARP_H_ IS EOF
+#endif // _CSHARP_API_XE_DATA_MANGE_CSHARP_HPP_ IS EOF

@@ -1,5 +1,5 @@
-#ifndef _INC_XE_IO_H_
-#define _INC_XE_IO_H_
+#ifndef _INC_XE_IO_HPP_
+#define _INC_XE_IO_HPP_
 
 /************************************************
 *                  Macro List
@@ -16,4 +16,4 @@
 
 #include "xeMmapFstream.hpp"
 
-#endif // _INC_XE_IO_H_ IS EOF
+#endif // _INC_XE_IO_HPP_ IS EOF

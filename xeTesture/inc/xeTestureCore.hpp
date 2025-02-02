@@ -1,7 +1,7 @@
-#ifndef _INC_XE_TESTURE_CORE_H_
-#define _INC_XE_TESTURE_CORE_H_
+#ifndef _INC_XE_TESTURE_CORE_HPP_
+#define _INC_XE_TESTURE_CORE_HPP_
 
-#include "xeTestureConfig.h"
+#include "xeTestureConfig.hpp"
 
 namespace xe
 {
@@ -32,4 +32,4 @@ namespace xe
 	};
 }
 
-#endif // IS _INC_XE_TESTURE_CORE_H_ EOF
+#endif // IS _INC_XE_TESTURE_CORE_HPP_ EOF

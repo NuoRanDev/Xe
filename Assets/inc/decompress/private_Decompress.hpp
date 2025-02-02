@@ -1,7 +1,7 @@
-#ifndef _INC_PRIVATE_DECOMPRESS_H_
-#define _INC_PRIVATE_DECOMPRESS_H_
+#ifndef _INC_PRIVATE_DECOMPRESS_HPP_
+#define _INC_PRIVATE_DECOMPRESS_HPP_
 
-#include "xeAssetsConfig.h"
+#include "xeAssetsConfig.hpp"
 
 namespace xe 
 {
@@ -13,4 +13,4 @@ namespace xe
 	bool DecompressNone(byte_t* input, uint64_t compress_data_size, byte_t* output, uint64_t _not_compress_size);
 }
 
-#endif // _INC_PRIVATE_DECOMPRESS_H_ IS EOF
+#endif // _INC_PRIVATE_DECOMPRESS_HPP_ IS EOF

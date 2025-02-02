@@ -32,19 +32,19 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\xeTesture\inc\decode\private_ImageFileReader.h">
+    <ClInclude Include="..\..\xeTesture\inc\decode\private_ImageFileReader.hpp">
       <Filter>Header Files\decode</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\xeTesture\inc\xeTestureConfig.h">
+    <ClInclude Include="..\..\xeTesture\inc\xeTestureConfig.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\xeTesture\inc\xeTesture.h">
+    <ClInclude Include="..\..\xeTesture\inc\xeTesture.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\xeTesture\inc\xeTestureCore.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\xeTesture\inc\xeTestureDecode.h">
+    <ClInclude Include="..\..\xeTesture\inc\xeTestureDecode.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

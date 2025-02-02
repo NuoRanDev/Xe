@@ -1,8 +1,8 @@
-#ifndef _INC_XE_ASSETS_CONFIG_H_
-#define _INC_XE_ASSETS_CONFIG_H_
+#ifndef _INC_XE_ASSETS_CONFIG_HPP_
+#define _INC_XE_ASSETS_CONFIG_HPP_
 
 #include "xeCore.hpp"
-#include "xeIO.h"
+#include "xeIO.hpp"
 
 /************************************************
 *                  Macro List
@@ -22,4 +22,4 @@ namespace xe
 #endif // PROJECT_IS_XE_ASSETS IS END
 }
 
-#endif // _INC_XE_ASSETS_CONFIG_H_ IS EOF
+#endif // _INC_XE_ASSETS_CONFIG_HPP_ IS EOF

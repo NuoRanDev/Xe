@@ -1,5 +1,5 @@
-#ifndef _XE_IO_CONFIG_H_
-#define _XE_IO_CONFIG_H_
+#ifndef _XE_IO_CONFIG_HPP_
+#define _XE_IO_CONFIG_HPP_
 #include "xeCore.hpp"
 
 /************************************************
@@ -18,4 +18,4 @@ namespace xe
 #endif // PROJECT_IS_XE_IO IS END
 }
 
-#endif // _XE_IO_CONFIG_H_ IS END
+#endif // _XE_IO_CONFIG_HPP_ IS END

@@ -79,9 +79,9 @@
 //  2016-10-18: Vulkan: Add location decorators & change to use structs as in/out in glsl, update embedded spv (produced with glslangValidator -x). Null the released resources.
 //  2016-08-27: Vulkan: Fix Vulkan example for use when a depth buffer is active.
 
-#include "imgui\imgui.h"
+#include "imgui\imgui.hpp"
 #ifndef IMGUI_DISABLE
-#include "Widget\private\imgui_impl_vulkan.h"
+#include "Widget\private\imgui_impl_vulkan.hpp"
 #include <stdio.h>
 #ifndef IM_MAX
 #define IM_MAX(A, B)    (((A) >= (B)) ? (A) : (B))
@@ -106,7 +106,7 @@ void ImGui_ImplVulkanH_CreateWindowCommandBuffers(VkPhysicalDevice physical_devi
 
 // Vulkan prototypes for use with custom loaders
 // (see description of IMGUI_IMPL_VULKAN_NO_PROTOTYPES in imgui_impl_vulkan.h
-#if defined(VK_NO_PROTOTYPES) && !defined(VOLK_H_)
+#if defined(VK_NO_PROTOTYPES) && !defined(VOLK_HPP_)
 #define IMGUI_IMPL_VULKAN_USE_LOADER
 static bool g_FunctionsLoaded = false;
 #else

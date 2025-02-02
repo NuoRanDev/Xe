@@ -1,5 +1,5 @@
-#ifndef _INC_IMGUI_TO_XE_H_
-#define _INC_IMGUI_TO_XE_H_
+#ifndef _INC_IMGUI_TO_XE_HPP_
+#define _INC_IMGUI_TO_XE_HPP_
 
 
 //#include <SDL.h>
@@ -7,10 +7,10 @@
 
 
 // Data
-#include "imgui_impl_sdl2.h"
-#include "imgui_impl_vulkan.h"
+#include "imgui_impl_sdl2.hpp"
+#include "imgui_impl_vulkan.hpp"
 
-#include "imgui\imgui.h"
+#include "imgui\imgui.hpp"
 
 
 
@@ -145,4 +145,4 @@ static void FramePresent(ImGui_ImplVulkanH_Window* wd)
     wd->SemaphoreIndex = (wd->SemaphoreIndex + 1) % wd->SemaphoreCount; // Now we can use the next set of semaphores
 }
 
-#endif // !_INC_IMGUI_TO_XE_H_
+#endif // !_INC_IMGUI_TO_XE_HPP_

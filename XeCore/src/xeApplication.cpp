@@ -1,4 +1,4 @@
-#include "xeApplication.h"
+#include "xeApplication.hpp"
 
 namespace xe
 {
@@ -16,7 +16,7 @@ namespace xe
 			auto& log_file_path = file_name_with_path.replace_filename(out_log_name);
 			log_file = new std::fstream(log_file_path, std::ios_base::in | std::ios_base::out | std::ios_base::trunc);
 		}
-
+		
 		const char* GetApplicationPath()
 		{
 			return application_path.c_str();
@@ -26,6 +26,7 @@ namespace xe
 		{
 			return application_name.c_str();
 		}
+		
 
 		std::fstream* GetLogFile()
 		{

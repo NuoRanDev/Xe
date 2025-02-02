@@ -1,4 +1,4 @@
-#include "xeWindow.h"
+#include "xeWindow.hpp"
 
 namespace xe
 {
