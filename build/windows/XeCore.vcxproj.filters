@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
@@ -13,51 +9,36 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Module Files">
+      <UniqueIdentifier>{c505df2c-15a2-4bd3-a23d-ce6a23988746}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\XeCore\inc\xeCoreConfig.hpp">
+    <ClInclude Include="..\..\src\XeCore\xeCompiler.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\XeCore\inc\xeCore.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\XeCore\inc\xeCoreClrOutput.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\XeCore\inc\xeApplication.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\XeCore\inc\xeBaseDataType.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\XeCore\inc\xeFileName.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\XeCore\inc\xeString.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\XeCore\inc\xeCompiler.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\XeCore\inc\xeAlloc.hpp">
+    <ClInclude Include="..\..\src\XeCore\xeConfig.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\XeCore\src\xeCoreClrOutput.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\XeCore\xeAlloc.ixx">
+      <Filter>Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\XeCore\src\xeApplication.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\XeCore\xeApplication.ixx">
+      <Filter>Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\XeCore\src\xeFileName.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\XeCore\xeBaseDataType.ixx">
+      <Filter>Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\XeCore\src\xeString.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\XeCore\xeCoreClrOutput.ixx">
+      <Filter>Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\XeCore\src\xeAlloc.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\XeCore\xeOrdinals.ixx">
+      <Filter>Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XeCore\xeString.ixx">
+      <Filter>Module Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
