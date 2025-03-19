@@ -206,7 +206,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>PROJECT_IS_XE_IO;EXPORT_C_PLUS_PLUS_API;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\IO\inc\;$(SolutionDir)..\..\XeCore\inc\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\IO\;$(SolutionDir)..\..\src\XeCore\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
@@ -279,14 +279,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\IO\inc\xeIO.hpp" />
-    <ClInclude Include="..\..\IO\inc\xeIOConfing.hpp" />
-    <ClInclude Include="..\..\IO\inc\xeIOCsharpAPI.hpp" />
-    <ClInclude Include="..\..\IO\inc\xeMmapFstream.hpp" />
+    <ClCompile Include="..\..\src\XeIO\KeyIO.ixx" />
+    <ClCompile Include="..\..\src\XeIO\xeMmapFstream.ixx" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\IO\src\xeIOCsharpAPI.cpp" />
-    <ClCompile Include="..\..\IO\src\xeMmapFstream.cpp" />
+    <ClInclude Include="..\..\src\XeIO\xeIO.hpp" />
+    <ClInclude Include="..\..\src\XeIO\xeIOConfing.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

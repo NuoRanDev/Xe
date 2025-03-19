@@ -1,4 +1,4 @@
-export module xeCore.xeApplication;
+export module xe.xeCore.xeApplication;
 
 import std;
 

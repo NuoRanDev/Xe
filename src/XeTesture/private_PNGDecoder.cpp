@@ -1,16 +1,18 @@
-export module xeTesture.decode.private_ImageFileReader;
+import xe.xeTesture.decode.private_Imgdecoder;
 
 import std;
 
-import "spng.h";
+import xe.xeCore.xeOrdinals;
+import xe.xeCore.xeBaseDataType;
+import xe.xeCore.xeCoreClrOutput;
 
-import xeCore.xeOrdinals;
-import xeTesture.xeTestureCore;
-import xeCore.xeCoreClrOutput;
+import xe.xeTesture.xeTestureCore;
+
+#include "spng.h"
 
 namespace xe
 {
-	export bool DecompressPNG(std::unique_ptr<Testure> img, xeByte* png_buffer, xeSize file_size)
+	bool DecodePNG(std::unique_ptr<Testure> img, xeByte* png_buffer, xeSize file_size)
 	{
 		xeByte color_type = 0;
 		xeUint32 width = 0;
@@ -25,7 +27,7 @@ namespace xe
 		spng_ctx* ctx = spng_ctx_new(0);
 		if (ctx == nullptr)
 		{
-			XE_WARNING_OUTPUT("LIB: <Libspng> init context failed\n");
+			XE_WARNING_OUTPUT("LIB: <Libspng> init context failed");
 			img = nullptr;
 			return false;
 		}
@@ -34,7 +36,7 @@ namespace xe
 		if (ret)
 		{
 			spng_ctx_free(ctx);
-			XE_WARNING_OUTPUT("LIB: <Libspng> Load data failed\n");
+			XE_WARNING_OUTPUT("LIB: <Libspng> Load data failed");
 			img = nullptr;
 			return false;
 		}
@@ -43,7 +45,7 @@ namespace xe
 		if (ret)
 		{
 			spng_ctx_free(ctx);
-			XE_WARNING_OUTPUT("LIB: <Libspng> Get header information data failed\n");
+			XE_WARNING_OUTPUT("LIB: <Libspng> Get header information data failed");
 			img = nullptr;
 			return false;
 		}
@@ -52,7 +54,7 @@ namespace xe
 		if (ihdr.bit_depth != 8)
 		{
 			spng_ctx_free(ctx);
-			XE_WARNING_OUTPUT(std::format("MOD: <DecompressPNG> Image data is broken. Image bit depth is {0}, XE support Bit depthis 8!", ihdr.bit_depth).c_str());
+			XE_WARNING_OUTPUT(std::format("MOD: <DecodePNG> Image data is broken. Image bit depth is {0}, XE support Bit depthis 8!", ihdr.bit_depth).c_str());
 			img = nullptr;
 			return false;
 		}
@@ -78,7 +80,7 @@ namespace xe
 
 		default:
 			spng_ctx_free(ctx);
-			XE_WARNING_OUTPUT("MOD: <DecompressPNG> Image data is broken. Not support this color format\n");
+			XE_WARNING_OUTPUT("MOD: <DecodePNG> Image data is broken. Not support this color format");
 			img = nullptr;
 			return false;
 		}
@@ -87,7 +89,7 @@ namespace xe
 		if (need_new_size != img->testure_size)
 		{
 			spng_ctx_free(ctx);
-			XE_WARNING_OUTPUT("MOD: <DecompressPNG> Image data is broken. Alloc size failed\n");
+			XE_WARNING_OUTPUT("MOD: <DecodePNG> Image data is broken. Alloc size failed");
 			img = nullptr;
 			return false;
 		}

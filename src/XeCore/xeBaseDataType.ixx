@@ -1,6 +1,6 @@
-export module xeCore.xeBaseDataType;
+export module xe.xeCore.xeBaseDataType;
 
-import xeCore.xeOrdinals;
+import xe.xeCore.xeOrdinals;
 
 namespace xe
 {
@@ -132,7 +132,7 @@ namespace xe
 		xeFastExtension() = default;
 		constexpr xeFastExtension(const char str[4]) :vec4_i8(str[0], str[1], str[2], str[3]) {}
 	};
-	export bool Is4Extension(const char* main_csharp_str, int64_t len_1, xeFastExtension _4_extension)
+	export bool is4Extension(const char* main_csharp_str, int64_t len_1, xeFastExtension _4_extension)
 	{
 		return _4_extension == (main_csharp_str + len_1 - 1);
 	}

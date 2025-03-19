@@ -1,4 +1,4 @@
-export module xeCore.xeAlloc;
+export module xe.xeCore.xeAlloc;
 
 import std;
 
@@ -6,9 +6,9 @@ import std;
 import "mimalloc.h";
 #endif // USE_MIMALLOC
 
-import xeCore.xeOrdinals;
+import xe.xeCore.xeOrdinals;
 
-export namespace xe
+namespace xe
 {
 	export template<typename T> T* xeMalloc(size_t alloc_number)
 	{
@@ -37,9 +37,9 @@ export namespace xe
 #endif // defined(USE_MIMALLOC) IS END
 	}
 
-	export template<typename T> uint64_t ARRAYSIZE(T* _ARR)
+	export template<typename T> xeUint64 ARRAYSIZE(T* _ARR)
 	{
-		return ((uint64_t)(sizeof(_ARR) / sizeof(*(_ARR))));
+		return ((xeUint64)(sizeof(_ARR) / sizeof(*(_ARR))));
 	}
 
 	export template<typename T> T* DeleteArray(T* input)
@@ -61,4 +61,4 @@ export namespace xe
 		input = nullptr;
 		return nullptr;
 	}
-}
+} // namespace xe end

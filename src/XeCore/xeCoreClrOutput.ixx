@@ -1,8 +1,8 @@
-export module xeCore.xeCoreClrOutput;
+export module xe.xeCore.xeCoreClrOutput;
 
 import std;
 
-import xeCore.xeApplication;
+import xe.xeCore.xeApplication;
 
 #if defined(__clang__)
 #pragma clang diagnostic push

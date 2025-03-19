@@ -1,6 +1,5 @@
 #ifndef _XE_IO_CONFIG_HPP_
 #define _XE_IO_CONFIG_HPP_
-#include "xeCore.hpp"
 
 /************************************************
 *                  Macro List
@@ -8,6 +7,8 @@
 *  MACRO:	PROJECT_IS_XE_IO
 *
 *************************************************/
+
+#include "xeConfig.hpp"
 
 namespace xe
 {

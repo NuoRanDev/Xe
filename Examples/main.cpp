@@ -1,11 +1,11 @@
-#include "XeCore.hpp"
-#include "xeAssets.hpp"
+import xe.xeCore.xeString;
+import xe.xeCore.xeApplication;
+import std;
 
 int main(int argc, char* argv[])
 {
 	xe::Application::LaodApplication(argc, argv, "test.log");
-	system("chcp 65001");
-	xe::ioMmapfstream file = xe::ioMmapfstream();
+	std::system("chcp 65001");
 	xe::xeString str1 = "一クロノクロック€é+×№<₽₸₥₭₭₼éêêëËËËœœɵÛŨü↚↮↩↢◀▧▪⌍⌟⅔⅐⅕⅗ⅧⅨⅥⅶ∵∲∶⊣⊠⊴⊸⊺⊹⊩②⒎⒔⨅⨈⨋⨊⨌⨿⨹⨺⩀⩃⩑⩏⩑〰〆〓㈠⺔⻉ㄡㄠ无修屌日天";
 	xe::xeString str2 = "₽₸₥₭₭₼éêêëËËËœœɵÛŨü↚↮↩↢◀▧▪⌍⌟⅔⅐⅕⅗ⅧⅨⅥⅶ∵∲∶";
 	str1.Append(str2);

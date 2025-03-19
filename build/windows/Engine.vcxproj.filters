@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="XeCore">
+      <UniqueIdentifier>{52c46f95-44fa-4100-93cf-fc284a55e40e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XeCore\Module Files">
+      <UniqueIdentifier>{0fd5b96b-a0c4-45a1-8585-477373f37212}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XeCore\Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="XeCore\Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="XeTesture">
+      <UniqueIdentifier>{4a75b75b-3535-4969-8f97-e20de93f0b42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XeTesture\Header Files">
+      <UniqueIdentifier>{9382d7cf-889f-4d34-ad35-6c9ab5de33e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XeTesture\Module Files">
+      <UniqueIdentifier>{6aac1a36-a724-46c6-8804-7d65b13b6b92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XeTesture\Module Files\decode">
+      <UniqueIdentifier>{4361b293-ad12-419f-aa98-da68a25257a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XeTesture\Source Files">
+      <UniqueIdentifier>{257f9938-6999-4d02-9d0b-005283874b96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XeTesture\Source Files\decode">
+      <UniqueIdentifier>{991f8ac9-033d-43ec-9f3e-e62ceeae0567}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\XeCore\Unit.ixx">
+      <Filter>XeCore\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XeCore\Clock.ixx">
+      <Filter>XeCore\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XeCore\xeAlloc.ixx">
+      <Filter>XeCore\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XeCore\xeApplication.ixx">
+      <Filter>XeCore\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XeCore\xeBaseDataType.ixx">
+      <Filter>XeCore\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XeCore\xeCoreClrOutput.ixx">
+      <Filter>XeCore\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XeCore\xeOrdinals.ixx">
+      <Filter>XeCore\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XeCore\xeString.ixx">
+      <Filter>XeCore\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XeCore\xeString.cpp">
+      <Filter>XeCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XeTesture\xeTestureCore.ixx">
+      <Filter>XeTesture\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XeTesture\xeTestureDecode.ixx">
+      <Filter>XeTesture\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XeTesture\private_Imgdecoder.ixx">
+      <Filter>XeTesture\Module Files\decode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XeTesture\private_PNGDecoder.cpp">
+      <Filter>XeTesture\Source Files\decode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XeTesture\private_AVIFDecoder.cpp">
+      <Filter>XeTesture\Source Files\decode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XeTesture\xeTestureDecode.cpp">
+      <Filter>XeTesture\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Examples\main.cpp" />
+    <ClCompile Include="..\..\src\XeCore\Clock.cpp">
+      <Filter>XeCore\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\XeCore\xeCompiler.hpp">
+      <Filter>XeCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\XeCore\xeConfig.hpp">
+      <Filter>XeCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\XeTesture\xeTesture.hpp">
+      <Filter>XeTesture\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\XeTesture\xeTestureConfig.hpp">
+      <Filter>XeTesture\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

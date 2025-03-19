@@ -14,6 +14,4 @@
 *
 *************************************************/
 
-#include "xeMmapFstream.hpp"
-
 #endif // _INC_XE_IO_HPP_ IS EOF

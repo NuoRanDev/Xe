@@ -1,31 +1,31 @@
-export module xeTesture.xeTestureCore;
+export module xe.xeTesture.xeTestureCore;
 
-import xeCore.xeOrdinals;
-import xeCore.xeBaseDataType;
-import xeCore.xeAlloc;
+import xe.xeCore.xeOrdinals;
+import xe.xeCore.xeBaseDataType;
+import xe.xeCore.xeAlloc;
 
 namespace xe
 {
-	class Testure
+	export class Testure
 	{
 	public:
 		xeUint32		x, y;
 		xeColorChannel	channel;
-		uint32_t		bit_depth;
-		xeByte			* pixel_data;
+		xeUint32		bit_depth;
+		xeByte			*pixel_data;
 		xeInt64			testure_size;
 		Testure() = default;
-
-		Testure(uint32_t i_x, uint32_t i_y, xeColorChannel i_channel)
-		{
-			x = i_x; y = i_y; channel = i_channel; bit_depth = 8;
-			testure_size = i_x * i_y * static_cast<uint32_t>(i_channel);
-			pixel_data =  xeMalloc<xeByte>(testure_size);
-		}
 
 		~Testure()
 		{
 			xeFree(pixel_data);
+		}
+
+		Testure(xeUint32 i_x, xeUint32 i_y, xeColorChannel i_channel)
+		{
+			x = i_x; y = i_y; channel = i_channel; bit_depth = 8;
+			testure_size = i_x * i_y * static_cast<xeUint32>(i_channel);
+			pixel_data = xeMalloc<xeByte>(testure_size);
 		}
 
 		constexpr xeByte* GetData()
@@ -33,22 +33,14 @@ namespace xe
 			return pixel_data;
 		}
 
-		constexpr uint32_t GetLineSize()
+		constexpr xeUint32 GetLineSize()
 		{
-			return x * static_cast<uint32_t>(channel) * (bit_depth / 8);
+			return x * static_cast<xeUint32>(channel) * (bit_depth / 8);
 		}
 
-		constexpr uint32_t GetTestureSize()
+		constexpr xeUint32 GetTestureSize()
 		{
 			return GetLineSize() * y;
-		}
-
-		void GetlineStart(byte_line* dst)
-		{
-			for (uint32_t i = 0; i < y; i++)
-			{
-				dst[i] = pixel_data + i * GetLineSize();
-			}
 		}
 	};
 }
