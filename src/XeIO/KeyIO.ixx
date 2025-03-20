@@ -1,3 +1,3 @@
-export module KeyIO;
+export module xe.xeIO.KeyIO;
 
 export void MyFunc();

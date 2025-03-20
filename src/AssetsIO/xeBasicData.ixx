@@ -1,17 +1,22 @@
-#ifndef _BASIC_DATA_HPP_
-#define _BASIC_DATA_HPP_
+export module xe.AssetIO.xeBasicData;
 
-#include "xeAssetsConfig.hpp"
-#include "xeCompressFileStruct.hpp"
+import std;
 
-#include "XeCore.hpp"
-#include "xeIO.hpp"
+import xe.xeCore.xeOrdinals;
+import xe.xeCore.xeString;
+import xe.xeCore.xeAlloc;
+import xe.xeCore.xeCoreClrOutput;
+
+import xe.AssetIO.xeCompressFileStruct;
+
+import xe.xeIO.xeOMmapfstream;
+
 
 namespace xe
 {
-	using DecompressFunction = std::function<bool(byte_t*, uint64_t, byte_t*, uint64_t)>;
+	export using DecompressFunction = std::function<bool(xeByte*, xeUint64, xeByte*, xeUint64)>;
 	// 
-	class GameBasicData
+	export class GameBasicData
 	{
 	public:
 
@@ -40,7 +45,7 @@ namespace xe
 		xeString										path;
 	};
 
-	class GameDataReader :GameBasicData
+	export class GameDataReader :GameBasicData
 	{
 	public:
 		explicit GameDataReader() :GameBasicData() {}
@@ -61,7 +66,7 @@ namespace xe
 				return false;
 			}
 			// Read File Header
-			if(fs->FstraemStartMemcpyOut<xeDefaultCompressAssetFileHeaderFormat>(&file_info_list, sizeof(xeDefaultCompressAssetFileHeaderFormat)))
+			if (fs->FstraemStartMemcpyOut<xeDefaultCompressAssetFileHeaderFormat>(&file_info_list, sizeof(xeDefaultCompressAssetFileHeaderFormat)))
 			{
 				XE_ERROR_OUTPUT(std::format("READING FILE FAILED! FILE {0}", file_path).c_str());
 				return false;
@@ -84,13 +89,13 @@ namespace xe
 			fs->Release();
 		}
 
-		const char* GetDecompressedDataName(int64_t index)
+		const char* GetDecompressedDataName(xeInt64 index)
 		{
 			return (const char*)data_block_info_list[index].file_name;
 		}
 
 #if defined(EXPORT_C_PLUS_PLUS_API)
-		int64_t GetDecompressedDataIndex(xeString need_data_block_name)
+		xeInt64 GetDecompressedDataIndex(xeString need_data_block_name)
 		{
 			return GetDecompressedDataIndex(need_data_block_name.c_str());
 		}
@@ -99,12 +104,12 @@ namespace xe
 #if !defined(EXPORT_C_SHARP_API)
 	protected:
 #endif // defined C_SHARP_API  IS END
-		int64_t GetDecompressedDataIndex(const char* need_data_block_name)
+		xeInt64 GetDecompressedDataIndex(const char* need_data_block_name)
 		{
 			// According input name the loop will find data block
-			for (uint64_t i = 0; i < data_block_info_list.size(); i++)
+			for (xeUint64 i = 0; i < data_block_info_list.size(); i++)
 			{
-				if (strcmp((char*)(data_block_info_list[i].file_name), need_data_block_name) == 0)
+				if (std::strcmp((char*)(data_block_info_list[i].file_name), need_data_block_name) == 0)
 				{
 					return i;
 				}
@@ -121,25 +126,25 @@ namespace xe
 		// Fist, decompress all file
 		DecompressFunction CB_decompressfunction;
 		//
-		byte_t* GetDecompressedData(int64_t index, uint64_t& size_out)
+		xeByte* GetDecompressedData(xeInt64 index, xeUint64& size_out)
 		{
-			byte_t* compressed_data = nullptr;
-			byte_t* not_compressed_data = nullptr;
+			xeByte* compressed_data = nullptr;
+			xeByte* not_compressed_data = nullptr;
 
-			uint64_t compressed_size = data_block_info_list[index]._compress_size;
-			uint64_t not_compressed_size = data_block_info_list[index]._not_compress_size;
-			uint64_t block_start = data_block_info_list[index]._block_start;
+			xeUint64 compressed_size = data_block_info_list[index]._compress_size;
+			xeUint64 not_compressed_size = data_block_info_list[index]._not_compress_size;
+			xeUint64 block_start = data_block_info_list[index]._block_start;
 
 			size_out = not_compressed_size;
 
-			compressed_data = fs->GetFstreamPtr<byte_t>(block_start);
+			compressed_data = fs->GetFstreamPtr<xeByte>(block_start);
 			if (compressed_data == nullptr)
 			{
 				size_out = 0;
 				XE_WARNING_OUTPUT(std::format("read data block failed :{0}", index).c_str());
 				return nullptr;
 			}
-			not_compressed_data = new byte_t[not_compressed_size];
+			not_compressed_data = new xeByte[not_compressed_size];
 			if (!CB_decompressfunction(compressed_data, compressed_size, not_compressed_data, not_compressed_size))
 			{
 				delete[]not_compressed_data;
@@ -149,10 +154,10 @@ namespace xe
 			}
 			return not_compressed_data;
 		}
-		void FreeDecompressedData(byte_t* decompressed_data)
+		void FreeDecompressedData(xeByte* decompressed_data)
 		{
-			decompressed_data = DeleteArray<byte_t>(decompressed_data);
+			decompressed_data = DeleteArray<xeByte>(decompressed_data);
 		}
 	};
+
 }
-#endif // _BASIC_DATA_HPP_ IS EOF

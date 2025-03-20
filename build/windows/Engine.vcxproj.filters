@@ -33,6 +33,27 @@
     <Filter Include="XeTesture\Source Files\decode">
       <UniqueIdentifier>{991f8ac9-033d-43ec-9f3e-e62ceeae0567}</UniqueIdentifier>
     </Filter>
+    <Filter Include="XeIO">
+      <UniqueIdentifier>{a5de2fae-0bbd-4915-b843-3b6a7dfb730e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XeIO\Module Files">
+      <UniqueIdentifier>{49ade507-7532-4cdb-8717-c1f884638359}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XeIO\Source Files">
+      <UniqueIdentifier>{b401f7a3-3efe-4e42-9d35-5b5a6e63b937}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetsIO">
+      <UniqueIdentifier>{6f3fa4ed-2c8b-4a62-b3a6-44134a5e8d62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetsIO\Module Files">
+      <UniqueIdentifier>{7a5540f9-1d98-471e-b8e4-60d2a4202269}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetsIO\Source Files">
+      <UniqueIdentifier>{e9827a63-d792-4c0b-85ba-2eae55463336}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physical">
+      <UniqueIdentifier>{3afc7eef-c365-42f6-803a-5c2d26f13dbe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\XeCore\Unit.ixx">
@@ -83,6 +104,36 @@
     <ClCompile Include="..\..\Examples\main.cpp" />
     <ClCompile Include="..\..\src\XeCore\Clock.cpp">
       <Filter>XeCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XeCore\Object.ixx">
+      <Filter>XeCore\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XeIO\KeyIO.ixx">
+      <Filter>XeIO\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XeIO\xeOMmapfstream.ixx">
+      <Filter>XeIO\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XeIO\xeOMmapfstream.cpp">
+      <Filter>XeIO\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AssetsIO\xeCompressFileStruct.ixx">
+      <Filter>AssetsIO\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AssetsIO\xeBasicData.ixx">
+      <Filter>AssetsIO\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AssetsIO\xeBasicAsset.ixx">
+      <Filter>AssetsIO\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AssetsIO\xeBasicData.cpp">
+      <Filter>AssetsIO\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AssetsIO\private_Decompress.ixx">
+      <Filter>AssetsIO\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AssetsIO\private_Decompress.cpp">
+      <Filter>AssetsIO\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

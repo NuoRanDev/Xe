@@ -1,0 +1,74 @@
+export module xe.xeIO.xeOMmapfstream;
+
+import std;
+import xe.xeCore.xeOrdinals;
+import xe.xeCore.xeCoreClrOutput;
+
+namespace xe
+{
+	export class BasicMmapfstream
+	{
+	public:
+		BasicMmapfstream() = default;
+
+		virtual bool GetFilePtr(const char* str) {}
+
+		template<typename T> T* GetFstreamPtr(size_t offset_byte)
+		{
+			if (file_size < offset_byte)
+			{
+				XE_ERROR_OUTPUT(std::format("Out of memry : offset size {0}, file size {1}", offset_byte, file_size).c_str());
+				return nullptr;
+			}
+			return (T*)((xeByte*)pfile_start + offset_byte);
+		}
+
+		void Release();
+
+		~BasicMmapfstream()
+		{
+			Release();
+		}
+
+		xeUint64 file_size;
+
+	protected:
+		void* pfile_start;
+#if defined(_WIN32)
+		void* hfile_mapping;
+		void* c_dumpFileDescriptor;
+#elif defied(__linux__)
+#else
+#error "SUPPORTED ERROR: NOT SUPPORT THIS SYSTEM!"
+#endif // _WIN32
+		bool GetFileSize(const char* file_name);
+	};
+
+	export class oMmapfstream final : public BasicMmapfstream
+	{
+	public:
+		virtual bool GetFilePtr(const char* str);
+
+		template<typename T> bool FstraemStartMemcpyOut(T* dst, size_t number)
+		{
+			if (file_size < number * sizeof(T))
+			{
+				XE_ERROR_OUTPUT(std::format("Out of memry : offset size {0}, file size {1}", sizeof(T) * number, file_size).c_str());
+				return false;
+			}
+			std::memcpy(dst, pfile_start, sizeof(T) * number);
+			return true;
+		}
+
+		template<typename T> bool FstraemMemcpyOut(T* dst, size_t offset_byte, size_t number)
+		{
+			if (file_size < (offset_byte + number * sizeof(T)))
+			{
+				XE_ERROR_OUTPUT(std::format("Out of memry : offset size {0}, file size {1}", sizeof(T) * number, file_size).c_str());
+				return false;
+			}
+			std::memcpy(dst, (xeByte*)pfile_start + offset_byte, number * sizeof(T));
+			return true;
+		}
+	};
+} // namspace xe is end

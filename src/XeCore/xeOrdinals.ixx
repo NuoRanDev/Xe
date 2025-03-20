@@ -19,4 +19,6 @@ namespace xe
 	export using xeOffsize		= xeSize;
 	export using xeDataStart	= void*;
 	export using xeByte			= xeUint8;
+
+	export using xeU8cstr		= char8_t;
 }

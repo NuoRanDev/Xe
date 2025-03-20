@@ -125,22 +125,22 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|x64'">
-    <IncludePath>$(SolutionDir)..\..\src\XeTesture\;$(SolutionDir)..\..\src\XeCore\</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\src\XeTesture\;$(SolutionDir)..\..\src\XeCore\;$(SolutionDir)..\..\src\XeIO\;$(SolutionDir)..\..\src\AssetsIO\</IncludePath>
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_csharp|x64'">
-    <IncludePath>$(SolutionDir)..\..\src\XeTesture\;$(SolutionDir)..\..\src\XeCore\</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\src\XeTesture\;$(SolutionDir)..\..\src\XeCore\;$(SolutionDir)..\..\src\XeIO\;$(SolutionDir)..\..\src\AssetsIO\</IncludePath>
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_cpp|x64'">
-    <IncludePath>$(SolutionDir)..\..\src\XeTesture\;$(SolutionDir)..\..\src\XeCore\</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\src\XeTesture\;$(SolutionDir)..\..\src\XeCore\;$(SolutionDir)..\..\src\XeIO\;$(SolutionDir)..\..\src\AssetsIO\</IncludePath>
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_csharp|x64'">
-    <IncludePath>$(SolutionDir)..\..\src\XeTesture\;$(SolutionDir)..\..\src\XeCore\</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\src\XeTesture\;$(SolutionDir)..\..\src\XeCore\;$(SolutionDir)..\..\src\XeIO\;$(SolutionDir)..\..\src\AssetsIO\</IncludePath>
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
   </PropertyGroup>
@@ -228,7 +228,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SPNG_STATIC;EXPORT_C_PLUS_PLUS_API;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\XeTesture\;$(SolutionDir)..\..\src\XeCore\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\XeIO\;$(SolutionDir)..\..\src\XeTesture\;$(SolutionDir)..\..\src\AssetsIO\;$(SolutionDir)..\..\src\XeCore\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -246,7 +246,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SPNG_STATIC;EXPORT_C_SHARP_API;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\XeTesture\;$(SolutionDir)..\..\src\XeCore\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\XeIO\;$(SolutionDir)..\..\src\XeTesture\;$(SolutionDir)..\..\src\AssetsIO\;$(SolutionDir)..\..\src\XeCore\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -266,7 +266,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SPNG_STATIC;EXPORT_C_PLUS_PLUS_API;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\XeTesture\;$(SolutionDir)..\..\src\XeCore\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\XeIO\;$(SolutionDir)..\..\src\XeTesture\;$(SolutionDir)..\..\src\AssetsIO\;$(SolutionDir)..\..\src\XeCore\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -288,7 +288,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SPNG_STATIC;EXPORT_C_SHARP_API;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\XeTesture\;$(SolutionDir)..\..\src\XeCore\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\XeIO\;$(SolutionDir)..\..\src\XeTesture\;$(SolutionDir)..\..\src\AssetsIO\;$(SolutionDir)..\..\src\XeCore\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -304,8 +304,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Examples\main.cpp" />
+    <ClCompile Include="..\..\src\AssetsIO\private_Decompress.ixx" />
+    <ClCompile Include="..\..\src\AssetsIO\xeBasicAsset.ixx" />
+    <ClCompile Include="..\..\src\AssetsIO\xeBasicData.cpp" />
+    <ClCompile Include="..\..\src\AssetsIO\xeBasicData.ixx" />
+    <ClCompile Include="..\..\src\AssetsIO\xeCompressFileStruct.ixx" />
+    <ClCompile Include="..\..\src\AssetsIO\private_Decompress.cpp" />
     <ClCompile Include="..\..\src\XeCore\Clock.cpp" />
     <ClCompile Include="..\..\src\XeCore\Clock.ixx" />
+    <ClCompile Include="..\..\src\XeCore\Object.ixx" />
     <ClCompile Include="..\..\src\XeCore\Unit.ixx" />
     <ClCompile Include="..\..\src\XeCore\xeAlloc.ixx" />
     <ClCompile Include="..\..\src\XeCore\xeApplication.ixx" />
@@ -314,6 +321,9 @@
     <ClCompile Include="..\..\src\XeCore\xeOrdinals.ixx" />
     <ClCompile Include="..\..\src\XeCore\xeString.cpp" />
     <ClCompile Include="..\..\src\XeCore\xeString.ixx" />
+    <ClCompile Include="..\..\src\XeIO\KeyIO.ixx" />
+    <ClCompile Include="..\..\src\XeIO\xeOMmapfstream.ixx" />
+    <ClCompile Include="..\..\src\XeIO\xeOMmapfstream.cpp" />
     <ClCompile Include="..\..\src\XeTesture\private_AVIFDecoder.cpp" />
     <ClCompile Include="..\..\src\XeTesture\private_PNGDecoder.cpp" />
     <ClCompile Include="..\..\src\XeTesture\private_Imgdecoder.ixx" />
