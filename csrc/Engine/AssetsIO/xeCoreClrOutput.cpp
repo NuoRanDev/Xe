@@ -1,18 +1,10 @@
-export module xe.xeCore.xeCoreClrOutput;
+#include <cstdio>
+import xe.xeCore.xeCoreClrOutput;
 
 import std;
 
-import xe.xeCore.xeApplication;
-
-#if defined(__clang__)
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-const-variable"
-#endif
-
 namespace xe
 {
-	static std::ofstream g_log("program_output.log");
-
 	constexpr const char RESET[] = "\033[0m";
 	constexpr const char RED[] = "\033[31m";
 	constexpr const char GREEN[] = "\033[32m";
@@ -27,7 +19,7 @@ namespace xe
 		return;
 #endif // _DEBUG
 		std::string out_text = std::string("ERROR") + ":\t" + output_text + "\n";
-		Application::GetLogFile()->write(out_text.c_str(), out_text.length() - 1);
+		fprintf(stderr, "Cannot read file: %s\n", out_text.c_str());
 		return;
 	}
 
@@ -38,7 +30,7 @@ namespace xe
 		return;
 #endif // _DEBUG
 		std::string out_text = std::string("WARNING") + ":\t" + output_text + "\n";
-		Application::GetLogFile()->write(out_text.c_str(), out_text.length());
+		fprintf(stderr, "Cannot read file: %s\n", out_text.c_str());
 		return;
 	}
 }

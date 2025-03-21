@@ -1,6 +1,8 @@
 export module xe.xeIO.xeOMmapfstream;
 
 import std;
+
+import xe.xeCore.xeString;
 import xe.xeCore.xeOrdinals;
 import xe.xeCore.xeCoreClrOutput;
 
@@ -10,8 +12,6 @@ namespace xe
 	{
 	public:
 		BasicMmapfstream() = default;
-
-		virtual bool GetFilePtr(const char* str) {}
 
 		template<typename T> T* GetFstreamPtr(size_t offset_byte)
 		{
@@ -41,13 +41,18 @@ namespace xe
 #else
 #error "SUPPORTED ERROR: NOT SUPPORT THIS SYSTEM!"
 #endif // _WIN32
-		bool GetFileSize(const char* file_name);
+		bool GetFileSize(const xeU8cstr* file_name);
 	};
 
 	export class oMmapfstream final : public BasicMmapfstream
 	{
 	public:
-		virtual bool GetFilePtr(const char* str);
+		virtual bool OpenFile(const xeU8cstr* str);
+
+		bool OpenFile(xeString file_name)
+		{
+			return OpenFile(file_name.data());
+		}
 
 		template<typename T> bool FstraemStartMemcpyOut(T* dst, size_t number)
 		{

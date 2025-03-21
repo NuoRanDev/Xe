@@ -60,7 +60,7 @@ namespace xe
 			//
 			fs = new oMmapfstream();
 			// Get File Header
-			if (!fs->GetFilePtr(file_path))
+			if (!fs->OpenFile(file_path))
 			{
 				XE_ERROR_OUTPUT(std::format("CAN NOT FIND FILE! FILE {0}", file_path).c_str());
 				return false;

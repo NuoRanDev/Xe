@@ -21,7 +21,7 @@ namespace xe
 			xeFree(pixel_data);
 		}
 
-		Testure(xeUint32 i_x, xeUint32 i_y, xeColorChannel i_channel)
+		void LoadData(xeUint32 i_x, xeUint32 i_y, xeColorChannel i_channel)
 		{
 			x = i_x; y = i_y; channel = i_channel; bit_depth = 8;
 			testure_size = i_x * i_y * static_cast<xeUint32>(i_channel);

@@ -25,24 +25,24 @@ namespace xe
 		file_size = 0;
 	}
 
-	bool BasicMmapfstream::GetFileSize(const char* file_name)
+	bool BasicMmapfstream::GetFileSize(const xeU8cstr* path)
 	{
-		if (!std::filesystem::exists(file_name))
+		if (!std::filesystem::exists(path))
 		{
 			XE_WARNING_OUTPUT("CAN'T FIND FILE");
 			return false;
 		}
-		file_size = std::filesystem::file_size(file_name);
+		file_size = std::filesystem::file_size(path);
 		return true;
 	}
 
-	bool oMmapfstream::GetFilePtr(const char* str)
+	bool oMmapfstream::OpenFile(const xeU8cstr* path)
 	{
-		if (!GetFileSize(str))
+		if (!GetFileSize(path))
 			return false;
 #ifdef _WIN32
 		c_dumpFileDescriptor = CreateFileA(
-			str,
+			reinterpret_cast<const char*>(path),
 			GENERIC_READ,
 			0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 		if (c_dumpFileDescriptor == nullptr)

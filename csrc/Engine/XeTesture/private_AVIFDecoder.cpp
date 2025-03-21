@@ -12,14 +12,15 @@ import xe.xeTesture.xeTestureCore;
 
 namespace xe
 {
-	bool DecodeAVIF(std::unique_ptr<Testure> img, xeByte* avif_buffer, xeSize file_size)
+	std::unique_ptr<Testure> DecodeAVIF(xeByte* avif_buffer, xeSize file_size)
 	{
+		std::unique_ptr<Testure> img;
 		avifRGBImage avif_rgb = { 0 };
 
 		avifDecoder* decoder = avifDecoderCreate();
 		if (decoder == NULL) {
 			XE_WARNING_OUTPUT("LIB <DecodeAVIF> Memory allocation failure");
-			return false;
+			return nullptr;
 		}
 
 		avifResult result = avifDecoderSetIOMemory(decoder, avif_buffer, file_size);
@@ -41,12 +42,12 @@ namespace xe
 			goto cleanup;
 		}
 
-		img = std::make_unique<Testure>(avif_rgb.width, avif_rgb.height, xeColorChannel::RGB);
+		img->LoadData(avif_rgb.width, avif_rgb.height, xeColorChannel::RGB);
 
 		std::memcpy(img->pixel_data, avif_rgb.pixels, img->testure_size);
 	cleanup:
 		avifRGBImageFreePixels(&avif_rgb);
 		avifDecoderDestroy(decoder);
-		return false;
+		return nullptr;
 	}
 }
