@@ -1,10 +1,10 @@
-export module xe.xeIO.xeOMmapfstream;
+export module xe.IO.xeOMmapfstream;
 
 import std;
 
-import xe.xeCore.xeString;
-import xe.xeCore.xeOrdinals;
-import xe.xeCore.xeCoreClrOutput;
+import xe.Core.xeString;
+import xe.Core.xeOrdinals;
+import xe.Core.CoreClrOutput;
 
 namespace xe
 {

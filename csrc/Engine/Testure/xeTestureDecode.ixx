@@ -1,10 +1,10 @@
-export module xe.xeTesture.xeTestureDecode;
+export module xe.Testure.xeTestureDecode;
 
 import std;
 
-import xe.xeCore.xeBaseDataType;
+import xe.Core.xeBaseDataType;
 
-import xe.xeTesture.xeTestureCore;
+import xe.Testure.xeTestureCore;
 
 namespace xe
 {

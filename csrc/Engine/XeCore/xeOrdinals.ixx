@@ -1,4 +1,4 @@
-export module xe.xeCore.xeOrdinals;
+export module xe.Core.xeOrdinals;
 
 import std;
 

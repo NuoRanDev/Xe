@@ -41,27 +41,33 @@
     <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeBasicData.cpp" />
     <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeBasicData.ixx" />
     <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeCompressFileStruct.ixx" />
-    <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeCoreClrOutput.cpp" />
+    <ClCompile Include="..\..\csrc\Engine\Graphical\Vulkan\xeVulkanInstance.cpp" />
+    <ClCompile Include="..\..\csrc\Engine\Graphical\Vulkan\xeVulkanInstance.ixx" />
+    <ClCompile Include="..\..\csrc\Engine\Graphical\Widget\Window.cpp" />
+    <ClCompile Include="..\..\csrc\Engine\Graphical\Widget\Window.ixx" />
+    <ClCompile Include="..\..\csrc\Engine\IO\KeyIO.ixx" />
+    <ClCompile Include="..\..\csrc\Engine\IO\xeOMmapfstream.cpp" />
+    <ClCompile Include="..\..\csrc\Engine\IO\xeOMmapfstream.ixx" />
+    <ClCompile Include="..\..\csrc\Engine\Testure\private_AVIFDecoder.cpp" />
+    <ClCompile Include="..\..\csrc\Engine\Testure\private_Imgdecoder.ixx" />
+    <ClCompile Include="..\..\csrc\Engine\Testure\private_PNGDecoder.cpp" />
+    <ClCompile Include="..\..\csrc\Engine\Testure\xeTestureCore.ixx" />
+    <ClCompile Include="..\..\csrc\Engine\Testure\xeTestureDecode.cpp" />
+    <ClCompile Include="..\..\csrc\Engine\Testure\xeTestureDecode.ixx" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\Clock.cpp" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\Clock.ixx" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\Object.ixx" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\Unit.ixx" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeAlloc.ixx" />
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeApplication.cpp" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeApplication.ixx" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeBaseDataType.ixx" />
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeCoreClrOutput.cpp" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeCoreClrOutput.ixx" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeOrdinals.ixx" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeString.cpp" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeString.ixx" />
-    <ClCompile Include="..\..\csrc\Engine\XeIO\KeyIO.ixx" />
-    <ClCompile Include="..\..\csrc\Engine\XeIO\xeOMmapfstream.cpp" />
-    <ClCompile Include="..\..\csrc\Engine\XeIO\xeOMmapfstream.ixx" />
-    <ClCompile Include="..\..\csrc\Engine\XeTesture\private_AVIFDecoder.cpp" />
-    <ClCompile Include="..\..\csrc\Engine\XeTesture\private_Imgdecoder.ixx" />
-    <ClCompile Include="..\..\csrc\Engine\XeTesture\private_PNGDecoder.cpp" />
-    <ClCompile Include="..\..\csrc\Engine\XeTesture\xeTestureCore.ixx" />
-    <ClCompile Include="..\..\csrc\Engine\XeTesture\xeTestureDecode.cpp" />
-    <ClCompile Include="..\..\csrc\Engine\XeTesture\xeTestureDecode.ixx" />
+    <ClCompile Include="..\..\Examples\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\csrc\Engine\XeCore\xeCompiler.hpp" />
@@ -158,22 +164,22 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|x64'">
-    <IncludePath>$(SolutionDir)..\..\csrc\Engine\XeTesture\;$(SolutionDir)..\..\csrc\Engine\XeCore\;$(SolutionDir)..\..\csrc\Engine\XeIO\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\XeCore\;$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\Audio\</IncludePath>
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_csharp|x64'">
-    <IncludePath>$(SolutionDir)..\..\csrc\Engine\XeTesture\;$(SolutionDir)..\..\csrc\Engine\XeCore\;$(SolutionDir)..\..\csrc\Engine\XeIO\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\XeCore\;$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\Audio\</IncludePath>
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_cpp|x64'">
-    <IncludePath>$(SolutionDir)..\..\csrc\Engine\XeTesture\;$(SolutionDir)..\..\csrc\Engine\XeCore\;$(SolutionDir)..\..\csrc\Engine\XeIO\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\XeCore\;$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\Audio\</IncludePath>
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_csharp|x64'">
-    <IncludePath>$(SolutionDir)..\..\csrc\Engine\XeTesture\;$(SolutionDir)..\..\csrc\Engine\XeCore\;$(SolutionDir)..\..\csrc\Engine\XeIO\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\XeCore\;$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\Audio\</IncludePath>
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
   </PropertyGroup>
@@ -261,7 +267,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SPNG_STATIC;EXPORT_C_PLUS_PLUS_API;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\csrc\Engine\XeIO\;$(SolutionDir)..\..\csrc\Engine\XeTesture\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\XeCore\;E:\vcpkg\installed\x64-windows-static-md\include\opencv4</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\XeCore\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -269,7 +275,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -279,7 +285,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SPNG_STATIC;EXPORT_C_SHARP_API;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\csrc\Engine\XeIO\;$(SolutionDir)..\..\csrc\Engine\XeTesture\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\XeCore\;E:\vcpkg\installed\x64-windows-static-md\include\opencv4</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\XeCore\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -287,7 +293,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -299,7 +305,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SPNG_STATIC;EXPORT_C_PLUS_PLUS_API;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\csrc\Engine\XeIO\;$(SolutionDir)..\..\csrc\Engine\XeTesture\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\XeCore\;E:\vcpkg\installed\x64-windows-static-md\include\opencv4</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\XeCore\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -309,7 +315,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -321,7 +327,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SPNG_STATIC;EXPORT_C_SHARP_API;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\csrc\Engine\XeIO\;$(SolutionDir)..\..\csrc\Engine\XeTesture\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\XeCore\;E:\vcpkg\installed\x64-windows-static-md\include\opencv4</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\XeCore\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -331,7 +337,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

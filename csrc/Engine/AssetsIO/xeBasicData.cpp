@@ -1,8 +1,8 @@
 import std;
 
-import xe.xeCore.xeOrdinals;
-import xe.xeCore.xeBaseDataType;
-import xe.xeCore.xeCoreClrOutput;
+import xe.Core.xeOrdinals;
+import xe.Core.xeBaseDataType;
+import xe.Core.CoreClrOutput;
 
 import xe.AssetIO.xeBasicAsset;
 import xe.AssetIO.xeBasicData;

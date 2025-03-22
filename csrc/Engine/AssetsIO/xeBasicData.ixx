@@ -2,14 +2,14 @@ export module xe.AssetIO.xeBasicData;
 
 import std;
 
-import xe.xeCore.xeOrdinals;
-import xe.xeCore.xeString;
-import xe.xeCore.xeAlloc;
-import xe.xeCore.xeCoreClrOutput;
+import xe.Core.xeOrdinals;
+import xe.Core.xeString;
+import xe.Core.xeAlloc;
+import xe.Core.CoreClrOutput;
 
 import xe.AssetIO.xeCompressFileStruct;
 
-import xe.xeIO.xeOMmapfstream;
+import xe.IO.xeOMmapfstream;
 
 
 namespace xe

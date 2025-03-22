@@ -1,9 +1,9 @@
-export module xe.xeCore.Clock;
+export module xe.Core.Clock;
 
 import std;
 
-import xe.xeCore.xeBaseDataType;
-import xe.xeCore.xeOrdinals;
+import xe.Core.xeBaseDataType;
+import xe.Core.xeOrdinals;
 
 
 namespace xe

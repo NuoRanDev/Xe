@@ -1,6 +1,6 @@
 export module Unit;
 
-import xe.xeCore.xeOrdinals;
+import xe.Core.xeOrdinals;
 #if defined(__clang__)
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-const-variable"

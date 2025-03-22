@@ -1,6 +1,6 @@
-export module xe.xeCore.xeBaseDataType;
+export module xe.Core.xeBaseDataType;
 
-import xe.xeCore.xeOrdinals;
+import xe.Core.xeOrdinals;
 
 namespace xe
 {
@@ -37,6 +37,37 @@ namespace xe
 		xeAudioCompressSolution solution;
 		xeSize _size;
 		xeByte* data;
+	};
+
+	// 2 channel pixel 
+	template<typename T> class vec2
+	{
+	public:
+		T x, y;
+		vec2() = default;
+		bool operator==(const vec2<T>& input)
+		{
+			if (std::memcmp((const char*)(&(this->x)), (const char*)(&(input.x)), sizeof(T) * 2))
+				return true;
+			return false;
+		}
+		xeInt64 operator*(const vec2<T>& input)
+		{
+			return this->x * input.x + this->y * input.y;
+		}
+		vec2<T> operator+(const vec2<T>& input)
+		{
+			return vec2(this->x + input.x, this->y + input.y);
+		}
+		vec2<T> operator-(const vec2<T>& input)
+		{
+			return vec2(this->x - input.x, this->y - input.y);
+		}
+		constexpr vec2(T i_x, T i_y)
+		{
+			x = i_x;
+			y = i_y;
+		}
 	};
 
 	// 3 channel pixel 
@@ -119,6 +150,14 @@ namespace xe
 	export using vec3_u16	= vec3<xeUint16>;
 	export using vec3_i32	= vec3<xeInt32>;
 	export using vec3_u32	= vec3<xeUint32>;
+
+	export using vec2_f32 = vec2<float>;
+	export using vec2_i8 = vec2<xeInt8>;
+	export using vec2_u8 = vec2<xeUint8>;
+	export using vec2_i16 = vec2<xeInt16>;
+	export using vec2_u16 = vec2<xeUint16>;
+	export using vec2_i32 = vec2<xeInt32>;
+	export using vec2_u32 = vec2<xeUint32>;
 
 	export class xeFastExtension :public vec4_i8
 	{

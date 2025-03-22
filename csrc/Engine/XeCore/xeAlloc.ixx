@@ -1,4 +1,4 @@
-export module xe.xeCore.xeAlloc;
+export module xe.Core.xeAlloc;
 
 import std;
 
@@ -6,7 +6,7 @@ import std;
 import "mimalloc.h";
 #endif // USE_MIMALLOC
 
-import xe.xeCore.xeOrdinals;
+import xe.Core.xeOrdinals;
 
 namespace xe
 {

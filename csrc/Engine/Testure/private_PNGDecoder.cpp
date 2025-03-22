@@ -1,12 +1,12 @@
-import xe.xeTesture.decode.private_Imgdecoder;
+import xe.Testure.decode.private_Imgdecoder;
 
 import std;
 
-import xe.xeCore.xeOrdinals;
-import xe.xeCore.xeBaseDataType;
-import xe.xeCore.xeCoreClrOutput;
+import xe.Core.xeOrdinals;
+import xe.Core.xeBaseDataType;
+import xe.Core.CoreClrOutput;
 
-import xe.xeTesture.xeTestureCore;
+import xe.Testure.xeTestureCore;
 
 #include "spng.h"
 

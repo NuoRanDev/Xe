@@ -1,6 +1,6 @@
 export module xe.AssetIO.private_Decompress;
 
-import xe.xeCore.xeOrdinals;
+import xe.Core.xeOrdinals;
 
 namespace xe
 {

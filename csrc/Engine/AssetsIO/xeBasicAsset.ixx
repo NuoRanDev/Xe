@@ -1,7 +1,7 @@
 export module xe.AssetIO.xeBasicAsset;
 
-import xe.xeCore.xeBaseDataType;
-import xe.xeCore.xeOrdinals;
+import xe.Core.xeBaseDataType;
+import xe.Core.xeOrdinals;
 
 import xe.AssetIO.xeBasicData;
 

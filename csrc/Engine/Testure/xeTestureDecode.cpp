@@ -1,12 +1,12 @@
-import xe.xeTesture.xeTestureDecode;
+import xe.Testure.xeTestureDecode;
 
 import std;
 
-import xe.xeCore.xeBaseDataType;
-import xe.xeCore.xeCoreClrOutput;
+import xe.Core.xeBaseDataType;
+import xe.Core.CoreClrOutput;
 
-import xe.xeTesture.xeTestureCore;
-import xe.xeTesture.decode.private_Imgdecoder;
+import xe.Testure.xeTestureCore;
+import xe.Testure.decode.private_Imgdecoder;
 
 namespace xe
 {

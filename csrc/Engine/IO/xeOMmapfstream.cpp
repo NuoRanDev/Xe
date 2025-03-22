@@ -1,8 +1,8 @@
-import xe.xeIO.xeOMmapfstream;
+import xe.IO.xeOMmapfstream;
 
 import std;
-import xe.xeCore.xeOrdinals;
-import xe.xeCore.xeCoreClrOutput;
+import xe.Core.xeOrdinals;
+import xe.Core.CoreClrOutput;
 
 #if defined(_WIN32)
 #include <Windows.h>

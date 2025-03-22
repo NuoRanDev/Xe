@@ -1,11 +1,11 @@
-export module xe.xeCore.xeString;
+export module xe.Core.xeString;
 
 
 import std;
 
-import xe.xeCore.xeOrdinals;
-import xe.xeCore.xeAlloc;
-import xe.xeCore.xeCoreClrOutput;
+import xe.Core.xeOrdinals;
+import xe.Core.xeAlloc;
+import xe.Core.CoreClrOutput;
 
 namespace xe
 {

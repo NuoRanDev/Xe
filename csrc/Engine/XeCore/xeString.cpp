@@ -1,10 +1,10 @@
 import std;
 
-import xe.xeCore.xeString;
+import xe.Core.xeString;
 
-import xe.xeCore.xeOrdinals;
-import xe.xeCore.xeAlloc;
-import xe.xeCore.xeCoreClrOutput;
+import xe.Core.xeOrdinals;
+import xe.Core.xeAlloc;
+import xe.Core.CoreClrOutput;
 
 namespace xe
 {

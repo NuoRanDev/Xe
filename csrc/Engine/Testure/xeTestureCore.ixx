@@ -1,8 +1,8 @@
-export module xe.xeTesture.xeTestureCore;
+export module xe.Testure.xeTestureCore;
 
-import xe.xeCore.xeOrdinals;
-import xe.xeCore.xeBaseDataType;
-import xe.xeCore.xeAlloc;
+import xe.Core.xeOrdinals;
+import xe.Core.xeBaseDataType;
+import xe.Core.xeAlloc;
 
 namespace xe
 {

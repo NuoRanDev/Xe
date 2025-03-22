@@ -26,12 +26,6 @@
     <Filter Include="XeTesture\Source Files\decode">
       <UniqueIdentifier>{991f8ac9-033d-43ec-9f3e-e62ceeae0567}</UniqueIdentifier>
     </Filter>
-    <Filter Include="XeIO">
-      <UniqueIdentifier>{a5de2fae-0bbd-4915-b843-3b6a7dfb730e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="XeIO\Module Files">
-      <UniqueIdentifier>{49ade507-7532-4cdb-8717-c1f884638359}</UniqueIdentifier>
-    </Filter>
     <Filter Include="AssetsIO">
       <UniqueIdentifier>{6f3fa4ed-2c8b-4a62-b3a6-44134a5e8d62}</UniqueIdentifier>
     </Filter>
@@ -47,8 +41,44 @@
     <Filter Include="XeCore\Header Files">
       <UniqueIdentifier>{304131ec-eb67-4542-b0e3-f933ec302e94}</UniqueIdentifier>
     </Filter>
-    <Filter Include="XeIO\Source Files">
+    <Filter Include="Graphical">
+      <UniqueIdentifier>{c02d7231-019e-425f-bcb4-2c4de365c6e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphical\2D">
+      <UniqueIdentifier>{85bea949-ee0c-45b8-adc6-62ee9cddcf97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphical\3D">
+      <UniqueIdentifier>{34f4b8a9-2ecb-438e-93f3-a1e95eb7c048}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphical\Vulkan">
+      <UniqueIdentifier>{5de0a873-6f5c-41d0-ba8f-f65eaa3f0176}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IO">
+      <UniqueIdentifier>{a5de2fae-0bbd-4915-b843-3b6a7dfb730e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IO\Module Files">
+      <UniqueIdentifier>{49ade507-7532-4cdb-8717-c1f884638359}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IO\Source Files">
       <UniqueIdentifier>{767a4c9f-eb2e-49a3-9aba-521ca608f246}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{49566fd4-35e5-4aaf-bbe1-99c944b2f260}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphical\Vulkan\Module Files">
+      <UniqueIdentifier>{bd91e1bc-36db-4cba-8868-229245dd9661}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphical\Vulkan\Source Files">
+      <UniqueIdentifier>{694aa30c-868b-432a-aefe-2e4da1be3769}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphical\Widget">
+      <UniqueIdentifier>{9f8746f4-a2c3-4619-b6b2-6dad8b8e5e3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphical\Widget\Source Files">
+      <UniqueIdentifier>{eb193473-97ee-408e-8a1e-2669d6ceca72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphical\Widget\Module Files">
+      <UniqueIdentifier>{baecfa4a-d857-4c2a-805b-9552a2d8fe3d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -68,9 +98,6 @@
       <Filter>AssetsIO\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeBasicData.cpp">
-      <Filter>AssetsIO\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeCoreClrOutput.cpp">
       <Filter>AssetsIO\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\csrc\Engine\XeCore\Unit.ixx">
@@ -106,32 +133,53 @@
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeString.cpp">
       <Filter>XeCore\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeIO\xeOMmapfstream.ixx">
-      <Filter>XeIO\Module Files</Filter>
+    <ClCompile Include="..\..\csrc\Engine\IO\KeyIO.ixx">
+      <Filter>IO\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeIO\KeyIO.ixx">
-      <Filter>XeIO\Module Files</Filter>
+    <ClCompile Include="..\..\csrc\Engine\IO\xeOMmapfstream.ixx">
+      <Filter>IO\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeIO\xeOMmapfstream.cpp">
-      <Filter>XeIO\Source Files</Filter>
+    <ClCompile Include="..\..\csrc\Engine\IO\xeOMmapfstream.cpp">
+      <Filter>IO\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeTesture\private_PNGDecoder.cpp">
-      <Filter>XeTesture\Source Files\decode</Filter>
+    <ClCompile Include="..\..\csrc\Engine\Testure\xeTestureCore.ixx">
+      <Filter>XeTesture\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeTesture\private_AVIFDecoder.cpp">
-      <Filter>XeTesture\Source Files\decode</Filter>
+    <ClCompile Include="..\..\csrc\Engine\Testure\xeTestureDecode.ixx">
+      <Filter>XeTesture\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeTesture\private_Imgdecoder.ixx">
+    <ClCompile Include="..\..\csrc\Engine\Testure\private_Imgdecoder.ixx">
       <Filter>XeTesture\Module Files\decode</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeTesture\xeTestureCore.ixx">
-      <Filter>XeTesture\Module Files</Filter>
+    <ClCompile Include="..\..\csrc\Engine\Testure\private_AVIFDecoder.cpp">
+      <Filter>XeTesture\Source Files\decode</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeTesture\xeTestureDecode.ixx">
-      <Filter>XeTesture\Module Files</Filter>
+    <ClCompile Include="..\..\csrc\Engine\Testure\private_PNGDecoder.cpp">
+      <Filter>XeTesture\Source Files\decode</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeTesture\xeTestureDecode.cpp">
+    <ClCompile Include="..\..\csrc\Engine\Testure\xeTestureDecode.cpp">
       <Filter>XeTesture\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Examples\main.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\Graphical\Vulkan\xeVulkanInstance.cpp">
+      <Filter>Graphical\Vulkan\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\Graphical\Vulkan\xeVulkanInstance.ixx">
+      <Filter>Graphical\Vulkan\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\Graphical\Widget\Window.ixx">
+      <Filter>Graphical\Widget\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\Graphical\Widget\Window.cpp">
+      <Filter>Graphical\Widget\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeApplication.cpp">
+      <Filter>XeCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeCoreClrOutput.cpp">
+      <Filter>XeCore\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

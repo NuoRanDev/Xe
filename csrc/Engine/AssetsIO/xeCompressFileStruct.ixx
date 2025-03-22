@@ -1,6 +1,6 @@
 export module xe.AssetIO.xeCompressFileStruct;
 
-import xe.xeCore.xeOrdinals;
+import xe.Core.xeOrdinals;
 
 namespace xe
 {

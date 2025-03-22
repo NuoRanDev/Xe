@@ -1,11 +1,11 @@
-export module xe.xeTesture.decode.private_Imgdecoder;
+export module xe.Testure.decode.private_Imgdecoder;
 
 import std;
 
-import xe.xeCore.xeOrdinals;
-import xe.xeCore.xeCoreClrOutput;
+import xe.Core.xeOrdinals;
+import xe.Core.CoreClrOutput;
 
-import xe.xeTesture.xeTestureCore;
+import xe.Testure.xeTestureCore;
 
 
 namespace xe

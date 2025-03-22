@@ -1,7 +1,8 @@
 #include <cstdio>
-import xe.xeCore.xeCoreClrOutput;
-
 import std;
+import xe.Core.CoreClrOutput;
+
+#define OPEN_CLR
 
 namespace xe
 {
@@ -12,24 +13,35 @@ namespace xe
 	constexpr const char BLUE[] = "\033[34m";
 	constexpr const char WHITE[] = "\033[37m";
 
-	export void XE_ERROR_OUTPUT(const char* output_text)
+	void XE_ERROR_OUTPUT(const char* output_text)
 	{
-#ifdef _DEBUG
+#ifdef OPEN_CLR
 		std::cout << std::string(RED) + "ERROR" + ":\t" + std::string(WHITE) + output_text + "\n";
 		return;
-#endif // _DEBUG
+#endif // OPEN_CLR
 		std::string out_text = std::string("ERROR") + ":\t" + output_text + "\n";
 		fprintf(stderr, "Cannot read file: %s\n", out_text.c_str());
 		return;
 	}
 
-	export void XE_WARNING_OUTPUT(const char* output_text)
+	void XE_WARNING_OUTPUT(const char* output_text)
 	{
-#ifdef _DEBUG
+#ifdef OPEN_CLR
 		std::cout << std::string(YELLOW) + "WARNING" + ":\t" + std::string(WHITE) + output_text + "\n";
 		return;
-#endif // _DEBUG
+#endif // OPEN_CLR
 		std::string out_text = std::string("WARNING") + ":\t" + output_text + "\n";
+		fprintf(stderr, "Cannot read file: %s\n", out_text.c_str());
+		return;
+	}
+
+	void XE_INFO_OUTPUT(const char* output_text)
+	{
+#ifdef OPEN_CLR
+		std::cout << std::string(BLUE) + "LOG" + ":\t" + std::string(WHITE) + output_text + "\n";
+		return;
+#endif // OPEN_CLR
+		std::string out_text = std::string("LOG") + ":\t" + output_text + "\n";
 		fprintf(stderr, "Cannot read file: %s\n", out_text.c_str());
 		return;
 	}

@@ -1,7 +1,7 @@
-import xe.xeCore.Clock;
+import xe.Core.Clock;
 
-import xe.xeCore.xeBaseDataType;
-import xe.xeCore.xeOrdinals;
+import xe.Core.xeBaseDataType;
+import xe.Core.xeOrdinals;
 
 #if defined(_WIN32)
 #include <Windows.h>

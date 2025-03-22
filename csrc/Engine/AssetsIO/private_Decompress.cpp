@@ -1,7 +1,7 @@
 import xe.AssetIO.private_Decompress;
 
-import xe.xeCore.xeOrdinals;
-import xe.xeCore.xeCoreClrOutput;
+import xe.Core.xeOrdinals;
+import xe.Core.CoreClrOutput;
 
 #include "zstd.h"
 
