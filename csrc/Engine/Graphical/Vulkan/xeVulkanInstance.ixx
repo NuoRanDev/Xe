@@ -1,4 +1,4 @@
-export module xe.Graphical.Vulkan;
+﻿export module xe.Graphical.Vulkan;
 
 import std;
 
@@ -15,11 +15,13 @@ namespace xe
 	public:
 		xeVulkanContext();
 
-		bool SetupVulkanContext(const char* const* instance_extensions, xeUint32 instance_extensions_count, xeString context_name);
+		bool SetVulkanInstanceContext(const char* const* instance_extensions, xeUint32 instance_extensions_count, xeString context_name);
+
+		bool SetVulkanLogicalDevice();
 
 		VkInstance GetInstance() { return vulkan_instance; }
 
-		VkSurfaceKHR* GetSurface() { return &g_surface; }
+		VkSurfaceKHR* GetSurface() { return &window_surface; }
 
 		std::pair<xeUint32, VkPhysicalDevice> GetPhysicalDevice() { return { physical_device_index, physical_device }; }
 
@@ -28,21 +30,37 @@ namespace xe
 		~xeVulkanContext();
 
 	private:
+		bool CheckValidationLayerSupport();
+
 		bool CheckVulkanError(VkResult err);
 
 		bool CreateInstance(const char* const* instance_extensions, xeUint32 instance_extensions_count, const char* instance_name);
 
 		bool SetupVulkanSelectPhysicalDevice();
 
-		bool SetQueueFamily();
+		bool CheckQueueFamily();
+
+		bool CreateLogicalDevice();
 
 		VkInstance					vulkan_instance;
 
 		xeUint32	 				physical_device_index;
 		VkPhysicalDevice			physical_device;
 
-		VkDevice					virtual_device;
+		VkDevice					virtual_logical_device;
 
-		VkSurfaceKHR				g_surface;
+		VkQueue						graphics_queue;
+		xeInt32						graphics_queue_family_index;
+		VkQueue						present_queue;
+		xeInt32						present_queue_family_index;
+
+		VkSurfaceKHR				window_surface;
+
+#ifdef _DEBUG
+		VkDebugUtilsMessengerEXT	debug_messenger;
+		const std::vector<const char*> validation_layers = { "VK_LAYER_KHRONOS_validation" };
+		bool						enable_validation_layers = false;
+#endif // _DEBUG
+
 	};
 }

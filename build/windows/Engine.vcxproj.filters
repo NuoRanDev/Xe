@@ -166,9 +166,6 @@
     <ClCompile Include="..\..\csrc\Engine\Graphical\Vulkan\xeVulkanInstance.cpp">
       <Filter>Graphical\Vulkan\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\Graphical\Vulkan\xeVulkanInstance.ixx">
-      <Filter>Graphical\Vulkan\Module Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\csrc\Engine\Graphical\Widget\Window.ixx">
       <Filter>Graphical\Widget\Module Files</Filter>
     </ClCompile>
@@ -180,6 +177,15 @@
     </ClCompile>
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeCoreClrOutput.cpp">
       <Filter>XeCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\Graphical\Vulkan\xeVulkanInstance.ixx">
+      <Filter>Graphical\Vulkan\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\Graphical\Vulkan\xeVulkanTesure.ixx">
+      <Filter>Graphical\Vulkan\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\Graphical\Vulkan\VulkanSurfaceSwap.ixx">
+      <Filter>Graphical\Vulkan\Module Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

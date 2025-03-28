@@ -1,4 +1,4 @@
-export module xe.Graphical.Widget.Window;
+﻿export module xe.Graphical.Widget.Window;
 
 import std;
 
@@ -21,13 +21,20 @@ namespace xe
 
 		vec2_i32 GetWindowSize();
 
-		bool InitWindowVulkan();
+		void StartWindowEnvet();
+
+		void WindowRendering();
 
 		~xeWindow();
 
 	private:
+
+		void WindowEnvetThtead();
+
 		xeVulkanContext window_vulkan_instance;
 
 		SDL_Window* window;
+
+		std::thread window_envet_loop;
 	};
 }
