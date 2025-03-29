@@ -202,7 +202,7 @@
     <ClCompile Include="..\..\Examples\main.cpp">
       <Filter>main</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\Audio\xeAudioInstance.ixx">
+    <ClCompile Include="..\..\csrc\Engine\Audio\xeAudioInstance.cppm">
       <Filter>Audio\Module Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\csrc\Engine\Audio\xeAudioInstance.cpp">
@@ -211,7 +211,7 @@
     <ClCompile Include="..\..\csrc\Engine\Audio\private_MP3Decoder.cpp">
       <Filter>Audio\Source Files\decode</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\Audio\private_Audiodecoder.ixx">
+    <ClCompile Include="..\..\csrc\Engine\Audio\private_Audiodecoder.cppm">
       <Filter>Audio\Module Files\decode</Filter>
     </ClCompile>
   </ItemGroup>

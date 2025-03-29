@@ -41,10 +41,10 @@
     <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeBasicData.cpp" />
     <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeBasicData.cppm" />
     <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeCompressFileStruct.cppm" />
-    <ClCompile Include="..\..\csrc\Engine\Audio\private_Audiodecoder.ixx" />
+    <ClCompile Include="..\..\csrc\Engine\Audio\private_Audiodecoder.cppm" />
     <ClCompile Include="..\..\csrc\Engine\Audio\private_MP3Decoder.cpp" />
     <ClCompile Include="..\..\csrc\Engine\Audio\xeAudioInstance.cpp" />
-    <ClCompile Include="..\..\csrc\Engine\Audio\xeAudioInstance.ixx" />
+    <ClCompile Include="..\..\csrc\Engine\Audio\xeAudioInstance.cppm" />
     <ClCompile Include="..\..\csrc\Engine\Graphical\Vulkan\VulkanSurfaceSwap.cppm" />
     <ClCompile Include="..\..\csrc\Engine\Graphical\Vulkan\xeVulkanInstance.cpp" />
     <ClCompile Include="..\..\csrc\Engine\Graphical\Vulkan\xeVulkanInstance.cppm" />
