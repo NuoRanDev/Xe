@@ -16,18 +16,22 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_csharp|AnyCPU'">
     <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_csharp|AnyCPU'">
     <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|AnyCPU'">
     <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_cpp|AnyCPU'">
     <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
   </PropertyGroup>
 
 </Project>

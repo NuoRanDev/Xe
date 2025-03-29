@@ -1,4 +1,4 @@
-﻿import xe.Graphical.Widget.Window;
+﻿import xe.Graphical.Widget;
 
 #include "SDL3/SDL.h"
 #include "SDL3/SDL_vulkan.h"

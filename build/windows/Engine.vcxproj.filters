@@ -62,9 +62,6 @@
     <Filter Include="IO\Source Files">
       <UniqueIdentifier>{767a4c9f-eb2e-49a3-9aba-521ca608f246}</UniqueIdentifier>
     </Filter>
-    <Filter Include="main">
-      <UniqueIdentifier>{49566fd4-35e5-4aaf-bbe1-99c944b2f260}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Graphical\Vulkan\Module Files">
       <UniqueIdentifier>{bd91e1bc-36db-4cba-8868-229245dd9661}</UniqueIdentifier>
     </Filter>
@@ -80,18 +77,36 @@
     <Filter Include="Graphical\Widget\Module Files">
       <UniqueIdentifier>{baecfa4a-d857-4c2a-805b-9552a2d8fe3d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{1c89e5d1-5f0b-448e-9fdc-1b7db1daed22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio">
+      <UniqueIdentifier>{62f60b30-0bca-4d87-9ba9-7434609e2c14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio\Module Files">
+      <UniqueIdentifier>{f0a6ec9b-6a15-4ec4-88b8-aa93a87c8a16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio\Source Files">
+      <UniqueIdentifier>{35524505-04db-4d22-bca2-3fe4d9f3938a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio\Module Files\decode">
+      <UniqueIdentifier>{c53ac6f0-f7cf-4395-b7c3-26d4749de5d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio\Source Files\decode">
+      <UniqueIdentifier>{fc3b0850-9e7b-4f4e-a55c-47b2c0d34f46}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeCompressFileStruct.ixx">
+    <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeCompressFileStruct.cppm">
       <Filter>AssetsIO\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeBasicData.ixx">
+    <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeBasicData.cppm">
       <Filter>AssetsIO\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\AssetsIO\private_Decompress.ixx">
+    <ClCompile Include="..\..\csrc\Engine\AssetsIO\private_Decompress.cppm">
       <Filter>AssetsIO\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeBasicAsset.ixx">
+    <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeBasicAsset.cppm">
       <Filter>AssetsIO\Module Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\csrc\Engine\AssetsIO\private_Decompress.cpp">
@@ -100,31 +115,31 @@
     <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeBasicData.cpp">
       <Filter>AssetsIO\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeCore\Unit.ixx">
+    <ClCompile Include="..\..\csrc\Engine\XeCore\Unit.cppm">
       <Filter>XeCore\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeCore\xeAlloc.ixx">
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeAlloc.cppm">
       <Filter>XeCore\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeCore\xeApplication.ixx">
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeApplication.cppm">
       <Filter>XeCore\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeCore\xeBaseDataType.ixx">
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeBaseDataType.cppm">
       <Filter>XeCore\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeCore\xeCoreClrOutput.ixx">
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeCoreClrOutput.cppm">
       <Filter>XeCore\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeCore\xeOrdinals.ixx">
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeOrdinals.cppm">
       <Filter>XeCore\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeCore\xeString.ixx">
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeString.cppm">
       <Filter>XeCore\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeCore\Clock.ixx">
+    <ClCompile Include="..\..\csrc\Engine\XeCore\Clock.cppm">
       <Filter>XeCore\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeCore\Object.ixx">
+    <ClCompile Include="..\..\csrc\Engine\XeCore\Object.cppm">
       <Filter>XeCore\Module Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\csrc\Engine\XeCore\Clock.cpp">
@@ -133,22 +148,22 @@
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeString.cpp">
       <Filter>XeCore\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\IO\KeyIO.ixx">
+    <ClCompile Include="..\..\csrc\Engine\IO\KeyIO.cppm">
       <Filter>IO\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\IO\xeOMmapfstream.ixx">
+    <ClCompile Include="..\..\csrc\Engine\IO\xeOMmapfstream.cppm">
       <Filter>IO\Module Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\csrc\Engine\IO\xeOMmapfstream.cpp">
       <Filter>IO\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\Testure\xeTestureCore.ixx">
+    <ClCompile Include="..\..\csrc\Engine\Testure\xeTestureCore.cppm">
       <Filter>XeTesture\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\Testure\xeTestureDecode.ixx">
+    <ClCompile Include="..\..\csrc\Engine\Testure\xeTestureDecode.cppm">
       <Filter>XeTesture\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\Testure\private_Imgdecoder.ixx">
+    <ClCompile Include="..\..\csrc\Engine\Testure\private_Imgdecoder.cppm">
       <Filter>XeTesture\Module Files\decode</Filter>
     </ClCompile>
     <ClCompile Include="..\..\csrc\Engine\Testure\private_AVIFDecoder.cpp">
@@ -160,13 +175,10 @@
     <ClCompile Include="..\..\csrc\Engine\Testure\xeTestureDecode.cpp">
       <Filter>XeTesture\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Examples\main.cpp">
-      <Filter>main</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\csrc\Engine\Graphical\Vulkan\xeVulkanInstance.cpp">
       <Filter>Graphical\Vulkan\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\Graphical\Widget\Window.ixx">
+    <ClCompile Include="..\..\csrc\Engine\Graphical\Widget\Window.cppm">
       <Filter>Graphical\Widget\Module Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\csrc\Engine\Graphical\Widget\Window.cpp">
@@ -178,14 +190,29 @@
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeCoreClrOutput.cpp">
       <Filter>XeCore\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\Graphical\Vulkan\xeVulkanInstance.ixx">
+    <ClCompile Include="..\..\csrc\Engine\Graphical\Vulkan\xeVulkanInstance.cppm">
       <Filter>Graphical\Vulkan\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\Graphical\Vulkan\xeVulkanTesure.ixx">
+    <ClCompile Include="..\..\csrc\Engine\Graphical\Vulkan\xeVulkanTesure.cppm">
       <Filter>Graphical\Vulkan\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\Graphical\Vulkan\VulkanSurfaceSwap.ixx">
+    <ClCompile Include="..\..\csrc\Engine\Graphical\Vulkan\VulkanSurfaceSwap.cppm">
       <Filter>Graphical\Vulkan\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Examples\main.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\Audio\xeAudioInstance.ixx">
+      <Filter>Audio\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\Audio\xeAudioInstance.cpp">
+      <Filter>Audio\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\Audio\private_MP3Decoder.cpp">
+      <Filter>Audio\Source Files\decode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\Audio\private_Audiodecoder.ixx">
+      <Filter>Audio\Module Files\decode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

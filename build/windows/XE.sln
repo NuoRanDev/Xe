@@ -9,8 +9,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XeStudio", "XeStudio.vcxpro
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XeCsharpAPI", "..\..\XeCsharpAPI\XeCsharpAPI.csproj", "{BA933A57-8A07-468E-8776-E0F72421A6E6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CDFF4D3E-C976-48A1-8762-4967CA950E0C} = {CDFF4D3E-C976-48A1-8762-4967CA950E0C}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AssetsMake", "AssetsMake.vcxproj", "{C53C6184-5FB0-49DA-84FC-985E34C1A9E2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CDFF4D3E-C976-48A1-8762-4967CA950E0C} = {CDFF4D3E-C976-48A1-8762-4967CA950E0C}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine.vcxproj", "{CDFF4D3E-C976-48A1-8762-4967CA950E0C}"
 EndProject

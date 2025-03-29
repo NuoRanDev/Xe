@@ -1,4 +1,4 @@
-﻿export module xe.Graphical.Vulkan;
+﻿export module xe.Graphical.Vulkan.l;
 
 import "vulkan/vulkan.h";
 
@@ -9,7 +9,5 @@ namespace xe
 	public:
 		xeVulkanTesure() = default;
 		~xeVulkanTesure();
-	private:
-		
-	}
+	};
 }

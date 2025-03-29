@@ -30,7 +30,9 @@ namespace xe
 		~xeVulkanContext();
 
 	private:
+#if defined(_DEBUG)
 		bool CheckValidationLayerSupport();
+#endif // _DEBUG
 
 		bool CheckVulkanError(VkResult err);
 

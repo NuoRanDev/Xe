@@ -27,7 +27,9 @@ namespace xe
 
 	bool xeVulkanContext::SetVulkanInstanceContext(const char* const* instance_extensions, xeUint32 instance_extensions_count, xeString context_name)
 	{
+#if defined(_DEBUG)
 		CheckValidationLayerSupport();
+#endif // _DEBUG
 		if (!CreateInstance(instance_extensions, instance_extensions_count, xeString(context_name + "vulkan instance").c_str()))
 		{
 			XE_ERROR_OUTPUT("<LIB VULKAN> Failed to create instance");

@@ -1,4 +1,4 @@
-﻿export module xe.Graphical.Vulkan;
+﻿export module xe.Graphical.Vulkan.c;
 
 import xe.Core.xeOrdinals;
 
@@ -10,7 +10,5 @@ namespace xe
 		VulkanSurfaceCapabilities() = default;
 		bool IsSupportTextureFormat();
 		~VulkanSurfaceCapabilities();
-	private:
-
-	}
+	};
 }

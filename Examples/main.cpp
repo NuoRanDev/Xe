@@ -10,7 +10,7 @@ import xe.IO.xeOMmapfstream;
 import xe.Testure.xeTestureCore;
 import xe.Testure.xeTestureDecode;
 
-import xe.Graphical.Widget.Window;
+import xe.Graphical.Widget;
 
 int main(int argc, char* argv[])
 {

@@ -1,4 +1,4 @@
-﻿export module xe.Graphical.Widget.Window;
+﻿export module xe.Graphical.Widget;
 
 import std;
 
