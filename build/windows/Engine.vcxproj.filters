@@ -214,6 +214,9 @@
     <ClCompile Include="..\..\csrc\Engine\Audio\private_Audiodecoder.cppm">
       <Filter>Audio\Module Files\decode</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\Audio\xeAudioCore.cppm">
+      <Filter>Audio\Module Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\csrc\Engine\XeCore\xeCompiler.hpp">

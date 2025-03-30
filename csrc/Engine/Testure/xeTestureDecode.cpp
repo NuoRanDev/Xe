@@ -1,4 +1,4 @@
-import xe.Testure.xeTestureDecode;
+﻿import xe.Testure.xeTestureDecode;
 
 import std;
 
@@ -10,7 +10,7 @@ import xe.Testure.decode.private_Imgdecoder;
 
 namespace xe
 {
-	std::unique_ptr<Testure> DeCodeFile(std::unique_ptr<TestureFile> File)
+	std::unique_ptr<Testure> DeCodeFile(std::unique_ptr<TestureEncodedData> File)
 	{
 		std::unique_ptr<Testure> output;
 		switch (File->encodesolution)

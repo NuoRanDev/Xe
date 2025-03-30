@@ -1,4 +1,4 @@
-export module xe.Core.xeOrdinals;
+﻿export module xe.Core.xeOrdinals;
 
 import std;
 
@@ -21,4 +21,6 @@ namespace xe
 	export using xeByte			= xeUint8;
 
 	export using xeU8cstr		= char8_t;
+
+	export using xeAnyType		= void*;
 }

@@ -1,4 +1,4 @@
-export module xe.Testure.xeTestureDecode;
+﻿export module xe.Testure.xeTestureDecode;
 
 import std;
 
@@ -8,5 +8,5 @@ import xe.Testure.xeTestureCore;
 
 namespace xe
 {
-	export std::unique_ptr<Testure> DeCodeFile(std::unique_ptr<TestureFile> File);
+	export std::unique_ptr<Testure> DeCodeFile(std::unique_ptr<TestureEncodedData> File);
 }

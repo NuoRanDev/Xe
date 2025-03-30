@@ -1,4 +1,4 @@
-export module xe.Core.xeAlloc;
+﻿export module xe.Core.xeAlloc;
 
 import std;
 
@@ -10,7 +10,7 @@ import xe.Core.xeOrdinals;
 
 namespace xe
 {
-	export template<typename T> T* xeMalloc(size_t alloc_number)
+	export template<typename T> T* xeMalloc(xeSize alloc_number)
 	{
 #if defined(USE_MIMALLOC)
 		return reinterpret_cast<T*>(mi_malloc(alloc_number));
@@ -19,7 +19,7 @@ namespace xe
 #endif // defined(USE_MIMALLOC) IS END
 	}
 
-	export template<typename T>T* xeRealloc(T* src_ptr, size_t alloc_number)
+	export template<typename T>T* xeRealloc(T* src_ptr, xeSize alloc_number)
 	{
 #if defined(USE_MIMALLOC)
 		return reinterpret_cast<T*>(mi_realloc(src_ptr, alloc_number));

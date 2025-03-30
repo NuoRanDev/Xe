@@ -1,4 +1,4 @@
-export module xe.Core.xeBaseDataType;
+﻿export module xe.Core.xeBaseDataType;
 
 import xe.Core.xeOrdinals;
 
@@ -24,7 +24,7 @@ namespace xe
 	};
 
 
-	export struct TestureFile
+	export struct TestureEncodedData
 	{
 		xeColorChannel encodesolution;
 		xeSize _size;
@@ -32,7 +32,7 @@ namespace xe
 	};
 
 	// Audio
-	export struct AudioFile
+	export struct AudioEncodedData
 	{
 		xeAudioCompressSolution solution;
 		xeSize _size;

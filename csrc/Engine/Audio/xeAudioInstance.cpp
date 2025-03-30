@@ -1,4 +1,4 @@
-﻿import xe.Audio.Instance;
+﻿import xe.Audio;
 
 import xe.Core.xeBaseDataType;
 import xe.Core.CoreClrOutput;
