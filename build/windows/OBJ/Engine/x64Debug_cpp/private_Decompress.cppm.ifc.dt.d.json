@@ -1,0 +1,10 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\caiji\\desktop\\xe\\xe\\csrc\\engine\\assetsio\\private_decompress.cppm",
+        "ProvidedModule": "xe.AssetIO.private_Decompress",
+        "Includes": [],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

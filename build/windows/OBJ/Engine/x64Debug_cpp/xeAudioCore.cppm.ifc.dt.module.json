@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xeAudioCore.obj",
+            "outputs": [
+                "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xeAudioCore.cppm.ifc.dt.module.json",
+                "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xeAudioCore.cppm.ifc.dt.d.json",
+                "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xe.Audio.AudioCore.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "xe.Audio.AudioCore",
+                    "source-path": "c:\\users\\caiji\\desktop\\xe\\xe\\csrc\\engine\\audio\\xeaudiocore.cppm",
+                    "is-interface": true
+                }
+            ],
+            "requires": [
+                {
+                    "logical-name": "xe.Core.xeOrdinals"
+                }
+            ]
+        }
+    ]
+}

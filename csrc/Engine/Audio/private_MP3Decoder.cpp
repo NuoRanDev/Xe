@@ -15,7 +15,7 @@ namespace xe
 {
 	using MP3Type = mp3dec_ex_t;
 
-	xeSize OpenMP3Data(xeByte* mp3_data, xeSize size, xeAnyType& dec_typpe, PcmFormat&pcm_format)
+	xeSize OpenMP3Data(xeByte* mp3_data, xeSize size, xeAnyType& dec_typpe, PcmFormat& pcm_format)
 	{
 		xeSize pcm_size;
 
@@ -50,10 +50,10 @@ namespace xe
 		return PlayState::_PLAY;
 	}
 
-	bool MP3Seek(xeAnyType dec_typpe, xeSize point)
+	bool MP3Seek(xeAnyType dec_typpe, xeSize pos)
 	{
 		MP3Type* dec_mp3_type = reinterpret_cast<MP3Type*>(dec_typpe);
-		if (mp3dec_ex_seek(dec_mp3_type, point))
+		if (mp3dec_ex_seek(dec_mp3_type, pos))
 		{
 			XE_WARNING_OUTPUT("<LIB: MINIMP3> Seek MP3 file is failed");
 			return false;

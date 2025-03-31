@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xeCompressFileStruct.obj",
+            "outputs": [
+                "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xeCompressFileStruct.cppm.ifc.dt.module.json",
+                "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xeCompressFileStruct.cppm.ifc.dt.d.json",
+                "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xe.AssetIO.xeCompressFileStruct.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "xe.AssetIO.xeCompressFileStruct",
+                    "source-path": "c:\\users\\caiji\\desktop\\xe\\xe\\csrc\\engine\\assetsio\\xecompressfilestruct.cppm",
+                    "is-interface": true
+                }
+            ],
+            "requires": [
+                {
+                    "logical-name": "xe.Core.xeOrdinals"
+                }
+            ]
+        }
+    ]
+}

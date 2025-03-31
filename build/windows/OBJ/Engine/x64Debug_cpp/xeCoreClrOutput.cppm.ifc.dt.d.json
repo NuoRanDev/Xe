@@ -1,0 +1,10 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\caiji\\desktop\\xe\\xe\\csrc\\engine\\xecore\\xecoreclroutput.cppm",
+        "ProvidedModule": "xe.Core.CoreClrOutput",
+        "Includes": [],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

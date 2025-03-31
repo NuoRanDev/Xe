@@ -1,0 +1,10 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\caiji\\desktop\\xe\\xe\\csrc\\engine\\xecore\\xeordinals.cppm",
+        "ProvidedModule": "xe.Core.xeOrdinals",
+        "Includes": [],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\caiji\\desktop\\xe\\xe\\csrc\\engine\\xecore\\clock.cppm",
+        "ProvidedModule": "xe.Core.Clock",
+        "Includes": [],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

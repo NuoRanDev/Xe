@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\private_Imgdecoder.obj",
+            "outputs": [
+                "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\private_Imgdecoder.cppm.ifc.dt.module.json",
+                "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\private_Imgdecoder.cppm.ifc.dt.d.json",
+                "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xe.Testure.decode.private_Imgdecoder.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "xe.Testure.decode.private_Imgdecoder",
+                    "source-path": "c:\\users\\caiji\\desktop\\xe\\xe\\csrc\\engine\\testure\\private_imgdecoder.cppm",
+                    "is-interface": true
+                }
+            ],
+            "requires": [
+                {
+                    "logical-name": "std"
+                },
+                {
+                    "logical-name": "xe.Core.xeOrdinals"
+                },
+                {
+                    "logical-name": "xe.Core.CoreClrOutput"
+                },
+                {
+                    "logical-name": "xe.Testure.xeTestureCore"
+                }
+            ]
+        }
+    ]
+}

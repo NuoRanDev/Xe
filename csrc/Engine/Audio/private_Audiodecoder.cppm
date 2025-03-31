@@ -18,4 +18,12 @@ namespace xe
 	export bool MP3Seek(xeAnyType dec_typpe, xeSize point);
 
 	export void CloseMP3Data(xeAnyType dec_typpe);
+
+	export void OpenOGGData(xeByte* ogg_data, xeSize size, xeAnyType& dec_typpe, PcmFormat& pcm_format);
+
+	export PlayState GetOGGPcm(xeAnyType dec_typpe, PcmBlock& pcmdata);
+
+	export bool OGGSeek(xeAnyType dec_typpe, xeSize point);
+
+	export void CloseOGGData(xeAnyType dec_typpe);
 }

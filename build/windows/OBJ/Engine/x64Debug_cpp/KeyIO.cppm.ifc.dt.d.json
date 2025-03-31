@@ -1,0 +1,10 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\caiji\\desktop\\xe\\xe\\csrc\\engine\\io\\keyio.cppm",
+        "ProvidedModule": "xe.IO.KeyIO",
+        "Includes": [],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

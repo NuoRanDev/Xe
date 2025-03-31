@@ -1,0 +1,32 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xeTestureCore.obj",
+            "outputs": [
+                "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xeTestureCore.cppm.ifc.dt.module.json",
+                "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xeTestureCore.cppm.ifc.dt.d.json",
+                "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xe.Testure.xeTestureCore.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "xe.Testure.xeTestureCore",
+                    "source-path": "c:\\users\\caiji\\desktop\\xe\\xe\\csrc\\engine\\testure\\xetesturecore.cppm",
+                    "is-interface": true
+                }
+            ],
+            "requires": [
+                {
+                    "logical-name": "xe.Core.xeOrdinals"
+                },
+                {
+                    "logical-name": "xe.Core.xeBaseDataType"
+                },
+                {
+                    "logical-name": "xe.Core.xeAlloc"
+                }
+            ]
+        }
+    ]
+}

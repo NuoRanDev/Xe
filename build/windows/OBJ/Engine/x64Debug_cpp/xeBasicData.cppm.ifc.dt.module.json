@@ -1,0 +1,44 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xeBasicData.obj",
+            "outputs": [
+                "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xeBasicData.cppm.ifc.dt.module.json",
+                "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xeBasicData.cppm.ifc.dt.d.json",
+                "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xe.AssetIO.xeBasicData.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "xe.AssetIO.xeBasicData",
+                    "source-path": "c:\\users\\caiji\\desktop\\xe\\xe\\csrc\\engine\\assetsio\\xebasicdata.cppm",
+                    "is-interface": true
+                }
+            ],
+            "requires": [
+                {
+                    "logical-name": "std"
+                },
+                {
+                    "logical-name": "xe.Core.xeOrdinals"
+                },
+                {
+                    "logical-name": "xe.Core.xeString"
+                },
+                {
+                    "logical-name": "xe.Core.xeAlloc"
+                },
+                {
+                    "logical-name": "xe.Core.CoreClrOutput"
+                },
+                {
+                    "logical-name": "xe.AssetIO.xeCompressFileStruct"
+                },
+                {
+                    "logical-name": "xe.IO.xeOMmapfstream"
+                }
+            ]
+        }
+    ]
+}
