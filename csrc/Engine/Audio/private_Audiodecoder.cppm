@@ -9,9 +9,11 @@ import xe.Audio.AudioCore;
 
 namespace xe
 {
-	export xeSize OpenMP3Data(std::unique_ptr<AudioEncodedData> mp3_data, xeAnyType dec_typpe);
+	export enum class PlayState :xeUint32 { _PLAY = 0, _END, _ERROR };
 
-	export bool GetMP3Pcm(xeAnyType dec_typpe, std::unique_ptr<PcmBlock> pcmdata);
+	export xeSize OpenMP3Data(xeByte* mp3_data, xeSize size, xeAnyType& dec_typpe, PcmFormat& pcm_format);
+
+	export PlayState GetMP3Pcm(xeAnyType dec_typpe, PcmBlock& pcmdata);
 
 	export bool MP3Seek(xeAnyType dec_typpe, xeSize point);
 

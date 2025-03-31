@@ -1,11 +1,13 @@
+﻿import xe.AssetIO.xeBasicAsset;
+
+
 import std;
 
 import xe.Core.xeOrdinals;
 import xe.Core.xeBaseDataType;
 import xe.Core.CoreClrOutput;
 
-import xe.AssetIO.xeBasicAsset;
-import xe.AssetIO.xeBasicData;
+//import xe.AssetIO.xeBasicData;
 
 namespace xe
 {
@@ -13,9 +15,10 @@ namespace xe
 	constexpr char IMG_VEC3[4] = { 'v','e','c','3' };  // RGB  decode jpeg
 	constexpr char IMG_VEC4[4] = { 'v','e','c','4' };  // RGBA decode png
 	constexpr char IMG_BOOL[4] = { 'b','o','o','l' };  // BOOL decode png
-	std::unique_ptr<TestureFile> TestureFileReader::GetTesture(const xeInt64 index)
+
+	std::unique_ptr<TestureEncodedData> TestureEncodedDataReader::GetTesture(const xeInt64 index)
 	{
-		std::unique_ptr<TestureFile> output;
+		std::unique_ptr<TestureEncodedData> output;
 		xeByte* decompress_data = nullptr;
 		xeUint64 file_size = 0;
 		const char* file_name = GetDecompressedDataName(index);
@@ -52,7 +55,8 @@ namespace xe
 			return nullptr;
 		}
 	}
-	std::unique_ptr<TestureFile> TestureFileReader::GetTesture(const char* name)
+
+	std::unique_ptr<TestureEncodedData> TestureEncodedDataReader::GetTesture(const char* name)
 	{
 		const xeInt64 index = GetDecompressedDataIndex(name);
 		return GetTesture(index);
@@ -61,9 +65,10 @@ namespace xe
 	// the audio file extension
 	constexpr char AUDIO_OGG8[4] = { 'o','g','g','8' };  // 8bit  decode ogg
 	constexpr char AUDIO_FLAC[4] = { 'f','l','a','c' };  // 16bit decode flac
-	std::unique_ptr<AudioFile> AudioReader::GetAudio(const xeInt64 index)
+
+	std::unique_ptr<AudioEncodedData> AudioEncodedDataReader::GetAudio(const xeInt64 index)
 	{
-		std::unique_ptr<AudioFile> output ;
+		std::unique_ptr<AudioEncodedData> output ;
 		xeByte* decompress_data = nullptr;
 		xeUint64 file_size = 0;
 		const char* file_name = GetDecompressedDataName(index);
@@ -90,7 +95,8 @@ namespace xe
 		XE_WARNING_OUTPUT(std::format("{0} FILE NAME IS BROKEN", file_name).c_str());
 		return nullptr;
 	}
-	std::unique_ptr<AudioFile> AudioReader::GetAudio(const char* name)
+
+	std::unique_ptr<AudioEncodedData> AudioEncodedDataReader::GetAudio(const char* name)
 	{
 		const xeInt64 index = GetDecompressedDataIndex(name);
 		return GetAudio(index);

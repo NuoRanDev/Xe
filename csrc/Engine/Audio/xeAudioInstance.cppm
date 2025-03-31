@@ -35,12 +35,12 @@ namespace xe
 		// file data
 		std::unique_ptr<AudioEncodedData> audio_data;
 
-		std::function<bool(std::unique_ptr<AudioEncodedData>, xeAnyType)> OpenEncodedData;
+		std::function<bool(std::unique_ptr<AudioEncodedData>, xeAnyType&, xeUint32&)> CB_OpenEncodedData;
 
-		std::function<bool(xeAnyType, std::unique_ptr<PcmBlock>)> GetPcm;
+		std::function<bool(xeAnyType, PcmBlock&)> CB_GetPcm;
 
-		std::function<bool(xeAnyType, xeSize)> Seek;
+		std::function<bool(xeAnyType, xeSize)> CB_Seek;
 
-		std::function<void(xeAnyType)> Close;
+		std::function<void(xeAnyType)> CB_Close;
 	};
 }

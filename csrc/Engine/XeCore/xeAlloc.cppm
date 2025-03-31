@@ -13,18 +13,18 @@ namespace xe
 	export template<typename T> T* xeMalloc(xeSize alloc_number)
 	{
 #if defined(USE_MIMALLOC)
-		return reinterpret_cast<T*>(mi_malloc(alloc_number));
+		return reinterpret_cast<T*>(mi_malloc(sizeof(T) * alloc_number));
 #else
-		return reinterpret_cast<T*>(std::malloc(alloc_number));
+		return reinterpret_cast<T*>(std::malloc(sizeof(T) * alloc_number));
 #endif // defined(USE_MIMALLOC) IS END
 	}
 
 	export template<typename T>T* xeRealloc(T* src_ptr, xeSize alloc_number)
 	{
 #if defined(USE_MIMALLOC)
-		return reinterpret_cast<T*>(mi_realloc(src_ptr, alloc_number));
+		return reinterpret_cast<T*>(mi_realloc(src_ptr, sizeof(T) * alloc_number));
 #else
-		return reinterpret_cast<T*>(std::realloc(src_ptr, alloc_number));
+		return reinterpret_cast<T*>(std::realloc(src_ptr, sizeof(T) * alloc_number));
 #endif // defined(USE_MIMALLOC) IS END
 	}
 

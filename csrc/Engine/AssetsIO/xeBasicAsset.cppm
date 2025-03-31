@@ -1,4 +1,4 @@
-export module xe.AssetIO.xeBasicAsset;
+﻿export module xe.AssetIO.xeBasicAsset;
 
 import xe.Core.xeBaseDataType;
 import xe.Core.xeOrdinals;
@@ -7,24 +7,24 @@ import xe.AssetIO.xeBasicData;
 
 namespace xe
 {
-	export class TestureFileReader : public GameDataReader
+	export class TestureEncodedDataReader : public GameDataReader
 	{
 	public:
-		explicit TestureFileReader()
+		explicit TestureEncodedDataReader()
 		{
 			//CB_decompressfunction = DecompressFunction(&DecompressLZMA);
 		}
-		std::unique_ptr<TestureFile> GetTesture(const xeInt64 index);
-		std::unique_ptr<TestureFile> GetTesture(const char* name);
+		std::unique_ptr<TestureEncodedData> GetTesture(const xeInt64 index);
+		std::unique_ptr<TestureEncodedData> GetTesture(const char* name);
 	};
-	export class AudioReader : public GameDataReader
+	export class AudioEncodedDataReader : public GameDataReader
 	{
 	public:
-		explicit AudioReader()
+		explicit AudioEncodedDataReader()
 		{
 			//CB_decompressfunction = DecompressFunction(&DecompressZSTD);
 		}
-		std::unique_ptr<AudioFile> GetAudio(const xeInt64 index);
-		std::unique_ptr<AudioFile> GetAudio(const char* name);
+		std::unique_ptr<AudioEncodedData> GetAudio(const xeInt64 index);
+		std::unique_ptr<AudioEncodedData> GetAudio(const char* name);
 	};
 }
