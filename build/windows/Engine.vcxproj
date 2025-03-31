@@ -43,6 +43,7 @@
     <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeCompressFileStruct.cppm" />
     <ClCompile Include="..\..\csrc\Engine\Audio\private_Audiodecoder.cppm" />
     <ClCompile Include="..\..\csrc\Engine\Audio\private_MP3Decoder.cpp" />
+    <ClCompile Include="..\..\csrc\Engine\Audio\private_OGGDecoder.cpp" />
     <ClCompile Include="..\..\csrc\Engine\Audio\xeAudioCore.cppm" />
     <ClCompile Include="..\..\csrc\Engine\Audio\xeAudioInstance.cpp" />
     <ClCompile Include="..\..\csrc\Engine\Audio\xeAudioInstance.cppm" />
@@ -275,7 +276,7 @@
       <PreprocessorDefinitions>MINIMP3_IMPLEMENTATION;SPNG_STATIC;EXPORT_C_PLUS_PLUS_API;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\XeCore\</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp23</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -294,7 +295,7 @@
       <PreprocessorDefinitions>MINIMP3_IMPLEMENTATION;SPNG_STATIC;EXPORT_C_SHARP_API;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\XeCore\</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp23</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -315,7 +316,7 @@
       <PreprocessorDefinitions>MINIMP3_IMPLEMENTATION;SPNG_STATIC;EXPORT_C_PLUS_PLUS_API;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\XeCore\</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp23</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MinSpace</Optimization>
@@ -340,7 +341,7 @@
       <PreprocessorDefinitions>MINIMP3_IMPLEMENTATION;SPNG_STATIC;EXPORT_C_SHARP_API;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\XeCore\</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp23</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MinSpace</Optimization>

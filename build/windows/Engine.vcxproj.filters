@@ -217,6 +217,9 @@
     <ClCompile Include="..\..\csrc\Engine\Audio\private_MP3Decoder.cpp">
       <Filter>Audio\Source Files\decode</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\Audio\private_OGGDecoder.cpp">
+      <Filter>Audio\Source Files\decode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\csrc\Engine\XeCore\xeCompiler.hpp">
