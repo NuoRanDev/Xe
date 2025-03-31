@@ -4,7 +4,24 @@
         "Source": "c:\\users\\caiji\\desktop\\xe\\xe\\csrc\\engine\\audio\\private_audiodecoder.cppm",
         "ProvidedModule": "xe.Audio.Instance.private_Audiodecoder",
         "Includes": [],
-        "ImportedModules": [],
+        "ImportedModules": [
+            {
+                "Name": "std",
+                "BMI": "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\microsoft\\STL\\std.ixx.ifc.dt"
+            },
+            {
+                "Name": "xe.Core.xeBaseDataType",
+                "BMI": "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xeBaseDataType.cppm.ifc.dt"
+            },
+            {
+                "Name": "xe.Core.xeOrdinals",
+                "BMI": "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xeOrdinals.cppm.ifc.dt"
+            },
+            {
+                "Name": "xe.Audio.AudioCore",
+                "BMI": "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xeAudioCore.cppm.ifc.dt"
+            }
+        ],
         "ImportedHeaderUnits": []
     }
 }

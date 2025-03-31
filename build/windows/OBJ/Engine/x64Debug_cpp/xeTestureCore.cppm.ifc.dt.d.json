@@ -4,24 +4,7 @@
         "Source": "c:\\users\\caiji\\desktop\\xe\\xe\\csrc\\engine\\testure\\xetesturecore.cppm",
         "ProvidedModule": "xe.Testure.xeTestureCore",
         "Includes": [],
-        "ImportedModules": [
-            {
-                "Name": "xe.Core.xeOrdinals",
-                "BMI": "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xeOrdinals.cppm.ifc.dt"
-            },
-            {
-                "Name": "xe.Core.xeBaseDataType",
-                "BMI": "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xeBaseDataType.cppm.ifc.dt"
-            },
-            {
-                "Name": "xe.Core.xeAlloc",
-                "BMI": "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\xeAlloc.cppm.ifc.dt"
-            },
-            {
-                "Name": "std",
-                "BMI": "C:\\Users\\caiji\\Desktop\\xe\\Xe\\build\\windows\\OBJ\\Engine\\x64Debug_cpp\\microsoft\\STL\\std.ixx.ifc.dt"
-            }
-        ],
+        "ImportedModules": [],
         "ImportedHeaderUnits": []
     }
 }

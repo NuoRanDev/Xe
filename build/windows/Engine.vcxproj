@@ -43,6 +43,7 @@
     <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeCompressFileStruct.cppm" />
     <ClCompile Include="..\..\csrc\Engine\Audio\private_Audiodecoder.cppm" />
     <ClCompile Include="..\..\csrc\Engine\Audio\private_MP3Decoder.cpp" />
+    <ClCompile Include="..\..\csrc\Engine\Audio\private_OGGDecoder.cpp" />
     <ClCompile Include="..\..\csrc\Engine\Audio\xeAudioCore.cppm" />
     <ClCompile Include="..\..\csrc\Engine\Audio\xeAudioInstance.cpp" />
     <ClCompile Include="..\..\csrc\Engine\Audio\xeAudioInstance.cppm" />
@@ -75,7 +76,6 @@
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeString.cpp" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeString.cppm" />
     <ClCompile Include="..\..\Examples\main.cpp" />
-    <ClCompile Include="private_OGGDecoder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\csrc\Engine\XeCore\xeCompiler.hpp" />
