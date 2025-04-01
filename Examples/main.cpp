@@ -42,12 +42,7 @@ int main(int argc, char* argv[])
 		return xe::Application::DestroyApplication();
 	}
 
-	//auto window = xe::xeWindow();
-
-	//window.CreatWindow(800, 600, "aaaa");
-	//window.WindowRendering();
-	//window.StartWindowEnvet();
-
+	
 	xe::oMmapfstream file;
 	file.OpenFile("C:\\Users\\root\\Desktop\\Destination.ogg");
 	xe::AudioEncodedData encoded_audio_data;
@@ -81,10 +76,15 @@ int main(int argc, char* argv[])
 	alSourcePlay(source);
 
 	ALint state;
-	do {
-		std::this_thread::sleep_for(std::chrono::microseconds(100));
-		alGetSourcei(source, AL_SOURCE_STATE, &state);
-	} while (state == AL_PLAYING);
+
+	auto window = xe::xeWindow();
+
+	window.CreatWindow(800, 600, "aaaa");
+	window.WindowRendering();
+	window.StartWindowEnvet();
+
+	//std::this_thread::sleep_for(std::chrono::microseconds(100));
+	alGetSourcei(source, AL_SOURCE_STATE, &state);
 	xe::XE_INFO_OUTPUT("Play audio end");
 
 	alDeleteSources(1, &source);
