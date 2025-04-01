@@ -4,6 +4,7 @@ import std;
 
 import xe.Core.xeOrdinals;
 import xe.Core.xeAlloc;
+import xe.Core.xeBaseDataType;
 
 namespace xe
 {
@@ -32,4 +33,12 @@ namespace xe
 			xeFree(data);
 		}
 	};
+
+	export xeSize ReadAudio(void* dst, xeSize size1, xeSize size2, void* class_data);
+
+	export int SeekAudio(void* class_data, xeInt64 to, int type);
+
+	export int CloseAudio(void* class_data);
+
+	export long TellAudio(void* class_data);
 }

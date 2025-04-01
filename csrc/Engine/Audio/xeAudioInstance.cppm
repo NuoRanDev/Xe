@@ -30,12 +30,12 @@ namespace xe
 
 	private:
 		// pcm
-		std::unique_ptr<PcmBlock> pcm_block;
+		PcmBlock pcm_block;
 
 		// file data
 		std::unique_ptr<AudioEncodedData> audio_data;
 
-		std::function<bool(std::unique_ptr<AudioEncodedData>, xeAnyType&, xeUint32&)> CB_OpenEncodedData;
+		std::function<bool(AudioEncodedData*, xeAnyType&, PcmBlock&)> CB_OpenEncodedData;
 
 		std::function<bool(xeAnyType, PcmBlock&)> CB_GetPcm;
 

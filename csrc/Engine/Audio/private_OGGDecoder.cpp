@@ -17,70 +17,14 @@ namespace xe
 {
 	using OGGType = OggVorbis_File;
 
-	xeSize ReadOgg(void* dst, xeSize size1, xeSize size2, void* class_data)
-	{
-		auto ogg_data = reinterpret_cast<AudioEncodedData*>(class_data);
-		xeSize len = size1 * size2;
-		if (ogg_data->cur_ptr + len > ogg_data->data + ogg_data->_size)
-		{
-			len = ogg_data->data + ogg_data->_size - ogg_data->cur_ptr;
-		}
-		std::memcpy(dst, ogg_data->cur_ptr, len);
-		ogg_data->cur_ptr += len;
-		return len;
-	}
-
-	int SeekOgg(void* class_data, ogg_int64_t to, int type) 
-	{
-		auto ogg_data = reinterpret_cast<AudioEncodedData*>(class_data);
-		switch (type) 
-		{
-		case SEEK_CUR:
-			ogg_data->cur_ptr += to;
-			break;
-		case SEEK_END:
-			ogg_data->cur_ptr = ogg_data->data + ogg_data->_size - to;
-			break;
-		case SEEK_SET:
-			ogg_data->cur_ptr = ogg_data->data + to;
-			break;
-		default:
-			return -1;
-		}
-		if (ogg_data->cur_ptr < ogg_data->data) 
-		{
-			ogg_data->cur_ptr = ogg_data->data;
-			return -1;
-		}
-		if (ogg_data->cur_ptr > ogg_data->data + ogg_data->_size) 
-		{
-			ogg_data->cur_ptr = ogg_data->data + ogg_data->_size;
-			return -1;
-		}
-		return 0;
-	}
-
-	int CloseOgg(void* class_data)
-	{
-		auto ogg_data = reinterpret_cast<AudioEncodedData*>(class_data);
-		ogg_data->cur_ptr = ogg_data->data;
-		return 0;
-	}
-
-	long TellOgg(void* class_data)
-	{
-		auto ogg_data = reinterpret_cast<AudioEncodedData*>(class_data);
-		return (ogg_data->cur_ptr - ogg_data->data);
-	}
-
 	bool OpenOGGData(AudioEncodedData* ogg_data, xeAnyType& dec_typpe, PcmBlock& pcm_block)
 	{
 		ov_callbacks ogg_callbacks =
 		{
-			.read_func = ReadOgg,
-			.seek_func = SeekOgg,
-			.close_func = CloseOgg,
-			.tell_func = TellOgg
+			.read_func = ReadAudio,
+			.seek_func = SeekAudio,
+			.close_func = CloseAudio,
+			.tell_func = TellAudio
 		};
 
 		OGGType* dec_ogg_type = xeMalloc<OGGType>(1);
@@ -104,15 +48,15 @@ namespace xe
 		return true;
 	}
 
-	PlayState GetOGGPcm(xeAnyType dec_typpe, PcmBlock& pcmdata)
+	PlayState GetOGGPcm(xeAnyType dec_typpe, PcmBlock& pcm_block)
 	{
 		OGGType* dec_ogg_type = reinterpret_cast<OGGType*>(dec_typpe);
 		int current_section;
-		auto state = ov_read(dec_ogg_type, reinterpret_cast<char*>(pcmdata.data), (xeUint32)(pcmdata.size), 0, 2, 1, &current_section);
+		auto state = ov_read(dec_ogg_type, reinterpret_cast<char*>(pcm_block.data), (xeUint32)(pcm_block.size), 0, 2, 1, &current_section);
 		if (state == 0) return PlayState::_END;
 		if (state > 0)
 		{
-			pcmdata.buffer_in = state;
+			pcm_block.buffer_in = state;
 			return PlayState::_PLAY;
 		}
 		else 
