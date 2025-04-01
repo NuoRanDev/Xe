@@ -19,7 +19,7 @@ namespace xe
 
 	export void CloseMP3Data(xeAnyType dec_typpe);
 
-	export void OpenOGGData(xeByte* ogg_data, xeSize size, xeAnyType& dec_typpe, PcmFormat& pcm_format);
+	export bool OpenOGGData(AudioEncodedData* ogg_data, xeAnyType& dec_typpe, PcmBlock& pcm_block);
 
 	export PlayState GetOGGPcm(xeAnyType dec_typpe, PcmBlock& pcmdata);
 

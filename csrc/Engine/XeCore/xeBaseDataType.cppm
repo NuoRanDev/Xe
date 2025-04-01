@@ -35,6 +35,7 @@ namespace xe
 	export struct AudioEncodedData
 	{
 		xeAudioCompressSolution solution;
+		xeByte* cur_ptr;
 		xeSize _size;
 		xeByte* data;
 	};

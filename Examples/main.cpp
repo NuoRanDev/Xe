@@ -4,6 +4,7 @@ import xe.Core.xeString;
 import xe.Core.xeBaseDataType;
 import xe.Core.xeApplication;
 import xe.Core.xeAlloc;
+import xe.Core.CoreClrOutput;
 
 import xe.IO.xeOMmapfstream;
 
@@ -48,60 +49,50 @@ int main(int argc, char* argv[])
 	//window.StartWindowEnvet();
 
 	xe::oMmapfstream file;
-	file.OpenFile("C:\\Users\\root\\Desktop\\zero.mp3");
-	xe::AudioEncodedData mp3_f;
-	mp3_f._size = file.file_size;
-	mp3_f.solution = xe::xeAudioCompressSolution::OGG;
-	mp3_f.data = xe::xeMalloc<xe::xeByte>(file.file_size);
-	file.FstraemStartMemcpyOut<xe::xeUint8>(mp3_f.data, mp3_f._size);
+	file.OpenFile("C:\\Users\\root\\Desktop\\Destination.ogg");
+	xe::AudioEncodedData encoded_audio_data;
+	encoded_audio_data._size = file.file_size;
+	encoded_audio_data.solution = xe::xeAudioCompressSolution::OGG;
+	encoded_audio_data.data = xe::xeMalloc<xe::xeByte>(file.file_size);
+	encoded_audio_data.cur_ptr = encoded_audio_data.data;
 
-	xe::xeAnyType type_mp3 = nullptr;
+	file.FstraemStartMemcpyOut<xe::xeUint8>(encoded_audio_data.data, encoded_audio_data._size);
 
-	xe::PcmBlock pcm;
-	pcm.size = xe::OpenMP3Data(mp3_f.data, mp3_f._size, type_mp3, pcm.format);
-	pcm.data = xe::xeMalloc<xe::xeByte>(pcm.size);
+	xe::xeAnyType type_audio = nullptr;
 
-	std::vector<std::int8_t> mp3_data;
+	xe::PcmBlock pcm_block;
+	xe::OpenOGGData(&encoded_audio_data, type_audio, pcm_block);
+
+	std::vector<std::int8_t> audio_pcm_data;
 	
 
-	while (xe::GetMP3Pcm(type_mp3, pcm) == xe::PlayState::_END)
+	while (xe::GetOGGPcm(type_audio, pcm_block) != xe::PlayState::_END)
 	{
-		mp3_data.insert(mp3_data.end(), pcm.data, pcm.data + pcm.size);
+		audio_pcm_data.insert(audio_pcm_data.end(), pcm_block.data, pcm_block.data + pcm_block.buffer_in);
 	}
 
 	ALuint buffer, source;
 
 	alGenBuffers(1, &buffer);
-	alBufferData(buffer, static_cast<ALenum>(pcm.format), mp3_data.data(), mp3_data.size(), 44100);
+	alBufferData(buffer, static_cast<ALenum>(pcm_block.format), audio_pcm_data.data(), audio_pcm_data.size(), pcm_block.freq);
 	alGenSources(1, &source);
 	alSourcei(source, AL_BUFFER, buffer);
+	xe::XE_INFO_OUTPUT("Play audio");
 	alSourcePlay(source);
-	// 等待直到播放完毕
+
 	ALint state;
 	do {
 		std::this_thread::sleep_for(std::chrono::microseconds(100));
 		alGetSourcei(source, AL_SOURCE_STATE, &state);
 	} while (state == AL_PLAYING);
+	xe::XE_INFO_OUTPUT("Play audio end");
 
 	alDeleteSources(1, &source);
 	alDeleteBuffers(1, &buffer);
 	alcDestroyContext(context);
 	alcCloseDevice(device);
+
+	xe::xeFree(encoded_audio_data.data);
 
 	return xe::Application::DestroyApplication();
 }
-/*
-	ALuint buffer, source;
-	alGenBuffers(1, &buffer);
-	//auto channels = (info.channels == 2) ? AL_FORMAT_STEREO16 : AL_FORMAT_MONO16;
-	alBufferData(buffer, AL_FORMAT_MONO16, audioData.data(), audioData.size(), 44100);
-	alGenSources(2, &source);
-	alSourcei(source, AL_BUFFER, buffer);
-	alSourcePlay(source);
-
-	// 清理资源
-	alDeleteSources(1, &source);
-	alDeleteBuffers(1, &buffer);
-	alcDestroyContext(context);
-	alcCloseDevice(device);
-*/

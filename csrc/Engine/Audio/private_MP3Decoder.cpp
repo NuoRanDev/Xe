@@ -20,13 +20,12 @@ namespace xe
 		xeSize pcm_size;
 
 		MP3Type* dec_mp3_type = xeMalloc<MP3Type>(1);
-		dec_mp3_type = xeMalloc<mp3dec_ex_t>(1);
 		mp3dec_ex_open_buf(dec_mp3_type, mp3_data, size, MP3D_SEEK_TO_SAMPLE);
 
 		pcm_size = dec_mp3_type->samples * sizeof(mp3d_sample_t);
 		dec_typpe = reinterpret_cast<xeAnyType>(dec_mp3_type);
 
-		pcm_format = PcmFormat::AL_FORMAT_STEREO16;
+		pcm_format = PcmFormat::FORMAT_MONO16;
 
 		return pcm_size;
 	}
