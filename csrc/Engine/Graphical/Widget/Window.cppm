@@ -2,7 +2,7 @@
 
 import std;
 
-import "SDL3/SDL.h";
+import "SDL3/SDL_video.h";
 
 import xe.Core.xeOrdinals;
 import xe.Core.xeString;
@@ -21,7 +21,7 @@ namespace xe
 
 		vec2_i32 GetWindowSize();
 
-		void StartWindowEnvet();
+		void StartWindowEvent();
 
 		void WindowRendering();
 
@@ -29,7 +29,7 @@ namespace xe
 
 	private:
 
-		void WindowEnvetThtead();
+		void WindowEnvetThread();
 
 		xeVulkanContext window_vulkan_instance;
 

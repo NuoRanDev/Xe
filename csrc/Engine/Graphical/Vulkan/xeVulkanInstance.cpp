@@ -81,7 +81,7 @@ namespace xe
 		CleanupVulkanContext();
 	}
 
-#ifdef _DEBUG
+#if defined(_DEBUG)
 	VKAPI_ATTR VkBool32 VKAPI_CALL DebugReport(VkDebugReportFlagsEXT flags, VkDebugReportObjectTypeEXT objectType, xeUint64 object, size_t location, xeInt32 messageCode, const char* pLayerPrefix, const char* pMessage, void* pUserData)
 	{
 		(void)flags; (void)object; (void)location; (void)messageCode; (void)pUserData; (void)pLayerPrefix; // Unused arguments
@@ -272,7 +272,7 @@ namespace xe
 		create_info.pEnabledFeatures = &device_features;
 		create_info.enabledExtensionCount = 0;
 		create_info.enabledLayerCount = 0;
-#ifdef _DEBUG
+#if defined(_DEBUG)
 		if (enable_validation_layers)
 		{
 			create_info.enabledLayerCount = static_cast<uint32_t>(validation_layers.size());

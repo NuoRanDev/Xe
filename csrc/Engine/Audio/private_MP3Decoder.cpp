@@ -15,17 +15,25 @@ namespace xe
 {
 	using MP3Type = mp3dec_ex_t;
 
-	xeSize OpenMP3Data(xeByte* mp3_data, xeSize size, xeAnyType& dec_typpe, PcmFormat& pcm_format)
+	xeSize OpenMP3Data(AudioEncodedData* mp3_data, xeAnyType& dec_typpe, PcmBlock& pcm_block)
 	{
 		xeSize pcm_size;
 
 		MP3Type* dec_mp3_type = xeMalloc<MP3Type>(1);
-		mp3dec_ex_open_buf(dec_mp3_type, mp3_data, size, MP3D_SEEK_TO_SAMPLE);
+		mp3dec_ex_open_buf(dec_mp3_type, mp3_data->data, mp3_data->_size, MP3D_SEEK_TO_SAMPLE);
 
 		pcm_size = dec_mp3_type->samples * sizeof(mp3d_sample_t);
 		dec_typpe = reinterpret_cast<xeAnyType>(dec_mp3_type);
+		/*
+				pcm_block.freq = ogg_info->rate;
+		pcm_block.format = PcmFormat::FORMAT_STEREO16;
+		pcm_block.size = 4 * Storage::KiB;
+		pcm_block.data = xeMalloc<xeByte>(pcm_block.size);
+		pcm_block.channel = ogg_info->channels;
 
-		pcm_format = PcmFormat::FORMAT_MONO16;
+		if (ogg_info->channels > 1) pcm_block.format = PcmFormat::FORMAT_STEREO16;
+		else { pcm_block.format = PcmFormat::FORMAT_MONO16; }
+		*/
 
 		return pcm_size;
 	}

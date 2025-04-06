@@ -62,6 +62,6 @@ namespace xe
 	long TellAudio(void* class_data)
 	{
 		auto ogg_data = reinterpret_cast<AudioEncodedData*>(class_data);
-		return (ogg_data->cur_ptr - ogg_data->data);
+		return (long)(ogg_data->cur_ptr - ogg_data->data);
 	}
 }

@@ -58,7 +58,7 @@ namespace xe
 
 		VkSurfaceKHR				window_surface;
 
-#ifdef _DEBUG
+#if defined(_DEBUG)
 		VkDebugUtilsMessengerEXT	debug_messenger;
 		const std::vector<const char*> validation_layers = { "VK_LAYER_KHRONOS_validation" };
 		bool						enable_validation_layers = false;

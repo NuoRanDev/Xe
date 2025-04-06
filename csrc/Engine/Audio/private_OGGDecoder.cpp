@@ -39,12 +39,12 @@ namespace xe
 
 		vorbis_info* ogg_info = ov_info(dec_ogg_type, -1);
 
-		pcm_block.freq = ogg_info->rate;
-		pcm_block.format = PcmFormat::FORMAT_STEREO16;
-		pcm_block.size = 4 * Storage::KiB;
-		pcm_block.data = xeMalloc<xeByte>(pcm_block.size);
-		pcm_block.channel = ogg_info->channels;
-
+		pcm_block.freq		= ogg_info->rate;
+		pcm_block.size		= 4 * Storage::KiB;
+		pcm_block.data		= xeMalloc<xeByte>(pcm_block.size);
+		pcm_block.channel	= ogg_info->channels;
+		if (ogg_info->channels > 1) pcm_block.format = PcmFormat::FORMAT_STEREO16;
+		else { pcm_block.format = PcmFormat::FORMAT_MONO16; }
 		return true;
 	}
 

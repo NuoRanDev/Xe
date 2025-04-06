@@ -1,4 +1,4 @@
-#include <cstdio>
+﻿#include <cstdio>
 import std;
 import xe.Core.CoreClrOutput;
 
@@ -15,7 +15,7 @@ namespace xe
 
 	void XE_ERROR_OUTPUT(const char* output_text)
 	{
-#ifdef OPEN_CLR
+#if defined(OPEN_CLR)
 		std::cout << std::string(RED) + "ERROR" + ":\t" + std::string(WHITE) + output_text + "\n";
 		return;
 #endif // OPEN_CLR
@@ -26,7 +26,7 @@ namespace xe
 
 	void XE_WARNING_OUTPUT(const char* output_text)
 	{
-#ifdef OPEN_CLR
+#if defined(OPEN_CLR)
 		std::cout << std::string(YELLOW) + "WARNING" + ":\t" + std::string(WHITE) + output_text + "\n";
 		return;
 #endif // OPEN_CLR
@@ -37,7 +37,7 @@ namespace xe
 
 	void XE_INFO_OUTPUT(const char* output_text)
 	{
-#ifdef OPEN_CLR
+#if defined(OPEN_CLR)
 		std::cout << std::string(BLUE) + "LOG" + ":\t" + std::string(WHITE) + output_text + "\n";
 		return;
 #endif // OPEN_CLR

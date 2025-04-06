@@ -1,8 +1,10 @@
 ﻿import xe.Graphical.Widget;
 
-#include "SDL3/SDL.h"
+#include "SDL3/SDL_events.h"
+#include "SDL3/SDL_video.h"
 #include "SDL3/SDL_vulkan.h"
 #include "vulkan/vulkan.h"
+
 
 import xe.Core.xeOrdinals;
 import xe.Core.xeString;
@@ -22,11 +24,6 @@ namespace xe
 	bool xeWindow::CreatWindow(xeInt32 w, xeInt32 h, xeString name)
 	{
 		Uint32 count_instance_extensions;
-		if (!SDL_Init(SDL_INIT_VIDEO) != 0)
-		{
-			XE_ERROR_OUTPUT(std::format("LIB <SDL> :Failed to initialize SDL: {0}", SDL_GetError()).c_str());
-			return false;
-		}
 
 		const char* const* sdl_instance_extensions = SDL_Vulkan_GetInstanceExtensions(&count_instance_extensions);
 		
@@ -63,9 +60,9 @@ namespace xe
 		return false;
 	}
 
-	void xeWindow::StartWindowEnvet()
+	void xeWindow::StartWindowEvent()
 	{
-		window_envet_loop = std::thread(&xeWindow::WindowEnvetThtead, this);
+		window_envet_loop = std::thread(&xeWindow::WindowEnvetThread, this);
 		XE_INFO_OUTPUT("Start window envet list");
 
 		window_envet_loop.join();
@@ -100,12 +97,9 @@ namespace xe
 	xeWindow::~xeWindow()
 	{
 		SDL_DestroyWindow(window);
-		SDL_Quit();
 	}
 
-	void xeWindow::WindowEnvetThtead()
+	void xeWindow::WindowEnvetThread()
 	{
-		std::this_thread::sleep_for(std::chrono::seconds(10));
-
 	}
 }

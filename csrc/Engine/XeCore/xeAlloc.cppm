@@ -2,7 +2,7 @@
 
 import std;
 
-#ifdef USE_MIMALLOC
+#if defined(USE_MIMALLOC)
 import "mimalloc.h";
 #endif // USE_MIMALLOC
 

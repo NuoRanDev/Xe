@@ -8,8 +8,7 @@ import xe.Core.xeBaseDataType;
 
 namespace xe
 {
-
-	export enum class PcmFormat :xeUint32
+	export enum class PcmFormat :xeInt32
 	{
 		FORMAT_MONO8 = 0x1100,
 		FORMAT_MONO16 = 0x1101,
@@ -33,6 +32,8 @@ namespace xe
 			xeFree(data);
 		}
 	};
+
+	export enum class PlayState :xeUint32 { _PLAY = 0, _END, _ERROR };
 
 	export xeSize ReadAudio(void* dst, xeSize size1, xeSize size2, void* class_data);
 

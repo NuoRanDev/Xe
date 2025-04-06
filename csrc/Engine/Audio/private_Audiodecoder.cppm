@@ -9,9 +9,7 @@ import xe.Audio.AudioCore;
 
 namespace xe
 {
-	export enum class PlayState :xeUint32 { _PLAY = 0, _END, _ERROR };
-
-	export xeSize OpenMP3Data(AudioEncodedData* ogg_data, xeAnyType& dec_typpe, PcmBlock& pcm_block);
+	export xeSize OpenMP3Data(AudioEncodedData* mp3_data, xeAnyType& dec_typpe, PcmBlock& pcm_block);
 
 	export PlayState GetMP3Pcm(xeAnyType dec_typpe, PcmBlock& pcm_block);
 

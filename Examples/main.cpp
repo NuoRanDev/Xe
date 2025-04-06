@@ -25,9 +25,10 @@ extern"C"
 
 int main(int argc, char* argv[])
 {
-	if (!(xe::Application::LaodApplication(argc, argv, "test.log")))
+	if (!(xe::Application::LaodApplication(argc, argv)))
 		return xe::Application::DestroyApplication();
-	std::system("chcp 65001");
+
+	const ALCchar* devices = alcGetString(nullptr, ALC_DEFAULT_ALL_DEVICES_SPECIFIER);
 
 	ALCdevice* device = alcOpenDevice(nullptr);
 	if (!device) {
@@ -81,7 +82,7 @@ int main(int argc, char* argv[])
 
 	window.CreatWindow(800, 600, "aaaa");
 	window.WindowRendering();
-	window.StartWindowEnvet();
+	window.StartWindowEvent();
 
 	//std::this_thread::sleep_for(std::chrono::microseconds(100));
 	alGetSourcei(source, AL_SOURCE_STATE, &state);

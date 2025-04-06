@@ -1,4 +1,4 @@
-export module xe.AssetIO.xeBasicData;
+﻿export module xe.AssetIO.xeBasicData;
 
 import std;
 

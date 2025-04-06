@@ -32,12 +32,15 @@ namespace xe
 		// pcm
 		PcmBlock pcm_block;
 
+		//
+		xeAnyType dec_contest;
+
 		// file data
 		std::unique_ptr<AudioEncodedData> audio_data;
 
 		std::function<bool(AudioEncodedData*, xeAnyType&, PcmBlock&)> CB_OpenEncodedData;
 
-		std::function<bool(xeAnyType, PcmBlock&)> CB_GetPcm;
+		std::function<PlayState(xeAnyType, PcmBlock&)> CB_GetPcm;
 
 		std::function<bool(xeAnyType, xeSize)> CB_Seek;
 
