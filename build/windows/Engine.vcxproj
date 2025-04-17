@@ -35,15 +35,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\csrc\Engine\AssetsIO\private_Decompress.cpp" />
+    <ClCompile Include="..\..\csrc\Engine\AssetsIO\private_DecompressZstd.cpp" />
     <ClCompile Include="..\..\csrc\Engine\AssetsIO\private_Decompress.cppm" />
-    <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeBasicAsset.cppm" />
+    <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeBasicAsset.cpp" />
+    <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeAssetType.cppm" />
     <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeBasicData.cpp" />
-    <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeBasicData.cppm" />
+    <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeBasicAsset.cppm" />
     <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeCompressFileStruct.cppm" />
     <ClCompile Include="..\..\csrc\Engine\Audio\AudioDevice.cpp" />
     <ClCompile Include="..\..\csrc\Engine\Audio\AudioDevice.cppm" />
     <ClCompile Include="..\..\csrc\Engine\Audio\private_Audiodecoder.cppm" />
+    <ClCompile Include="..\..\csrc\Engine\Audio\private_FLACDecoder.cpp" />
     <ClCompile Include="..\..\csrc\Engine\Audio\private_MP3Decoder.cpp" />
     <ClCompile Include="..\..\csrc\Engine\Audio\private_OGGDecoder.cpp" />
     <ClCompile Include="..\..\csrc\Engine\Audio\xeAudioCore.cpp" />
@@ -73,6 +75,7 @@
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeApplication.cpp" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeApplication.cppm" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeBaseDataType.cppm" />
+    <ClCompile Include="..\..\csrc\Engine\XeCore\XeCore.ixx" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeCoreClrOutput.cpp" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeCoreClrOutput.cppm" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeOrdinals.cppm" />
@@ -276,7 +279,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>USE_OGG;USE_FLAC;USE_MP3;MINIMP3_IMPLEMENTATION;SPNG_STATIC;EXPORT_C_PLUS_PLUS_API;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_FLAC;USE_MP3;SPNG_STATIC;EXPORT_C_PLUS_PLUS_API;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\XeCore\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
@@ -287,7 +290,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -295,7 +298,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>USE_OGG;USE_FLAC;USE_MP3;MINIMP3_IMPLEMENTATION;SPNG_STATIC;EXPORT_C_SHARP_API;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_FLAC;USE_MP3;SPNG_STATIC;EXPORT_C_SHARP_API;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\XeCore\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
@@ -306,7 +309,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -316,13 +319,13 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>USE_OGG;USE_FLAC;USE_MP3;MINIMP3_IMPLEMENTATION;SPNG_STATIC;EXPORT_C_PLUS_PLUS_API;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_FLAC;USE_MP3;SPNG_STATIC;EXPORT_C_PLUS_PLUS_API;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\XeCore\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <Optimization>MinSpace</Optimization>
+      <Optimization>MaxSpeed</Optimization>
       <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -331,7 +334,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalDependencies>Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -341,13 +344,13 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>USE_OGG;USE_FLAC;USE_MP3;MINIMP3_IMPLEMENTATION;SPNG_STATIC;EXPORT_C_SHARP_API;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_FLAC;USE_MP3;SPNG_STATIC;EXPORT_C_SHARP_API;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\XeCore\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <Optimization>MinSpace</Optimization>
+      <Optimization>MaxSpeed</Optimization>
       <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -356,7 +359,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalDependencies>Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

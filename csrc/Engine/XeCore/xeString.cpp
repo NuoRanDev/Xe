@@ -1,4 +1,4 @@
-import std;
+﻿import std;
 
 import xe.Core.xeString;
 
@@ -35,7 +35,7 @@ namespace xe
 		else if (c >= 0xF5 || (c & 0xFE) == 0xC0)
 		{
 			// "octet values c0, c1, f5 to ff never appear"
-			XE_WARNING_OUTPUT("octet values c0, c1, f5 to ff never appear");
+			XE_WARNING_OUTPUT("<FUNCTION: XESTRING> octet values c0, c1, f5 to ff never appear");
 			return -1;
 		}
 		else
@@ -58,7 +58,7 @@ namespace xe
 			if (utf32_str < CODE_UP[i]) break;
 		if (i == len)
 		{
-			XE_WARNING_OUTPUT("The utf32 string is invalid");
+			XE_WARNING_OUTPUT("<FUNCTION: XESTRING> The utf32 string is invalid");
 			return 0;
 		}
 		len = i + 1;
@@ -90,7 +90,7 @@ namespace xe
 
 		if (b < 0xC0 || b > 0xFD)
 		{
-			XE_ERROR_OUTPUT("the src is invalid");
+			XE_ERROR_OUTPUT("<FUNCTION: XESTRING> The src is invalid");
 			return;
 		} // the src is invalid  
 
@@ -127,7 +127,7 @@ namespace xe
 			b = src[i];
 			if (b < 0x80 || b > 0xBF)
 			{
-				XE_ERROR_OUTPUT("the src is invalid");
+				XE_ERROR_OUTPUT("<FUNCTION: XESTRING> the src is invalid");
 				return; // the src is invalid  
 			}
 			des = (des << 6) + (b & 0x3F);
@@ -138,7 +138,7 @@ namespace xe
 	{
 		if (!utf8 && alloc_size)
 		{
-			XE_WARNING_OUTPUT("Utf8 text not coherent");
+			XE_WARNING_OUTPUT("<FUNCTION: XESTRING> Utf8 text not coherent");
 			return 0;
 		}
 		int count = 0;
@@ -148,14 +148,14 @@ namespace xe
 			int type = Utf8ByteType(*utf8);
 			if (!Utf8BypeIsValidLeadingByte(type) || utf8 + type > stop)
 			{
-				XE_WARNING_OUTPUT("Utf8 text not coherent");
+				XE_WARNING_OUTPUT("<FUNCTION: XESTRING> Utf8 text not coherent");
 				return 0;  // Sequence extends beyond end.
 			}
 			while ((type--) > 1) {
 				++utf8;
 				if (!Utf8ByteIsContinuation(*utf8))
 				{
-					XE_WARNING_OUTPUT("Utf8 text not coherent");
+					XE_WARNING_OUTPUT("<FUNCTION: XESTRING> Utf8 text not coherent");
 					return 0;
 				}
 			}
@@ -227,7 +227,7 @@ namespace xe
 				cur_str_ptr++;
 				if (!Utf8ByteIsContinuation(*cur_str_ptr))
 				{
-					XE_WARNING_OUTPUT("Utf8 text not coherent");
+					XE_WARNING_OUTPUT("<FUNCTION: XESTRING> Utf8 text not coherent");
 					return 0;
 				}
 			}
@@ -244,7 +244,7 @@ namespace xe
 				need_copy_offset++;
 				if (!Utf8ByteIsContinuation(*cur_str_ptr))
 				{
-					XE_WARNING_OUTPUT("Utf8 text not coherent");
+					XE_WARNING_OUTPUT("<FUNCTION: XESTRING> Utf8 text not coherent");
 					return 0;
 				}
 			}
@@ -304,7 +304,7 @@ namespace xe
 		char32_t output_character;
 		if (characters_number < 0 || characters_number>characters_data_size)
 		{
-			XE_WARNING_OUTPUT("OUT OF STRING!");
+			XE_WARNING_OUTPUT("<FUNCTION: XESTRING> Out of string");
 			return U'\0';
 		}
 		while (_cur_number != characters_number)
@@ -314,7 +314,7 @@ namespace xe
 				cur_str_ptr++;
 				if (!Utf8ByteIsContinuation(*cur_str_ptr))
 				{
-					XE_WARNING_OUTPUT("Utf8 text not coherent");
+					XE_WARNING_OUTPUT("<FUNCTION: XESTRING> Utf8 text not coherent");
 					return U'\0';
 				}
 			}

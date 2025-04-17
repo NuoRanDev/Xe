@@ -4,10 +4,20 @@ support 3D and 2D
 ## Audio
 
 ### Marco List
-#### $\quad$  1. USE_OGG
+#### $\quad$  1. NOT_USE_OGG
 $\qquad$ Note:
 
-$\qquad$ $\quad$ Using libvorbis support
+$\qquad$ $\quad$ Not using libvorbis support
+
+$\qquad$ Disable Function:
+
+$\qquad$ $\quad$ bool OpenOGGData(AudioEncodedData* ogg_data, xeAnyType& dec_typpe, PcmBlock& pcm_block)
+
+$\qquad$ $\quad$ PlayState GetOGGPcm(xeAnyType dec_typpe, PcmBlock& pcm_block)
+
+$\qquad$ $\quad$ bool OGGSeek(xeAnyType dec_typpe, xeSize pos)
+
+$\qquad$ $\quad$ void CloseOGGData(xeAnyType dec_typpe)
 
 #### $\quad$  2. USE_FLAC
 $\qquad$ Note:
@@ -17,11 +27,31 @@ $\qquad$ $\quad$ Using libflac support
 #### $\quad$ 3. USE_MP3
 $\qquad$ Note:
 
-$\qquad$ $\quad$ Using libminimp3 support
+$\qquad$ $\quad$ Using mpg123 support
+
+$\qquad$ Enable Function:
+
+$\qquad$ $\quad$ bool OpenMP3Data(AudioEncodedData* mp3_data, xeAnyTypePtr& dec_typpe, PcmBlock& pcm_block);
+
+$\qquad$ $\quad$ PlayState GetMP3Pcm(xeAnyTypePtr dec_typpe, PcmBlock& pcm_block);
+
+$\qquad$ $\quad$ bool MP3Seek(xeAnyTypePtr dec_typpe, xeSize pos);
+
+$\qquad$ $\quad$ void CloseMP3Data(AudioEncodedData* mp3_data, xeAnyTypePtr dec_typpe);
 
 ## Tesure
+### Marco List
+#### $\quad$  1. USE_AVIF
+$\qquad$ Note:
+
+$\qquad$ $\quad$ Using libavif support
+
+$\qquad$ Enable Function:
+
+$\qquad$ $\quad$ std::unique_ptr\<Testure\> DecodeAVIF(xeByte* avif_buffer, xeSize file_size)
 
 ## Core
+### Marco List
 #### $\quad$  OPEN_CLR
 $\qquad$ Note:
 

@@ -1,4 +1,4 @@
-import xe.Testure.decode.private_Imgdecoder;
+﻿import xe.Testure.decode.private_Imgdecoder;
 
 import std;
 
@@ -26,7 +26,7 @@ namespace xe
 		spng_ctx* ctx = spng_ctx_new(0);
 		if (ctx == nullptr)
 		{
-			XE_WARNING_OUTPUT("LIB: <Libspng> init context failed");
+			XE_WARNING_OUTPUT("<LIB: LIBSPNG> init context failed");
 			return nullptr;
 		}
 
@@ -34,7 +34,7 @@ namespace xe
 		if (ret)
 		{
 			spng_ctx_free(ctx);
-			XE_WARNING_OUTPUT("LIB: <Libspng> Load data failed");
+			XE_WARNING_OUTPUT("<LIB: LIBSPNG> Load data failed");
 			return nullptr;
 		}
 
@@ -42,7 +42,7 @@ namespace xe
 		if (ret)
 		{
 			spng_ctx_free(ctx);
-			XE_WARNING_OUTPUT("LIB: <Libspng> Get header information data failed");
+			XE_WARNING_OUTPUT("<LIB: LIBSPNG> Get header information data failed");
 			return nullptr;
 		}
 
@@ -50,7 +50,7 @@ namespace xe
 		if (ihdr.bit_depth != 8)
 		{
 			spng_ctx_free(ctx);
-			XE_WARNING_OUTPUT(std::format("MOD: <DecodePNG> Image data is broken. Image bit depth is {0}, XE support Bit depthis 8!", ihdr.bit_depth).c_str());
+			XE_WARNING_OUTPUT(std::format("<LIB: LIBSPNG> Image data is broken. Image bit depth is {0}, XE support Bit depthis 8!", ihdr.bit_depth).c_str());
 			return nullptr;
 		}
 
@@ -74,7 +74,7 @@ namespace xe
 
 		default:
 			spng_ctx_free(ctx);
-			XE_WARNING_OUTPUT("MOD: <DecodePNG> Image data is broken. Not support this color format");
+			XE_WARNING_OUTPUT("<LIB: LIBSPNG> image data is broken. Not support this color format");
 			return nullptr;
 		}
 
@@ -82,7 +82,7 @@ namespace xe
 		if (need_new_size != img->testure_size)
 		{
 			spng_ctx_free(ctx);
-			XE_WARNING_OUTPUT("MOD: <DecodePNG> Image data is broken. Alloc size failed");
+			XE_WARNING_OUTPUT("<LIB: LIBSPNG> Image data is broken. Alloc size failed");
 			return nullptr;
 		}
 		spng_decode_image(ctx, img->pixel_data, need_new_size, fmt, 0);

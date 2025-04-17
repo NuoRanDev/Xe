@@ -6,6 +6,16 @@ import xe.Core.xeApplication;
 import xe.Core.xeAlloc;
 import xe.Core.CoreClrOutput;
 
+int main()
+{
+	xe::xeString str = "Hello, World!";
+	str.Append(xe::xeString("ADD str"));
+	std::cout << str << std::endl;
+	return 0;
+}
+
+
+/*
 import xe.IO.xeOMmapfstream;
 
 import xe.Testure.xeTestureCore;
@@ -28,41 +38,27 @@ int main(int argc, char* argv[])
 	if (!(xe::Application::LaodApplication(argc, argv)))
 		return xe::Application::DestroyApplication();
 
-	const ALCchar* devices = alcGetString(nullptr, ALC_DEFAULT_ALL_DEVICES_SPECIFIER);
 
-	ALCdevice* device = alcOpenDevice(nullptr);
-	if (!device) {
-		std::cerr << "Failed to open OpenAL device" << std::endl;
-		return xe::Application::DestroyApplication();
-	}
 
-	ALCcontext* context = alcCreateContext(device, nullptr);
-	if (!alcMakeContextCurrent(context)) {
-		std::cerr << "Failed to make OpenAL context current" << std::endl;
-		alcCloseDevice(device);
-		return xe::Application::DestroyApplication();
-	}
-
-	
 	xe::oMmapfstream file;
-	file.OpenFile("C:\\Users\\root\\Desktop\\Destination.ogg");
+	file.OpenFile("C:\\Users\\root\\Desktop\\zero.mp3");
 	xe::AudioEncodedData encoded_audio_data;
-	encoded_audio_data._size = file.file_size;
+	encoded_audio_data.size = file.file_size;
 	encoded_audio_data.solution = xe::xeAudioCompressSolution::OGG;
 	encoded_audio_data.data = xe::xeMalloc<xe::xeByte>(file.file_size);
 	encoded_audio_data.cur_ptr = encoded_audio_data.data;
 
-	file.FstraemStartMemcpyOut<xe::xeUint8>(encoded_audio_data.data, encoded_audio_data._size);
+	file.FstraemStartMemcpyOut<xe::xeUint8>(encoded_audio_data.data, encoded_audio_data.size);
 
-	xe::xeAnyType type_audio = nullptr;
+	xe::xeAnyTypePtr type_audio = nullptr;
 
 	xe::PcmBlock pcm_block;
-	xe::OpenOGGData(&encoded_audio_data, type_audio, pcm_block);
+	//xe::OpenOGGData(&encoded_audio_data, type_audio, pcm_block);
+	xe::OpenMP3Data(&encoded_audio_data, &type_audio, &pcm_block);
 
 	std::vector<std::int8_t> audio_pcm_data;
-	
 
-	while (xe::GetOGGPcm(type_audio, pcm_block) != xe::PlayState::_END)
+	while (xe::GetMP3Pcm(type_audio, &pcm_block) != xe::PlayState::_END)
 	{
 		audio_pcm_data.insert(audio_pcm_data.end(), pcm_block.data, pcm_block.data + pcm_block.buffer_in);
 	}
@@ -90,10 +86,9 @@ int main(int argc, char* argv[])
 
 	alDeleteSources(1, &source);
 	alDeleteBuffers(1, &buffer);
-	alcDestroyContext(context);
-	alcCloseDevice(device);
 
-	xe::xeFree(encoded_audio_data.data);
+	xe::CloseMP3Data(&encoded_audio_data, type_audio);
 
 	return xe::Application::DestroyApplication();
 }
+*/

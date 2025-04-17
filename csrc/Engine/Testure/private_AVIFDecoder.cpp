@@ -1,3 +1,4 @@
+﻿#if define(USE_AVIF)
 import xe.Testure.decode.private_Imgdecoder;
 
 import std;
@@ -19,26 +20,26 @@ namespace xe
 
 		avifDecoder* decoder = avifDecoderCreate();
 		if (decoder == NULL) {
-			XE_WARNING_OUTPUT("LIB <DecodeAVIF> Memory allocation failure");
+			XE_WARNING_OUTPUT("<LIB: AVIF> DecodeAVIFing Memory allocation failure");
 			return nullptr;
 		}
 
 		avifResult result = avifDecoderSetIOMemory(decoder, avif_buffer, file_size);
 		if (result != AVIF_RESULT_OK) {
-			XE_WARNING_OUTPUT("LIB <DecodeAVIF> Cannot set IO on avifDecoder:");
+			XE_WARNING_OUTPUT("<LIB: AVIF> DecodeAVIFing Cannot set IO on avifDecoder:");
 			goto cleanup;
 		}
 
 		result = avifDecoderParse(decoder);
 		if (result != AVIF_RESULT_OK) {
-			XE_WARNING_OUTPUT(std::format("MOD <DecodeAVIF> Failed to decode image: {}", avifResultToString(result)).c_str());
+			XE_WARNING_OUTPUT(std::format("<LIB: AVIF> DecodeAVIFing Failed to decode image: {}", avifResultToString(result)).c_str());
 			goto cleanup;
 		}
 
 		avifRGBImageSetDefaults(&avif_rgb, decoder->image);
 		result = avifRGBImageAllocatePixels(&avif_rgb);
 		if (result != AVIF_RESULT_OK) {
-			XE_WARNING_OUTPUT(std::format("LIB <DecodeAVIF> allocation of RGB samples failed: {}\n", avifResultToString(result)).c_str());
+			XE_WARNING_OUTPUT(std::format("<LIB: AVIF> DecodeAVIFing allocation of RGB samples failed: {}\n", avifResultToString(result)).c_str());
 			goto cleanup;
 		}
 
@@ -51,3 +52,4 @@ namespace xe
 		return nullptr;
 	}
 }
+#endif // defined USE_AVIF

@@ -1,6 +1,7 @@
 ﻿export module xe.Core.xeBaseDataType;
 
 import xe.Core.xeOrdinals;
+import xe.Core.xeAlloc;
 
 namespace xe
 {
@@ -26,18 +27,30 @@ namespace xe
 
 	export struct TestureEncodedData
 	{
-		xeColorChannel encodesolution;
-		xeSize _size;
-		xeByte* data;
+		xeU8cstr		name[512];
+		xeColorChannel	encodesolution;
+		xeSize			size;
+		xeByte*			data;
+		TestureEncodedData() = default;
+		~TestureEncodedData()
+		{
+			xeFree(data);
+		}
 	};
 
 	// Audio
 	export struct AudioEncodedData
 	{
+		xeU8cstr				name[512];
 		xeAudioCompressSolution solution;
-		xeByte* cur_ptr;
-		xeSize _size;
-		xeByte* data;
+		xeByte*					cur_ptr;
+		xeSize					size;
+		xeByte*					data;
+		AudioEncodedData() = default;
+		~AudioEncodedData()
+		{
+			xeFree(data);
+		}
 	};
 
 	// 2 channel pixel 
@@ -163,7 +176,7 @@ namespace xe
 	export class xeFastExtension :public vec4_i8
 	{
 	public:
-		bool operator==(const char* start_str_ptr)
+		bool operator==(const xeU8cstr* start_str_ptr)
 		{
 			const xeUint64* external = (xeUint64*)start_str_ptr;
 			const xeUint64* internal = (xeUint64*)(&this->n1);
@@ -172,7 +185,7 @@ namespace xe
 		xeFastExtension() = default;
 		constexpr xeFastExtension(const char str[4]) :vec4_i8(str[0], str[1], str[2], str[3]) {}
 	};
-	export bool is4Extension(const char* main_csharp_str, int64_t len_1, xeFastExtension _4_extension)
+	export bool is4Extension(const xeU8cstr* main_csharp_str, int64_t len_1, xeFastExtension _4_extension)
 	{
 		return _4_extension == (main_csharp_str + len_1 - 1);
 	}

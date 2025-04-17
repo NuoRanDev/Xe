@@ -1,11 +1,11 @@
-﻿import xe.AssetIO.xeBasicAsset;
-
+﻿import xe.AssetIO.xeAssetType;
 
 import std;
 
 import xe.Core.xeOrdinals;
 import xe.Core.xeBaseDataType;
 import xe.Core.CoreClrOutput;
+import xe.Core.xeAlloc;
 
 //import xe.AssetIO.xeBasicData;
 
@@ -18,87 +18,79 @@ namespace xe
 
 	std::unique_ptr<TestureEncodedData> TestureEncodedDataReader::GetTesture(const xeInt64 index)
 	{
-		std::unique_ptr<TestureEncodedData> output;
-		xeByte* decompress_data = nullptr;
-		xeUint64 file_size = 0;
-		const char* file_name = GetDecompressedDataName(index);
-		decompress_data = GetDecompressedData(index, file_size);
+		auto output = std::make_unique<TestureEncodedData>();
+
+		xeByte* decompress_data		= nullptr;
+		xeUint64 file_size			= 0;
+		const xeU8cstr* file_name	= GetAssetName(index);
+		decompress_data				= GetAsset(index);
+
 		// decompress failed
 		if (decompress_data == nullptr)
 		{
 			return nullptr;
 		}
-		if (is4Extension(file_name, std::strlen(file_name), IMG_VEC3))
+
+		if (is4Extension(file_name, std::strlen(reinterpret_cast<const char*>(file_name)), IMG_VEC3))
 		{
 			output->encodesolution = xeColorChannel::RGB;
-			output->data = decompress_data;
-			output->_size = file_size;
-			return output;
 		}
-		if (is4Extension(file_name, std::strlen(file_name), IMG_VEC4))
+		if (is4Extension(file_name, std::strlen(reinterpret_cast<const char*>(file_name)), IMG_VEC4))
 		{
 			output->encodesolution = xeColorChannel::RGBA;
-			output->data = decompress_data;
-			output->_size = file_size;
-			return output;
 		}
-		if (is4Extension(file_name, std::strlen(file_name), IMG_BOOL))
+		if (is4Extension(file_name, std::strlen(reinterpret_cast<const char*>(file_name)), IMG_BOOL))
 		{
 			output->encodesolution = xeColorChannel::BOOL;
-			output->data = decompress_data;
-			output->_size = file_size;
-			return output;
 		}
 		else
 		{
-			XE_WARNING_OUTPUT(std::format("{0} FILE NAME IS BROKEN", file_name).c_str());
+			XE_WARNING_OUTPUT(std::format("<CLASS: TestureEncodedDataReader> File : \"{0}\" name is broken", reinterpret_cast<const char*>(file_name)).c_str());
+			xeFree(decompress_data);
 			return nullptr;
 		}
-	}
-
-	std::unique_ptr<TestureEncodedData> TestureEncodedDataReader::GetTesture(const char* name)
-	{
-		const xeInt64 index = GetDecompressedDataIndex(name);
-		return GetTesture(index);
+		std::memcpy(output->name, file_name, 512);
+		output->data = decompress_data;
+		output->size = file_size;
+		return output;
 	}
 
 	// the audio file extension
-	constexpr char AUDIO_OGG8[4] = { 'o','g','g','8' };  // 8bit  decode ogg
-	constexpr char AUDIO_FLAC[4] = { 'f','l','a','c' };  // 16bit decode flac
+	constexpr char AUDIO_OGG8[4] = { 'o','g','g','\0' };  // decode ogg
+	constexpr char AUDIO_FLAC[4] = { 'f','l','a','c' };   // decode flac
 
 	std::unique_ptr<AudioEncodedData> AudioEncodedDataReader::GetAudio(const xeInt64 index)
 	{
-		std::unique_ptr<AudioEncodedData> output ;
+		auto output = std::make_unique<AudioEncodedData>();
+
 		xeByte* decompress_data = nullptr;
 		xeUint64 file_size = 0;
-		const char* file_name = GetDecompressedDataName(index);
-		decompress_data = GetDecompressedData(index, file_size);
-		if (!decompress_data)
+		const xeU8cstr* file_name = GetAssetName(index);
+		decompress_data = GetAsset(index);
+
+		if (decompress_data == nullptr)
 		{
 			return nullptr;
 		}
-		if (is4Extension(file_name, std::strlen(file_name), AUDIO_OGG8))
+		if (is4Extension(file_name, std::strlen(reinterpret_cast<const char*>(file_name)), AUDIO_OGG8))
 		{
 			output->solution = xeAudioCompressSolution::OGG;
-			output->data = decompress_data;
-			output->_size = file_size;
-			return output;
 		}
-		if (is4Extension(file_name, std::strlen(file_name), AUDIO_FLAC))
+		if (is4Extension(file_name, std::strlen(reinterpret_cast<const char*>(file_name)), AUDIO_FLAC))
 		{
 			output->solution = xeAudioCompressSolution::FLAC;
-			output->data = decompress_data;
-			output->_size = file_size;
-			return output;
 		}
-		// NAME BROKEN
-		XE_WARNING_OUTPUT(std::format("{0} FILE NAME IS BROKEN", file_name).c_str());
-		return nullptr;
+		else
+		{
+			// NAME BROKEN
+			XE_WARNING_OUTPUT(std::format("<CLASS: AudioEncodedDataReader> File : \"{0}\" name is broken", reinterpret_cast<const char*>(file_name)).c_str());
+			return nullptr;
+		}
+		std::memcpy(output->name, file_name, 512);
+		output->data = decompress_data;
+		output->size = file_size;
+		output->cur_ptr = output->data;
+		return output;
 	}
 
-	std::unique_ptr<AudioEncodedData> AudioEncodedDataReader::GetAudio(const char* name)
-	{
-		const xeInt64 index = GetDecompressedDataIndex(name);
-		return GetAudio(index);
-	}
 }

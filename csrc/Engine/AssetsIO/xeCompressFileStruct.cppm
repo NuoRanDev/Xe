@@ -1,4 +1,6 @@
-export module xe.AssetIO.xeCompressFileStruct;
+﻿export module xe.AssetIO.xeCompressFileStruct;
+
+import std;
 
 import xe.Core.xeOrdinals;
 
@@ -10,8 +12,17 @@ namespace xe
 	{
 		NONE = 0,
 		ZSTD = 1,
-		LZMA = 2
 	};
+
+	export const xeU8cstr* GetCompressSolution(xeCompressSolution index)
+	{
+		if (index == xeCompressSolution::ZSTD)
+			return u8"ZSTD";
+		else if (index == xeCompressSolution::NONE)
+			return u8"NONE";
+		else
+			return u8"NONE";
+	}
 
 	export namespace xeAssetFileType
 	{
@@ -27,13 +38,13 @@ namespace xe
 		}
 
 		// ASSET FILE HEADER
-		const xeUint64 IMAGE_ASSET_FILE_HEADER	= xeGetCompressType("IMAGE\0\0");
-		const xeUint64 AUDIO_ASSET_FILE_HEADER	= xeGetCompressType("AUDIO\0\0");
-		const xeUint64 VIDEO_ASSET_FILE_HEADER	= xeGetCompressType("VIDEO\0\0");
-		const xeUint64 TEXT_ASSET_FILE_HEADER	= xeGetCompressType("TEXT\0\0\0");
-		const xeUint64 MODEL_ASSET_FILE_HEADER	= xeGetCompressType("MODEL\0\0");
-		const xeUint64 SHADER_ASSET_FILE_HEADER = xeGetCompressType("SHADER\0");
-		const xeUint64 OTHER_ASSET_FILE_HEADER	= 0;
+		constexpr xeUint64 IMAGE_ASSET_FILE_HEADER	= xeGetCompressType("IMAGE\0\0");
+		constexpr xeUint64 AUDIO_ASSET_FILE_HEADER	= xeGetCompressType("AUDIO\0\0");
+		constexpr xeUint64 VIDEO_ASSET_FILE_HEADER	= xeGetCompressType("VIDEO\0\0");
+		constexpr xeUint64 TEXT_ASSET_FILE_HEADER	= xeGetCompressType("TEXT\0\0\0");
+		constexpr xeUint64 MODEL_ASSET_FILE_HEADER	= xeGetCompressType("MODEL\0\0");
+		constexpr xeUint64 SHADER_ASSET_FILE_HEADER = xeGetCompressType("SHADER\0");
+		constexpr xeUint64 OTHER_ASSET_FILE_HEADER	= 0;
 	};
 
 	// File block eare
@@ -41,11 +52,19 @@ namespace xe
 	export struct xeCompressFileBlockInfo
 	{
 		xeU8cstr file_name[512];
-		xeUint64 _block_start;
-		xeUint64 _compress_size;
-		xeUint64 _not_compress_size;
+		xeUint64 block_start;
+		xeUint64 compressed_size;
+		xeUint64 source_size;
 	};
 
+	export bool operator == (xeCompressFileBlockInfo block_info, const xeU8cstr* block_name)
+	{
+		if (std::strcmp(reinterpret_cast<char*>(block_info.file_name), reinterpret_cast<const char*>(block_name)) == 0)
+			return true;
+		return false;
+	}
+
+	export constexpr xeU8cstr XE_ASSET_HEADER[] = u8"XEASSET\0\0\0\0\0\0\0\0";
 
 	export template <xeUint64 load_header, xeCompressSolution load_compress_solution> struct xeCompressAssetFileHeaderFormat
 	{
@@ -55,7 +74,7 @@ namespace xe
 		// Compressing's solution
 		xeCompressSolution compress_solution = load_compress_solution;
 
-		xeUint64 file_number;
+		xeUint64 block_number;
 	};
 
 	// Default File
@@ -63,9 +82,9 @@ namespace xe
 
 	// Image File support jpge png
 	// Image compressing's solution is defaulted the LZMA
-	export using xeImageCompressFileHeaderFormat = xeCompressAssetFileHeaderFormat<xeAssetFileType::IMAGE_ASSET_FILE_HEADER, xeCompressSolution::LZMA>;
+	export using xeImageCompressFileHeaderFormat = xeCompressAssetFileHeaderFormat<xeAssetFileType::IMAGE_ASSET_FILE_HEADER, xeCompressSolution::ZSTD>;
 
-	// Audio File support ogg flac
+	// Audio File support ogg flac mp3
 	// Audio compressing's solution is defaulted the NONE
 	export using xeAudioCompressFileHeaderFormat = xeCompressAssetFileHeaderFormat<xeAssetFileType::AUDIO_ASSET_FILE_HEADER, xeCompressSolution::ZSTD>;
 

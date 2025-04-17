@@ -9,59 +9,65 @@ import xe.Core.xeBaseDataType;
 
 namespace xe
 {
-	xeSize ReadAudio(void* dst, xeSize size1, xeSize size2, void* class_data)
+	xeSize ReadAudioDecodedData(xeAnyTypePtr dst, xeSize type_size, xeSize type_number, xeAnyTypePtr src)
 	{
-		auto ogg_data = reinterpret_cast<AudioEncodedData*>(class_data);
-		xeSize len = size1 * size2;
-		if (ogg_data->cur_ptr + len > ogg_data->data + ogg_data->_size)
+		auto decoded_data = reinterpret_cast<AudioEncodedData*>(src);
+		xeSize len = type_size * type_number;
+		if (decoded_data->cur_ptr + len > decoded_data->data + decoded_data->size)
 		{
-			len = ogg_data->data + ogg_data->_size - ogg_data->cur_ptr;
+			len = decoded_data->data + decoded_data->size - decoded_data->cur_ptr;
 		}
-		std::memcpy(dst, ogg_data->cur_ptr, len);
-		ogg_data->cur_ptr += len;
+		std::memcpy(dst, decoded_data->cur_ptr, len);
+		decoded_data->cur_ptr += len;
 		return len;
 	}
 
-	int SeekAudio(void* class_data, xeInt64 to, int type)
+	int SeekAudioDecodedData(xeAnyTypePtr src, xeInt64 offset, int type)
 	{
-		auto ogg_data = reinterpret_cast<AudioEncodedData*>(class_data);
+		auto decoded_data = reinterpret_cast<AudioEncodedData*>(src);
 		switch (type)
 		{
 		case SEEK_CUR:
-			ogg_data->cur_ptr += to;
+			decoded_data->cur_ptr += offset;
 			break;
 		case SEEK_END:
-			ogg_data->cur_ptr = ogg_data->data + ogg_data->_size - to;
+			decoded_data->cur_ptr = decoded_data->data + decoded_data->size - offset;
 			break;
 		case SEEK_SET:
-			ogg_data->cur_ptr = ogg_data->data + to;
+			decoded_data->cur_ptr = decoded_data->data + offset;
 			break;
 		default:
 			return -1;
 		}
-		if (ogg_data->cur_ptr < ogg_data->data)
+		if (decoded_data->cur_ptr < decoded_data->data)
 		{
-			ogg_data->cur_ptr = ogg_data->data;
+			decoded_data->cur_ptr = decoded_data->data;
 			return -1;
 		}
-		if (ogg_data->cur_ptr > ogg_data->data + ogg_data->_size)
+		if (decoded_data->cur_ptr > decoded_data->data + decoded_data->size)
 		{
-			ogg_data->cur_ptr = ogg_data->data + ogg_data->_size;
+			decoded_data->cur_ptr = decoded_data->data + decoded_data->size;
 			return -1;
 		}
 		return 0;
 	}
 
-	int CloseAudio(void* class_data)
+	int CloseAudioDecodedData(xeAnyTypePtr src)
 	{
-		auto ogg_data = reinterpret_cast<AudioEncodedData*>(class_data);
-		ogg_data->cur_ptr = ogg_data->data;
+		auto decoded_data = reinterpret_cast<AudioEncodedData*>(src);
+		decoded_data->cur_ptr = decoded_data->data;
 		return 0;
 	}
 
-	long TellAudio(void* class_data)
+	long TellAudioDecodedData(xeAnyTypePtr src)
 	{
-		auto ogg_data = reinterpret_cast<AudioEncodedData*>(class_data);
-		return (long)(ogg_data->cur_ptr - ogg_data->data);
+		auto decoded_data = reinterpret_cast<AudioEncodedData*>(src);
+		return (long)(decoded_data->cur_ptr - decoded_data->data);
+	}
+
+	bool IsAudioDecodedDataEOF(xeAnyTypePtr src)
+	{
+		auto decoded_data = reinterpret_cast<AudioEncodedData*>(src);
+		return decoded_data->cur_ptr == decoded_data->data + decoded_data->size;
 	}
 }

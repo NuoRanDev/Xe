@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="AssetPacking">
+      <UniqueIdentifier>{d01687b2-ee19-432d-a1f5-4df75e310322}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetPacking\Module Files">
+      <UniqueIdentifier>{aa1d3304-0c92-4313-a8ea-ea9be055fc12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetPacking\Source Files">
+      <UniqueIdentifier>{a2e87286-5437-4d52-aa48-d0e75e506a6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetPacking\Module Files\compress">
+      <UniqueIdentifier>{02b5f261-414c-43d7-af4d-55bd84e443b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetPacking\Source Files\compress">
+      <UniqueIdentifier>{4d9d465a-7076-41b6-97a8-f0bd6bbd7456}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetsIO">
+      <UniqueIdentifier>{03c95ac2-7ce9-440a-be83-5dccc17dc736}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetsIO\Module Files">
+      <UniqueIdentifier>{dc190196-7674-4a3e-9e91-a240bdefb3a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XeCore">
+      <UniqueIdentifier>{6a2bc312-9c20-4625-b3c7-fc093bdae06d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XeCore\Module Files">
+      <UniqueIdentifier>{cc5b7f74-aaf5-45ea-a014-215625f9338f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XeCore\Source Files">
+      <UniqueIdentifier>{aeb8235a-bf45-42e4-a424-0617b33f499a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\csrc\AssetsPacking\AssetsPacking.cppm">
+      <Filter>AssetPacking\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\AssetsPacking\AssetsPacking.cpp">
+      <Filter>AssetPacking\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\AssetsPacking\private_Compress.cppm">
+      <Filter>AssetPacking\Module Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\AssetsPacking\private_CompressZstd.cpp">
+      <Filter>AssetPacking\Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeCompressFileStruct.cppm">
+      <Filter>AssetsIO\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeAlloc.cppm">
+      <Filter>XeCore\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeBaseDataType.cppm">
+      <Filter>XeCore\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeCoreClrOutput.cppm">
+      <Filter>XeCore\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeOrdinals.cppm">
+      <Filter>XeCore\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeCoreClrOutput.cpp">
+      <Filter>XeCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\AssetsPacking\ExportCsharpApi.ixx">
+      <Filter>AssetPacking</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,10 +1,11 @@
-export module xe.IO.xeOMmapfstream;
+﻿export module xe.IO.xeOMmapfstream;
 
 import std;
 
 import xe.Core.xeString;
 import xe.Core.xeOrdinals;
 import xe.Core.CoreClrOutput;
+
 
 namespace xe
 {
@@ -17,7 +18,7 @@ namespace xe
 		{
 			if (file_size < offset_byte)
 			{
-				XE_ERROR_OUTPUT(std::format("Out of memry : offset size {0}, file size {1}", offset_byte, file_size).c_str());
+				XE_ERROR_OUTPUT(std::format("<Class: BasicMmapfstream> Out of memry : offset size {0}, file size {1}", offset_byte, file_size).c_str());
 				return nullptr;
 			}
 			return (T*)((xeByte*)pfile_start + offset_byte);
@@ -47,33 +48,30 @@ namespace xe
 	export class oMmapfstream final : public BasicMmapfstream
 	{
 	public:
-		virtual bool OpenFile(const xeU8cstr* str);
-
-		bool OpenFile(xeString file_name)
-		{
-			return OpenFile(file_name.data());
-		}
 
 		template<typename T> bool FstraemStartMemcpyOut(T* dst, size_t number)
 		{
-			if (file_size < number * sizeof(T))
-			{
-				XE_ERROR_OUTPUT(std::format("Out of memry : offset size {0}, file size {1}", sizeof(T) * number, file_size).c_str());
-				return false;
-			}
-			std::memcpy(dst, pfile_start, sizeof(T) * number);
-			return true;
+			return FstraemMemcpyOut(0, dst, number);
 		}
 
-		template<typename T> bool FstraemMemcpyOut(T* dst, size_t offset_byte, size_t number)
+		template<typename T> bool FstraemMemcpyOut(size_t offset_byte, T* dst, size_t number)
 		{
 			if (file_size < (offset_byte + number * sizeof(T)))
 			{
-				XE_ERROR_OUTPUT(std::format("Out of memry : offset size {0}, file size {1}", sizeof(T) * number, file_size).c_str());
+				XE_ERROR_OUTPUT(std::format("<Class: BasicMmapfstream> Out of memry : offset size {0}, file size {1}", sizeof(T) * number, file_size).c_str());
 				return false;
 			}
 			std::memcpy(dst, (xeByte*)pfile_start + offset_byte, number * sizeof(T));
 			return true;
 		}
+
+#if !defined(EXPORT_C_SHARP_API)
+		bool OpenFile(xeString file_name)
+		{
+			return OpenFile(file_name.data());
+		}
+#endif // defined(EXPORT_C_SHARP_API)
+
+		bool OpenFile(const xeU8cstr* str);
 	};
 } // namspace xe is end

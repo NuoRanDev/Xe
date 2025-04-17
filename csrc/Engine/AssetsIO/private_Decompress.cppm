@@ -1,13 +1,18 @@
-export module xe.AssetIO.private_Decompress;
+﻿export module xe.AssetIO.private_Decompress;
 
 import xe.Core.xeOrdinals;
 
 namespace xe
 {
-	// compress by lzma
-	export bool DecompressLZMA(xeByte* input, xeUint64 compress_data_size, xeByte* output, xeUint64 _not_compress_size);
 	// compress by zstd
-	export bool DecompressZSTD(xeByte* input, xeUint64 compress_data_size, xeByte* output, xeUint64 _not_compress_size);
+	export bool DecompressZSTD(xeByte* input, xeSize compress_data_size, xeByte* output, xeSize source_size);
+
 	// not compress
-	export bool DecompressNone(xeByte* input, xeUint64 compress_data_size, xeByte* output, xeUint64 _not_compress_size);
+	export bool DecompressNone(xeByte* input, xeSize compress_data_size, xeByte* output, xeSize _not_compress_size)
+	{
+		// If do not compressed this data, this function will copy data from compress data to not compressed data
+		// So the comressed size must equal not-compressed size
+		std::memcpy(output, input, compress_data_size);
+		return true;
+	}
 }

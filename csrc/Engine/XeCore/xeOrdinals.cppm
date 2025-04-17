@@ -22,5 +22,5 @@ namespace xe
 
 	export using xeU8cstr		= char8_t;
 
-	export using xeAnyType		= void*;
+	export using xeAnyTypePtr	= void*;
 }

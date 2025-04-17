@@ -1,4 +1,4 @@
-export module xe.Core.xeString;
+﻿export module xe.Core.xeString;
 
 
 import std;
@@ -60,7 +60,7 @@ namespace xe
 		// exclude end of '\0'
 		[[nodiscard]] const xeInt64 length() const { return CharacterDataSize() - 1; }
 
-		[[nodiscard]] const char8_t* data()const { return characters_data; }
+		[[nodiscard]] const xeU8cstr* data()const { return characters_data; }
 
 		void Release()
 		{

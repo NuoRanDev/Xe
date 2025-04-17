@@ -15,23 +15,25 @@ namespace xe
 		std::unique_ptr<Testure> output;
 		switch (File->encodesolution)
 		{
+#if defined(USE_AVIF)
 		case xeColorChannel::RGB:
-			output = DecodeAVIF(File->data, File->_size);
+			output = DecodeAVIF(File->data, File->size);
 			if (output == nullptr)
 			{
-				XE_WARNING_OUTPUT("<Function> DecodeAVIF running Faild");
+				XE_WARNING_OUTPUT("<Function: DecodeAVIF> running Faild");
 				goto READING_IMG_FALIED;
 			}
 			return output;
+#endif // deinfed(USE_AVIF)
 		case xeColorChannel::BOOL:
 			// BOOL IS SAME ENCODE RGBA
 		case xeColorChannel::GRAY16:
 			// BOOL IS SAME ENCODE GRAY16
 		case xeColorChannel::RGBA:
-			output = DecodePNG(File->data, File->_size);
+			output = DecodePNG(File->data, File->size);
 			if (output == nullptr)
 			{
-				XE_WARNING_OUTPUT("<Function> DecodePNG running Faild");
+				XE_WARNING_OUTPUT("<Function: DecodePNG> running Faild");
 				goto READING_IMG_FALIED;
 			}
 			return output;

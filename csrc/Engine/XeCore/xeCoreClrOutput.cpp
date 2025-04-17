@@ -20,7 +20,7 @@ namespace xe
 		return;
 #endif // OPEN_CLR
 		std::string out_text = std::string("ERROR") + ":\t" + output_text + "\n";
-		fprintf(stderr, "Cannot read file: %s\n", out_text.c_str());
+		fprintf(stderr, "%s\n", out_text.c_str());
 		return;
 	}
 
@@ -31,7 +31,7 @@ namespace xe
 		return;
 #endif // OPEN_CLR
 		std::string out_text = std::string("WARNING") + ":\t" + output_text + "\n";
-		fprintf(stderr, "Cannot read file: %s\n", out_text.c_str());
+		fprintf(stderr, "%s\n", out_text.c_str());
 		return;
 	}
 
@@ -42,7 +42,7 @@ namespace xe
 		return;
 #endif // OPEN_CLR
 		std::string out_text = std::string("LOG") + ":\t" + output_text + "\n";
-		fprintf(stderr, "Cannot read file: %s\n", out_text.c_str());
+		fprintf(stderr, "%s\n", out_text.c_str());
 		return;
 	}
 }

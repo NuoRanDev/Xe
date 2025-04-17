@@ -34,10 +34,23 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\csrc\AssetsPacking\AssetsPacking.cpp" />
+    <ClCompile Include="..\..\csrc\AssetsPacking\AssetsPacking.cppm" />
+    <ClCompile Include="..\..\csrc\AssetsPacking\ExportCsharpApi.ixx" />
+    <ClCompile Include="..\..\csrc\AssetsPacking\private_Compress.cppm" />
+    <ClCompile Include="..\..\csrc\AssetsPacking\private_CompressZstd.cpp" />
+    <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeCompressFileStruct.cppm" />
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeAlloc.cppm" />
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeBaseDataType.cppm" />
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeCoreClrOutput.cpp" />
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeCoreClrOutput.cppm" />
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeOrdinals.cppm" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{0023A6FA-EFBB-4BA9-A317-0F38E9EBD74A}</ProjectGuid>
+    <ProjectGuid>{C53C6184-5FB0-49DA-84FC-985E34C1A9E2}</ProjectGuid>
     <RootNamespace>XE</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -69,26 +82,26 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_csharp|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_cpp|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_csharp|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -127,18 +140,38 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|x64'">
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
+    <ExternalIncludePath>$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\XeCore\;$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\Audio\</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_csharp|x64'">
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
+    <ExternalIncludePath>$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\XeCore\;$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\Audio\</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_cpp|x64'">
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
+    <ExternalIncludePath>$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\XeCore\;$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\Audio\</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_csharp|x64'">
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
+    <ExternalIncludePath>$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\XeCore\;$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\Audio\</ExternalIncludePath>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|x64'">
+    <VcpkgUseStatic>true</VcpkgUseStatic>
+    <VcpkgUseMD>true</VcpkgUseMD>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug_csharp|x64'">
+    <VcpkgUseStatic>true</VcpkgUseStatic>
+    <VcpkgUseMD>true</VcpkgUseMD>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release_cpp|x64'">
+    <VcpkgUseStatic>true</VcpkgUseStatic>
+    <VcpkgUseMD>true</VcpkgUseMD>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release_csharp|x64'">
+    <VcpkgUseStatic>true</VcpkgUseStatic>
+    <VcpkgUseMD>true</VcpkgUseMD>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|Win32'">
     <ClCompile>
@@ -200,26 +233,36 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>EXPORT_C_SHARP_API;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\XeCore\</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_csharp|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>EXPORT_C_SHARP_API;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\XeCore\</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_cpp|x64'">
@@ -228,8 +271,11 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>EXPORT_C_SHARP_API;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\XeCore\</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -237,6 +283,8 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_csharp|x64'">
@@ -245,8 +293,11 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>EXPORT_C_SHARP_API;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\csrc\Engine\IO\;$(SolutionDir)..\..\csrc\Engine\Testure\;$(SolutionDir)..\..\csrc\Engine\AssetsIO\;$(SolutionDir)..\..\csrc\Engine\Graphical\Widget\;$(SolutionDir)..\..\csrc\Engine\Graphical\Vulkan\;$(SolutionDir)..\..\csrc\Engine\Graphical\3D\;$(SolutionDir)..\..\csrc\Engine\Graphical\2D\;$(SolutionDir)..\..\csrc\Engine\Graphical\;$(SolutionDir)..\..\csrc\Engine\XeCore\</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -254,11 +305,10 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\csrc\XeStudio\main.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

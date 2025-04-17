@@ -32,7 +32,7 @@ namespace xe
 #endif // _DEBUG
 		if (!CreateInstance(instance_extensions, instance_extensions_count, xeString(context_name + "vulkan instance").c_str()))
 		{
-			XE_ERROR_OUTPUT("<LIB VULKAN> Failed to create instance");
+			XE_ERROR_OUTPUT("<LIB: VULKAN> Failed to create instance");
 			return false;
 		}
 		return true;
@@ -42,17 +42,17 @@ namespace xe
 	{
 		if (!SetupVulkanSelectPhysicalDevice())
 		{
-			XE_ERROR_OUTPUT("<LIB VULKAN> Failed to select physical device");
+			XE_ERROR_OUTPUT("<LIB: VULKAN> Failed to select physical device");
 			return false;
 		}
 		if (!CheckQueueFamily())
 		{
-			XE_ERROR_OUTPUT("<LIB VULKAN> Failed to set queue family");
+			XE_ERROR_OUTPUT("<LIB: VULKAN> Failed to set queue family");
 			return false;
 		}
 		if (!CreateLogicalDevice())
 		{
-			XE_ERROR_OUTPUT("<LIB VULKAN> Failed to create logical device");
+			XE_ERROR_OUTPUT("<LIB: VULKAN> Failed to create logical device");
 			return false;
 		}
 		return true;
@@ -108,7 +108,7 @@ namespace xe
 				}
 			}
 		}
-		XE_WARNING_OUTPUT("validation layer not support");
+		XE_WARNING_OUTPUT("<LIB: vulkan> validation layer not support");
 		return false;
 	}
 #endif // _DEBUG IS END
@@ -119,7 +119,7 @@ namespace xe
 			return true;
 		if (err < 0)
 		{
-			XE_ERROR_OUTPUT(std::format("LIB<vulkan> VkResult = {}", static_cast<xeInt64>(err)).c_str());
+			XE_ERROR_OUTPUT(std::format("<LIB: vulkan> VkResult = {}", static_cast<xeInt64>(err)).c_str());
 			return false;
 		}
 		return true;
@@ -170,7 +170,7 @@ namespace xe
 		if (!CheckVulkanError(state)) return false;
 		if (gpu_count == 0)
 		{
-			XE_ERROR_OUTPUT("<LIB VULKAN> NO GPU");
+			XE_ERROR_OUTPUT("<LIB: VULKAN> NO GPU");
 			return false;
 		}
 		std::vector<VkPhysicalDevice> gpus;
@@ -241,7 +241,7 @@ namespace xe
 			if (present_queue_family_index != -1 && graphics_queue_family_index != -1)
 				return true;
 		}
-		XE_ERROR_OUTPUT("<LIB VULKAN> Failed to find a suitable GPU");
+		XE_ERROR_OUTPUT("<LIB: VULKAN> Failed to find a suitable GPU");
 		return false;
 	}
 
@@ -282,7 +282,7 @@ namespace xe
 
 		if (vkCreateDevice(physical_device, &create_info, nullptr, &virtual_logical_device) != VK_SUCCESS)
 		{
-			XE_ERROR_OUTPUT("<LIB : VULKAN> Failed to create logical device!");
+			XE_ERROR_OUTPUT("<LIB: VULKAN> Failed to create logical device!");
 			return false;
 		}
 

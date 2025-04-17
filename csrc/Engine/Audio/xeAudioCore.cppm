@@ -35,11 +35,13 @@ namespace xe
 
 	export enum class PlayState :xeUint32 { _PLAY = 0, _END, _ERROR };
 
-	export xeSize ReadAudio(void* dst, xeSize size1, xeSize size2, void* class_data);
+	export xeSize ReadAudioDecodedData(xeAnyTypePtr dst, xeSize type_size, xeSize type_number, xeAnyTypePtr src);
 
-	export int SeekAudio(void* class_data, xeInt64 to, int type);
+	export int SeekAudioDecodedData(xeAnyTypePtr src, xeInt64 to, int type);
 
-	export int CloseAudio(void* class_data);
+	export int CloseAudioDecodedData(xeAnyTypePtr src);
 
-	export long TellAudio(void* class_data);
+	export long TellAudioDecodedData(xeAnyTypePtr src);
+
+	export bool IsAudioDecodedDataEOF(xeAnyTypePtr src);
 }

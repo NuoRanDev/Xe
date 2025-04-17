@@ -1,4 +1,4 @@
-﻿export module xe.Audio;
+﻿export module xe.Audio.AudioInstance;
 
 import std;
 
@@ -33,17 +33,17 @@ namespace xe
 		PcmBlock pcm_block;
 
 		//
-		xeAnyType dec_contest;
+		xeAnyTypePtr dec_contest;
 
 		// file data
-		std::unique_ptr<AudioEncodedData> audio_data;
+		AudioEncodedData* audio_data;
 
-		std::function<bool(AudioEncodedData*, xeAnyType&, PcmBlock&)> CB_OpenEncodedData;
+		std::function<bool(AudioEncodedData*, xeAnyTypePtr*, PcmBlock*)> CB_OpenEncodedData;
 
-		std::function<PlayState(xeAnyType, PcmBlock&)> CB_GetPcm;
+		std::function<PlayState(xeAnyTypePtr, PcmBlock*)> CB_GetPcm;
 
-		std::function<bool(xeAnyType, xeSize)> CB_Seek;
+		std::function<bool(xeAnyTypePtr, xeSize)> CB_Seek;
 
-		std::function<void(xeAnyType)> CB_Close;
+		std::function<void(AudioEncodedData*, xeAnyTypePtr)> CB_Close;
 	};
 }

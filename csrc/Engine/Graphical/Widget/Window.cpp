@@ -29,27 +29,27 @@ namespace xe
 		
 		if (sdl_instance_extensions == nullptr)
 		{
-			XE_ERROR_OUTPUT(std::format("<LIB : SDL3> Failed to get the number of required instance extensions: {0}\n", SDL_GetError()).c_str());
+			XE_ERROR_OUTPUT(std::format("<LIB: SDL3> Failed to get the number of required instance extensions: {0}\n", SDL_GetError()).c_str());
 			return false;
 		}
 
 		if(!window_vulkan_instance.SetVulkanInstanceContext(sdl_instance_extensions, count_instance_extensions, "XE_SDL3_VK"))
 		{
-			XE_ERROR_OUTPUT("<LIB : VULKAN> Failed to setup vulkan instance context");
+			XE_ERROR_OUTPUT("<LIB: SDL3> Failed to setup vulkan instance context");
 			return false;
 		}
 
-		window = SDL_CreateWindow(name.c_str(), w, h, SDL_WINDOW_VULKAN);
+		window = SDL_CreateWindow(name.c_str(), w, h, SDL_WINDOW_VULKAN | SDL_WINDOW_BORDERLESS);
 		if (!window)
 		{
-			XE_ERROR_OUTPUT(std::format("Failed to create window: {0}", SDL_GetError()).c_str());
+			XE_ERROR_OUTPUT(std::format("<LIB: SDL3> Failed to create window: {0}", SDL_GetError()).c_str());
 			return false;
 		}
 		SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 
 		if (!SDL_Vulkan_CreateSurface(window, window_vulkan_instance.GetInstance(), nullptr, window_vulkan_instance.GetSurface()))
 		{
-			XE_ERROR_OUTPUT(std::format("<LIB : SDL3> Failed to create vulkan surface: {0}\n", SDL_GetError()).c_str());
+			XE_ERROR_OUTPUT(std::format("<LIB: SDL3> Failed to create vulkan surface: {0}\n", SDL_GetError()).c_str());
 			return false;
 		}
 		if(!window_vulkan_instance.SetVulkanLogicalDevice())
@@ -63,15 +63,15 @@ namespace xe
 	void xeWindow::StartWindowEvent()
 	{
 		window_envet_loop = std::thread(&xeWindow::WindowEnvetThread, this);
-		XE_INFO_OUTPUT("Start window envet list");
+		XE_INFO_OUTPUT("<LIB: SDL3> Start window envet list");
 
 		window_envet_loop.join();
-		XE_INFO_OUTPUT("End window envet list");
+		XE_INFO_OUTPUT("<LIB: SDL3> End window envet list");
 	}
 
 	void xeWindow::WindowRendering()
 	{
-		XE_INFO_OUTPUT("Start window render");
+		XE_INFO_OUTPUT("<LIB: SDL3> Start window render");
 		SDL_Event event{};
 		while (true)
 		{
@@ -91,7 +91,7 @@ namespace xe
 			}
 		}
 	ABORT_WINDOW_RENDER:
-		XE_INFO_OUTPUT("End window render");
+		XE_INFO_OUTPUT("<LIB: SDL3> End window render");
 	}
 
 	xeWindow::~xeWindow()

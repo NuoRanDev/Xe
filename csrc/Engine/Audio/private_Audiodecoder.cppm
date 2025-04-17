@@ -9,20 +9,34 @@ import xe.Audio.AudioCore;
 
 namespace xe
 {
-	export xeSize OpenMP3Data(AudioEncodedData* mp3_data, xeAnyType& dec_typpe, PcmBlock& pcm_block);
+	// mp3
+#if defined(USE_MP3)
+	export bool OpenMP3Data(AudioEncodedData* mp3_data, xeAnyTypePtr* pdec_typpe, PcmBlock* pcm_block);
 
-	export PlayState GetMP3Pcm(xeAnyType dec_typpe, PcmBlock& pcm_block);
+	export PlayState GetMP3Pcm(xeAnyTypePtr dec_typpe, PcmBlock* pcm_block);
 
-	export bool MP3Seek(xeAnyType dec_typpe, xeSize point);
+	export bool MP3Seek(xeAnyTypePtr dec_typpe, xeSize pos);
 
-	export void CloseMP3Data(xeAnyType dec_typpe);
+	export void CloseMP3Data(AudioEncodedData* mp3_data, xeAnyTypePtr dec_typpe);
+#endif // defined(USE_MP3)
 
+	// ogg
+#if !defined(NOT_USE_OGG)
+	export bool OpenOGGData(AudioEncodedData* ogg_data, xeAnyTypePtr* pdec_typpe, PcmBlock* pcm_block);
 
-	export bool OpenOGGData(AudioEncodedData* ogg_data, xeAnyType& dec_typpe, PcmBlock& pcm_block);
+	export PlayState GetOGGPcm(xeAnyTypePtr dec_typpe, PcmBlock* pcm_block);
 
-	export PlayState GetOGGPcm(xeAnyType dec_typpe, PcmBlock& pcm_block);
+	export bool OGGSeek(xeAnyTypePtr dec_typpe, xeSize pos);
 
-	export bool OGGSeek(xeAnyType dec_typpe, xeSize point);
+	export void CloseOGGData(AudioEncodedData* ogg_data, xeAnyTypePtr dec_typpe);
+#endif // !defined(NOT_USE_OGG)
 
-	export void CloseOGGData(xeAnyType dec_typpe);
+	// flac
+	export bool OpenFLACData(AudioEncodedData* flac_data, xeAnyTypePtr& dec_typpe, PcmBlock& pcm_block);
+
+	export PlayState GetFLACPcm(xeAnyTypePtr dec_typpe, PcmBlock& pcm_block);
+
+	export bool FLACSeek(xeAnyTypePtr dec_typpe, xeSize pos);
+
+	export void CloseFLACata(AudioEncodedData* flac_data, xeAnyTypePtr dec_typpe);
 }
