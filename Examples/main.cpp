@@ -1,21 +1,26 @@
 ﻿import std;
 
+import xe.AssetIO.xeCompressFileStruct;
+
+int main()
+{
+	std::cout << "IMAGE_ASSET_FILE_HEADER=" << xe::xeAssetFileType::IMAGE_ASSET_FILE_HEADER << ",\n";
+	std::cout << "AUDIO_ASSET_FILE_HEADER=" << xe::xeAssetFileType::AUDIO_ASSET_FILE_HEADER << ",\n";
+	std::cout << "VIDEO_ASSET_FILE_HEADER=" << xe::xeAssetFileType::VIDEO_ASSET_FILE_HEADER << ",\n";
+	std::cout << "TEXT_ASSET_FILE_HEADER=" << xe::xeAssetFileType::TEXT_ASSET_FILE_HEADER << ",\n";
+	std::cout << "MODEL_ASSET_FILE_HEADER=" << xe::xeAssetFileType::MODEL_ASSET_FILE_HEADER << ",\n";
+	std::cout << "SHADER_ASSET_FILE_HEADER=" << xe::xeAssetFileType::SHADER_ASSET_FILE_HEADER << ",\n";
+	return 0;
+}
+
+
+/*
 import xe.Core.xeString;
 import xe.Core.xeBaseDataType;
 import xe.Core.xeApplication;
 import xe.Core.xeAlloc;
 import xe.Core.CoreClrOutput;
 
-int main()
-{
-	xe::xeString str = "Hello, World!";
-	str.Append(xe::xeString("ADD str"));
-	std::cout << str << std::endl;
-	return 0;
-}
-
-
-/*
 import xe.IO.xeOMmapfstream;
 
 import xe.Testure.xeTestureCore;

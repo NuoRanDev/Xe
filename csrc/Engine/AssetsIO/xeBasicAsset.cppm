@@ -87,5 +87,8 @@ namespace xe
 
 		// decompress function
 		DecompressFunction								AssetCecompressFunction;
+
+		// Block Segment ptr
+		xeByte* 										block_segment_ptr;
 	};
 }

@@ -63,7 +63,7 @@
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeCoreClrOutput.cpp">
       <Filter>XeCore\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\AssetsPacking\ExportCsharpApi.ixx">
+    <ClCompile Include="..\..\csrc\AssetsPacking\AssetPackingExportCsharpApi.cppm">
       <Filter>AssetPacking</Filter>
     </ClCompile>
   </ItemGroup>

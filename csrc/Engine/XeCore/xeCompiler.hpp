@@ -1,4 +1,4 @@
-#ifndef _INC_XE_COMPILER_HPP_
+﻿#ifndef _INC_XE_COMPILER_HPP_
 #define _INC_XE_COMPILER_HPP_
 
 // Export function data

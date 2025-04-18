@@ -70,6 +70,7 @@ namespace xe
 			return false;
 		}
 
+		block_segment_ptr = asset_file_stream.GetFstreamPtr<xeByte>(sizeof(XE_ASSET_HEADER) + sizeof(xeDefaultCompressAssetFileHeaderFormat) + sizeof(xeCompressFileBlockInfo) * file_info_list.block_number);
 		return is_success;
 	}
 
@@ -100,7 +101,7 @@ namespace xe
 		compressed_data_size	= data_block_info_list[index].compressed_size;
 		decompress_size			= data_block_info_list[index].source_size;
 
-		compressed_data			= asset_file_stream.GetFstreamPtr<xeByte>(data_block_info_list[index].block_start);
+		compressed_data			= block_segment_ptr + data_block_info_list[index].block_start_behind_block_and_file_header_info;
 		decompressed_data		= xeMalloc<xeByte>(decompress_size);
 
 		if (!AssetCecompressFunction(compressed_data, compressed_data_size, decompressed_data, decompress_size))

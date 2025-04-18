@@ -37,7 +37,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\csrc\AssetsPacking\AssetsPacking.cpp" />
     <ClCompile Include="..\..\csrc\AssetsPacking\AssetsPacking.cppm" />
-    <ClCompile Include="..\..\csrc\AssetsPacking\ExportCsharpApi.ixx" />
+    <ClCompile Include="..\..\csrc\AssetsPacking\AssetPackingExportCsharpApi.cppm" />
     <ClCompile Include="..\..\csrc\AssetsPacking\private_Compress.cppm" />
     <ClCompile Include="..\..\csrc\AssetsPacking\private_CompressZstd.cpp" />
     <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeCompressFileStruct.cppm" />

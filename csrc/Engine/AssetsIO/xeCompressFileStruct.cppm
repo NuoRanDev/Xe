@@ -8,7 +8,7 @@ namespace xe
 {
 	// Compreessing solution
 	// ZSTD: ztsdland LZMA: lzma2
-	export enum class xeCompressSolution :xeUint32
+	export enum class xeCompressSolution :xeUint64
 	{
 		NONE = 0,
 		ZSTD = 1,
@@ -30,7 +30,7 @@ namespace xe
 		constexpr xeUint64 xeGetCompressType(const char data[8])
 		{
 			xeUint64 output = 0;
-			for (int i = 0; i < 8; i++)
+			for (int i = 7; i >= 0; i--)
 			{
 				output = (output << 8) + data[i];
 			}
@@ -52,7 +52,7 @@ namespace xe
 	export struct xeCompressFileBlockInfo
 	{
 		xeU8cstr file_name[512];
-		xeUint64 block_start;
+		xeUint64 block_start_behind_block_and_file_header_info;
 		xeUint64 compressed_size;
 		xeUint64 source_size;
 	};

@@ -45,4 +45,17 @@ namespace xe
 		fprintf(stderr, "%s\n", out_text.c_str());
 		return;
 	}
+
+	void XE_DEBUG_OUTPUT(const char* output_text)
+	{
+#if defined(_DEBUG)
+#if defined(OPEN_CLR)
+		std::cout << std::string(GREEN) + "DEBUG_LOG" + ":\t" + std::string(WHITE) + output_text + "\n";
+		return;
+#endif // OPEN_CLR
+		std::string out_text = std::string("DEBUG_LOG") + ":\t" + output_text + "\n";
+		fprintf(stderr, "%s\n", out_text.c_str());
+#endif // defined(_DEBUG)
+		return;
+	}
 }

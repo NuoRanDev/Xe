@@ -19,17 +19,18 @@ XE_EXPORT_C_SHARP_API(AssetsPacking*) CreateAssetsPacking(xeUint32 cmp_solution,
 	return new AssetsPacking(static_cast<xeCompressSolution>(cmp_solution), AssetFileType);
 }
 
-XE_EXPORT_C_SHARP_API(bool) AssetsPackingWrite(AssetsPacking* self, const xeU8cstr* file_path, bool(XE_CALL *open_cb)(const xeU8cstr*), bool(XE_CALL *write_cb)(const xeByte*, const xeSize), bool(XE_CALL *close_cb)(void))
+XE_EXPORT_C_SHARP_API(bool) AssetsPackingWrite(AssetsPacking* self, bool(XE_CALL *open_cb)(xeSize), bool(XE_CALL *write_cb)(const xeByte*, const xeSize), void(XE_CALL *close_cb)(void))
 {
-	return self->Write(file_path, open_cb, write_cb, close_cb);
+	return self->Write(open_cb, write_cb, close_cb);
 }
 
-XE_EXPORT_C_SHARP_API(bool) AssetsPackingAddAsset(AssetsPacking* self, xeByte* input_data, xeSize data_size)
+XE_EXPORT_C_SHARP_API(bool) AssetsPackingAddAsset(AssetsPacking* self, xeU8cstr* block_name, xeByte* input_data, xeSize data_size)
 {
-	return self->AddAsset(input_data, data_size);
+	return self->AddAsset(input_data, block_name, data_size);
 }
 
 XE_EXPORT_C_SHARP_API(void)AssetsPackingReleaseAsset(AssetsPacking* self)
 {
 	delete[] self;
+	self = nullptr;
 }
