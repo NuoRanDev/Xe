@@ -1,4 +1,7 @@
-﻿namespace XeStudioCsharp
+﻿using System.IO;
+using xe.AssetsPackings;
+
+namespace XeStudioCsharp
 {
     class XeStudioMain
     {

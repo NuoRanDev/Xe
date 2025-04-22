@@ -76,7 +76,7 @@ namespace xe
 
 	xeInt64 AssetData::GetAssetIndex(const xeU8cstr* file_path)
 	{
-		for (xeInt64 i = 0; i < data_block_info_list.size(); i++)
+		for (xeInt64 i = 0; i < static_cast<xeInt64>(data_block_info_list.size()); i++)
 		{
 			if (data_block_info_list[i] == file_path)
 			{

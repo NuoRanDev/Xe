@@ -2,17 +2,23 @@
 
 import std;
 
+import xe.Core.xeOrdinals;
+
+#include "xeCompiler.hpp"
+
 namespace xe
 {
-	namespace Application
+	namespace Application 
 	{
+#if !defined(EXPORT_C_SHARP_API)
 		export bool LaodApplication(int argc, char** argv);
 
-		export const char8_t* GetApplicationPath();
+		export const xe::xeU8cstr* GetApplicationPath();
 
-		export const char8_t* GetApplicationName();
-
-		export std::fstream* GetLogFile();
+		export const xe::xeU8cstr* GetApplicationName();
+#else
+		export bool LaodApplication();
+#endif // !defined(EXPORT_C_SHARP_API)
 
 		export int DestroyApplication();
 	}

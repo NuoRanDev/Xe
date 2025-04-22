@@ -5,7 +5,7 @@ import xe.Core.xeAlloc;
 
 namespace xe
 {
-	export enum class xeAudioCompressSolution :xeUint8
+	export enum class xeAudioCompressSolution :xeUint64
 	{
 		ERROR = 0,
 
@@ -16,7 +16,7 @@ namespace xe
 	// pxiel imgae
 	export using byte_line = xeByte*;
 
-	export enum class xeColorChannel :xeUint32
+	export enum class xeColorChannel :xeUint64
 	{
 		BOOL = 1,
 		GRAY16 = 2,
@@ -25,8 +25,9 @@ namespace xe
 	};
 
 
-	export struct TestureEncodedData
+	export class TestureEncodedData
 	{
+	public:
 		xeU8cstr		name[512];
 		xeColorChannel	encodesolution;
 		xeSize			size;
@@ -39,8 +40,9 @@ namespace xe
 	};
 
 	// Audio
-	export struct AudioEncodedData
+	export class AudioEncodedData
 	{
+	public:
 		xeU8cstr				name[512];
 		xeAudioCompressSolution solution;
 		xeByte*					cur_ptr;

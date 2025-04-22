@@ -1,4 +1,4 @@
-﻿#if define(USE_AVIF)
+﻿#if defined(USE_AVIF)
 import xe.Testure.decode.private_Imgdecoder;
 
 import std;

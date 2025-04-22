@@ -75,7 +75,7 @@
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeApplication.cpp" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeApplication.cppm" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeBaseDataType.cppm" />
-    <ClCompile Include="..\..\csrc\Engine\XeCore\XeCore.ixx" />
+    <ClCompile Include="..\..\csrc\Engine\XeCore\XeCoreCsharp.cppm" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeCoreClrOutput.cpp" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeCoreClrOutput.cppm" />
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeOrdinals.cppm" />
@@ -122,26 +122,26 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_csharp|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_cpp|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_csharp|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>

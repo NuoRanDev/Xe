@@ -8,7 +8,7 @@ import xe.Core.CoreClrOutput;
 
 namespace xe
 {
-	constexpr char8_t PREFIX[] = { 0x00, 0xC0, 0xE0, 0xF0, 0xF8, 0xFC };
+	constexpr xeU8cstr PREFIX[] = { 0x00, 0xC0, 0xE0, 0xF0, 0xF8, 0xFC };
 	constexpr xeUint32 CODE_UP[] =
 	{
 		0x80,           // U+00000000 - U+0000007F  
@@ -19,7 +19,7 @@ namespace xe
 		0x80000000      // U+04000000 - U+7FFFFFFF  
 	};
 
-	inline bool CompareMemory(const char8_t* Lhs, const char8_t* Rhs, xeInt64 Length)
+	inline bool CompareMemory(const xeU8cstr* Lhs, const xeU8cstr* Rhs, xeInt64 Length)
 	{
 		if (Length == 0)
 			return 0;
@@ -48,9 +48,9 @@ namespace xe
 
 	bool Utf8BypeIsValidLeadingByte(int type) { return type > 0; }
 
-	bool Utf8ByteIsContinuation(const char8_t c) { return Utf8ByteType(c) == 0; }
+	bool Utf8ByteIsContinuation(const xeU8cstr c) { return Utf8ByteType(c) == 0; }
 
-	int Utf32ToUtf8(char32_t utf32_str, char8_t* utf8_str)
+	int Utf32ToUtf8(char32_t utf32_str, xeU8cstr* utf8_str)
 	{
 		if (utf32_str == 0) return 0;
 		int i, len = 6;
@@ -64,15 +64,15 @@ namespace xe
 		len = i + 1;
 		while (i > 0)
 		{
-			utf8_str[i] = static_cast<char8_t>((utf32_str & 0x3F) | 0x80);
+			utf8_str[i] = static_cast<xeU8cstr>((utf32_str & 0x3F) | 0x80);
 			utf32_str = utf32_str >> 6;
 			i--;
 		}
-		utf8_str[0] = static_cast<char8_t>(utf32_str | PREFIX[len - 1]);
+		utf8_str[0] = static_cast<xeU8cstr>(utf32_str | PREFIX[len - 1]);
 		return len;
 	}
 
-	void Utf8ToUtf32(char8_t* src, char32_t& des)
+	void Utf8ToUtf32(xeU8cstr* src, char32_t& des)
 	{
 		if (src == nullptr || (*src) == 0)
 		{
@@ -80,7 +80,7 @@ namespace xe
 			return;
 		}
 
-		char8_t b = src[0];
+		xeU8cstr b = src[0];
 
 		if (b < 0x80)
 		{
@@ -134,7 +134,7 @@ namespace xe
 		}
 	}
 
-	xeInt64 CountUTF8(const char8_t* utf8, xeInt64 alloc_size)
+	xeInt64 CountUTF8(const xeU8cstr* utf8, xeInt64 alloc_size)
 	{
 		if (!utf8 && alloc_size)
 		{
@@ -142,7 +142,7 @@ namespace xe
 			return 0;
 		}
 		int count = 0;
-		const char8_t* stop = utf8 + alloc_size;
+		const xeU8cstr* stop = utf8 + alloc_size;
 		while (utf8 < stop)
 		{
 			int type = Utf8ByteType(*utf8);
@@ -171,18 +171,18 @@ namespace xe
 		int64_t src_str_size = std::strlen((const char*)c_utf8_str);
 		// c style string end with 0
 		characters_data_size = src_str_size + 1;
-		characters_data = xeMalloc<char8_t>(characters_data_size);
+		characters_data = xeMalloc<xeU8cstr>(characters_data_size);
 		std::memcpy(characters_data, c_utf8_str, characters_data_size);
 
 		characters_number = CountUTF8(characters_data, src_str_size);
 	}
 
-	U8StringRef::U8StringRef(const char8_t* str, xeInt64 str_size) :U8StringRef(str, str_size, CountUTF8(str, str_size)) {}
+	U8StringRef::U8StringRef(const xeU8cstr* str, xeInt64 str_size) :U8StringRef(str, str_size, CountUTF8(str, str_size)) {}
 
-	U8StringRef::U8StringRef(const char8_t* str, xeInt64 str_size, xeInt64 input_character_number)
+	U8StringRef::U8StringRef(const xeU8cstr* str, xeInt64 str_size, xeInt64 input_character_number)
 	{
 		characters_data_size = str_size + 1;
-		characters_data = xeMalloc<char8_t>(characters_data_size);
+		characters_data = xeMalloc<xeU8cstr>(characters_data_size);
 		std::memcpy(characters_data, str, str_size);
 		characters_data[str_size] = '\0';
 		characters_number = input_character_number;
@@ -192,7 +192,7 @@ namespace xe
 	{
 		characters_number = temp_string.CharacterNumber();
 		characters_data_size = temp_string.CharacterDataSize();
-		characters_data = xeMalloc<char8_t>(characters_data_size);
+		characters_data = xeMalloc<xeU8cstr>(characters_data_size);
 		std::memcpy(characters_data, temp_string.data(), characters_data_size);
 	}
 
@@ -210,11 +210,18 @@ namespace xe
 		return *this;
 	}
 
+	U8StringRef& U8StringRef::operator=(const xeU8cstr* c_utf8_str)
+	{
+		Release();
+		this->LoadData(c_utf8_str);
+		return *this;
+	}
+
 	U8StringRef U8StringRef::Slice(xeInt64 start, xeInt64 end) const
 	{
 		int64_t _cur_number = 0;
-		char8_t* start_str_ptr = nullptr;
-		char8_t* cur_str_ptr = characters_data;
+		xeU8cstr* start_str_ptr = nullptr;
+		xeU8cstr* cur_str_ptr = characters_data;
 		int64_t need_copy_offset = 0;
 
 		start = std::min(start, characters_number);
@@ -257,16 +264,16 @@ namespace xe
 
 	void U8StringRef::Append(xeUnicode character)
 	{
-		char8_t output_utf8_str[4] = { 0 };
+		xeU8cstr output_utf8_str[4] = { 0 };
 		int64_t jump_str_offset = characters_data_size - 1;
 		int output_utf8_str_size = Utf32ToUtf8(character, output_utf8_str);
-		char8_t* append_ptr_start = nullptr;
+		xeU8cstr* append_ptr_start = nullptr;
 
 		// 
 		characters_data_size = characters_data_size + output_utf8_str_size;
 
 		// alloc
-		characters_data = xeRealloc<char8_t>(characters_data, characters_data_size);
+		characters_data = xeRealloc<xeU8cstr>(characters_data, characters_data_size);
 
 		// end is '\0'
 		characters_data[characters_data_size - 1] = 0;
@@ -282,7 +289,7 @@ namespace xe
 		int64_t append_string_data_size = append_string.CharacterDataSize();
 		int64_t append_string_characters_number = append_string.CharacterNumber();
 		int64_t jump_str_offset = characters_data_size - 1;
-		char8_t* append_ptr_start = nullptr;
+		xeU8cstr* append_ptr_start = nullptr;
 
 		characters_number = characters_number + append_string_characters_number;
 
@@ -290,7 +297,7 @@ namespace xe
 		characters_data_size = characters_data_size + append_string_data_size - 1;
 
 		// alloc
-		characters_data = xeRealloc<char8_t>(characters_data, characters_data_size);
+		characters_data = xeRealloc<xeU8cstr>(characters_data, characters_data_size);
 		append_ptr_start = characters_data + jump_str_offset;
 		//
 		std::memcpy(append_ptr_start, append_string.characters_data, append_string_data_size);
@@ -300,7 +307,7 @@ namespace xe
 	xeUnicode U8StringRef::At(xeInt64 offset)
 	{
 		int64_t _cur_number = 0;
-		char8_t* cur_str_ptr = characters_data;
+		xeU8cstr* cur_str_ptr = characters_data;
 		char32_t output_character;
 		if (characters_number < 0 || characters_number>characters_data_size)
 		{
@@ -325,10 +332,10 @@ namespace xe
 		return output_character;
 	}
 
-	void U8StringRef::LoadData(const char8_t* c_utf8_str, xeInt64 str_size, xeInt64 input_character_number)
+	void U8StringRef::LoadData(const xeU8cstr* c_utf8_str, xeInt64 str_size, xeInt64 input_character_number)
 	{
 		characters_data_size = str_size + 1;
-		characters_data = xeMalloc<char8_t>(characters_data_size);
+		characters_data = xeMalloc<xeU8cstr>(characters_data_size);
 		std::memcpy(characters_data, c_utf8_str, str_size);
 		characters_data[str_size] = '\0';
 		characters_number = input_character_number;
@@ -336,13 +343,14 @@ namespace xe
 
 	void U8StringRef::LoadData(const char* c_utf8_str)
 	{
-		// inculde '/0'
-		int64_t src_str_size = std::strlen((const char*)c_utf8_str);
-		// c style string end with 0
-		characters_data_size = src_str_size + 1;
-		characters_data = xeMalloc<char8_t>(characters_data_size);
-		std::memcpy(characters_data, c_utf8_str, characters_data_size);
+		LoadData(reinterpret_cast<const xeU8cstr*>(c_utf8_str));
+	}
 
-		characters_number = CountUTF8(characters_data, src_str_size);
+	void U8StringRef::LoadData(const xeU8cstr* c_utf8_str)
+	{
+		// inculde '/0'
+		int64_t src_str_size = std::strlen(reinterpret_cast<const char*>(c_utf8_str));
+		// c style string end with 0
+		LoadData(c_utf8_str, src_str_size, CountUTF8(characters_data, src_str_size));
 	}
 }

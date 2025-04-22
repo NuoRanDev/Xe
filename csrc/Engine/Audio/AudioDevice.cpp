@@ -32,11 +32,6 @@ namespace xe
 		return true;
 	}
 
-	bool AudioContest::OpenAudioDevice(xeString name)
-	{
-		return true;
-	}
-
 	void AudioContest::Release()
 	{
 		alcDestroyContext(audio_context);

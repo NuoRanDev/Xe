@@ -223,7 +223,7 @@
     <ClCompile Include="..\..\csrc\Engine\Audio\AudioDevice.cpp">
       <Filter>Audio\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeCore\XeCore.ixx">
+    <ClCompile Include="..\..\csrc\Engine\XeCore\XeCoreCsharp.cppm">
       <Filter>XeCore\Module Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\csrc\Engine\Audio\private_FLACDecoder.cpp">

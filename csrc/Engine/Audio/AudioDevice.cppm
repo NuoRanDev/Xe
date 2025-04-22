@@ -21,10 +21,8 @@ namespace xe
 
 		bool OpenAudioDevice();
 
-		bool OpenAudioDevice(xeString name);
-
 		void Release();
-		
+
 		~AudioContest();
 
 	private:

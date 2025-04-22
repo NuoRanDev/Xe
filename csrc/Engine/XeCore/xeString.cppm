@@ -17,15 +17,17 @@ namespace xe
 
 		U8StringRef(const char* c_utf8_str);
 
-		U8StringRef(const char8_t* str, xeInt64 str_size);
+		U8StringRef(const xeU8cstr* str, xeInt64 str_size);
 
-		U8StringRef(const char8_t* str, xeInt64 str_size, xeInt64 input_character_number);
+		U8StringRef(const xeU8cstr* str, xeInt64 str_size, xeInt64 input_character_number);
 
 		U8StringRef(const U8StringRef& temp_string);
 
 		U8StringRef& operator=(const U8StringRef& temp_string);
 
 		U8StringRef& operator=(const char* c_utf8_str);
+
+		U8StringRef& operator=(const xeU8cstr* c_utf8_str);
 
 		U8StringRef Slice(xeInt64 start, xeInt64 end) const;
 
@@ -73,15 +75,17 @@ namespace xe
 
 	private:
 		// data ptr
-		char8_t* characters_data;
+		xeU8cstr* characters_data;
 		// string size
 		xeInt64 characters_number;
 		// alloc size
 		xeInt64 characters_data_size;
 		//
-		void LoadData(const char8_t* c_utf8_str, xeInt64 str_size, xeInt64 input_character_number);
+		void LoadData(const xeU8cstr* c_utf8_str, xeInt64 str_size, xeInt64 input_character_number);
 		//
 		void LoadData(const char* c_utf8_str);
+		//
+		void LoadData(const xeU8cstr* c_utf8_str);
 	};
 
 	export [[nodiscard]] inline U8StringRef& operator+(U8StringRef& buffer, U8StringRef string)

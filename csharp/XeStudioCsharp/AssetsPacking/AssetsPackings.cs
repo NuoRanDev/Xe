@@ -1,16 +1,17 @@
 ﻿using System;
+using System.IO;
 using System.IO.MemoryMappedFiles;
 using System.Runtime.InteropServices;
 
-namespace XeStudioCsharp
+namespace xe.AssetsPackings
 {
-    enum CompressSolution : UInt32
+    enum CompressSolution : uint
     {
         NONE = 0,
 		ZSTD = 1,
 	};
 
-    enum AssetFileType :UInt64
+    enum AssetFileType :ulong
     {
         IMAGE_ASSET_FILE_HEADER = 297548205385,
         AUDIO_ASSET_FILE_HEADER = 340531631425,
@@ -22,39 +23,6 @@ namespace XeStudioCsharp
 
     class AssetsPacking
     {
-        private delegate bool OpenFileFunction(ulong file_size);
-
-        private unsafe delegate bool WriteFileFunction(byte* block_data, ulong block_size);
-
-        private delegate void CloseFileFunction();
-
-        private unsafe void* cpp_class;
-
-        private string? asset_file_path;
-
-        private MemoryMappedFile? mmap_file;
-
-        private MemoryMappedViewAccessor? accessor;
-
-        private unsafe byte* file_ptr;
-
-        private UInt64 file_offset;
-
-        private UInt64 mmap_file_size;
-
-        [DllImport("AssetsPacking", EntryPoint = "CreateAssetsPacking", CallingConvention = CallingConvention.StdCall)]
-        unsafe private extern static void* CreateAssetsPacking(UInt32 cmp_solution, UInt64 AssetFileType);
-
-
-        [DllImport("AssetsPacking", EntryPoint = "AssetsPackingAddAsset", CallingConvention = CallingConvention.StdCall)]
-        unsafe private extern static bool AssetsPackingAddAsset(void* self, string block_name, byte* input_data, UInt64 data_size);
-
-        [DllImport("AssetsPacking", EntryPoint = "AssetsPackingWrite", CallingConvention = CallingConvention.StdCall)]
-        unsafe private extern static bool AssetsPackingWrite(void* self, IntPtr open_cb, IntPtr write_cb, IntPtr close_cb);
-
-        [DllImport("AssetsPacking", EntryPoint = "AssetsPackingReleaseAsset", CallingConvention = CallingConvention.StdCall)]
-        unsafe private extern static void AssetsPackingReleaseAsset(void* cpp_class);
-
         public AssetsPacking(CompressSolution cmp_solution, AssetFileType AssetFileType)
         {
             unsafe
@@ -72,12 +40,12 @@ namespace XeStudioCsharp
             mmap_file_size = 0;
         }
 
-        public void AddAsset(string block_name ,byte[] need_packing_data)
+        public void AddAsset(string block_name, byte[] need_packing_data)
         {
             bool state = true;
             unsafe
             {
-                fixed (byte* p_need_packing_data = &(need_packing_data[0]))
+                fixed (byte* p_need_packing_data = &need_packing_data[0])
                 {
                     state = AssetsPackingAddAsset(cpp_class, block_name, p_need_packing_data, (ulong)need_packing_data.Length);
                 }
@@ -98,10 +66,10 @@ namespace XeStudioCsharp
             unsafe
             {
                 WriteFileFunction write_cb = new WriteFileFunction(WriteFile);
-                IntPtr pwrite_cb = Marshal.GetFunctionPointerForDelegate(write_cb);
+                nint pwrite_cb = Marshal.GetFunctionPointerForDelegate(write_cb);
 
                 CloseFileFunction close_cb = new CloseFileFunction(CloseFile);
-                IntPtr pclose_cb = Marshal.GetFunctionPointerForDelegate(close_cb);
+                nint pclose_cb = Marshal.GetFunctionPointerForDelegate(close_cb);
 
                 AssetsPackingWrite(cpp_class, popen_cb, pwrite_cb, pclose_cb);
 
@@ -110,6 +78,39 @@ namespace XeStudioCsharp
                 GC.KeepAlive(pclose_cb);
             }
         }
+
+        [DllImport("AssetsPacking", EntryPoint = "CreateAssetsPacking", CallingConvention = CallingConvention.StdCall)]
+        unsafe private extern static void* CreateAssetsPacking(uint cmp_solution, ulong AssetFileType);
+
+
+        [DllImport("AssetsPacking", EntryPoint = "AssetsPackingAddAsset", CallingConvention = CallingConvention.StdCall)]
+        unsafe private extern static bool AssetsPackingAddAsset(void* self, string block_name, byte* input_data, ulong data_size);
+
+        [DllImport("AssetsPacking", EntryPoint = "AssetsPackingWrite", CallingConvention = CallingConvention.StdCall)]
+        unsafe private extern static bool AssetsPackingWrite(void* self, nint open_cb, nint write_cb, nint close_cb);
+
+        [DllImport("AssetsPacking", EntryPoint = "AssetsPackingReleaseAsset", CallingConvention = CallingConvention.StdCall)]
+        unsafe private extern static void AssetsPackingReleaseAsset(void* cpp_class);
+
+        private delegate bool OpenFileFunction(ulong file_size);
+
+        private unsafe delegate bool WriteFileFunction(byte* block_data, ulong block_size);
+
+        private delegate void CloseFileFunction();
+
+        private unsafe void* cpp_class;
+
+        private string? asset_file_path;
+
+        private MemoryMappedFile? mmap_file;
+
+        private MemoryMappedViewAccessor? accessor;
+
+        private unsafe byte* file_ptr;
+
+        private ulong file_offset;
+
+        private ulong mmap_file_size;
 
         private bool OpenFile(ulong file_size)
         {

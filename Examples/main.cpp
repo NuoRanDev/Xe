@@ -20,7 +20,7 @@ import xe.Graphical.Widget;
 import xe.Audio.Instance.private_Audiodecoder;
 import xe.Audio.AudioCore;
 
-
+#if !defined(EXPORT_C_SHARP_API)
 int main(int argc, char* argv[])
 {
 	if (!(xe::Application::LaodApplication(argc, argv)))
@@ -34,3 +34,4 @@ int main(int argc, char* argv[])
 
 	return xe::Application::DestroyApplication();
 }
+#endif // !defined(EXPORT_C_SHARP_API)
