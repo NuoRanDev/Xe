@@ -223,9 +223,6 @@
     <ClCompile Include="..\..\csrc\Engine\Audio\AudioDevice.cpp">
       <Filter>Audio\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeCore\XeCoreCsharp.cppm">
-      <Filter>XeCore\Module Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\csrc\Engine\Audio\private_FLACDecoder.cpp">
       <Filter>Audio\Source Files\decode</Filter>
     </ClCompile>
@@ -243,6 +240,12 @@
     </ClCompile>
     <ClCompile Include="..\..\csrc\Engine\AssetsIO\private_DecompressZstd.cpp">
       <Filter>AssetsIO\Source Files\decompresss</Filter>
+    </ClCompile>
+    <ClCompile Include="xeTestureCsharp.cppm">
+      <Filter>XeTesture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\XeCore\XeCoreCsharp.cppm">
+      <Filter>XeCore</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

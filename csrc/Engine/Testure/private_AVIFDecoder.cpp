@@ -45,7 +45,7 @@ namespace xe
 
 		img->LoadData(avif_rgb.width, avif_rgb.height, xeColorChannel::RGB);
 
-		std::memcpy(img->pixel_data, avif_rgb.pixels, img->testure_size);
+		std::memcpy(img->GetData<void*>(), avif_rgb.pixels, img->GetTestureSize());
 	cleanup:
 		avifRGBImageFreePixels(&avif_rgb);
 		avifDecoderDestroy(decoder);

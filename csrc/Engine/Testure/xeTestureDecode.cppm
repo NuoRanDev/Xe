@@ -8,5 +8,5 @@ import xe.Testure.xeTestureCore;
 
 namespace xe
 {
-	export std::unique_ptr<Testure> DeCodeFile(std::unique_ptr<TestureEncodedData> File);
+	export std::unique_ptr<Testure> DeCodeFile(std::unique_ptr<TestureEncodedData> file);
 }

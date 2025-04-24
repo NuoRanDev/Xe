@@ -3,8 +3,11 @@
 import std;
 
 import xe.Core.xeOrdinals;
-
+#if !defined(EXPORT_C_SHARP_API)
+import xe.Core.xeString;
+#else
 #include "xeCompiler.hpp"
+#endif // !defined(EXPORT_C_SHARP_API)
 
 namespace xe
 {
@@ -13,9 +16,9 @@ namespace xe
 #if !defined(EXPORT_C_SHARP_API)
 		export bool LaodApplication(int argc, char** argv);
 
-		export const xe::xeU8cstr* GetApplicationPath();
+		export xeString GetApplicationPath();
 
-		export const xe::xeU8cstr* GetApplicationName();
+		export xeString GetApplicationName();
 #else
 		export bool LaodApplication();
 #endif // !defined(EXPORT_C_SHARP_API)

@@ -2,9 +2,7 @@
 
 #if defined(EXPORT_C_SHARP_API)
 import xe.Core.CoreClrOutput;
-
 import xe.Core.xeApplication;
-
 import xe.Core.xeBaseDataType;
 import xe.Core.xeOrdinals;
 import xe.Core.Clock;

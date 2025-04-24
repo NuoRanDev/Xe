@@ -79,13 +79,13 @@ namespace xe
 		}
 
 		// Get line data point start and read image
-		if (need_new_size != img->testure_size)
+		if (need_new_size != img->GetTestureSize())
 		{
 			spng_ctx_free(ctx);
 			XE_WARNING_OUTPUT("<LIB: LIBSPNG> Image data is broken. Alloc size failed");
 			return nullptr;
 		}
-		spng_decode_image(ctx, img->pixel_data, need_new_size, fmt, 0);
+		spng_decode_image(ctx, img->GetData<void*>(), need_new_size, fmt, 0);
 
 		// Destory linspng struction
 		spng_ctx_free(ctx);

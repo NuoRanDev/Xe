@@ -1,4 +1,4 @@
-export module xe.Testure.xeTestureCore;
+﻿export module xe.Testure.xeTestureCore;
 
 import xe.Core.xeOrdinals;
 import xe.Core.xeBaseDataType;
@@ -9,11 +9,6 @@ namespace xe
 	export class Testure
 	{
 	public:
-		xeUint32		x, y;
-		xeColorChannel	channel;
-		xeUint32		bit_depth;
-		xeByte			*pixel_data;
-		xeInt64			testure_size;
 		Testure() = default;
 
 		~Testure()
@@ -28,19 +23,29 @@ namespace xe
 			pixel_data = xeMalloc<xeByte>(testure_size);
 		}
 
-		constexpr xeByte* GetData()
+		template<typename T>constexpr T* GetData()
 		{
-			return pixel_data;
+			return reinterpret_cast<T*>(pixel_data);
 		}
 
-		constexpr xeUint32 GetLineSize()
+		constexpr xeUint64 GetLineSize()
 		{
-			return x * static_cast<xeUint32>(channel) * (bit_depth / 8);
+			return x * static_cast<xeUint64>(channel) * (bit_depth / 8);
 		}
 
-		constexpr xeUint32 GetTestureSize()
+		constexpr xeUint64 GetTestureSize()
 		{
 			return GetLineSize() * y;
 		}
+
+	public:
+
+		xeUint32		x, y;
+		xeColorChannel	channel;
+		xeUint32		bit_depth;
+
+	private:
+		xeByte*			pixel_data;
+		xeUint64		testure_size;
 	};
 }

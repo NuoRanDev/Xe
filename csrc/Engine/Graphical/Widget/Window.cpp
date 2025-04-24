@@ -21,7 +21,7 @@ namespace xe
 		return window_size;
 	}
 
-	bool xeWindow::CreatWindow(xeInt32 w, xeInt32 h, xeString name)
+	bool xeWindow::CreatWindow(xeInt32 w, xeInt32 h, xeString name, bool bordered)
 	{
 		Uint32 count_instance_extensions;
 
@@ -46,6 +46,7 @@ namespace xe
 			return false;
 		}
 		SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+		SDL_SetWindowBordered(window, bordered);
 
 		if (!SDL_Vulkan_CreateSurface(window, window_vulkan_instance.GetInstance(), nullptr, window_vulkan_instance.GetSurface()))
 		{

@@ -26,9 +26,10 @@ int main(int argc, char* argv[])
 	if (!(xe::Application::LaodApplication(argc, argv)))
 		return xe::Application::DestroyApplication();
 
-	auto ts = xe::TestureEncodedDataReader();
-	ts.ReadAssetFile("C:/Users/root/Desktop/k1.xea");
-	std::unique_ptr<xe::TestureEncodedData>img = ts.GetTesture("test.vec4");
+	xe::xeWindow win = xe::xeWindow();
+
+	win.CreatWindow(400, 400, "xeTesture", false);
+	win.WindowRendering();
 
 	
 

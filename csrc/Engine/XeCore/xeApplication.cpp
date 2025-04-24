@@ -59,12 +59,12 @@ namespace xe
 		}
 
 #if !defined(EXPORT_C_SHARP_API)
-		const char8_t* GetApplicationPath()
+		xeString GetApplicationPath()
 		{
 			return application_path;
 		}
 
-		const char8_t* GetApplicationName()
+		xeString GetApplicationName()
 		{
 			return application_name;
 		}
