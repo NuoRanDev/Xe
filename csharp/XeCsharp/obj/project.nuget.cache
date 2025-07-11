@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "b8kA6MgmVTw=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\root\\Desktop\\Xe\\csharp\\XeCsharp\\XeCsharp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\root\\.nuget\\packages\\microsoft.dotnet.ilcompiler\\9.0.4\\microsoft.dotnet.ilcompiler.9.0.4.nupkg.sha512",
+    "C:\\Users\\root\\.nuget\\packages\\microsoft.net.illink.tasks\\9.0.4\\microsoft.net.illink.tasks.9.0.4.nupkg.sha512",
+    "C:\\Users\\root\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.17763.57\\microsoft.windows.sdk.net.ref.10.0.17763.57.nupkg.sha512",
+    "C:\\Users\\root\\.nuget\\packages\\runtime.win-x64.microsoft.dotnet.ilcompiler\\9.0.4\\runtime.win-x64.microsoft.dotnet.ilcompiler.9.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}

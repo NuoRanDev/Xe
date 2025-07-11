@@ -1,0 +1,11 @@
+C:\Users\root\Desktop\Xe\SDK\bin\Release_cpp\XeCsharp.exe
+C:\Users\root\Desktop\Xe\SDK\bin\Release_cpp\XeCsharp.deps.json
+C:\Users\root\Desktop\Xe\SDK\bin\Release_cpp\XeCsharp.runtimeconfig.json
+C:\Users\root\Desktop\Xe\SDK\bin\Release_cpp\XeCsharp.dll
+C:\Users\root\Desktop\Xe\csharp\XeCsharp\obj\Release_cpp\XeCsharp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\root\Desktop\Xe\csharp\XeCsharp\obj\Release_cpp\XeCsharp.AssemblyInfoInputs.cache
+C:\Users\root\Desktop\Xe\csharp\XeCsharp\obj\Release_cpp\XeCsharp.AssemblyInfo.cs
+C:\Users\root\Desktop\Xe\csharp\XeCsharp\obj\Release_cpp\XeCsharp.csproj.CoreCompileInputs.cache
+C:\Users\root\Desktop\Xe\csharp\XeCsharp\obj\Release_cpp\XeCsharp.csproj.Up2Date
+C:\Users\root\Desktop\Xe\csharp\XeCsharp\obj\Release_cpp\XeCsharp.dll
+C:\Users\root\Desktop\Xe\csharp\XeCsharp\obj\Release_cpp\XeCsharp.genruntimeconfig.cache

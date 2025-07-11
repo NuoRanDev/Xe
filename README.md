@@ -77,3 +77,14 @@ $\qquad$ $\quad$ template\<typename T\> T* xeMalloc(xeSize alloc_number)
 $\qquad$ $\quad$ template\<typename T\>T* xeRealloc(T* src_ptr, xeSize alloc_number)
 
 $\qquad$ $\quad$ void xeFree(void* src_ptr)
+
+## Graphical
+### Marco List
+#### $\quad$  NOT_USE_VULKAN
+$\qquad$ Note:
+
+$\qquad$ $\quad$ Disable vulkan API.
+
+$\qquad$ Action scope:
+
+$\qquad$ $\quad$ class

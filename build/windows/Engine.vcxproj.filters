@@ -115,7 +115,7 @@
     <ClCompile Include="..\..\csrc\Engine\AssetsIO\xeBasicData.cpp">
       <Filter>AssetsIO\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeCore\Unit.cppm">
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeUnit.cppm">
       <Filter>XeCore\Module Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeApplication.cppm">
@@ -130,10 +130,10 @@
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeString.cppm">
       <Filter>XeCore\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeCore\Clock.cppm">
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeClock.cppm">
       <Filter>XeCore\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeCore\Object.cppm">
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeObject.cppm">
       <Filter>XeCore\Module Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\csrc\Engine\XeCore\Clock.cpp">
@@ -246,6 +246,9 @@
     </ClCompile>
     <ClCompile Include="..\..\csrc\Engine\XeCore\XeCoreCsharp.cppm">
       <Filter>XeCore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\XeCore\xeMemCmp.cppm">
+      <Filter>XeCore\Module Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

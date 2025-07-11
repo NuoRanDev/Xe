@@ -12,8 +12,5 @@ namespace xe.Core
 
         [DllImport("Engine", EntryPoint = "XE_INFO_OUTPUT", CallingConvention = CallingConvention.StdCall)]
         public extern static bool XE_INFO_OUTPUT(string str);
-
-        [DllImport("Engine", EntryPoint = "XE_DEBUG_OUTPUT", CallingConvention = CallingConvention.StdCall)]
-        public extern static bool XE_DEBUG_OUTPUT(string str);
     }
 }

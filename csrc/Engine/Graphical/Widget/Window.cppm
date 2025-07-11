@@ -2,8 +2,6 @@
 
 import std;
 
-import "SDL3/SDL_video.h";
-
 import xe.Core.xeOrdinals;
 import xe.Core.xeString;
 import xe.Core.xeBaseDataType;
@@ -29,11 +27,13 @@ namespace xe
 
 	private:
 
+		bool InitRenderApi();
+
 		void WindowEnvetThread();
 
 		xeVulkanContext window_vulkan_instance;
 
-		SDL_Window* window;
+		void* window;
 
 		std::thread window_envet_loop;
 	};
