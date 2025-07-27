@@ -2,8 +2,8 @@
 
 import xe.Core.xeOrdinals;
 
-#include <mmintrin.h>
-#include <immintrin.h>
+import <mmintrin.h>;
+import <immintrin.h>;
 
 namespace xe
 {

@@ -14,7 +14,7 @@ namespace xe
 	public:
 		BasicMmapfstream() = default;
 
-		template<typename T> T* GetFstreamPtr(size_t offset_byte)
+		template<typename T> T* GetFstreamPtr(xeSize offset_byte)
 		{
 			if (file_size < offset_byte)
 			{
@@ -49,12 +49,12 @@ namespace xe
 	{
 	public:
 
-		template<typename T> bool FstraemStartMemcpyOut(T* dst, size_t number)
+		template<typename T> bool FstraemStartMemcpyOut(T* dst, xeSize number)
 		{
 			return FstraemMemcpyOut(0, dst, number);
 		}
 
-		template<typename T> bool FstraemMemcpyOut(size_t offset_byte, T* dst, size_t number)
+		template<typename T> bool FstraemMemcpyOut(xeSize offset_byte, T* dst, xeSize number)
 		{
 			if (file_size < (offset_byte + number * sizeof(T)))
 			{

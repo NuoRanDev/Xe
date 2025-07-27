@@ -26,6 +26,7 @@ namespace xe
 
 		xeSize size;
 		xeByte* data;
+		void SetSize(xeSize size_i) { size = size_i; }
 
 		~PcmBlock()
 		{

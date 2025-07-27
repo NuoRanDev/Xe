@@ -45,7 +45,7 @@ namespace xe
 		if (ogg_info->channels > 1) pcm_block->format = PcmFormat::FORMAT_STEREO16;
 		else { pcm_block->format = PcmFormat::FORMAT_MONO16; }
 
-		pdec_typpe = reinterpret_cast<xeAnyTypePtr*>(&dec_ogg_type);
+		*pdec_typpe = reinterpret_cast<xeAnyTypePtr>(dec_ogg_type);
 
 		return true;
 	}

@@ -136,9 +136,6 @@
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeObject.cppm">
       <Filter>XeCore\Module Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\csrc\Engine\XeCore\Clock.cpp">
-      <Filter>XeCore\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeString.cpp">
       <Filter>XeCore\Source Files</Filter>
     </ClCompile>
@@ -241,14 +238,17 @@
     <ClCompile Include="..\..\csrc\Engine\AssetsIO\private_DecompressZstd.cpp">
       <Filter>AssetsIO\Source Files\decompresss</Filter>
     </ClCompile>
-    <ClCompile Include="xeTestureCsharp.cppm">
-      <Filter>XeTesture</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\csrc\Engine\XeCore\XeCoreCsharp.cppm">
       <Filter>XeCore</Filter>
     </ClCompile>
     <ClCompile Include="..\..\csrc\Engine\XeCore\xeMemCmp.cppm">
       <Filter>XeCore\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\Testure\xeTestureCsharp.cppm">
+      <Filter>XeTesture\Module Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\csrc\Engine\xeCore\xeClock.cpp">
+      <Filter>XeCore\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -22,7 +22,7 @@ namespace xe
 	bool AudioInstance::LoadData(std::unique_ptr<AudioEncodedData> data)
 	{
 		audio_data = data.get();
-		switch (data->solution)
+		switch (data->encodesolution)
 		{
 #if defined(USE_OGG)
 		case xeAudioCompressSolution::OGG:

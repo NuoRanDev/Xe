@@ -3,6 +3,7 @@
 import xe.Core.xeOrdinals;
 import xe.Core.xeBaseDataType;
 import xe.Core.xeAlloc;
+import xe.Core.CoreClrOutput;
 
 namespace xe
 {

@@ -11,13 +11,13 @@ namespace xe
 {
 	// mp3
 #if defined(USE_MP3)
-	export bool OpenMP3Data(AudioEncodedData* mp3_data, xeAnyTypePtr* pdec_typpe, PcmBlock* pcm_block);
+	//export bool OpenMP3Data(AudioEncodedData* mp3_data, xeAnyTypePtr* pdec_typpe, PcmBlock* pcm_block);
 
-	export PlayState GetMP3Pcm(xeAnyTypePtr dec_typpe, PcmBlock* pcm_block);
+	//export PlayState GetMP3Pcm(xeAnyTypePtr dec_typpe, PcmBlock* pcm_block);
 
-	export bool MP3Seek(xeAnyTypePtr dec_typpe, xeSize pos);
+	//export bool MP3Seek(xeAnyTypePtr dec_typpe, xeSize pos);
 
-	export void CloseMP3Data(AudioEncodedData* mp3_data, xeAnyTypePtr dec_typpe);
+	//export void CloseMP3Data(AudioEncodedData* mp3_data, xeAnyTypePtr dec_typpe);
 #endif // defined(USE_MP3)
 
 	// ogg
@@ -32,9 +32,9 @@ namespace xe
 #endif // !defined(NOT_USE_OGG)
 
 	// flac
-	export bool OpenFLACData(AudioEncodedData* flac_data, xeAnyTypePtr& dec_typpe, PcmBlock& pcm_block);
+	export bool OpenFLACData(AudioEncodedData* flac_data, xeAnyTypePtr* dec_typpe, PcmBlock* pcm_block);
 
-	export PlayState GetFLACPcm(xeAnyTypePtr dec_typpe, PcmBlock& pcm_block);
+	export PlayState GetFLACPcm(xeAnyTypePtr dec_typpe, PcmBlock* pcm_block);
 
 	export bool FLACSeek(xeAnyTypePtr dec_typpe, xeSize pos);
 

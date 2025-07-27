@@ -17,7 +17,7 @@ namespace xe
 
 		bool CreatWindow(xeInt32 w, xeInt32 h, xeString name, bool bordered = true);
 
-		vec2_i32 GetWindowSize();
+		Vec2_i32 GetWindowSize();
 
 		void StartWindowEvent();
 

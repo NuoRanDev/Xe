@@ -15,9 +15,9 @@ import xe.Core.xeBaseDataType;
 namespace xe
 {
 
-	vec2_i32 xeWindow::GetWindowSize()
+	Vec2_i32 xeWindow::GetWindowSize()
 	{
-		vec2_i32 window_size;
+		Vec2_i32 window_size;
 		SDL_GetWindowSize(reinterpret_cast<SDL_Window*>(window), &window_size.x, &window_size.y);
 		return window_size;
 	}

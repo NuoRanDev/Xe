@@ -28,11 +28,19 @@ namespace xe
 	export class TestureEncodedData
 	{
 	public:
-		xeU8cstr		name[512];
-		xeColorChannel	encodesolution;
-		xeSize			size;
-		xeByte*			data;
-		TestureEncodedData() = default;
+		const xeU8cstr*		name;
+		const xeSize		name_size;
+		xeColorChannel		encodesolution;
+		xeSize				size;
+		xeByte*				data;
+		TestureEncodedData(xeByte* i_data, xeSize i_size, xeColorChannel i_encodesolution, const xeU8cstr* i_name, const xeSize i_name_size):
+			name_size(i_name_size)
+		{
+			data = i_data;
+			size = i_size;
+			encodesolution = i_encodesolution;
+			name = i_name;
+		}
 		~TestureEncodedData()
 		{
 			xeFree(data);
@@ -43,43 +51,52 @@ namespace xe
 	export class AudioEncodedData
 	{
 	public:
-		xeU8cstr				name[512];
-		xeAudioCompressSolution solution;
+		const xeU8cstr*			name;
+		const xeSize			name_size;
+		xeAudioCompressSolution encodesolution;
 		xeByte*					cur_ptr;
 		xeSize					size;
 		xeByte*					data;
-		AudioEncodedData() = default;
+		AudioEncodedData(xeByte* i_data, xeSize i_size, xeAudioCompressSolution i_encodesolution, const xeU8cstr* i_name, const xeSize i_name_size):
+			name_size(i_name_size)
+		{
+			data = i_data;
+			size = i_size;
+			encodesolution = i_encodesolution;
+			name = i_name;
+			cur_ptr = data;
+		}
 		~AudioEncodedData()
 		{
-			xeFree(data);
+			//xeFree(data);
 		}
 	};
 
 	// 2 channel pixel 
-	template<typename T> class vec2
+	template<typename T> class Vec2
 	{
 	public:
 		T x, y;
-		vec2() = default;
-		bool operator==(const vec2<T>& input)
+		Vec2() = default;
+		bool operator==(const Vec2<T>& input)
 		{
 			if (std::memcmp((const char*)(&(this->x)), (const char*)(&(input.x)), sizeof(T) * 2))
 				return true;
 			return false;
 		}
-		xeInt64 operator*(const vec2<T>& input)
+		xeInt64 operator*(const Vec2<T>& input)
 		{
 			return this->x * input.x + this->y * input.y;
 		}
-		vec2<T> operator+(const vec2<T>& input)
+		Vec2<T> operator+(const Vec2<T>& input)
 		{
-			return vec2(this->x + input.x, this->y + input.y);
+			return Vec2(this->x + input.x, this->y + input.y);
 		}
-		vec2<T> operator-(const vec2<T>& input)
+		Vec2<T> operator-(const Vec2<T>& input)
 		{
-			return vec2(this->x - input.x, this->y - input.y);
+			return Vec2(this->x - input.x, this->y - input.y);
 		}
-		constexpr vec2(T i_x, T i_y)
+		constexpr Vec2(T i_x, T i_y)
 		{
 			x = i_x;
 			y = i_y;
@@ -87,30 +104,30 @@ namespace xe
 	};
 
 	// 3 channel pixel 
-	template<typename T> class vec3
+	template<typename T> class Vec3
 	{
 	public:
 		T x, y, z;
-		vec3() = default;
-		bool operator==(const vec3<T>& input)
+		Vec3() = default;
+		bool operator==(const Vec3<T>& input)
 		{
 			if (memcmp((const char*)(&(this->x)), (const char*)(&(input.x)), sizeof(T) * 3))
 				return true;
 			return false;
 		}
-		xeInt64 operator*(const vec3<T>& input)
+		xeInt64 operator*(const Vec3<T>& input)
 		{
 			return this->x * input.x + this->y * input.y + this->z * input.z;
 		}
-		vec3<T> operator+(const vec3<T>& input)
+		Vec3<T> operator+(const Vec3<T>& input)
 		{
-			return vec3(this->x + input.x, this->y + input.y, this->z + input.z);
+			return Vec3(this->x + input.x, this->y + input.y, this->z + input.z);
 		}
-		vec3<T> operator-(const vec3<T>& input)
+		Vec3<T> operator-(const Vec3<T>& input)
 		{
-			return vec3(this->x - input.x, this->y - input.y, this->z - input.z);
+			return Vec3(this->x - input.x, this->y - input.y, this->z - input.z);
 		}
-		constexpr vec3(T i_x, T i_y, T i_z)
+		constexpr Vec3(T i_x, T i_y, T i_z)
 		{
 			x = i_x;
 			y = i_y;
@@ -119,30 +136,30 @@ namespace xe
 	};
 
 	// 4 channel pixel
-	template<typename T> class vec4
+	template<typename T> class Vec4
 	{
 	public:
 		T n1, n2, n3, n4;
-		vec4() = default;
-		bool operator==(const vec4<T>& input)
+		Vec4() = default;
+		bool operator==(const Vec4<T>& input)
 		{
 			if (memcmp((const char*)(&(this->n1)), (const char*)(&(input.n1)), sizeof(T) * 3) == 0)
 				return true;
 			return false;
 		}
-		xeInt64 operator*(const vec4<T>& input)
+		xeInt64 operator*(const Vec4<T>& input)
 		{
 			return this->n1 * input.n1 + this->n2 * input.n2 + this->n3 * input.n3 + this->n4 * input.n4;
 		}
-		vec4<T> operator+(const vec4<T>& input)
+		Vec4<T> operator+(const Vec4<T>& input)
 		{
-			return vec4(this->n1 + input.n1, this->n2 + input.n2, this->n3 + input.n3, this->n4 + input.n4);
+			return Vec4(this->n1 + input.n1, this->n2 + input.n2, this->n3 + input.n3, this->n4 + input.n4);
 		}
-		vec4<T> operator-(const vec4<T>& input)
+		Vec4<T> operator-(const Vec4<T>& input)
 		{
-			return vec4(this->n1 - input.n1, this->n2 - input.n2, this->n3 - input.n3, this->n4 - input.n4);
+			return Vec4(this->n1 - input.n1, this->n2 - input.n2, this->n3 - input.n3, this->n4 - input.n4);
 		}
-		constexpr vec4(T i_n1, T i_n2, T i_n3, T i_n4)
+		constexpr Vec4(T i_n1, T i_n2, T i_n3, T i_n4)
 		{
 			n1 = i_n1;
 			n2 = i_n2;
@@ -151,31 +168,31 @@ namespace xe
 		}
 	};
 
-	export using vec4_f32	= vec4<float>;
-	export using vec4_i8	= vec4<xeInt8>;
-	export using vec4_u8	= vec4<xeUint8>;
-	export using vec4_i16	= vec4<xeInt16>;
-	export using vec4_u16	= vec4<xeUint16>;
-	export using vec4_i32	= vec4<xeInt32>;
-	export using vec4_u32	= vec4<xeUint32>;
+	export using Vec4_f32	= Vec4<float>;
+	export using Vec4_i8	= Vec4<xeInt8>;
+	export using Vec4_u8	= Vec4<xeUint8>;
+	export using Vec4_i16	= Vec4<xeInt16>;
+	export using Vec4_u16	= Vec4<xeUint16>;
+	export using Vec4_i32	= Vec4<xeInt32>;
+	export using Vec4_u32	= Vec4<xeUint32>;
 
-	export using vec3_f32	= vec3<float>;
-	export using vec3_i8	= vec3<xeInt8>;
-	export using vec3_u8	= vec3<xeUint8>;
-	export using vec3_i16	= vec3<xeInt16>;
-	export using vec3_u16	= vec3<xeUint16>;
-	export using vec3_i32	= vec3<xeInt32>;
-	export using vec3_u32	= vec3<xeUint32>;
+	export using Vec3_f32	= Vec3<float>;
+	export using Vec3_i8	= Vec3<xeInt8>;
+	export using Vec3_u8	= Vec3<xeUint8>;
+	export using Vec3_i16	= Vec3<xeInt16>;
+	export using Vec3_u16	= Vec3<xeUint16>;
+	export using Vec3_i32	= Vec3<xeInt32>;
+	export using Vec3_u32	= Vec3<xeUint32>;
 
-	export using vec2_f32 = vec2<float>;
-	export using vec2_i8 = vec2<xeInt8>;
-	export using vec2_u8 = vec2<xeUint8>;
-	export using vec2_i16 = vec2<xeInt16>;
-	export using vec2_u16 = vec2<xeUint16>;
-	export using vec2_i32 = vec2<xeInt32>;
-	export using vec2_u32 = vec2<xeUint32>;
+	export using Vec2_f32 = Vec2<float>;
+	export using Vec2_i8 = Vec2<xeInt8>;
+	export using Vec2_u8 = Vec2<xeUint8>;
+	export using Vec2_i16 = Vec2<xeInt16>;
+	export using Vec2_u16 = Vec2<xeUint16>;
+	export using Vec2_i32 = Vec2<xeInt32>;
+	export using Vec2_u32 = Vec2<xeUint32>;
 
-	export class xeFastExtension :public vec4_i8
+	export class xeFastExtension :public Vec4_i8
 	{
 	public:
 		bool operator==(const xeU8cstr* start_str_ptr)
@@ -185,10 +202,21 @@ namespace xe
 			return *internal == *external;
 		}
 		xeFastExtension() = default;
-		constexpr xeFastExtension(const char str[4]) :vec4_i8(str[0], str[1], str[2], str[3]) {}
+		constexpr xeFastExtension(const char str[4]) :Vec4_i8(str[0], str[1], str[2], str[3]) {}
 	};
 	export bool is4Extension(const xeU8cstr* main_csharp_str, int64_t len_1, xeFastExtension _4_extension)
 	{
 		return _4_extension == (main_csharp_str + len_1 - 1);
 	}
+
+	template<typename T>
+	concept Pixel = requires
+	{
+		std::same_as<T, Vec3_u8> && 
+		std::same_as<T, Vec3_u16>&&
+		std::same_as<T, Vec3_u32>&&
+		std::same_as<T, Vec4_u8> &&
+		std::same_as<T, Vec4_u16>&&
+		std::same_as<T, Vec4_u32>;
+	};
 }
