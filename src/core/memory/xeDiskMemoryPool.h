@@ -1,0 +1,4 @@
+#ifndef _XE_DISK_MEMORY_POOL_H_
+#define _XE_DISK_MEMORY_POOL_H_
+
+#endif // _XE_DISK_MEMORY_POOL_H_ IS EOF

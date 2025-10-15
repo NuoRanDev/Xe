@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="core">
+      <UniqueIdentifier>{8928f0be-bc3a-48a8-ae48-dc17afd40209}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\string">
+      <UniqueIdentifier>{6222fd18-06df-4545-80b8-231d16afc97c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\memory">
+      <UniqueIdentifier>{36c9a0b1-61e4-4db1-bebd-c8ad860e8e26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\network">
+      <UniqueIdentifier>{bf56c39b-bd2c-40d1-858b-8946c90347e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\type">
+      <UniqueIdentifier>{5172fda1-f46e-4f33-9fad-abca2ef04cd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\devboost">
+      <UniqueIdentifier>{b1e2eb8e-6f27-45b9-874d-08af51d55504}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\filesystem">
+      <UniqueIdentifier>{c8184d35-23f6-4ec6-8e59-97dd1b5e9ac2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\log">
+      <UniqueIdentifier>{2dfd18fc-8ca8-4508-aeb1-70bbb9b3fe0f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\core\string\xeString.cpp">
+      <Filter>core\string</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\core\devboost\xeMemCmpr.cpp">
+      <Filter>core\devboost</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\core\memory\xeAlloc.cpp">
+      <Filter>core\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\core\log\xeLogOutpout.cpp">
+      <Filter>core\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\core\filesystem\xeFileMmapStream.cpp">
+      <Filter>core\filesystem</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\core\string\xeString.h">
+      <Filter>core\string</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\core\memory\xeAlloc.h">
+      <Filter>core\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\core\type\xeOrdinals.h">
+      <Filter>core\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\core\devboost\xeMemCmp.h">
+      <Filter>core\devboost</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\core\filesystem\xeFilesystem.h">
+      <Filter>core\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\core\filesystem\xePath.h">
+      <Filter>core\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\core\memory\xeDiskMemoryPool.h">
+      <Filter>core\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\core\log\xeLogOutput.h">
+      <Filter>core\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\core\filesystem\xeFileMmapStream.h">
+      <Filter>core\filesystem</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
