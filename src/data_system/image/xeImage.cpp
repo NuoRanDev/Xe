@@ -1,5 +1,5 @@
-#include "testure/xeImage.h"
-#include "log/xeLogOutput.h"
+#include "image/xeImage.hpp"
+#include "log/xeLogOutput.hpp"
 
 namespace xe
 {
@@ -11,7 +11,7 @@ namespace xe
 		img_data = alloc_data_memory(data_size);
 	}
 
-	bool Image::load_data(IMG_FORMAT src_format, const byte_t* src_data, size_t src_x, size_t src_y)
+	bool Image::load_data(IMG_FORMAT src_format, const byte_t* src_data, size_t src_x, size_t src_y) noexcept
 	{
 		create_empty(src_format, src_x, src_y);
 		img_data = alloc_data_memory(data_size);

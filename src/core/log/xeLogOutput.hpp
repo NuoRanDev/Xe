@@ -1,5 +1,5 @@
-#ifndef _XE_ERROR_OURPUT_H_
-#define _XE_ERROR_OURPUT_H_
+#ifndef _XE_ERROR_OURPUT_HPP_
+#define _XE_ERROR_OURPUT_HPP_
 
 #include <exception>
 
@@ -45,4 +45,4 @@ namespace xe
 		XE_CLR_OUTPUT(xe::XE_CLR_COLOR::BLUE, "INFO", output_type, addon_type, output_text, __FILE__, __LINE__, __FUNCTION__);
 } // namespace xe is end
 
-#endif // _XE_ERROR_OURPUT_H_ IS EOF
+#endif // _XE_ERROR_OURPUT_HPP_ IS EOF

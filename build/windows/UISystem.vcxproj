@@ -35,14 +35,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\ui_system\igl.cpp" />
+    <ClCompile Include="..\..\src\ui_system\xeSurface.hpp" />
     <ClCompile Include="..\..\src\ui_system\window\xeWindow.cpp" />
     <ClCompile Include="..\..\src\ui_system\window\xeWindowManager.cpp" />
     <ClCompile Include="..\..\tset\game_main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\ui_system\window\xeWindow.h" />
-    <ClInclude Include="..\..\src\ui_system\window\xeWindowManager.h" />
+    <ClInclude Include="..\..\src\ui_system\testure\xeTesture.hpp" />
+    <ClInclude Include="..\..\src\ui_system\window\xeWindow.hpp" />
+    <ClInclude Include="..\..\src\ui_system\window\xeWindowManager.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -81,13 +82,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>ClangCL</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_csharp|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>ClangCL</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_cpp|x64'" Label="Configuration">

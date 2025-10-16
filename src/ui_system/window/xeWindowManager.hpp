@@ -1,7 +1,7 @@
-#ifndef _XE_WINDOW_MANAGER_H_
-#define _XE_WINDOW_MANAGER_H_
+#ifndef _XE_WINDOW_MANAGER_HPP_
+#define _XE_WINDOW_MANAGER_HPP_
 
-#include "window/xeWindow.h"
+#include "window/xeWindow.hpp"
 
 #include <map>
 
@@ -26,4 +26,4 @@ namespace xe
 	};
 } // namespace xe is end
 
-#endif // _XE_WINDOW_MANAGER_H_
+#endif // _XE_WINDOW_MANAGER_HPP_

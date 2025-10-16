@@ -1,8 +1,8 @@
-#ifndef _XE_IMAGE_H_
-#define _XE_IMAGE_H_
+#ifndef _XE_IMAGE_HPP_
+#define _XE_IMAGE_HPP_
 
-#include "type/xeOrdinals.h"
-#include "memory/xeAlloc.h"
+#include "type/xeOrdinals.hpp"
+#include "memory/xeAlloc.hpp"
 
 #include <functional>
 
@@ -91,4 +91,4 @@ namespace xe
 	};
 } // namespace xe is end
 
-#endif // _XE_IMAGE_H_ IS EOF
+#endif // _XE_IMAGE_HPP_ IS EOF

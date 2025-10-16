@@ -37,14 +37,14 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\data_system\file\image\libjpegAddons.cpp" />
     <ClCompile Include="..\..\src\data_system\file\image\libsnpngAddons.cpp" />
-    <ClCompile Include="..\..\src\data_system\file\image\xeReadImage.h" />
+    <ClCompile Include="..\..\src\data_system\file\image\xeReadImage.hpp" />
     <ClCompile Include="..\..\src\data_system\file\xeMemoryFile.cpp" />
-    <ClCompile Include="..\..\src\data_system\testure\xeImage.cpp" />
-    <ClCompile Include="..\..\src\data_system\testure\xeImage.h" />
+    <ClCompile Include="..\..\src\data_system\image\xeImage.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\data_system\file\image\xeImgaeFile.h" />
-    <ClInclude Include="..\..\src\data_system\file\xeMemoryFile.h" />
+    <ClInclude Include="..\..\src\data_system\file\image\xeImgaeFile.hpp" />
+    <ClInclude Include="..\..\src\data_system\file\xeMemoryFile.hpp" />
+    <ClInclude Include="..\..\src\data_system\image\xeImage.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

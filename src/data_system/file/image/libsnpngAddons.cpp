@@ -1,10 +1,10 @@
-#include "file/image/xeReadImage.h"
+#include "file/image/xeReadImage.hpp"
 
 // Thired-party library: libspng
 #include "spng.h"
 
-#include "log/xeLogOutput.h"
-#include "type/xeOrdinals.h"
+#include "log/xeLogOutput.hpp"
+#include "type/xeOrdinals.hpp"
 
 #include <cstdint>
 #include <format>

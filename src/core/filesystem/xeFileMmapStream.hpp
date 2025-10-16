@@ -1,10 +1,10 @@
-#ifndef _INC_XE_FILE_MMAP_STREAM_H_
-#define _INC_XE_FILE_MMAP_STREAM_H_
+#ifndef _INC_XE_FILE_MMAP_STREAM_HPP_
+#define _INC_XE_FILE_MMAP_STREAM_HPP_
 
-#include "type/xeOrdinals.h"
-#include "string/xeString.h"
-#include "log/xeLogOutput.h"
-#include "memory/xeAlloc.h"
+#include "type/xeOrdinals.hpp"
+#include "string/xeString.hpp"
+#include "log/xeLogOutput.hpp"
+#include "memory/xeAlloc.hpp"
 
 #include <format>
 
@@ -83,4 +83,4 @@ namespace xe
 	};
 } // namespace xe is end
 
-#endif // _INC_XE_FILE_MMAP_STREAM_H_ IS EOF
+#endif // _INC_XE_FILE_MMAP_STREAM_HPP_ IS EOF

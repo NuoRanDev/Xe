@@ -1,7 +1,7 @@
-#ifndef _XE_PATH_H_
-#define _XE_PATH_H_
+#ifndef _XE_PATH_HPP_
+#define _XE_PATH_HPP_
 
-#include "string/xeString.h"
+#include "string/xeString.hpp"
 
 #include <vector>
 #include <filesystem>
@@ -39,4 +39,4 @@ namespace xe
 	};
 } // namespace xe is end
 
-#endif // !_XE_PATH_H_
+#endif // !_XE_PATH_HPP_

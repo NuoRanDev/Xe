@@ -1,4 +1,4 @@
-#include "log/xeLogOutput.h"
+#include "log/xeLogOutput.hpp"
 
 #if defined(_DEBUG)
 #define OPEN_CLR

@@ -1,7 +1,7 @@
-#include "file/image/xeImgaeFile.h"
+#include "file/image/xeImgaeFile.hpp"
 
-#include "log/xeLogOutput.h"
-#include "memory/xeAlloc.h"
+#include "log/xeLogOutput.hpp"
+#include "memory/xeAlloc.hpp"
 
 namespace xe
 {

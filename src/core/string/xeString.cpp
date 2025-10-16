@@ -1,9 +1,9 @@
-#include "string/xeString.h"
+#include "string/xeString.hpp"
 
 #include <algorithm>
 
-#include "log/xeLogOutput.h"
-#include <devboost/xeMemCmp.h>
+#include "log/xeLogOutput.hpp"
+#include <devboost/xeMemCmp.hpp>
 
 namespace xe
 {

@@ -1,12 +1,15 @@
-#ifndef _XE_WINDOW_H_
-#define _XE_WINDOW_H_
+#ifndef _XE_WINDOW_HPP_
+#define _XE_WINDOW_HPP_
 
-#include "string/xeString.h"
+#include "string/xeString.hpp"
 
 #include <cstdint>
+#include <queue>
 
 namespace xe
 {
+	constexpr int16_t MAX_WINDOW_WIDGET = SHRT_MAX;
+
 	class Window
 	{
 	public:
@@ -19,6 +22,11 @@ namespace xe
 		~Window();
 
 	private:
+		
+		friend class WindowManager;
+
+		friend class Surface;
+
 #if defined(USE_OPENGL)
 		void *context_opengl_instance;
 #elif defined(USE_VULKAN)
@@ -33,7 +41,11 @@ namespace xe
 
 		bool bind_reder_api_in_window();
 
+		short **command_map;
+
+		std::vector<int> window_widget;
+
 	};
 } // namespace xe is end
 
-#endif // _XE_WINDOW_H_ IS EOF
+#endif // _XE_WINDOW_HPP_ IS EOF

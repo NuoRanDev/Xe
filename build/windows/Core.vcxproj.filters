@@ -44,31 +44,31 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\core\string\xeString.h">
+    <ClInclude Include="..\..\src\core\string\xeString.hpp">
       <Filter>core\string</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\core\memory\xeAlloc.h">
+    <ClInclude Include="..\..\src\core\memory\xeAlloc.hpp">
       <Filter>core\memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\core\type\xeOrdinals.h">
+    <ClInclude Include="..\..\src\core\type\xeOrdinals.hpp">
       <Filter>core\type</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\core\devboost\xeMemCmp.h">
+    <ClInclude Include="..\..\src\core\devboost\xeMemCmp.hpp">
       <Filter>core\devboost</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\core\filesystem\xeFilesystem.h">
+    <ClInclude Include="..\..\src\core\filesystem\xeFilesystem.hpp">
       <Filter>core\filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\core\filesystem\xePath.h">
+    <ClInclude Include="..\..\src\core\filesystem\xePath.hpp">
       <Filter>core\filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\core\memory\xeDiskMemoryPool.h">
+    <ClInclude Include="..\..\src\core\memory\xeDiskMemoryPool.hpp">
       <Filter>core\memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\core\log\xeLogOutput.h">
+    <ClInclude Include="..\..\src\core\log\xeLogOutput.hpp">
       <Filter>core\log</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\core\filesystem\xeFileMmapStream.h">
+    <ClInclude Include="..\..\src\core\filesystem\xeFileMmapStream.hpp">
       <Filter>core\filesystem</Filter>
     </ClInclude>
   </ItemGroup>

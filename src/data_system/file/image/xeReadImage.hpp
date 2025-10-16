@@ -1,9 +1,9 @@
-#ifndef _XE_RWAD_IMAGE_H_
-#define _XE_RWAD_IMAGE_H_
+#ifndef _XE_RWAD_IMAGE_HPP_
+#define _XE_RWAD_IMAGE_HPP_
 
-#include "type/xeOrdinals.h"
-#include "testure/xeImage.h"
-#include "file/image/xeImgaeFile.h"
+#include "type/xeOrdinals.hpp"
+#include "image/xeImage.hpp"
+#include "file/image/xeImgaeFile.hpp"
 
 namespace xe
 {
@@ -18,4 +18,4 @@ namespace xe
 
 } // namespace xe is end
 
-#endif // _XE_RWAD_IMAGE_H_ IS EOF
+#endif // _XE_RWAD_IMAGE_HPP_ IS EOF

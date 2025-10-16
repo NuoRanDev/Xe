@@ -1,10 +1,10 @@
-#ifndef _XE_MEM_CMP_H_
-#define _XE_MEM_CMP_H_
+#ifndef _XE_MEM_CMP_HPP_
+#define _XE_MEM_CMP_HPP_
 
 #include <cstdint>
 #include <vector>
 
-#include "type/xeOrdinals.h"
+#include "type/xeOrdinals.hpp"
 
 namespace xe
 {
@@ -15,4 +15,4 @@ namespace xe
 	std::vector<int64_t> find_byte_all_memory_int64size(const byte_t* str, const uint64_t size, const byte_t c) noexcept;
 } // namespace xe is end
 
-#endif // _XE_MEM_CMP_H_ IS EOF
+#endif // _XE_MEM_CMP_HPP_ IS EOF

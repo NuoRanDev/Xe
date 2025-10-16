@@ -8,6 +8,9 @@
     <Filter Include="ui_system\window">
       <UniqueIdentifier>{9292bde1-94f0-41fa-9340-d988820d920e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ui_system\testure">
+      <UniqueIdentifier>{533a28b8-2d97-4873-9a3e-2947051cb9c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\ui_system\window\xeWindow.cpp">
@@ -17,16 +20,19 @@
     <ClCompile Include="..\..\src\ui_system\window\xeWindowManager.cpp">
       <Filter>ui_system\window</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ui_system\igl.cpp">
+    <ClCompile Include="..\..\src\ui_system\xeSurface.hpp">
       <Filter>ui_system\window</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\ui_system\window\xeWindow.h">
+    <ClInclude Include="..\..\src\ui_system\window\xeWindow.hpp">
       <Filter>ui_system\window</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\ui_system\window\xeWindowManager.h">
+    <ClInclude Include="..\..\src\ui_system\window\xeWindowManager.hpp">
       <Filter>ui_system\window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ui_system\testure\xeTesture.hpp">
+      <Filter>ui_system\testure</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

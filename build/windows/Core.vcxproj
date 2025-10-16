@@ -42,15 +42,15 @@
     <ClCompile Include="..\..\src\core\string\xeString.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\core\devboost\xeMemCmp.h" />
-    <ClInclude Include="..\..\src\core\filesystem\xeFilesystem.h" />
-    <ClInclude Include="..\..\src\core\filesystem\xeFileMmapStream.h" />
-    <ClInclude Include="..\..\src\core\filesystem\xePath.h" />
-    <ClInclude Include="..\..\src\core\log\xeLogOutput.h" />
-    <ClInclude Include="..\..\src\core\memory\xeAlloc.h" />
-    <ClInclude Include="..\..\src\core\memory\xeDiskMemoryPool.h" />
-    <ClInclude Include="..\..\src\core\string\xeString.h" />
-    <ClInclude Include="..\..\src\core\type\xeOrdinals.h" />
+    <ClInclude Include="..\..\src\core\devboost\xeMemCmp.hpp" />
+    <ClInclude Include="..\..\src\core\filesystem\xeFilesystem.hpp" />
+    <ClInclude Include="..\..\src\core\filesystem\xeFileMmapStream.hpp" />
+    <ClInclude Include="..\..\src\core\filesystem\xePath.hpp" />
+    <ClInclude Include="..\..\src\core\log\xeLogOutput.hpp" />
+    <ClInclude Include="..\..\src\core\memory\xeAlloc.hpp" />
+    <ClInclude Include="..\..\src\core\memory\xeDiskMemoryPool.hpp" />
+    <ClInclude Include="..\..\src\core\string\xeString.hpp" />
+    <ClInclude Include="..\..\src\core\type\xeOrdinals.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -89,13 +89,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>ClangCL</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_csharp|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>ClangCL</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_cpp|x64'" Label="Configuration">
@@ -251,7 +251,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\core\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalOptions>/utf-8 -mavx  -mavx2 -mmmx -msse -msse2 -msse3 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/utf-8 </AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -270,7 +270,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\core\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalOptions>/utf-8 -mavx  -mavx2 -mmmx -msse -msse2 -msse3 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/utf-8 </AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -291,12 +291,12 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\core\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalOptions>/utf-8 -mavx  -mavx2 -mmmx -msse -msse2 -msse3 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MinSpace</Optimization>
       <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <BuildStlModules>true</BuildStlModules>
       <DebugInformationFormat>None</DebugInformationFormat>
+      <AdditionalOptions>/utf-8 </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -320,7 +320,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\core\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalOptions>/utf-8 -mavx  -mavx2 -mmmx -msse -msse2 -msse3 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/utf-8 </AdditionalOptions>
       <Optimization>MinSpace</Optimization>
       <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>

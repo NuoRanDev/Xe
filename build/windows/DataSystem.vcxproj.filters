@@ -5,24 +5,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="data_system\testure">
-      <UniqueIdentifier>{1dc7b3a6-bcab-44af-822f-5e38355aa135}</UniqueIdentifier>
-    </Filter>
     <Filter Include="file">
       <UniqueIdentifier>{e898c12e-612a-4315-b942-8264a266a265}</UniqueIdentifier>
     </Filter>
     <Filter Include="file\image">
       <UniqueIdentifier>{cec31fd3-382d-408e-b510-d0c97d5f719f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="data_system\image">
+      <UniqueIdentifier>{1dc7b3a6-bcab-44af-822f-5e38355aa135}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\data_system\testure\xeImage.h">
-      <Filter>data_system\testure</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\data_system\testure\xeImage.cpp">
-      <Filter>data_system\testure</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\data_system\file\image\xeReadImage.h">
+    <ClCompile Include="..\..\src\data_system\file\image\xeReadImage.hpp">
       <Filter>file\image</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\data_system\file\image\libsnpngAddons.cpp">
@@ -34,13 +28,19 @@
     <ClCompile Include="..\..\src\data_system\file\xeMemoryFile.cpp">
       <Filter>file</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\data_system\image\xeImage.cpp">
+      <Filter>data_system\image</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\data_system\file\image\xeImgaeFile.h">
+    <ClInclude Include="..\..\src\data_system\file\image\xeImgaeFile.hpp">
       <Filter>file\image</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\data_system\file\xeMemoryFile.h">
+    <ClInclude Include="..\..\src\data_system\file\xeMemoryFile.hpp">
       <Filter>file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\data_system\image\xeImage.hpp">
+      <Filter>data_system\image</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

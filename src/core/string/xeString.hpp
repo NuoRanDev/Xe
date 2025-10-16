@@ -1,13 +1,13 @@
-#ifndef _XE_STRING_H_
-#define _XE_STRING_H_
+#ifndef _XE_STRING_HPP_
+#define _XE_STRING_HPP_
 
 
 #include <cstdint>
 #include <vector>
 #include <ostream>
 
-#include "memory/xeAlloc.h"
-#include "type/xeOrdinals.h"
+#include "memory/xeAlloc.hpp"
+#include "type/xeOrdinals.hpp"
 
 namespace xe
 {
@@ -184,4 +184,4 @@ namespace xe
 
 
 
-#endif // _XE_STRING_H_ IS EOF
+#endif // _XE_STRING_HPP_ IS EOF

@@ -1,4 +1,4 @@
-#include "devboost/xeMemCmp.h"
+#include "devboost/xeMemCmp.hpp"
 
 #include <mmintrin.h>
 #include <immintrin.h>

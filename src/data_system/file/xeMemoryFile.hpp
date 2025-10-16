@@ -1,8 +1,8 @@
-#ifndef _XE_MEMORY_FILE_H_
-#define _XE_MEMORY_FILE_H_
+#ifndef _XE_MEMORY_FILE_HPP_
+#define _XE_MEMORY_FILE_HPP_
 
-#include "type/xeOrdinals.h"
-#include "string/xeString.h"
+#include "type/xeOrdinals.hpp"
+#include "string/xeString.hpp"
 
 namespace xe
 {
@@ -37,4 +37,4 @@ namespace xe
 	};
 } // namespace xe is end
 
-#endif // _XE_MEMORY_FILE_H_ IS EOF
+#endif // _XE_MEMORY_FILE_HPP_ IS EOF

@@ -1,5 +1,5 @@
-#ifndef _XE_ORDINALA_H_
-#define _XE_ORDINALA_H_
+#ifndef _XE_ORDINALA_HPP_
+#define _XE_ORDINALA_HPP_
 
 #include <cstdint>
 
@@ -13,4 +13,4 @@ namespace xe
 	using any_type_ptr_t = void*;
 } // namespace xe is end
 
-#endif // _XE_ORDINALA_H_ IS END
+#endif // _XE_ORDINALA_HPP_ IS END

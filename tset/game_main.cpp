@@ -1,5 +1,5 @@
-#include "window/xeWindowManager.h"
-#include "log/xeLogOutput.h"
+#include "window/xeWindowManager.hpp"
+#include "log/xeLogOutput.hpp"
 #include <thread>
 
 using namespace xe;

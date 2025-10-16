@@ -1,5 +1,5 @@
-#ifndef _XE_ALLOC_H_
-#define _XE_ALLOC_H_
+#ifndef _XE_ALLOC_HPP_
+#define _XE_ALLOC_HPP_
 
 #include <cstdlib>
 
@@ -37,4 +37,4 @@ namespace xe
 	}
 } // namespace xe is end
 
-#endif // _XE_ALLOC_H_ IS EOF
+#endif // _XE_ALLOC_HPP_ IS EOF

@@ -1,8 +1,8 @@
-#include "window/xeWindowManager.h"
+#include "window/xeWindowManager.hpp"
 
 #include "SDL3/SDL_init.h"
 
-#include "log/xeLogOutput.h"
+#include "log/xeLogOutput.hpp"
 
 #include <format>
 
