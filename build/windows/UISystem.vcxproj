@@ -35,6 +35,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\ui_system\testure\xeTesture.cpp" />
     <ClCompile Include="..\..\src\ui_system\xeSurface.hpp" />
     <ClCompile Include="..\..\src\ui_system\window\xeWindow.cpp" />
     <ClCompile Include="..\..\src\ui_system\window\xeWindowManager.cpp" />
@@ -241,7 +242,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;DataSystem.lib;Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;DataSystem.lib;Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_csharp|x64'">
@@ -258,7 +259,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;DataSystem.lib;Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;DataSystem.lib;Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_cpp|x64'">
@@ -281,7 +282,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;DataSystem.lib;Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;DataSystem.lib;Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_csharp|x64'">
@@ -304,7 +305,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;DataSystem.lib;Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;DataSystem.lib;Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -61,6 +61,14 @@ namespace xe
 
 		void release() noexcept;
 
+		// not safe function
+
+		byte_t* data(uint64_t &size) noexcept 
+		{
+			size = file_size;
+			return (byte_t*)pfile_start; 
+		}
+
 #if !defined(EXPORT_C_SHARP_API)
 		bool open_file(xeString file_path)
 		{

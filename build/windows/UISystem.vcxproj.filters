@@ -23,6 +23,9 @@
     <ClCompile Include="..\..\src\ui_system\xeSurface.hpp">
       <Filter>ui_system\window</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\ui_system\testure\xeTesture.cpp">
+      <Filter>ui_system\testure</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\ui_system\window\xeWindow.hpp">

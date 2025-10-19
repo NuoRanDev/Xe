@@ -9,18 +9,29 @@
 namespace xe
 {
 	// pixel's channel and channel size
-	enum class IMG_FORMAT
+	enum class IMG_FORMAT :uint32_t
 	{
 		NONE			= 0,
 		GRAY8,
-		GRAY16,
 		GA8,
+		GRAY16,
 		GA16,
 		RGB888,
 		RGBA8888,
 		RGB161616,
-		RGBA16161616,
+		RGBA16161616
 	};
+
+	constexpr bool is_gray(IMG_FORMAT foramt)
+	{
+		return static_cast<uint32_t>(foramt) < static_cast<uint32_t>(IMG_FORMAT::RGB888);
+	}
+
+	constexpr bool has_alpha(IMG_FORMAT format)
+	{
+		auto fmt_value = static_cast<uint32_t>(format);
+		return fmt_value ^ 0x00'00'00'01u;
+	}
 
 	constexpr size_t get_format_channel_size(IMG_FORMAT format) noexcept
 	{
@@ -34,6 +45,7 @@ namespace xe
 		case IMG_FORMAT::RGBA8888:		return 4;
 		case IMG_FORMAT::RGB161616:		return 6;
 		case IMG_FORMAT::RGBA16161616:	return 8;
+		default:						return 0;
 		}
 	}
 
@@ -41,6 +53,10 @@ namespace xe
 	{
 		return get_format_channel_size(format) * x * y;
 	}
+
+	void gray_to_rgb(const byte_t* src_data, byte_t* out_data, size_t x, size_t y, size_t channel_size) noexcept;
+
+	void ga_to_rgba(const byte_t* src_data, byte_t* out_data, size_t x, size_t y, size_t channel_size) noexcept;
 
 	class Image
 	{
@@ -72,9 +88,9 @@ namespace xe
 		[[nodiscard]] const size_t get_data_size() const noexcept { return data_size; }
 
 		// important :not safe function !!!!!!!!
-		[[nodiscard]] byte_t* data() { return img_data; }
+		[[nodiscard]] byte_t* data() noexcept;
 
-		~Image() {};
+		~Image() { xe::xe_free(img_data); }
 
 	private:
 

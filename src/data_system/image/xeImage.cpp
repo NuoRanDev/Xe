@@ -3,6 +3,51 @@
 
 namespace xe
 {
+
+	void gray_to_rgb(const byte_t* src_data, byte_t* out_data, size_t x, size_t y, size_t channel_size) noexcept
+	{
+		const byte_t* src_cur = src_data;
+		byte_t* dst_cur = out_data;
+
+		for (size_t i = 0; i < y * x; i++)
+		{
+			// R
+			memcpy(dst_cur, src_cur, channel_size);
+			dst_cur += channel_size;
+			// G
+			memcpy(dst_cur, src_cur, channel_size);
+			dst_cur += channel_size;
+			// B
+			memcpy(dst_cur, src_cur, channel_size);
+			dst_cur += channel_size;
+			src_cur += channel_size;
+		}
+	}
+
+	void ga_to_rgba(const byte_t* src_data, byte_t* out_data, size_t x, size_t y, size_t channel_size) noexcept
+	{
+		const byte_t* src_cur = src_data;
+		byte_t* dst_cur = out_data;
+
+		for (size_t i = 0; i < y * x; i++)
+		{
+			// R
+			memcpy(dst_cur, src_cur, channel_size);
+			dst_cur += channel_size;
+			// G
+			memcpy(dst_cur, src_cur, channel_size);
+			dst_cur += channel_size;
+			// B
+			memcpy(dst_cur, src_cur, channel_size);
+			dst_cur += channel_size;
+			src_cur += channel_size;
+			// A
+			memcpy(dst_cur, src_cur, channel_size);
+			dst_cur += channel_size;
+			src_cur += channel_size;
+		}
+	}
+
 	void Image::create_empty(IMG_FORMAT src_format, size_t src_x, size_t src_y) noexcept
 	{
 		x = src_x, y = src_y;
@@ -52,4 +97,6 @@ namespace xe
 		out_data_size = data_size;
 		return img_data;
 	}
+
+	byte_t* Image::data() noexcept { return img_data; }
 } // namespace xe is end

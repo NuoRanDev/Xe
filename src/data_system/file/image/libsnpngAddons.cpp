@@ -19,7 +19,6 @@ namespace xe
 		// need alloc memory
 		size_t need_new_size = 0;
 
-		int64_t x, y;
 		//
 		int32_t fmt = 0;
 		int32_t ret = 0;
