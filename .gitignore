@@ -1,0 +1,5 @@
+/build/windows/.vs
+/build/windows/.vs/*
+/build/windows/OBJ
+/build/windows/OBJ/*
+/SDK/bin/*

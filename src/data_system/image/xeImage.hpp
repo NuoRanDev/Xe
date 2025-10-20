@@ -49,14 +49,14 @@ namespace xe
 		}
 	}
 
-	constexpr size_t get_img_size(IMG_FORMAT format, size_t x, size_t y)
+	constexpr int64_t get_img_size(IMG_FORMAT format, int32_t x, int32_t y)
 	{
 		return get_format_channel_size(format) * x * y;
 	}
 
-	void gray_to_rgb(const byte_t* src_data, byte_t* out_data, size_t x, size_t y, size_t channel_size) noexcept;
+	void gray_to_rgb(const byte_t* src_data, byte_t* out_data, int32_t x, int32_t y, int64_t channel_size) noexcept;
 
-	void ga_to_rgba(const byte_t* src_data, byte_t* out_data, size_t x, size_t y, size_t channel_size) noexcept;
+	void ga_to_rgba(const byte_t* src_data, byte_t* out_data, int32_t x, int32_t y, int64_t channel_size) noexcept;
 
 	class Image
 	{
@@ -71,34 +71,45 @@ namespace xe
 			x = 0, y = 0;
 		}
 
-		void create_empty(IMG_FORMAT src_format, size_t src_x, size_t src_y) noexcept;
+		Image(const Image&) noexcept = default;
 
-		[[nodiscard]] bool load_data(IMG_FORMAT src_format, const byte_t* src_data, size_t src_x, size_t src_y) noexcept;
+		Image& operator=(const Image&) noexcept = default;
 
-		[[nodiscard]] bool load_data(byte_t* src_data, size_t src_size) noexcept;
+		Image& operator=(Image&&) noexcept = default;
 
-		[[nodiscard]] const byte_t* const get_data(size_t& out_data_size) const noexcept;
+		void create_empty(IMG_FORMAT src_format, int32_t src_x, int32_t src_y) noexcept;
 
-		[[nodiscard]] const size_t get_width() const noexcept { return x; }
+		[[nodiscard]] bool load_data(IMG_FORMAT src_format, const byte_t* src_data, int32_t src_x, int32_t src_y) noexcept;
 
-		[[nodiscard]] const size_t get_height() const noexcept { return y; }
+		[[nodiscard]] bool load_data(byte_t* src_data, int32_t src_size) noexcept;
+
+		[[nodiscard]] const byte_t* const get_data(int64_t& out_data_size) const noexcept;
+
+		[[nodiscard]] const int32_t get_width() const noexcept { return x; }
+
+		[[nodiscard]] const int32_t get_height() const noexcept { return y; }
 		
 		[[nodiscard]] const IMG_FORMAT get_format() const noexcept { return format; }
 		
 		[[nodiscard]] const size_t get_data_size() const noexcept { return data_size; }
 
 		// important :not safe function !!!!!!!!
-		[[nodiscard]] byte_t* data() noexcept;
+		[[nodiscard]] byte_t* unsafe_data() noexcept;
 
-		~Image() { xe::xe_free(img_data); }
+		[[nodiscard]] const byte_t* data() const noexcept { return img_data; }
+
+		~Image() 
+		{ 
+			xe_free(img_data); 
+		}
 
 	private:
 
+		int64_t data_size;
+
 		byte_t* img_data;
 
-		size_t data_size;
-
-		int64_t x, y;
+		int32_t x, y;
 
 		IMG_FORMAT format;
 

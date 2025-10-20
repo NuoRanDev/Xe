@@ -21,6 +21,13 @@ constexpr SDL_WindowFlags window_flags = 0;
 
 namespace xe
 {
+	Window::Window()
+	{
+		command_map = nullptr;
+		is_draw = new std::mutex();
+		current_draw_function_index = 0;
+	}
+
 	bool Window::create_window_context(int32_t w, int32_t h, xeString name, bool bordered) noexcept
 	{
 		init_render_api();
@@ -57,18 +64,27 @@ namespace xe
 					break;
 				}
 			}
-
+			SDL_RenderClear(window_renderer);
+			
 			is_draw->lock();
-			auto draw_function = window_draw_functions.front();
-			if(draw_function.stop_loop)
+			uint32_t next_draw_function_index;
+
+			if (!current_draw_function_index) { next_draw_function_index = 1; }
+			else next_draw_function_index = 0;
+
+			while (!window_draw_functions[current_draw_function_index].empty())
 			{
-				window_draw_functions.pop();
+				auto draw_function = window_draw_functions[current_draw_function_index].front();
+				if (!draw_function.stop_loop)
+				{
+					window_draw_functions[next_draw_function_index].push(draw_function);
+				}
+				window_draw_functions[current_draw_function_index].pop();
+				draw_function.draw_function(this);
 			}
+			current_draw_function_index = next_draw_function_index;
 			is_draw->unlock();
 
-			draw_function.draw_function(this);
-
-			//SDL_RenderClear(window_renderer);
 			SDL_RenderPresent(window_renderer);
 		}
 		return true;
@@ -77,7 +93,7 @@ namespace xe
 	void Window::submit_draw_command(std::function<bool(Window*)> draw_cmd, bool is_stop_loop)
 	{
 		is_draw->lock();
-		window_draw_functions.push({ draw_cmd, is_stop_loop });
+		window_draw_functions[current_draw_function_index].push({ draw_cmd, is_stop_loop });
 		is_draw->unlock();
 	}
 

@@ -16,11 +16,7 @@ namespace xe
 	class Window
 	{
 	public:
-		Window() 
-		{
-			command_map = nullptr;
-			is_draw = new std::mutex();
-		}
+		Window();
 
 		bool create_window_context(int32_t w, int32_t h, xeString name, bool bordered) noexcept;
 
@@ -71,7 +67,8 @@ namespace xe
 		};
 
 		// thread safe queue
-		std::queue<RenderCommand> window_draw_functions;
+		std::queue<RenderCommand> window_draw_functions[2];
+		uint32_t current_draw_function_index = 0;
 		std::mutex *is_draw;
 
 	};

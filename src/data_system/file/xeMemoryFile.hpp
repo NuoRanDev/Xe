@@ -26,6 +26,10 @@ namespace xe
 		// get offset data
 		byte_t* get_write_offset_data(size_t offset) noexcept;
 
+		// get file name
+		xeString get_file_name() const noexcept { return file_name; }
+		char const* c_file_name() const noexcept { return file_name.c_str(); }
+
 		// release memory
 		void release() noexcept;
 

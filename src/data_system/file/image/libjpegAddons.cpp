@@ -25,12 +25,11 @@ void my_error_exit(j_common_ptr cinfo)
 
 namespace xe
 {
-	bool read_memory_jpg_image(const ImageFile& file, Image& image) noexcept
+	bool read_memory_jpg_image(const ImageFile& file, Image& img_out) noexcept
 	{
 		jpeg_decompress_struct cinfo;
 		libjpeg_addons jerr;
 
-		Image output;
 		byte_t* image_data = nullptr;
 		uint32_t line_size = 0;
 
@@ -44,7 +43,7 @@ namespace xe
 
 		if (setjmp(jerr.setjmp_buffer))
 		{
-			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "DataSystem : libjpeg", "reed jpeg faild!");
+			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "DataSystem : libjpeg", std::format("File:{0} reed jpeg failed!",file.c_file_name()).c_str());
 			return false;
 		}
 
@@ -63,35 +62,34 @@ namespace xe
 		switch (cinfo.out_color_space)
 		{
 		case JCS_UNKNOWN:
-			printf("unkown jpeg type\n");
+			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "DataSystem: libjpeg", std::format("File:{0} unknown jpeg type\n",file.c_file_name()).c_str());
 			return false;
 
 		case JCS_GRAYSCALE:
-			output.create_empty(IMG_FORMAT::GRAY8, cinfo.image_width, cinfo.image_height);
+			img_out.create_empty(IMG_FORMAT::GRAY8, cinfo.image_width, cinfo.image_height);
 			break;
 
 		case JCS_RGB:
-			output.create_empty(IMG_FORMAT::RGB888, cinfo.image_width, cinfo.image_height);
+			img_out.create_empty(IMG_FORMAT::RGB888, cinfo.image_width, cinfo.image_height);
 			break;
 
 		default:
-			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "DataSystem: libjpeg", "unkown jpeg type\n");
+			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "DataSystem: libjpeg", std::format("File:{0} unknown jpeg type\n",file.c_file_name()).c_str());
 			return false;
 		}
 
 		// get pixel lines
-		image_data = output.data();
+		image_data = img_out.unsafe_data();
 		while (cinfo.output_scanline < cinfo.output_height)
 		{
 			jpeg_read_scanlines(&cinfo, &image_data, 1);
-			image_data += cinfo.output_scanline * line_size;
+			image_data += stride;
 		}
 
-		//finnished
+		//finished
 		jpeg_finish_decompress(&cinfo);
 		jpeg_destroy_decompress(&cinfo);
 
-		image = output;
 		return true;
 
 	}
