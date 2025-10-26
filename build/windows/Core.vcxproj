@@ -42,15 +42,15 @@
     <ClCompile Include="..\..\src\core\string\xeString.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\core\devboost\xeMemCmp.hpp" />
-    <ClInclude Include="..\..\src\core\filesystem\xeFilesystem.hpp" />
-    <ClInclude Include="..\..\src\core\filesystem\xeFileMmapStream.hpp" />
-    <ClInclude Include="..\..\src\core\filesystem\xePath.hpp" />
-    <ClInclude Include="..\..\src\core\log\xeLogOutput.hpp" />
-    <ClInclude Include="..\..\src\core\memory\xeAlloc.hpp" />
-    <ClInclude Include="..\..\src\core\memory\xeDiskMemoryPool.hpp" />
-    <ClInclude Include="..\..\src\core\string\xeString.hpp" />
-    <ClInclude Include="..\..\src\core\type\xeOrdinals.hpp" />
+    <ClInclude Include="..\..\inc\core\devboost\xeMemCmp.hpp" />
+    <ClInclude Include="..\..\inc\core\filesystem\xeFileMmapStream.hpp" />
+    <ClInclude Include="..\..\inc\core\filesystem\xeFilesystem.hpp" />
+    <ClInclude Include="..\..\inc\core\filesystem\xePath.hpp" />
+    <ClInclude Include="..\..\inc\core\log\xeLogOutput.hpp" />
+    <ClInclude Include="..\..\inc\core\memory\xeAlloc.hpp" />
+    <ClInclude Include="..\..\inc\core\memory\xeDiskMemoryPool.hpp" />
+    <ClInclude Include="..\..\inc\core\string\xeString.hpp" />
+    <ClInclude Include="..\..\inc\core\type\xeOrdinals.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -143,23 +143,23 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|x64'">
-    <IncludePath>$(SolutionDir)..\..\src\core\</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\inc\core\</IncludePath>
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_csharp|x64'">
-    <IncludePath>$(SolutionDir)..\..\src\core\</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\inc\core\</IncludePath>
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_cpp|x64'">
-    <IncludePath>$(SolutionDir)..\..\src\core\</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\inc\core\</IncludePath>
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
     <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_csharp|x64'">
-    <IncludePath>$(SolutionDir)..\..\src\core\</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\inc\core\</IncludePath>
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
     <GenerateManifest>false</GenerateManifest>
@@ -248,7 +248,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>USE_FLAC;USE_MP3;USE_AVIF;SPNG_STATIC;EXPORT_C_PLUS_PLUS_API;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\core\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\inc\core\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/utf-8 </AdditionalOptions>
@@ -267,7 +267,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>USE_FLAC;USE_MP3;USE_AVIF;SPNG_STATIC;EXPORT_C_SHARP_API;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\core\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\inc\core\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/utf-8 </AdditionalOptions>
@@ -288,7 +288,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>USE_FLAC;USE_MP3;USE_AVIF;SPNG_STATIC;EXPORT_C_PLUS_PLUS_API;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\core\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\inc\core\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <Optimization>MinSpace</Optimization>
@@ -317,7 +317,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>USE_FLAC;USE_MP3;USE_AVIF;SPNG_STATIC;EXPORT_C_SHARP_API;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\core\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\inc\core\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/utf-8 </AdditionalOptions>

@@ -37,14 +37,14 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\data_system\file\image\libjpegAddons.cpp" />
     <ClCompile Include="..\..\src\data_system\file\image\libsnpngAddons.cpp" />
-    <ClCompile Include="..\..\src\data_system\file\image\xeReadImage.hpp" />
     <ClCompile Include="..\..\src\data_system\file\xeMemoryFile.cpp" />
     <ClCompile Include="..\..\src\data_system\image\xeImage.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\data_system\file\image\xeImgaeFile.hpp" />
-    <ClInclude Include="..\..\src\data_system\file\xeMemoryFile.hpp" />
-    <ClInclude Include="..\..\src\data_system\image\xeImage.hpp" />
+    <ClInclude Include="..\..\inc\data_system\file\image\xeImgaeFile.hpp" />
+    <ClInclude Include="..\..\inc\data_system\file\image\xeReadImage.hpp" />
+    <ClInclude Include="..\..\inc\data_system\file\xeMemoryFile.hpp" />
+    <ClInclude Include="..\..\inc\data_system\image\xeImage.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -139,22 +139,22 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|x64'">
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
-    <ExternalIncludePath>$(SolutionDir)..\..\src\core\;$(SolutionDir)..\..\src\data_system\</ExternalIncludePath>
+    <ExternalIncludePath>$(SolutionDir)..\..\inc\core\;$(SolutionDir)..\..\inc\data_system\</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_csharp|x64'">
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
-    <ExternalIncludePath>$(SolutionDir)..\..\src\core\;$(SolutionDir)..\..\src\data_system\</ExternalIncludePath>
+    <ExternalIncludePath>$(SolutionDir)..\..\inc\core\;$(SolutionDir)..\..\inc\data_system\</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_cpp|x64'">
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
-    <ExternalIncludePath>$(SolutionDir)..\..\src\core\;$(SolutionDir)..\..\src\data_system\</ExternalIncludePath>
+    <ExternalIncludePath>$(SolutionDir)..\..\inc\core\;$(SolutionDir)..\..\inc\data_system\</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_csharp|x64'">
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
-    <ExternalIncludePath>$(SolutionDir)..\..\src\core\;$(SolutionDir)..\..\src\data_system\</ExternalIncludePath>
+    <ExternalIncludePath>$(SolutionDir)..\..\inc\core\;$(SolutionDir)..\..\inc\data_system\</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|x64'">
     <VcpkgUseStatic>true</VcpkgUseStatic>
@@ -234,7 +234,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SPNG_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\data_system\;$(SolutionDir)..\..\src\core\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\</AdditionalIncludeDirectories>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
@@ -251,7 +251,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SPNG_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\data_system\;$(SolutionDir)..\..\src\core\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\</AdditionalIncludeDirectories>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
@@ -270,7 +270,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SPNG_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\data_system\;$(SolutionDir)..\..\src\core\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\</AdditionalIncludeDirectories>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <Optimization>MinSpace</Optimization>
@@ -293,7 +293,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SPNG_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\src\data_system\;$(SolutionDir)..\..\src\core\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\</AdditionalIncludeDirectories>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <Optimization>MinSpace</Optimization>

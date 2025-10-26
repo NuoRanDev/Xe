@@ -12,9 +12,9 @@ namespace xe
 	class Texture
 	{
 	public:
-		Texture(Window *setted_bind_window)
+		Texture(Window *set_bind_window)
 		{
-			bind_window = setted_bind_window;
+			bind_window = set_bind_window;
 		}
 		
 		bool load_image(Image& src_img);

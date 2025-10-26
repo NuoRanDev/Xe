@@ -16,9 +16,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\data_system\file\image\xeReadImage.hpp">
-      <Filter>file\image</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\data_system\file\image\libsnpngAddons.cpp">
       <Filter>file\image</Filter>
     </ClCompile>
@@ -33,13 +30,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\data_system\file\image\xeImgaeFile.hpp">
-      <Filter>file\image</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\data_system\file\xeMemoryFile.hpp">
+    <ClInclude Include="..\..\inc\data_system\file\xeMemoryFile.hpp">
       <Filter>file</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\data_system\image\xeImage.hpp">
+    <ClInclude Include="..\..\inc\data_system\file\image\xeImgaeFile.hpp">
+      <Filter>file\image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\data_system\file\image\xeReadImage.hpp">
+      <Filter>file\image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\data_system\image\xeImage.hpp">
       <Filter>data_system\image</Filter>
     </ClInclude>
   </ItemGroup>
