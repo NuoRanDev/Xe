@@ -3,12 +3,16 @@
 
 #include <cstdlib>
 
+#include "type/xeOrdinals.hpp"
+
 namespace xe
 {
+	any_type_ptr_t xe_only_malloc(size_t size) noexcept;
+
 	// malloc
 	template<typename T> T* xe_malloc(size_t size) noexcept
 	{
-		return (T*)malloc(sizeof(T) * size);
+		return (T*)xe_only_malloc(sizeof(T) * size);
 	}
 
 	template<typename T> T* xe_realloc(T* src, size_t size) noexcept
@@ -16,7 +20,7 @@ namespace xe
 		return (T*)realloc(src, sizeof(T) * size);
 	}
 
-	void xe_free(void* src) noexcept;
+	any_type_ptr_t xe_free(any_type_ptr_t src) noexcept;
 
 	template<typename T> void xe_delete_array(T* src) noexcept
 	{

@@ -3,6 +3,8 @@
 
 #include "string/xeString.hpp"
 
+#include "graph/graph.hpp"
+
 #include <cstdint>
 #include <queue>
 #include <functional>
@@ -38,6 +40,8 @@ namespace xe
 
 		friend class Texture;
 
+		friend class FragmentShader;
+
 #if defined(USE_OPENGL)
 		void *context_opengl_instance;
 #elif defined(USE_VULKAN)
@@ -56,9 +60,9 @@ namespace xe
 
 		bool init_render_api();
 
-		bool bind_reder_api_in_window();
+		bool bind_render_api_in_window();
 
-		short *command_map;
+		GraphBit16 command_map;
 
 		struct RenderCommand
 		{

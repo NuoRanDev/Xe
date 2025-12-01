@@ -10,9 +10,6 @@
     <Filter Include="core\memory">
       <UniqueIdentifier>{36c9a0b1-61e4-4db1-bebd-c8ad860e8e26}</UniqueIdentifier>
     </Filter>
-    <Filter Include="core\network">
-      <UniqueIdentifier>{bf56c39b-bd2c-40d1-858b-8946c90347e7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="core\type">
       <UniqueIdentifier>{5172fda1-f46e-4f33-9fad-abca2ef04cd1}</UniqueIdentifier>
     </Filter>
@@ -24,6 +21,9 @@
     </Filter>
     <Filter Include="core\log">
       <UniqueIdentifier>{2dfd18fc-8ca8-4508-aeb1-70bbb9b3fe0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\math">
+      <UniqueIdentifier>{c6bca056-225f-4fb8-8b27-5541bf637973}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +70,9 @@
     </ClInclude>
     <ClInclude Include="..\..\inc\core\type\xeOrdinals.hpp">
       <Filter>core\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\core\math\xeBigNumber.hpp">
+      <Filter>core\math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,5 +1,7 @@
 #include "filesystem/xeFileMmapStream.hpp"
 
+#include "log/xeLogOutput.hpp"
+
 #if defined(_WIN32)
 #include <Windows.h>
 #endif // OS inc
@@ -8,6 +10,18 @@
 
 namespace xe
 {
+	const byte_t* Mmapfstream::get_mmap_offset_ptr(size_t offset_byte) const noexcept
+	{
+		if (file_size < offset_byte)
+		{
+			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP,
+				"xeCore",
+				std::format("Out of memory : offset size {0}, file size {1}", offset_byte, file_size).c_str());
+			return nullptr;
+		}
+		return (byte_t*)pfile_start + offset_byte;
+	}
+
 	bool Mmapfstream::get_file_size(const utf8_t* path) noexcept
 	{
 		if (!std::filesystem::exists(path))
@@ -19,6 +33,19 @@ namespace xe
 			return false;
 		}
 		file_size = std::filesystem::file_size(path);
+		return true;
+	}
+
+	bool Mmapfstream::read(size_t offset_byte, size_t data_size, any_type_ptr_t dst) const noexcept
+	{
+		if (file_size < offset_byte + data_size)
+		{
+			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP,
+				"xeCore",
+				std::format("Out of memory : offset size {0}, file size {1}", offset_byte + data_size, file_size).c_str());
+			return false;
+		}
+		std::memcpy(dst, (byte_t*)pfile_start + offset_byte, data_size);
 		return true;
 	}
 

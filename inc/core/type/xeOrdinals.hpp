@@ -2,6 +2,7 @@
 #define _XE_ORDINALA_HPP_
 
 #include <cstdint>
+#include <type_traits>
 
 namespace xe
 {
@@ -11,6 +12,13 @@ namespace xe
 	using utf8_t = char8_t;
 
 	using any_type_ptr_t = void*;
+
+	template<typename T>
+	concept IntegralType = requires(T)
+	{
+		std::is_integral<T>::value;
+	};
+
 } // namespace xe is end
 
 #endif // _XE_ORDINALA_HPP_ IS END

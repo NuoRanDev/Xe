@@ -10,7 +10,16 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DataSystem", "DataSystem.vc
 		{CDFF4D3E-C976-48A1-8762-4967CA950E0C} = {CDFF4D3E-C976-48A1-8762-4967CA950E0C}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Geometry", "Geometry.vcxproj", "{C53C6184-5FB0-49DA-84FC-985E34C1A9E2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Logic", "Logic.vcxproj", "{CA0F156F-AF03-4622-BBA8-BE82F72FD461}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A5B3C90E-9612-48E2-84FF-8E89FAFA4D28} = {A5B3C90E-9612-48E2-84FF-8E89FAFA4D28}
+		{CDFF4D3E-C976-48A1-8762-4967CA950E0C} = {CDFF4D3E-C976-48A1-8762-4967CA950E0C}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Graphics", "Graphics.vcxproj", "{C53C6184-5FB0-49DA-84FC-985E34C1A9E2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CA0F156F-AF03-4622-BBA8-BE82F72FD461} = {CA0F156F-AF03-4622-BBA8-BE82F72FD461}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +65,22 @@ Global
 		{A5B3C90E-9612-48E2-84FF-8E89FAFA4D28}.Release_csharp|x64.Build.0 = Release_csharp|x64
 		{A5B3C90E-9612-48E2-84FF-8E89FAFA4D28}.Release_csharp|x86.ActiveCfg = Release_csharp|Win32
 		{A5B3C90E-9612-48E2-84FF-8E89FAFA4D28}.Release_csharp|x86.Build.0 = Release_csharp|Win32
+		{CA0F156F-AF03-4622-BBA8-BE82F72FD461}.Debug_cpp|x64.ActiveCfg = Debug_cpp|x64
+		{CA0F156F-AF03-4622-BBA8-BE82F72FD461}.Debug_cpp|x64.Build.0 = Debug_cpp|x64
+		{CA0F156F-AF03-4622-BBA8-BE82F72FD461}.Debug_cpp|x86.ActiveCfg = Debug_cpp|Win32
+		{CA0F156F-AF03-4622-BBA8-BE82F72FD461}.Debug_cpp|x86.Build.0 = Debug_cpp|Win32
+		{CA0F156F-AF03-4622-BBA8-BE82F72FD461}.Debug_csharp|x64.ActiveCfg = Debug_csharp|x64
+		{CA0F156F-AF03-4622-BBA8-BE82F72FD461}.Debug_csharp|x64.Build.0 = Debug_csharp|x64
+		{CA0F156F-AF03-4622-BBA8-BE82F72FD461}.Debug_csharp|x86.ActiveCfg = Debug_csharp|Win32
+		{CA0F156F-AF03-4622-BBA8-BE82F72FD461}.Debug_csharp|x86.Build.0 = Debug_csharp|Win32
+		{CA0F156F-AF03-4622-BBA8-BE82F72FD461}.Release_cpp|x64.ActiveCfg = Release_cpp|x64
+		{CA0F156F-AF03-4622-BBA8-BE82F72FD461}.Release_cpp|x64.Build.0 = Release_cpp|x64
+		{CA0F156F-AF03-4622-BBA8-BE82F72FD461}.Release_cpp|x86.ActiveCfg = Release_cpp|Win32
+		{CA0F156F-AF03-4622-BBA8-BE82F72FD461}.Release_cpp|x86.Build.0 = Release_cpp|Win32
+		{CA0F156F-AF03-4622-BBA8-BE82F72FD461}.Release_csharp|x64.ActiveCfg = Release_csharp|x64
+		{CA0F156F-AF03-4622-BBA8-BE82F72FD461}.Release_csharp|x64.Build.0 = Release_csharp|x64
+		{CA0F156F-AF03-4622-BBA8-BE82F72FD461}.Release_csharp|x86.ActiveCfg = Release_csharp|Win32
+		{CA0F156F-AF03-4622-BBA8-BE82F72FD461}.Release_csharp|x86.Build.0 = Release_csharp|Win32
 		{C53C6184-5FB0-49DA-84FC-985E34C1A9E2}.Debug_cpp|x64.ActiveCfg = Debug_cpp|x64
 		{C53C6184-5FB0-49DA-84FC-985E34C1A9E2}.Debug_cpp|x64.Build.0 = Debug_cpp|x64
 		{C53C6184-5FB0-49DA-84FC-985E34C1A9E2}.Debug_cpp|x86.ActiveCfg = Debug_cpp|Win32

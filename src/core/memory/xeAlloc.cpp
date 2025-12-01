@@ -2,9 +2,14 @@
 
 namespace xe
 {
-	void xe_free(void* src) noexcept
+	any_type_ptr_t xe_only_malloc(size_t size) noexcept
+	{
+		return malloc(size);
+	}
+
+	any_type_ptr_t xe_free(any_type_ptr_t src) noexcept
 	{
 		if (src != nullptr)free(src);
-		src = nullptr;
+		return nullptr;
 	}
 }

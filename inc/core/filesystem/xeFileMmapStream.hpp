@@ -3,7 +3,6 @@
 
 #include "type/xeOrdinals.hpp"
 #include "string/xeString.hpp"
-#include "log/xeLogOutput.hpp"
 #include "memory/xeAlloc.hpp"
 
 #include <format>
@@ -26,35 +25,19 @@ namespace xe
 
 		const byte_t* get_mmap_ptr() const noexcept { return (const byte_t*)pfile_start; }
 
-		const byte_t* get_mmap_offset_ptr(size_t offset_byte) const noexcept
-		{
-			if (file_size < offset_byte)
-			{
-				XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP,
-					"xeCore",
-					std::format("Out of memry : offset size {0}, file size {1}", offset_byte, file_size).c_str());
-				return nullptr;
-			}
-			return (byte_t*)pfile_start + offset_byte;
-		}
+		const byte_t* get_mmap_offset_ptr(size_t offset_byte) const noexcept;
 
 		bool get_file_size(const utf8_t* path) noexcept;
 
 		// read file data to dst (copy)
 
+		bool read(size_t offset_byte, size_t data_size, any_type_ptr_t dst) const noexcept;
+
 		template<typename T> bool read(T* dst, size_t number) const noexcept { return read(0, dst, number); }
 
 		template<typename T> bool read(size_t offset_byte, T* dst, size_t number) const noexcept
 		{
-			if (file_size < (offset_byte + number * sizeof(T)))
-			{
-				XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP,
-					"xeCore",
-					std::format("Out of memry : offset size {0}, file size {1}", sizeof(T) * number, file_size).c_str());
-				return false;
-			}
-			std::memcpy(dst, (byte_t*)pfile_start + offset_byte, number * sizeof(T));
-			return true;
+			return read(offset_byte, number * sizeof(T), dst);
 		}
 
 		bool open_file(const utf8_t* path) noexcept;

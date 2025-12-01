@@ -23,7 +23,6 @@ namespace xe
 {
 	Window::Window()
 	{
-		command_map = nullptr;
 		is_draw = new std::mutex();
 		current_draw_function_index = 0;
 	}
@@ -37,10 +36,10 @@ namespace xe
 			XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeUISystem : SDL3", (std::string("Failed to create window: ") + SDL_GetError()).c_str());
 			return false;
 		}
-		bind_reder_api_in_window();
+		bind_render_api_in_window();
 		SDL_SetWindowPosition(std::any_cast<SDL_Window*>(sdl_window_contest), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 		SDL_SetWindowBordered(std::any_cast<SDL_Window*>(sdl_window_contest), bordered);
-		command_map = new short[w * h];
+		command_map.create_empty(w, h);
 
 		return true;
 	}
@@ -152,7 +151,7 @@ namespace xe
 		return true;
 	}
 
-	bool Window::bind_reder_api_in_window()
+	bool Window::bind_render_api_in_window()
 	{
 		auto window = std::any_cast<SDL_Window*>(sdl_window_contest);
 #if defined(USE_OPENGL)

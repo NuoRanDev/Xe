@@ -28,11 +28,9 @@ namespace xe
 
 		U8StringRef& operator=(const U8StringRef& temp_string) noexcept;
 
-		U8StringRef& operator=(const char*& c_utf8_str) noexcept;
+		U8StringRef& operator=(const char* c_utf8_str) noexcept;
 
-		U8StringRef& operator=(const utf8_t*& c_utf8_str) noexcept;
-
-		U8StringRef& operator=(U8StringRef&&) noexcept = default;
+		U8StringRef& operator=(const utf8_t* c_utf8_str) noexcept;
 
 		U8StringRef Slice(int64_t start, int64_t end) const noexcept;
 
@@ -46,13 +44,18 @@ namespace xe
 
 		// Find all
 
-		[[nodiscard]] std::vector<int64_t> find_all(const unicode_t separator) noexcept;
+		[[nodiscard]] std::vector<int64_t> find_all(const unicode_t pattern) const noexcept;
 
-		[[nodiscard]] std::vector<int64_t> find_all(const U8StringRef separator) noexcept;
+		[[nodiscard]] std::vector<int64_t> find_all(const U8StringRef pattern) const noexcept;
 
-		[[nodiscard]] std::vector<int64_t> find_all(const utf8_t separator) noexcept;
+		[[nodiscard]] std::vector<int64_t> find_all(const utf8_t pattern) const noexcept;
 
-		[[nodiscard]] std::vector<int64_t> find_all(const utf8_t* separator, const int64_t size) noexcept;
+		[[nodiscard]] std::vector<int64_t> find_all(const utf8_t* pattern, const int64_t size) const noexcept;
+
+		// Find
+		int64_t find_start(const utf8_t* pattern, int64_t pattern_size) const noexcept;
+
+		int64_t find_last(const utf8_t* pattern, int64_t pattern_size) const noexcept;
 
 		// Split string by separator
 
@@ -100,9 +103,19 @@ namespace xe
 			return this->stringcmp(src.data(), src.characters_data_size);
 		}
 
+		template<IntegralType T> void integral_to_string(T number) noexcept
+		{
+			utf8_t characters[sizeof(T)] = { 0 };
+			int64_t str_size = 0;
+
+			integral_to_string_ptr(static_cast<int64_t>(number), characters, str_size);
+			load_data(characters, str_size, str_size);
+		}
+
 		void release() noexcept
 		{
 			xe_free(characters_data);
+			characters_data = nullptr;
 			characters_data_size = 0;
 			characters_number = 0;
 		}
@@ -156,6 +169,8 @@ namespace xe
 		}
 
 		bool string_short_cmp(const utf8_t* cmp_str, int64_t cmp_str_size) const noexcept;
+
+		void integral_to_string_ptr(int64_t number, utf8_t* str, int64_t& str_size) noexcept;
 		// 
 		bool is_short_string;
 	};

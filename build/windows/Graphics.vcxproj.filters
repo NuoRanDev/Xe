@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\tset\game_main.cpp" />
+    <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkContext.cpp">
+      <Filter>graphics\graphicsAPI\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkDevice.cpp">
+      <Filter>graphics\graphicsAPI\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\testure\xeTesture.cpp">
+      <Filter>graphics\testure</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\window\xeWindowManager.cpp">
+      <Filter>graphics\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\window\xeWindow.cpp">
+      <Filter>graphics\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkConfig.cpp">
+      <Filter>graphics\graphicsAPI\vulkan</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="graphics">
+      <UniqueIdentifier>{4cf1d016-3179-412c-a608-9360b4ec36bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="graphics\testure">
+      <UniqueIdentifier>{cd872d8f-321d-4c1a-bb17-dffda3a37468}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="graphics\window">
+      <UniqueIdentifier>{5d5cd53e-ddff-4bc8-be4b-f33836037ae0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="graphics\shader">
+      <UniqueIdentifier>{cee5b882-7122-4864-98b4-34b764c7fc10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="graphics\graphicsAPI">
+      <UniqueIdentifier>{90fdb119-fa55-4015-a74d-6aaccc345d05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="graphics\graphicsAPI\vulkan">
+      <UniqueIdentifier>{6adf9721-63f6-45d7-a8e3-200872e9e399}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkConfig.hpp">
+      <Filter>graphics\graphicsAPI\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkContext.hpp">
+      <Filter>graphics\graphicsAPI\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkDevice.hpp">
+      <Filter>graphics\graphicsAPI\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\graphics\shader\xeFragmentShader.hpp">
+      <Filter>graphics\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\graphics\testure\xeTesture.hpp">
+      <Filter>graphics\testure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\graphics\window\xeWindowManager.hpp">
+      <Filter>graphics\window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\graphics\window\xeWindow.hpp">
+      <Filter>graphics\window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\graphics\graphicsAPI\xePhysicalDevice.hpp">
+      <Filter>graphics\graphicsAPI</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

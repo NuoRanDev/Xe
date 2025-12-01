@@ -133,15 +133,53 @@ namespace xe
 		}
 	}
 
+	static std::vector<int64_t> compute_prefix(const utf8_t* str, const int64_t start_size, const int64_t end_size, const int64_t segment_size) noexcept
+	{
+		std::vector<int64_t> pat = std::vector<int64_t>((uint64_t)(end_size - start_size), 0);
+		int64_t index_char = 0;
+		for (int64_t i = start_size; i < end_size; i = i + segment_size)
+		{
+			while (index_char > 0 && str[i] != str[index_char])
+				index_char = pat[index_char - 1];
+			if (str[i] == str[index_char])
+				index_char++;
+			pat[i] = index_char;
+		}
+		return pat;
+	}
+
+	static std::vector<int64_t> u8kmp_start_all(const utf8_t* main_str, const int64_t main_str_size, const utf8_t* children_str, const int64_t children_str_size) noexcept
+	{
+		std::vector<int64_t> matches;
+		std::vector<int64_t> next = compute_prefix(children_str, 0, children_str_size, 1ll);
+
+		
+		uint64_t mark_index = 0;
+		for (int64_t i = 0; i < main_str_size; i++) 
+		{
+			while (mark_index > 0 && main_str[i] != children_str[mark_index])
+				mark_index = next[mark_index - 1];
+			if (main_str[i] == children_str[mark_index])
+				mark_index++;
+			if (mark_index == children_str_size)
+			{
+				matches.push_back(i - children_str_size + 1);
+				mark_index = next[mark_index - 1];
+			}
+		}
+		return matches;
+	}
+
 	int64_t count_utf8(const utf8_t* utf8, int64_t alloc_size) noexcept
 	{
-		if (!utf8 && alloc_size)
-		{
-			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeCore", "Utf8 text not coherent");
-			return 0;
-		}
 		int count = 0;
+		if (utf8 == nullptr || alloc_size == 0)
+		{
+			return count;
+		}
+		
 		const utf8_t* stop = utf8 + alloc_size;
+
 		while (utf8 < stop)
 		{
 			int type = utf8_byte_type(*utf8);
@@ -166,6 +204,7 @@ namespace xe
 
 	U8StringRef::U8StringRef(const char* c_utf8_str) noexcept
 	{
+		if (c_utf8_str == nullptr) return;
 		// inculde '/0'
 		int64_t src_str_size = std::strlen((const char*)c_utf8_str);
 		// c style string end with 0
@@ -181,7 +220,7 @@ namespace xe
 
 	U8StringRef::U8StringRef(const utf8_t* str, int64_t str_size, int64_t input_character_number) noexcept
 	{
-		characters_data_size = str_size + 1;
+		characters_data_size = str_size;
 		characters_data = xe_malloc<utf8_t>(characters_data_size);
 		std::memcpy(characters_data, str, str_size);
 		characters_data[str_size] = '\0';
@@ -205,14 +244,14 @@ namespace xe
 		return *this;
 	}
 
-	U8StringRef& U8StringRef::operator=(const char*& c_utf8_str) noexcept
+	U8StringRef& U8StringRef::operator=(const char* c_utf8_str) noexcept
 	{
 		release();
 		this->load_data(c_utf8_str);
 		return *this;
 	}
 
-	U8StringRef& U8StringRef::operator=(const utf8_t*& c_utf8_str) noexcept
+	U8StringRef& U8StringRef::operator=(const utf8_t* c_utf8_str) noexcept
 	{
 		release();
 		this->load_data(c_utf8_str);
@@ -308,10 +347,10 @@ namespace xe
 
 	}
 
-	std::vector<int64_t> U8StringRef::find_all(const unicode_t separator) noexcept
+	std::vector<int64_t> U8StringRef::find_all(const unicode_t pattern) const noexcept
 	{
 		utf8_t utf8_separator[4] = { 0 };
-		auto out_size = utf32_to_utf8(separator, utf8_separator);
+		auto out_size = utf32_to_utf8(pattern, utf8_separator);
 		if (out_size == 0)
 		{
 			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeCore", "Not input unicode");
@@ -324,39 +363,39 @@ namespace xe
 		}
 	}
 
-	std::vector<int64_t> U8StringRef::find_all(const U8StringRef separator) noexcept
+	std::vector<int64_t> U8StringRef::find_all(const U8StringRef pattern) const noexcept
 	{
-		if (separator.length() == 0)
+		if (pattern.length() == 0)
 		{
 			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeCore", "Found string is null");
 			return std::vector<int64_t>();
 		}
-		if (separator.length() == 1)
-			return find_all((separator.data())[0]);
+		if (pattern.length() == 1)
+			return find_all((pattern.data())[0]);
 		else
 		{
-			return find_all(separator.data(), separator.length());
+			return find_all(pattern.data(), pattern.length());
 		}
 	}
 
-	std::vector<int64_t> U8StringRef::find_all(const utf8_t separator) noexcept
+	std::vector<int64_t> U8StringRef::find_all(const utf8_t pattern) const noexcept
 	{
-		return find_byte_all_memory_int64size(reinterpret_cast<const byte_t*>(characters_data), length(), separator);
+		return find_byte_all_memory_int64size(reinterpret_cast<const byte_t*>(characters_data), length(), pattern);
 	}
 
-	std::vector<int64_t> U8StringRef::find_all(const utf8_t* separator, const int64_t size) noexcept
+	std::vector<int64_t> U8StringRef::find_all(const utf8_t* pattern, const int64_t size) const noexcept
 	{
-		auto found_array = std::vector<int64_t>();
-		const char* cur;
-		while (true)
-		{
-			cur = std::strstr(c_str(), reinterpret_cast<const char*>(separator));
-			if (cur == nullptr)
-				break;
-			auto size_offset = reinterpret_cast<size_t>(cur) - reinterpret_cast<size_t>(separator);
-			found_array.push_back(static_cast<int>(size_offset));
-		}
-		return found_array;
+		return u8kmp_start_all(characters_data, characters_data_size, pattern, size);
+	}
+
+	int64_t U8StringRef::find_start(const utf8_t* pattern, int64_t pattern_size) const noexcept
+	{
+		return -1;
+	}
+
+	int64_t U8StringRef::find_last(const utf8_t* pattern, int64_t pattern_size) const noexcept
+	{
+		return -1;
 	}
 
 	std::vector<U8StringRef> U8StringRef::split(const unicode_t separator) noexcept
@@ -412,10 +451,10 @@ namespace xe
 
 	void U8StringRef::load_data(const utf8_t* c_utf8_str, int64_t str_size, int64_t input_character_number) noexcept
 	{
-		characters_data_size = str_size + 1;
+		characters_data_size = str_size;
 		characters_data = xe_malloc<utf8_t>(characters_data_size);
 		std::memcpy(characters_data, c_utf8_str, str_size);
-		characters_data[str_size] = '\0';
+		characters_data[str_size - 1] = '\0';
 		characters_number = input_character_number;
 		is_short_string = (characters_data_size < SHORT_STRING_SIZE);
 	}
@@ -427,23 +466,33 @@ namespace xe
 
 	void U8StringRef::load_data(const utf8_t* c_utf8_str) noexcept
 	{
-		// inculde '/0'
+		// include '/0'
 		int64_t src_str_size = std::strlen(reinterpret_cast<const char*>(c_utf8_str));
 		// c style string end with 0
-		load_data(c_utf8_str, src_str_size, count_utf8(characters_data, src_str_size));
+		load_data(c_utf8_str, src_str_size + 1, count_utf8(c_utf8_str, src_str_size));
 	}
 
 	bool U8StringRef::string_long_cmp(const utf8_t* cmp_str, const int64_t cmp_str_size) const noexcept
 	{
-		if (cmp_str_size != characters_data_size - 1)
+		if (cmp_str_size != characters_data_size)
 			return false;
 		return long_memory_cmp(reinterpret_cast<byte_t*>(characters_data), reinterpret_cast<const byte_t*>(cmp_str), cmp_str_size);
 	}
 
 	bool U8StringRef::string_short_cmp(const utf8_t* cmp_str, const int64_t cmp_str_size) const noexcept
 	{
-		if (cmp_str_size != characters_data_size - 1)
+		if (cmp_str_size != characters_data_size)
 			return false;
 		return short_memory_cmp(reinterpret_cast<byte_t*>(characters_data), reinterpret_cast<const byte_t*>(cmp_str), cmp_str_size);
+	}
+
+	void U8StringRef::integral_to_string_ptr(int64_t number, utf8_t* str, int64_t& str_size) noexcept
+	{
+		str_size = 0;
+		while(number)
+		{
+			str[str_size++] = static_cast<utf8_t>((number % 10) + '0');
+			number = number / 10;
+		}
 	}
 } // namespace xe is end
