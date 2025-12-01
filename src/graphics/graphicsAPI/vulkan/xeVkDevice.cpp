@@ -77,17 +77,8 @@ namespace xe
 		return true;
 	}
 
-	bool VulkanGpuInstance::pick_up_gpu(const xeString& gpu_name, float* pqueue_priorities, int32_t queue_count) noexcept
+	bool VulkanGpuInstance::pick_up_gpu(const xeString& gpu_name) noexcept
 	{
-		VkDeviceCreateInfo device_create_info = {};
-		VkDeviceQueueCreateInfo queue_create_info = {};
-
-		uint32_t queue_family_count = 0;
-		std::vector<VkQueueFamilyProperties> queue_family_list;
-
-		VkPhysicalDeviceFeatures device_features = {};
-		VkResult result;
-
 		for (auto& gpu : gpu_list)
 		{
 			if (gpu.get_device_name() == gpu_name)
@@ -99,26 +90,20 @@ namespace xe
 		XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGeometry : VULKAN", std::format("failed to find the specified GPU name: {0}", gpu_name.c_str()).c_str());
 		return false;
 
-		FIND_GPU:
+	FIND_GPU:
+		vk_queue.get_device_queue(cur_gpu);
+		return true;
+	}
 
-		vkGetPhysicalDeviceQueueFamilyProperties(cur_gpu, &queue_family_count, nullptr);
-		queue_family_list = std::vector<VkQueueFamilyProperties>(queue_family_count);
-		vkGetPhysicalDeviceQueueFamilyProperties(cur_gpu, &queue_family_count, queue_family_list.data());
-		for (int64_t i = 0; i < static_cast<uint32_t>(queue_family_list.size()); i++)
-		{
-			const auto& queue_family = queue_family_list[i];
-			if (queue_family.queueFlags & VK_QUEUE_GRAPHICS_BIT)
-			{
-				graphics_index = i;
-				break;
-			}
-			i++;
-		}
-		if (graphics_index == -1)
-		{
-			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGeometry : VULKAN", "failed to find a graphics queue family!");
-			return false;
-		}
+	bool VulkanGpuInstance::create_graphics_queue(float* pqueue_priorities, int32_t queue_count)
+	{
+		VkDeviceCreateInfo device_create_info = {};
+		VkDeviceQueueCreateInfo queue_create_info = {};
+
+		VkPhysicalDeviceFeatures device_features = {};
+		VkResult result;
+
+		graphics_index = vk_queue.get_support_queue_family(VK_QUEUE_GRAPHICS_BIT);
 
 		queue_create_info.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
 		queue_create_info.pQueuePriorities = pqueue_priorities;
@@ -147,7 +132,7 @@ namespace xe
 		return graphics_queue;
 	}
 
-	VulkanGpuInstance::~VulkanGpuInstance()
+	void VulkanGpuInstance::release()
 	{
 		vkDestroyDevice(vk_device, nullptr);
 	}

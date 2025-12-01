@@ -12,6 +12,7 @@
 #include <optional>
 
 #include "graphicsAPI/xePhysicalDevice.hpp"
+#include "graphicsAPI/vulkan/xeVkQueue.hpp"
 
 namespace xe
 {
@@ -24,17 +25,22 @@ namespace xe
 
 		const std::vector<Gpu> const get_gpu_physical_device_list() const noexcept { return gpu_list; }
 
-		bool pick_up_gpu(const xeString& gpu_name, float* pqueue_priorities, int32_t queue_count) noexcept;
+		bool pick_up_gpu(const xeString& gpu_name) noexcept;
+
+		bool create_graphics_queue(float* pqueue_priorities, int32_t queue_count);
 
 		VkQueue get_graphics_queue() const noexcept;
 
-		~VulkanGpuInstance();
+		void release();
+
+		~VulkanGpuInstance() = default;
 
 	private:
 
 		std::vector<Gpu> gpu_list;
 
 		VkPhysicalDevice cur_gpu;
+		VulkanQueue vk_queue;
 
 		VkDevice vk_device;
 

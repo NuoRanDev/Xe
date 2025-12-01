@@ -97,6 +97,7 @@ namespace xe
 
 	VulkanContext::~VulkanContext()
 	{
+		gpu_instance.release();
 		if (vk_instance != nullptr)
 		{
 			vkDestroyInstance(vk_instance, nullptr);

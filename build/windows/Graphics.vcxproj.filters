@@ -20,6 +20,9 @@
     <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkConfig.cpp">
       <Filter>graphics\graphicsAPI\vulkan</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkQueue.cpp">
+      <Filter>graphics\graphicsAPI\vulkan</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="graphics">
@@ -65,6 +68,9 @@
     </ClInclude>
     <ClInclude Include="..\..\inc\graphics\graphicsAPI\xePhysicalDevice.hpp">
       <Filter>graphics\graphicsAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkQueue.hpp">
+      <Filter>graphics\graphicsAPI\vulkan</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

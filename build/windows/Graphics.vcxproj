@@ -38,6 +38,7 @@
     <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkConfig.cpp" />
     <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkContext.cpp" />
     <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkDevice.cpp" />
+    <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkQueue.cpp" />
     <ClCompile Include="..\..\src\graphics\testure\xeTesture.cpp" />
     <ClCompile Include="..\..\src\graphics\window\xeWindow.cpp" />
     <ClCompile Include="..\..\src\graphics\window\xeWindowManager.cpp" />
@@ -47,6 +48,7 @@
     <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkConfig.hpp" />
     <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkContext.hpp" />
     <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkDevice.hpp" />
+    <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkQueue.hpp" />
     <ClInclude Include="..\..\inc\graphics\graphicsAPI\xePhysicalDevice.hpp" />
     <ClInclude Include="..\..\inc\graphics\shader\xeFragmentShader.hpp" />
     <ClInclude Include="..\..\inc\graphics\testure\xeTesture.hpp" />
