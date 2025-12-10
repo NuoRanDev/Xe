@@ -3,3 +3,6 @@
 /build/windows/OBJ
 /build/windows/OBJ/*
 /SDK/bin/*
+/rust/Cargo.lock
+/rust/target/*
+/temp/*

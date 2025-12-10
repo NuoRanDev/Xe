@@ -11,8 +11,10 @@ namespace xe
 	VulkanContext::VulkanContext()
 	{
 		vk_instance = nullptr;
+		vk_surface = nullptr;
 	}
-	bool VulkanContext::init_vulkan_instance(xeString exe_name)
+
+	bool VulkanContext::init_vulkan_instance(const char* const* extension, uint32_t extension_number, xeString exe_name)
 	{
 		VkResult result;
 		VkApplicationInfo application_info = {};
@@ -23,7 +25,7 @@ namespace xe
 		if (vkEnumerateInstanceVersion != nullptr && vkEnumerateInstanceVersion(&cur_vulkan_version) != VkResult::VK_SUCCESS)
 		{
 			cur_vulkan_version = VK_MAKE_API_VERSION(0, 1, 0, 0);
-			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGeometry: Vulkan", "Vulkan support is low!")
+			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI: Vulkan", "Vulkan support is low!")
 		}
 
 		vk_instance = nullptr;
@@ -35,20 +37,13 @@ namespace xe
 		application_info.pEngineName = "xe";
 		application_info.engineVersion = 0;
 		application_info.apiVersion = cur_vulkan_version;
-
-		std::vector<const char*> enable_extension_names;
-		enable_extension_names.push_back("VK_KHR_surface");
-#if defined(_WIN16) || defined(_WIN32) || defined(_WIN64) // Windows
-		enable_extension_names.push_back("VK_KHR_win32_surface");
-#elif
-#endif
 	
 		instance_create_info.sType = VkStructureType::VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 		instance_create_info.pNext = nullptr;
 		instance_create_info.flags = 0;
 		instance_create_info.pApplicationInfo = &application_info;
-		instance_create_info.enabledExtensionCount = static_cast<uint32_t>(enable_extension_names.size());
-		instance_create_info.ppEnabledExtensionNames = enable_extension_names.data();
+		instance_create_info.enabledExtensionCount = extension_number;
+		instance_create_info.ppEnabledExtensionNames = extension;
 
 #if defined(ENABLE_VULKAN_VALIDATION)
 		if(is_support_enable_validation())
@@ -61,7 +56,7 @@ namespace xe
 		result = vkCreateInstance(&instance_create_info, nullptr, &vk_instance);
 		if (result != VK_SUCCESS)
 		{
-			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGeometry: Vulkan", "Vulkan instance init failed!");
+			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI: Vulkan", "Vulkan instance init failed!");
 			return false;
 		}
 		return true;
@@ -71,34 +66,49 @@ namespace xe
 	{
 		if (!(gpu_instance.get_gpu_info(vk_instance)))
 		{
-			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGeometry: Vulkan", "GPU instance init failed!");
+			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI: Vulkan", "GPU instance init failed!");
 			return false;
 		}
 		return true;
 	}
 
-	bool VulkanContext::create_logical_device(const xeString& gpu_name, float* pqueue_priorities, int32_t queue_count)
+	bool VulkanContext::pick_up_physical_device(const xeString& gpu_name) noexcept
 	{
-		if (!(gpu_instance.pick_up_gpu(gpu_name, pqueue_priorities, queue_count)))
+		if (!(gpu_instance.pick_up_gpu(gpu_name)))
 		{
-			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGeometry: Vulkan", "Logical device create failed!");
+			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI: Vulkan", "GPU pick up failed!");
 			return false;
 		}
 #if defined(_DEBUG)
-		XE_INFO_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGeometry: Vulkan", std::format("Selected GPU: {0}", gpu_name.c_str()).c_str());
+		XE_INFO_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI: Vulkan", std::format("Selected GPU: {0}", gpu_name.c_str()).c_str());
 #endif // defined(_DEBUG)  IS END
 		return true;
 	}
 
-	bool VulkanContext::link_window_surface(VkSurfaceKHR surface)
+	bool VulkanContext::create_logical_device(float* pqueue_priorities, int32_t queue_count)
 	{
-		return false;
+		if (!(gpu_instance.create_logical_device(vk_surface, pqueue_priorities, queue_count)))
+		{
+			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI: Vulkan", "Logical device create failed!");
+			return false;
+		}
+		return true;
 	}
+
+	void VulkanContext::release_surface()
+	{
+		if (vk_surface)
+		{
+			vkDestroySurfaceKHR(vk_instance, vk_surface, nullptr);
+		}
+	}
+
 
 	VulkanContext::~VulkanContext()
 	{
 		gpu_instance.release();
-		if (vk_instance != nullptr)
+		release_surface();
+		if (vk_instance)
 		{
 			vkDestroyInstance(vk_instance, nullptr);
 			vk_instance = nullptr;

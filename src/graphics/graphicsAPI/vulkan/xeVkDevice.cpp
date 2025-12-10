@@ -28,7 +28,7 @@ namespace xe
 		vkEnumeratePhysicalDevices(vk_instance, &device_count, nullptr);
 		if (device_count == 0)
 		{
-			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGeometry: Vulkan", "failed to find GPUs with Vulkan support!");
+			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI: Vulkan", "failed to find GPUs with Vulkan support!");
 			return false;
 		}
 
@@ -71,7 +71,7 @@ namespace xe
 
 		if(gpu_list.size() == 0)
 		{
-			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGeometry : VULKAN", "failed to find GPUs with Vulkan properties support!");
+			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI : VULKAN", "failed to find GPUs with Vulkan properties support!");
 			return false;
 		}
 		return true;
@@ -87,53 +87,120 @@ namespace xe
 				goto FIND_GPU;
 			}
 		}
-		XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGeometry : VULKAN", std::format("failed to find the specified GPU name: {0}", gpu_name.c_str()).c_str());
+		XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI : VULKAN", std::format("failed to find the specified GPU name: {0}", gpu_name.c_str()).c_str());
 		return false;
 
 	FIND_GPU:
-		vk_queue.get_device_queue(cur_gpu);
+		get_device_queue_family();
 		return true;
 	}
 
-	bool VulkanGpuInstance::create_graphics_queue(float* pqueue_priorities, int32_t queue_count)
+	bool VulkanGpuInstance::create_logical_device(VkSurfaceKHR i_vk_surface, float* pqueue_priorities, int32_t queue_count)
 	{
 		VkDeviceCreateInfo device_create_info = {};
+
+		std::vector<VkDeviceQueueCreateInfo> queue_create_info_list;
 		VkDeviceQueueCreateInfo queue_create_info = {};
 
 		VkPhysicalDeviceFeatures device_features = {};
 		VkResult result;
 
-		graphics_index = vk_queue.get_support_queue_family(VK_QUEUE_GRAPHICS_BIT);
+		if (!get_device_queue_family_support(i_vk_surface))
+		{
+			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI : VULKAN", "failed to find supporting queue!");
+			return false;
+		}
 
-		queue_create_info.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
-		queue_create_info.pQueuePriorities = pqueue_priorities;
-		queue_create_info.queueCount = queue_count;
-		queue_create_info.queueFamilyIndex = static_cast<uint32_t>(graphics_index);
+		if (graphics_index == present_index)
+		{
+			queue_create_info.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+			queue_create_info.pQueuePriorities = pqueue_priorities;
+			queue_create_info.queueCount = queue_count;
+			queue_create_info.queueFamilyIndex = static_cast<uint32_t>(graphics_index);
+			queue_create_info_list.push_back(queue_create_info);
+		}
+		else
+		{
+			queue_create_info.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+			queue_create_info.pQueuePriorities = pqueue_priorities;
+			queue_create_info.queueCount = queue_count;
+			queue_create_info.queueFamilyIndex = static_cast<uint32_t>(graphics_index);
+			queue_create_info_list.push_back(queue_create_info);
+			queue_create_info.queueFamilyIndex = static_cast<uint32_t>(present_index);
+			queue_create_info_list.push_back(queue_create_info);
+		}
 
 		device_create_info.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
-		device_create_info.pQueueCreateInfos = &queue_create_info;
-		device_create_info.queueCreateInfoCount = 1;
+		device_create_info.pQueueCreateInfos = queue_create_info_list.data();
+		device_create_info.queueCreateInfoCount = static_cast<uint32_t>(queue_create_info_list.size());
 		device_create_info.pEnabledFeatures = &device_features;
 		
 		result = vkCreateDevice(cur_gpu, &device_create_info, nullptr, &vk_device);
 		if (result != VK_SUCCESS)
 		{
-			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGeometry : VULKAN", "failed to create logical device!");
+			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI : VULKAN", "failed to create logical device!");
 			return false;
 		}
 
 		return true;
 	}
 
-	VkQueue VulkanGpuInstance::get_graphics_queue() const noexcept
+	VulkanQueueArray VulkanGpuInstance::get_graphics_queue() const noexcept
 	{
-		VkQueue graphics_queue;
-		vkGetDeviceQueue(vk_device, static_cast<uint32_t>(graphics_index), 0, &graphics_queue);
-		return graphics_queue;
+		VulkanQueueArray result;
+		VkQueue queue;
+		
+		vkGetDeviceQueue(vk_device, static_cast<uint32_t>(graphics_index), 0, &queue);
+		result.graphics_queue = queue;
+		vkGetDeviceQueue(vk_device, static_cast<uint32_t>(present_index), 0, &queue);
+		result.present_queue = queue;
+
+		return result;
 	}
 
-	void VulkanGpuInstance::release()
+	void VulkanGpuInstance::release() noexcept
 	{
 		vkDestroyDevice(vk_device, nullptr);
+	}
+
+	void VulkanGpuInstance::get_device_queue_family() noexcept
+	{
+		uint32_t queue_family_count = 0;
+
+		vkGetPhysicalDeviceQueueFamilyProperties(cur_gpu, &queue_family_count, nullptr);
+		queue_family_list = std::vector<VkQueueFamilyProperties>(queue_family_count);
+		vkGetPhysicalDeviceQueueFamilyProperties(cur_gpu, &queue_family_count, queue_family_list.data());
+	}
+
+	bool VulkanGpuInstance::get_device_queue_family_support(VkSurfaceKHR i_vk_surface) noexcept
+	{
+		VkBool32 present_support = false;
+
+		graphics_index = -1;
+		present_index = -1;
+		
+		for (size_t i = 0; i < queue_family_list.size(); i++)
+		{
+			const auto& queue_family = queue_family_list[i];
+			if (queue_family.queueFlags & VK_QUEUE_GRAPHICS_BIT)
+				graphics_index = static_cast<uint32_t>(i);
+			vkGetPhysicalDeviceSurfaceSupportKHR(cur_gpu, static_cast<uint32_t>(i), i_vk_surface, &present_support);
+			if (present_support)
+				present_index = static_cast<uint32_t>(i);
+			if (graphics_index != -1 && present_index != -1)
+				break;
+			i++;
+		}
+		if (graphics_index == -1)
+		{
+			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI : VULKAN", "failed to find a graphics queue family!");
+			return false;
+		}
+		if (present_index==-1)
+		{
+			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI : VULKAN", "failed to find a present queue family!");
+			return false;
+		}
+		return true;
 	}
 } // namespace xe is end

@@ -47,7 +47,7 @@ namespace xe
 			return true; // all bytes are equal
 		}
 		// if cur_cmp_size < 32, then use short memory compare
-		mask= cmp_size - i;
+		mask = static_cast<int32_t>(cmp_size - i);
 		mask = ~(INT32_TRUE << cmp_size);
 		cmp1_16_byte = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(cmp1));
 		cmp2_16_byte = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(cmp2));

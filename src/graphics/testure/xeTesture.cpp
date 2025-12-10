@@ -85,7 +85,7 @@ namespace xe
 #if defined(USE_OPENGL)
 
 #elif defined(USE_VULKAN)
-
+		return true;
 #else
 		auto src_tex = std::any_cast<SDL_Texture*>(texture_obj);
 		auto render = std::any_cast<SDL_Renderer*>(bind_window->sdl_renderer);

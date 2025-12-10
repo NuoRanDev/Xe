@@ -12,10 +12,15 @@
 #include <optional>
 
 #include "graphicsAPI/xePhysicalDevice.hpp"
-#include "graphicsAPI/vulkan/xeVkQueue.hpp"
 
 namespace xe
 {
+	struct VulkanQueueArray
+	{
+		VkQueue present_queue;
+		VkQueue graphics_queue;
+	};
+
 	class VulkanGpuInstance
 	{
 	public:
@@ -23,24 +28,29 @@ namespace xe
 
 		bool get_gpu_info(VkInstance vk_instance) noexcept;
 
-		const std::vector<Gpu> const get_gpu_physical_device_list() const noexcept { return gpu_list; }
+		const std::vector<Gpu> get_gpu_physical_device_list() const noexcept { return gpu_list; }
 
 		bool pick_up_gpu(const xeString& gpu_name) noexcept;
+		//const std::vector<const char*>& extension, 
+		bool create_logical_device(VkSurfaceKHR i_vk_surface, float* pqueue_priorities, int32_t queue_count);
 
-		bool create_graphics_queue(float* pqueue_priorities, int32_t queue_count);
+		VulkanQueueArray get_graphics_queue() const noexcept;
 
-		VkQueue get_graphics_queue() const noexcept;
-
-		void release();
+		void release() noexcept;
 
 		~VulkanGpuInstance() = default;
 
 	private:
 
+		void get_device_queue_family() noexcept;
+
+		bool get_device_queue_family_support(VkSurfaceKHR i_vk_surface) noexcept;
+
+		std::vector<VkQueueFamilyProperties> queue_family_list;
+
 		std::vector<Gpu> gpu_list;
 
 		VkPhysicalDevice cur_gpu;
-		VulkanQueue vk_queue;
 
 		VkDevice vk_device;
 

@@ -20,7 +20,7 @@ namespace xe
 	public:
 		Window();
 
-		bool create_window_context(int32_t w, int32_t h, xeString name, bool bordered) noexcept;
+		bool create_window_context(const char* exe_name, int32_t w, int32_t h, xeString name, bool bordered) noexcept;
 
 		bool draw_loop();
 
@@ -42,23 +42,17 @@ namespace xe
 
 		friend class FragmentShader;
 
-#if defined(USE_OPENGL)
-		void *context_opengl_instance;
-#elif defined(USE_VULKAN)
-		xeVulkanContext window_vulkan_instance;
-#else
 	public:
 		
-		void* get_render() { return std::any_cast<void*>(sdl_renderer); }
+		void* get_render() { return std::any_cast<void*>(renderer_context); }
 
 	private:
 		
-		std::any sdl_renderer;
-#endif // !NOT_USE_VULKAN
+		std::any renderer_context;
 
-		std::any sdl_window_contest;
+		std::any sdl_window_context;
 
-		bool init_render_api();
+		bool init_render_api(const char* exe_name);
 
 		bool bind_render_api_in_window();
 

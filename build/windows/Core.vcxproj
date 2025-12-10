@@ -37,6 +37,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\core\devboost\xeMemCmpr.cpp" />
     <ClCompile Include="..\..\src\core\filesystem\xeFileMmapStream.cpp" />
+    <ClCompile Include="..\..\src\core\filesystem\xePath.cpp" />
     <ClCompile Include="..\..\src\core\log\xeLogOutpout.cpp" />
     <ClCompile Include="..\..\src\core\memory\xeAlloc.cpp" />
     <ClCompile Include="..\..\src\core\string\xeString.cpp" />

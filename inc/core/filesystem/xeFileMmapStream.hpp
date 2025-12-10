@@ -4,6 +4,7 @@
 #include "type/xeOrdinals.hpp"
 #include "string/xeString.hpp"
 #include "memory/xeAlloc.hpp"
+#include "filesystem/xePath.hpp"
 
 #include <format>
 
@@ -40,7 +41,7 @@ namespace xe
 			return read(offset_byte, number * sizeof(T), dst);
 		}
 
-		bool open_file(const utf8_t* path) noexcept;
+		bool open_file(const Path& path) noexcept;
 
 		void release() noexcept;
 
@@ -51,13 +52,6 @@ namespace xe
 			size = file_size;
 			return (byte_t*)pfile_start; 
 		}
-
-#if !defined(EXPORT_C_SHARP_API)
-		bool open_file(xeString file_path)
-		{
-			return open_file(file_path.data());
-		}
-#endif // defined(EXPORT_C_SHARP_API)
 
 	protected:
 		uint64_t file_size;

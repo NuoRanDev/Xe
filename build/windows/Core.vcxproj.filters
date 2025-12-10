@@ -42,6 +42,9 @@
     <ClCompile Include="..\..\src\core\filesystem\xeFileMmapStream.cpp">
       <Filter>core\filesystem</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\core\filesystem\xePath.cpp">
+      <Filter>core\filesystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\inc\core\devboost\xeMemCmp.hpp">

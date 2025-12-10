@@ -38,7 +38,7 @@
     <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkConfig.cpp" />
     <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkContext.cpp" />
     <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkDevice.cpp" />
-    <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkQueue.cpp" />
+    <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkSwapChain.cpp" />
     <ClCompile Include="..\..\src\graphics\testure\xeTesture.cpp" />
     <ClCompile Include="..\..\src\graphics\window\xeWindow.cpp" />
     <ClCompile Include="..\..\src\graphics\window\xeWindowManager.cpp" />
@@ -48,7 +48,7 @@
     <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkConfig.hpp" />
     <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkContext.hpp" />
     <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkDevice.hpp" />
-    <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkQueue.hpp" />
+    <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkSwapChain.hpp" />
     <ClInclude Include="..\..\inc\graphics\graphicsAPI\xePhysicalDevice.hpp" />
     <ClInclude Include="..\..\inc\graphics\shader\xeFragmentShader.hpp" />
     <ClInclude Include="..\..\inc\graphics\testure\xeTesture.hpp" />
@@ -148,22 +148,22 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|x64'">
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
-    <ExternalIncludePath>$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\geometry\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\</ExternalIncludePath>
+    <ExternalIncludePath>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\geometry\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_csharp|x64'">
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
-    <ExternalIncludePath>$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\geometry\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\</ExternalIncludePath>
+    <ExternalIncludePath>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\geometry\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_cpp|x64'">
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
-    <ExternalIncludePath>$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\geometry\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\</ExternalIncludePath>
+    <ExternalIncludePath>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\geometry\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_csharp|x64'">
     <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
-    <ExternalIncludePath>$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\geometry\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\</ExternalIncludePath>
+    <ExternalIncludePath>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\geometry\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|x64'">
     <VcpkgUseStatic>true</VcpkgUseStatic>
@@ -244,34 +244,34 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>SPNG_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_VULKAN;SPNG_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\graphics\;$(SolutionDir)..\..\inc\core\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\graphics\;$(SolutionDir)..\..\inc\core\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>F:\VulkanSDK\1.4.328.1\Lib\;$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>vulkan-1.lib;DataSystem.lib;Core.lib;Logic.lib;turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>F:\Xe\rust\target\debug\;F:\VulkanSDK\1.4.328.1\Lib\;$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>xeRustLib.dll.lib;vulkan-1.lib;DataSystem.lib;Core.lib;Logic.lib;turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;Ws2_32.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_csharp|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>SPNG_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_VULKAN;SPNG_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\graphics\;$(SolutionDir)..\..\inc\core\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\graphics\;$(SolutionDir)..\..\inc\core\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>F:\VulkanSDK\1.4.328.1\Lib\;$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>vulkan-1.lib;DataSystem.lib;Core.lib;Logic.lib;turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>F:\Xe\rust\target\debug\;F:\VulkanSDK\1.4.328.1\Lib\;$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>xeRustLib.dll.lib;vulkan-1.lib;DataSystem.lib;Core.lib;Logic.lib;turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;Ws2_32.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_cpp|x64'">
@@ -280,9 +280,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>SPNG_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_VULKAN;SPNG_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\graphics\;$(SolutionDir)..\..\inc\core\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\graphics\;$(SolutionDir)..\..\inc\core\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <Optimization>MinSpace</Optimization>
@@ -294,7 +294,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>F:\VulkanSDK\1.4.328.1\Lib\;$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>vulkan-1.lib;DataSystem.lib;Core.lib;Logic.lib;turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>xeRustLib.dll.lib;vulkan-1.lib;DataSystem.lib;Core.lib;Logic.lib;turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;Ws2_32.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_csharp|x64'">
@@ -303,9 +303,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>SPNG_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_VULKAN;SPNG_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\graphics\;$(SolutionDir)..\..\inc\core\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\graphics\;$(SolutionDir)..\..\inc\core\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <Optimization>MinSpace</Optimization>
@@ -317,7 +317,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>F:\VulkanSDK\1.4.328.1\Lib\;$(SolutionDir)..\..\SDK\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>vulkan-1.lib;DataSystem.lib;Core.lib;Logic.lib;turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>xeRustLib.dll.lib;vulkan-1.lib;DataSystem.lib;Core.lib;Logic.lib;turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;Ws2_32.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

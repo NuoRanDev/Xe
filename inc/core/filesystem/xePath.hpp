@@ -6,36 +6,56 @@
 #include <vector>
 #include <filesystem>
 
+#if defined(_WIN32)
+using OS_STRING = wchar_t;
+#else
+using OS_STRING = utf8_t;
+#endif // defined(_WIN32) IS END
+
+
 namespace xe
 {
-	class Path :std::filesystem::path
+	class Path final
 	{
 	public:
-		Path()								= default;
+		xeString path_str;
 
-		Path& operator=(const Path&)		= default;
-		
-		Path& operator=(Path&&) noexcept	= default;
+		Path() noexcept;
 
-		Path(const xeString _path_str)
-		{
-			path(_path_str.data());
-		}
+		Path& operator=(const Path& path) noexcept;
 
-		// laod xstring in std path
-		Path& operator=(const xeString _path_str)
-		{
-			Path(_path_str);
-			return *this;
-		}
+		Path(const xeString& path) noexcept;
 
-		xeString xeu8string()
-		{
-			auto str = this->u8string();
-			return xeString(str.c_str(), str.size());
-		}
+		Path& operator=(const xeString& path) noexcept;
 
-		~Path(){}
+		Path abs_path() noexcept;
+
+		Path base_name() noexcept;
+
+		bool exists() const noexcept;
+
+		uint64_t get_create_time() const noexcept;
+
+		bool get_size() const noexcept;
+
+		bool is_abs() const noexcept;
+
+		bool is_dir() const noexcept;
+
+		bool is_file() const noexcept;
+
+		std::pair<Path, Path> split() const noexcept;
+
+		const OS_STRING* get_native_str() const noexcept;
+
+		~Path();
+	private:
+#if defined(_WIN32)
+
+		void init_native_str();
+
+		OS_STRING* native_str;
+#endif // windows string is utf16
 	};
 } // namespace xe is end
 

@@ -11,7 +11,7 @@ namespace xe
 	class WindowManager
 	{
 	public:
-		WindowManager();
+		WindowManager(const char* i_exe_name);
 
 		bool create_window(int32_t w, int32_t h, xeString name, bool bordered) noexcept;
 
@@ -22,6 +22,8 @@ namespace xe
 	private:
 
 		std::map<xeString, Window*> window_map;
+
+		const char* exe_name;
 
 	};
 } // namespace xe is end

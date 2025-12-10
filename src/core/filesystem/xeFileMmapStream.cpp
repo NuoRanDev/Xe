@@ -49,13 +49,13 @@ namespace xe
 		return true;
 	}
 
-	bool Mmapfstream::open_file(const utf8_t* path) noexcept
+	bool Mmapfstream::open_file(const Path& path) noexcept
 	{
-		if (!get_file_size(path))
+		if (!get_file_size(path.path_str.data()))
 			return false;
 #ifdef _WIN32
-		c_dump_file_descriptor = CreateFileA(
-			reinterpret_cast<const char*>(path),
+		c_dump_file_descriptor = CreateFileW(
+			path.get_native_str(),
 			GENERIC_READ,
 			0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 		if (c_dump_file_descriptor == nullptr)

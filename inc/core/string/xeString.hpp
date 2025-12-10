@@ -6,33 +6,104 @@
 #include <vector>
 #include <ostream>
 
-#include "memory/xeAlloc.hpp"
 #include "type/xeOrdinals.hpp"
+
+
+struct RustString
+{
+	int64_t size;
+	const xe::utf8_t* data;
+};
 
 namespace xe
 {
 	constexpr int64_t SHORT_STRING_SIZE = 12;
+
 	class U8StringRef
 	{
 	public:
 		// Init
-		U8StringRef() = default;
+		U8StringRef() { load_default_str(); }
 
-		U8StringRef(const char* c_utf8_str) noexcept;
+		U8StringRef(const char* _c_str) noexcept { load_c_str_add0(_c_str); }
 
-		U8StringRef(const utf8_t* str, int64_t str_size) noexcept;
+		U8StringRef(const utf8_t* str) noexcept { load_cpp_u8_str_add0(str); }
 
-		U8StringRef(const utf8_t* str, int64_t str_size, int64_t input_character_number) noexcept;
+		U8StringRef(const utf8_t* str, int64_t str_size) noexcept { load_rust_str_add0(str, str_size); }
 
-		U8StringRef(const U8StringRef& temp_string) noexcept;
+		U8StringRef(const utf8_t* str, int64_t str_size, int64_t input_character_number) noexcept
+		{
+			load_xe_str_include0(str, str_size, input_character_number);
+		}
 
-		U8StringRef& operator=(const U8StringRef& temp_string) noexcept;
+		U8StringRef(RustString rust_str) noexcept
+		{
+			if (rust_str.data == nullptr)
+			{
+				load_default_str();
+				return;
+			}
+			load_rust_str_add0(rust_str.data, rust_str.size);
+		}
 
-		U8StringRef& operator=(const char* c_utf8_str) noexcept;
+		U8StringRef(const U8StringRef& temp_string) noexcept
+		{
+			if(temp_string.is_empty())
+			{
+				load_default_str();
+				return;
+			}
+			load_xe_str_include0(temp_string.data(), temp_string.character_data_size(), temp_string.character_number());
+		}
 
-		U8StringRef& operator=(const utf8_t* c_utf8_str) noexcept;
+		U8StringRef& operator=(const U8StringRef& temp_string) noexcept 
+		{
+			if (temp_string.is_empty())
+			{
+				this->load_default_str();
+				return *this;
+			}
+			this->load_xe_str_include0(temp_string.data(), temp_string.character_data_size(), temp_string.character_number());
+			return *this;
+		}
 
-		U8StringRef Slice(int64_t start, int64_t end) const noexcept;
+		U8StringRef& operator=(const char* _c_str) noexcept
+		{
+			if (_c_str == nullptr)
+			{
+				this->load_default_str();
+				return *this;
+			}
+			this->load_cpp_u8_str_add0(reinterpret_cast<const utf8_t*>(_c_str));
+			return *this;
+		}
+
+		U8StringRef& operator=(const utf8_t* c_utf8_str) noexcept
+		{
+			if (c_utf8_str == nullptr)
+			{
+				this->load_default_str();
+				return *this;
+			}
+			this->load_cpp_u8_str_add0(c_utf8_str);
+			return *this;
+		}
+
+		U8StringRef& operator=(const RustString& rust_str) noexcept
+		{
+			if (rust_str.data == nullptr)
+			{
+				this->load_default_str();
+				return *this;
+			}
+			this->load_rust_str_add0(rust_str.data, rust_str.size);
+			return *this;
+		}
+
+		// range: include start exclude end
+		[[nodiscard]] U8StringRef slice(int64_t start, int64_t end) const noexcept;
+
+		bool is_empty() const noexcept;
 
 		[[nodiscard]] int64_t character_number() const noexcept { return characters_number; }
 
@@ -100,6 +171,8 @@ namespace xe
 
 		bool operator==(const U8StringRef& src) const noexcept
 		{
+			if ((this->is_empty()) ^ (src.is_empty()))
+				return false;
 			return this->stringcmp(src.data(), src.characters_data_size);
 		}
 
@@ -112,13 +185,7 @@ namespace xe
 			load_data(characters, str_size, str_size);
 		}
 
-		void release() noexcept
-		{
-			xe_free(characters_data);
-			characters_data = nullptr;
-			characters_data_size = 0;
-			characters_number = 0;
-		}
+		void release() noexcept;
 
 		~U8StringRef() { release(); }
 
@@ -129,12 +196,20 @@ namespace xe
 		int64_t characters_number;
 		// alloc size
 		int64_t characters_data_size;
-		//
-		void load_data(const utf8_t* c_utf8_str, int64_t str_size, int64_t input_character_number) noexcept;
-		//
-		void load_data(const char* c_utf8_str) noexcept;
-		//
-		void load_data(const utf8_t* c_utf8_str) noexcept;
+		
+		// default load data
+		void load_default_str() noexcept;
+		// load other xe string
+		void load_xe_str_include0(const utf8_t* xe_utf8_str, int64_t xe_str_size, int64_t input_character_number) noexcept;
+		// load cpp char8_t style utf8 string
+		void load_cpp_u8_str_add0(const utf8_t* c_utf8_str) noexcept;
+		// load rust string
+		void load_rust_str_add0(const utf8_t* xe_rust_str, int64_t rust_str_size);
+		// load c style string
+		void load_c_str_add0(const char* _c_str) noexcept
+		{
+			load_cpp_u8_str_add0(reinterpret_cast<const utf8_t*>(_c_str));
+		}
 
 		bool string_long_cmp(const U8StringRef cmp_str) const noexcept
 		{

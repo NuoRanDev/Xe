@@ -17,7 +17,7 @@ namespace xe
 	public:
 		VulkanContext();
 
-		bool init_vulkan_instance(xeString exe_name);
+		bool init_vulkan_instance(const char* const* extension, uint32_t extension_number, xeString exe_name);
 
 		bool link_physical_device();
 
@@ -26,16 +26,28 @@ namespace xe
 			return gpu_instance.get_gpu_physical_device_list();
 		}
 
-		bool create_logical_device(const xeString& gpu_name, float* pqueue_priorities, int32_t queue_count);
+		bool pick_up_physical_device(const xeString& gpu_name) noexcept;
 
-		bool link_window_surface(VkSurfaceKHR surface);
+		bool create_logical_device(float* pqueue_priorities, int32_t queue_count);
 
+		void link_window_surface(VkSurfaceKHR i_vk_surface)
+		{
+			vk_surface = i_vk_surface;
+		}
+
+		void release_surface();
+		
 		~VulkanContext();
 
 	private:
+
+		friend class Window;
+
 		VulkanGpuInstance gpu_instance;
 
 		VkInstance vk_instance;
+
+		VkSurfaceKHR vk_surface;
 
 	};
 } // namespace xe is end

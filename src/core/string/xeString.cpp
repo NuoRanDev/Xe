@@ -3,7 +3,9 @@
 #include <algorithm>
 
 #include "log/xeLogOutput.hpp"
-#include <devboost/xeMemCmp.hpp>
+#include "memory/xeAlloc.hpp"
+#include "devboost/xeMemCmp.hpp"
+
 
 namespace xe
 {
@@ -25,7 +27,7 @@ namespace xe
 		return std::memcmp(Lhs, Rhs, Length) == 0;
 	}
 
-	static int utf8_byte_type(utf8_t c)  noexcept
+	static int utf8_byte_type(utf8_t c) noexcept
 	{
 		if (c < 0x80)
 			return 1;
@@ -202,63 +204,7 @@ namespace xe
 		return count;
 	}
 
-	U8StringRef::U8StringRef(const char* c_utf8_str) noexcept
-	{
-		if (c_utf8_str == nullptr) return;
-		// inculde '/0'
-		int64_t src_str_size = std::strlen((const char*)c_utf8_str);
-		// c style string end with 0
-		characters_data_size = src_str_size + 1;
-		characters_data = xe_malloc<utf8_t>(characters_data_size);
-		std::memcpy(characters_data, c_utf8_str, characters_data_size);
-
-		is_short_string = (characters_data_size < SHORT_STRING_SIZE);
-		characters_number = count_utf8(characters_data, src_str_size);
-	}
-
-	U8StringRef::U8StringRef(const utf8_t* str, int64_t str_size) noexcept :U8StringRef(str, str_size, count_utf8(str, str_size)) {}
-
-	U8StringRef::U8StringRef(const utf8_t* str, int64_t str_size, int64_t input_character_number) noexcept
-	{
-		characters_data_size = str_size;
-		characters_data = xe_malloc<utf8_t>(characters_data_size);
-		std::memcpy(characters_data, str, str_size);
-		characters_data[str_size] = '\0';
-		characters_number = input_character_number;
-		is_short_string = (characters_data_size < SHORT_STRING_SIZE);
-	}
-
-	U8StringRef::U8StringRef(const U8StringRef& temp_string) noexcept
-	{
-		characters_number = temp_string.character_number();
-		characters_data_size = temp_string.character_data_size();
-		characters_data = xe_malloc<utf8_t>(characters_data_size);
-		std::memcpy(characters_data, temp_string.data(), characters_data_size);
-		is_short_string = (characters_data_size < SHORT_STRING_SIZE);
-	}
-
-	U8StringRef& U8StringRef::operator=(const U8StringRef& temp_string) noexcept
-	{
-		release();
-		this->load_data(temp_string.data(), temp_string.character_data_size(), temp_string.character_number());
-		return *this;
-	}
-
-	U8StringRef& U8StringRef::operator=(const char* c_utf8_str) noexcept
-	{
-		release();
-		this->load_data(c_utf8_str);
-		return *this;
-	}
-
-	U8StringRef& U8StringRef::operator=(const utf8_t* c_utf8_str) noexcept
-	{
-		release();
-		this->load_data(c_utf8_str);
-		return *this;
-	}
-
-	U8StringRef U8StringRef::Slice(int64_t start, int64_t end) const noexcept
+	U8StringRef U8StringRef::slice(int64_t start, int64_t end) const noexcept
 	{
 		int64_t _cur_number = 0;
 		utf8_t* start_str_ptr = nullptr;
@@ -271,12 +217,13 @@ namespace xe
 		while (_cur_number != start)
 		{
 			int type = utf8_byte_type(*cur_str_ptr);
-			while ((type--) > 1) {
+			while ((type--) > 1) 
+			{
 				cur_str_ptr++;
 				if (!utf8_bype_is_valid_leading_byte(*cur_str_ptr))
 				{
 					XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeCore", "Utf8 text not coherent");
-					return 0;
+					return "";
 				}
 			}
 			cur_str_ptr++;
@@ -293,7 +240,7 @@ namespace xe
 				if (!utf8_bype_is_valid_leading_byte(*cur_str_ptr))
 				{
 					XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeCore", "Utf8 text not coherent");
-					return 0;
+					return "";
 				}
 			}
 			need_copy_offset++;
@@ -301,6 +248,11 @@ namespace xe
 			_cur_number++;
 		}
 		return U8StringRef(start_str_ptr, need_copy_offset);
+	}
+
+	bool U8StringRef::is_empty() const noexcept
+	{
+		return characters_number == 0;
 	}
 
 	void U8StringRef::append(unicode_t character) noexcept
@@ -449,27 +401,53 @@ namespace xe
 		}
 	}	
 
-	void U8StringRef::load_data(const utf8_t* c_utf8_str, int64_t str_size, int64_t input_character_number) noexcept
+	void U8StringRef::release() noexcept
 	{
-		characters_data_size = str_size;
+		xe_free(characters_data);
+		characters_data = nullptr;
+		characters_data_size = 0;
+		characters_number = 0;
+	}
+
+	void U8StringRef::load_xe_str_include0(const utf8_t* xe_utf8_str, int64_t xe_str_size, int64_t input_character_number) noexcept
+	{
+		characters_data_size = xe_str_size;
 		characters_data = xe_malloc<utf8_t>(characters_data_size);
-		std::memcpy(characters_data, c_utf8_str, str_size);
-		characters_data[str_size - 1] = '\0';
+		std::memcpy(characters_data, xe_utf8_str, xe_str_size - 1);
+		characters_data[xe_str_size - 1] = '\0';
 		characters_number = input_character_number;
 		is_short_string = (characters_data_size < SHORT_STRING_SIZE);
 	}
 
-	void U8StringRef::load_data(const char* c_utf8_str) noexcept
+	void U8StringRef::load_cpp_u8_str_add0(const utf8_t* cpp_utf8_str) noexcept
 	{
-		load_data(reinterpret_cast<const utf8_t*>(c_utf8_str));
+		if (cpp_utf8_str == nullptr)
+		{
+			load_default_str();
+			return;
+		}
+		// include '/0'
+		int64_t src_str_size = std::strlen(reinterpret_cast<const char*>(cpp_utf8_str));
+		// c style string end with 0
+		load_rust_str_add0(cpp_utf8_str, src_str_size);
 	}
 
-	void U8StringRef::load_data(const utf8_t* c_utf8_str) noexcept
+	void U8StringRef::load_rust_str_add0(const utf8_t* xe_rust_str, int64_t rust_str_size)
 	{
-		// include '/0'
-		int64_t src_str_size = std::strlen(reinterpret_cast<const char*>(c_utf8_str));
-		// c style string end with 0
-		load_data(c_utf8_str, src_str_size + 1, count_utf8(c_utf8_str, src_str_size));
+		int64_t found_character_number = count_utf8(xe_rust_str, rust_str_size);
+		if (found_character_number == 0)
+		{
+			load_default_str();
+			return;
+		}
+		load_xe_str_include0(xe_rust_str, rust_str_size + 1, found_character_number);
+	}
+
+	void U8StringRef::load_default_str() noexcept
+	{
+		characters_data = nullptr;
+		characters_data_size = 0;
+		characters_number = 0;
 	}
 
 	bool U8StringRef::string_long_cmp(const utf8_t* cmp_str, const int64_t cmp_str_size) const noexcept

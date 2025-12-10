@@ -2,9 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\..\tset\game_main.cpp" />
-    <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkContext.cpp">
-      <Filter>graphics\graphicsAPI\vulkan</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkDevice.cpp">
       <Filter>graphics\graphicsAPI\vulkan</Filter>
     </ClCompile>
@@ -20,7 +17,10 @@
     <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkConfig.cpp">
       <Filter>graphics\graphicsAPI\vulkan</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkQueue.cpp">
+    <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkContext.cpp">
+      <Filter>graphics\graphicsAPI\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkSwapChain.cpp">
       <Filter>graphics\graphicsAPI\vulkan</Filter>
     </ClCompile>
   </ItemGroup>
@@ -69,7 +69,7 @@
     <ClInclude Include="..\..\inc\graphics\graphicsAPI\xePhysicalDevice.hpp">
       <Filter>graphics\graphicsAPI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkQueue.hpp">
+    <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkSwapChain.hpp">
       <Filter>graphics\graphicsAPI\vulkan</Filter>
     </ClInclude>
   </ItemGroup>

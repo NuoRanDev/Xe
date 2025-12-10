@@ -29,7 +29,7 @@ namespace xe
 		}
 
 		NOT_SUPPORT:
-		XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGeometry: Vulkan", "Cna't support validation!")
+		XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI: Vulkan", "Cna't support validation!")
 		return false;
 	}
 #endif // ENABLE_VULKAN_VALIDATION IS END

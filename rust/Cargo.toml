@@ -1,0 +1,22 @@
+[package]
+name = "XE_RUST_LIB"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+name = "xeRustLib"
+crate-type = ["cdylib"]
+#crate-type = ["staticlib"]
+path = "src/lib.rs"
+
+[dependencies]
+rfd = "0.16.0"
+
+[build]
+target-dir = "../SDK/"
+
+[profile.release]
+strip = true
+lto = true
+opt-level = "z"
+codegen-units = 1
