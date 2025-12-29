@@ -30,7 +30,7 @@ fn set_config(xe_str_directory: *const c_char , xe_str_name: *const c_char, mut 
 }
 
 #[unsafe(no_mangle)]
-pub unsafe extern "C" fn save(xe_str_directory: *const c_char , xe_str_name: *const c_char, pxe_str_extensions: *const *const c_char, extensions_number: usize) -> XeString
+pub unsafe extern "C" fn rfd_save_file(xe_str_directory: *const c_char , xe_str_name: *const c_char, pxe_str_extensions: *const *const c_char, extensions_number: usize) -> XeString
 {
     let out_xe_str = XeString
     {

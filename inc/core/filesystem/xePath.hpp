@@ -1,4 +1,4 @@
-#ifndef _XE_PATH_HPP_
+﻿#ifndef _XE_PATH_HPP_
 #define _XE_PATH_HPP_
 
 #include "string/xeString.hpp"

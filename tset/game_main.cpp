@@ -2,7 +2,7 @@
 #include "Rfd.hpp"
 #include "log/xeLogOutput.hpp"
 #include "filesystem/xeFileMmapStream.hpp"
-#include "Rfd.hpp"
+#include "xeFileDialog.hpp"
 
 #include <format>
 #include <iostream>
@@ -14,12 +14,17 @@ using namespace xe;
 int main(int argc, char* argv[])
 {
 	system("chcp 65001");
-	std::vector<const utf8_t *> str_v;
-	str_v.push_back(u8"*.txt");
-	str_v.push_back(u8"*.doc");
-	auto rstr = save(u8"C:\\", u8"文本文件test", str_v.data(), str_v.size());
-	String str = rstr;
-	free_string(rstr.data);
+	std::vector<String> str_v;
+	str_v.push_back(String(u8"txt"));
+	str_v.push_back(String(u8"doc"));
+
+	Path dir = String(u8"C:\\");
+
+	FileDialog fd = FileDialog();
+	fd.set_directory(dir);
+	fd.add_filter(String(u8"文本系统 , text list"), str_v);
+
+	String str = fd.save_file().path_str;
 	std::cout << str << "\n";
 
 	return EXIT_SUCCESS; // Success

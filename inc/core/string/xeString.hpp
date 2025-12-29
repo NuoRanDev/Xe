@@ -272,7 +272,13 @@ namespace xe
 	// std::cout << <U8StringRef>
 	[[nodiscard]] inline std::ostream& operator<<(std::ostream& out, const U8StringRef& string)
 	{
-		out << string.c_str();
+		auto str = string.c_str();
+		if (str == nullptr)
+			out << "";
+		else
+		{
+			out << str;
+		}
 		return out;
 	}
 

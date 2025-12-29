@@ -44,7 +44,7 @@ pub fn xe_string_to_rust_string(xe_str: *const c_char) -> String
 /// # Safety
 /// The ptr should be a valid pointer to the string allocated by rust
 #[unsafe(no_mangle)]
-pub unsafe extern "C" fn free_string(ptr: *const c_char) 
+pub unsafe extern "C" fn free_rust_string(ptr: *const c_char) 
 {
     // Take the ownership back to rust and drop the owner
     let _ = unsafe { CString::from_raw(ptr as *mut _) };

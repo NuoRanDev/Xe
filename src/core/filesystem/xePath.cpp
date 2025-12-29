@@ -1,4 +1,4 @@
-#include "filesystem/xePath.hpp"
+﻿#include "filesystem/xePath.hpp"
 #include "memory/xeAlloc.hpp"
 
 #if defined(_WIN32)
@@ -29,12 +29,9 @@ namespace xe
 	{
 		path_str = path;
 #if defined(_WIN32)
+		native_str = nullptr;
 		if (!(path.is_empty()))
 			init_native_str();
-		else
-		{
-			native_str = nullptr;
-		}
 #endif
 	}
 
@@ -42,12 +39,9 @@ namespace xe
 	{
 		this->path_str = path;
 #if defined(_WIN32)
+		native_str = nullptr;
 		if (!(path.is_empty()))
 			init_native_str();
-		else
-		{
-			native_str = nullptr;
-		}
 #endif
 		return *this;
 	}
