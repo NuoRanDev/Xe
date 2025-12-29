@@ -18,7 +18,7 @@ namespace xe
 		MemoryFile& operator=(MemoryFile&&) noexcept = default;
 
 		// load image file
-		bool load_file_not_copy_in_memory(byte_t* mem_data, size_t data_size, xeString mem_file_name) noexcept;
+		bool load_file_not_copy_in_memory(byte_t* mem_data, size_t data_size, String mem_file_name) noexcept;
 
 		// get image data
 		const byte_t* const get_file_data(size_t& out_data_size) const noexcept;
@@ -27,7 +27,7 @@ namespace xe
 		byte_t* get_write_offset_data(size_t offset) noexcept;
 
 		// get file name
-		xeString get_file_name() const noexcept { return file_name; }
+		String get_file_name() const noexcept { return file_name; }
 		char const* c_file_name() const noexcept { return file_name.c_str(); }
 
 		// release memory
@@ -38,7 +38,7 @@ namespace xe
 	protected:
 		bool is_copy_in_memory;
 
-		xeString file_name;
+		String file_name;
 
 		byte_t* file_data;
 

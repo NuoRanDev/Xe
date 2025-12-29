@@ -17,7 +17,7 @@ namespace xe
 		exe_name = i_exe_name;
 	}
 
-	bool WindowManager::create_window(int32_t w, int32_t h, xeString name, bool bordered) noexcept
+	bool WindowManager::create_window(int32_t w, int32_t h, String name, bool bordered) noexcept
 	{
 		Window* new_window = new Window();
 
@@ -30,7 +30,7 @@ namespace xe
 		return true;
 	}
 
-	Window* WindowManager::get_window(xeString name) noexcept
+	Window* WindowManager::get_window(String name) noexcept
 	{
 		return window_map[name];
 	}

@@ -25,7 +25,7 @@ namespace xe
 
 		GPU_TYPE get_gpu_type() const noexcept { return gpu_type; }
 
-		const xeString& get_device_name() const noexcept { return device_name; }
+		const String& get_device_name() const noexcept { return device_name; }
 
 		bool support_geometry_shader() const noexcept { return is_support_geometry_shader; }
 
@@ -37,7 +37,7 @@ namespace xe
 
 		GPU_TYPE gpu_type;
 
-		xeString device_name;
+		String device_name;
 
 		std::any vk_physical_device;
 

@@ -14,7 +14,7 @@ namespace xe
 		vk_surface = nullptr;
 	}
 
-	bool VulkanContext::init_vulkan_instance(const char* const* extension, uint32_t extension_number, xeString exe_name)
+	bool VulkanContext::init_vulkan_instance(const char* const* extension, uint32_t extension_number, String exe_name)
 	{
 		VkResult result;
 		VkApplicationInfo application_info = {};
@@ -72,7 +72,7 @@ namespace xe
 		return true;
 	}
 
-	bool VulkanContext::pick_up_physical_device(const xeString& gpu_name) noexcept
+	bool VulkanContext::pick_up_physical_device(const String& gpu_name) noexcept
 	{
 		if (!(gpu_instance.pick_up_gpu(gpu_name)))
 		{

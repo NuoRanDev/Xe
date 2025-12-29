@@ -30,7 +30,7 @@ namespace xe
 
 		const std::vector<Gpu> get_gpu_physical_device_list() const noexcept { return gpu_list; }
 
-		bool pick_up_gpu(const xeString& gpu_name) noexcept;
+		bool pick_up_gpu(const String& gpu_name) noexcept;
 		//const std::vector<const char*>& extension, 
 		bool create_logical_device(VkSurfaceKHR i_vk_surface, float* pqueue_priorities, int32_t queue_count);
 

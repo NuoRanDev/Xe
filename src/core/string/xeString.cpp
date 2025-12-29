@@ -1,10 +1,11 @@
-#include "string/xeString.hpp"
+﻿#include "string/xeString.hpp"
 
 #include <algorithm>
 
 #include "log/xeLogOutput.hpp"
 #include "memory/xeAlloc.hpp"
 #include "devboost/xeMemCmp.hpp"
+#include "devboost/xeMemFind.hpp"
 
 
 namespace xe
@@ -139,7 +140,7 @@ namespace xe
 	{
 		std::vector<int64_t> pat = std::vector<int64_t>((uint64_t)(end_size - start_size), 0);
 		int64_t index_char = 0;
-		for (int64_t i = start_size; i < end_size; i = i + segment_size)
+		for (int64_t i = start_size; i < end_size; i += segment_size)
 		{
 			while (index_char > 0 && str[i] != str[index_char])
 				index_char = pat[index_char - 1];
@@ -150,7 +151,7 @@ namespace xe
 		return pat;
 	}
 
-	static std::vector<int64_t> u8kmp_start_all(const utf8_t* main_str, const int64_t main_str_size, const utf8_t* children_str, const int64_t children_str_size) noexcept
+	static std::vector<int64_t> u8kmp_find_start_all(const utf8_t* main_str, const int64_t main_str_size, const utf8_t* children_str, const int64_t children_str_size) noexcept
 	{
 		std::vector<int64_t> matches;
 		std::vector<int64_t> next = compute_prefix(children_str, 0, children_str_size, 1ll);
@@ -172,10 +173,25 @@ namespace xe
 		return matches;
 	}
 
+	static std::vector<int64_t> u8_find_simd_start_all(const utf8_t* main_str, const int64_t main_str_size, const utf8_t* children_str, const int64_t children_str_size) noexcept
+	{
+		std::vector<int64_t> matches;
+		int64_t cur = 0;
+		do
+		{
+			cur = memfind(reinterpret_cast<const byte_t*>(children_str), reinterpret_cast<const byte_t*>(main_str + cur), children_str_size, main_str_size);
+			if (cur == -1)
+				return matches;
+			matches.push_back(cur);
+			cur++;
+		} while (cur < (main_str_size - children_str_size));
+		return matches;
+	}
+
 	int64_t count_utf8(const utf8_t* utf8, int64_t alloc_size) noexcept
 	{
 		int count = 0;
-		if (utf8 == nullptr || alloc_size == 0)
+		if ((utf8 == nullptr) || (alloc_size == 0) || (utf8[0] == '\0'))
 		{
 			return count;
 		}
@@ -212,7 +228,12 @@ namespace xe
 		int64_t need_copy_offset = 0;
 
 		start = std::min(start, characters_number);
-		end = std::clamp(end, start, characters_number);
+		if (end != -1)
+			end = std::clamp(end, start, characters_number);
+		else
+		{
+			end = characters_number;
+		}
 
 		while (_cur_number != start)
 		{
@@ -234,7 +255,8 @@ namespace xe
 		while (_cur_number != end)
 		{
 			int type = utf8_byte_type(*cur_str_ptr);
-			while ((type--) > 1) {
+			while ((type--) > 1) 
+			{
 				cur_str_ptr++;
 				need_copy_offset++;
 				if (!utf8_bype_is_valid_leading_byte(*cur_str_ptr))
@@ -247,7 +269,7 @@ namespace xe
 			cur_str_ptr++;
 			_cur_number++;
 		}
-		return U8StringRef(start_str_ptr, need_copy_offset);
+		return U8StringRef(start_str_ptr, need_copy_offset + 1, end - start);
 	}
 
 	bool U8StringRef::is_empty() const noexcept
@@ -280,8 +302,8 @@ namespace xe
 
 	void U8StringRef::append(U8StringRef append_string) noexcept
 	{
-		int64_t append_string_data_size = append_string.character_data_size();
-		int64_t append_string_characters_number = append_string.character_number();
+		int64_t append_string_data_size = append_string.get_characters_data_size();
+		int64_t append_string_characters_number = append_string.get_characters_number();
 		int64_t jump_str_offset = characters_data_size - 1;
 		utf8_t* append_ptr_start = nullptr;
 
@@ -337,12 +359,16 @@ namespace xe
 
 	std::vector<int64_t> U8StringRef::find_all(const utf8_t* pattern, const int64_t size) const noexcept
 	{
-		return u8kmp_start_all(characters_data, characters_data_size, pattern, size);
+		if (size < 32 || (characters_data_size < USE_KMP_STRING_SIZE))
+			u8kmp_find_start_all(characters_data, characters_data_size, pattern, size);
+		return u8_find_simd_start_all(characters_data, characters_data_size, pattern, size);
 	}
 
 	int64_t U8StringRef::find_start(const utf8_t* pattern, int64_t pattern_size) const noexcept
 	{
-		return -1;
+		if (pattern_size > characters_data_size)
+			return -1;
+		return memfind(reinterpret_cast<const byte_t*>(pattern), reinterpret_cast<const byte_t*>(characters_data), pattern_size - 1, characters_data_size);
 	}
 
 	int64_t U8StringRef::find_last(const utf8_t* pattern, int64_t pattern_size) const noexcept

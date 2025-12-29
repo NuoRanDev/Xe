@@ -1,4 +1,4 @@
-#include "devboost/xeMemCmp.hpp"
+﻿#include "devboost/xeMemCmp.hpp"
 
 #include <mmintrin.h>
 #include <immintrin.h>
@@ -19,16 +19,16 @@ namespace xe
 	bool long_memory_cmp(const byte_t* cmp1, const byte_t* cmp2, const uint64_t cmp_size) noexcept
 	{
 		uint64_t i = 0;
-		__m256i cmp1_16_byte, cmp2_16_byte, cmp_result;
-		int mask;
+		__m256i cmp1_32_byte, cmp2_32_byte, cmp_result;
+		int mask = 0;
 
 		if (cmp_size < 32)
 			goto END_STR_CMP;
 		do{
-			cmp1_16_byte = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(cmp1));
-			cmp2_16_byte = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(cmp2));
+			cmp1_32_byte = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(cmp1));
+			cmp2_32_byte = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(cmp2));
 
-			cmp_result = _mm256_cmpeq_epi8(cmp1_16_byte, cmp2_16_byte);
+			cmp_result = _mm256_cmpeq_epi8(cmp1_32_byte, cmp2_32_byte);
 			// if all 32 byte are equal, then cmp_result will be 0xFF
 			// if not equal, then cmp_result will be 0x00
 			auto cmp_result_mask = _mm256_movemask_epi8(cmp_result);
@@ -49,10 +49,10 @@ namespace xe
 		// if cur_cmp_size < 32, then use short memory compare
 		mask = static_cast<int32_t>(cmp_size - i);
 		mask = ~(INT32_TRUE << cmp_size);
-		cmp1_16_byte = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(cmp1));
-		cmp2_16_byte = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(cmp2));
+		cmp1_32_byte = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(cmp1));
+		cmp2_32_byte = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(cmp2));
 
-		cmp_result = _mm256_cmpeq_epi8(cmp1_16_byte, cmp2_16_byte);
+		cmp_result = _mm256_cmpeq_epi8(cmp1_32_byte, cmp2_32_byte);
 
 		auto cmp_result_mask = _mm256_movemask_epi8(cmp_result);
 

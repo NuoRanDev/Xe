@@ -30,7 +30,7 @@
     <ClCompile Include="..\..\src\core\string\xeString.cpp">
       <Filter>core\string</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\core\devboost\xeMemCmpr.cpp">
+    <ClCompile Include="..\..\src\core\devboost\xeMemCmp.cpp">
       <Filter>core\devboost</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\core\memory\xeAlloc.cpp">
@@ -44,6 +44,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\core\filesystem\xePath.cpp">
       <Filter>core\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\inc\core\devboost\xeMemFind.hpp">
+      <Filter>core\devboost</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\core\devboost\xeMemFind.cpp">
+      <Filter>core\devboost</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +82,12 @@
     </ClInclude>
     <ClInclude Include="..\..\inc\core\math\xeBigNumber.hpp">
       <Filter>core\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\core\xeCompiler.hpp">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\core\string\xeRegexp.hpp">
+      <Filter>core\string</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

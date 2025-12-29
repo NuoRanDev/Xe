@@ -20,7 +20,7 @@ namespace xe
 	public:
 		Window();
 
-		bool create_window_context(const char* exe_name, int32_t w, int32_t h, xeString name, bool bordered) noexcept;
+		bool create_window_context(const char* exe_name, int32_t w, int32_t h, String name, bool bordered) noexcept;
 
 		bool draw_loop();
 

@@ -18,15 +18,15 @@ namespace xe
 	class Path final
 	{
 	public:
-		xeString path_str;
+		String path_str;
 
 		Path() noexcept;
 
 		Path& operator=(const Path& path) noexcept;
 
-		Path(const xeString& path) noexcept;
+		Path(const String& path) noexcept;
 
-		Path& operator=(const xeString& path) noexcept;
+		Path& operator=(const String& path) noexcept;
 
 		Path abs_path() noexcept;
 

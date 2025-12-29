@@ -77,7 +77,7 @@ namespace xe
 		return true;
 	}
 
-	bool VulkanGpuInstance::pick_up_gpu(const xeString& gpu_name) noexcept
+	bool VulkanGpuInstance::pick_up_gpu(const String& gpu_name) noexcept
 	{
 		for (auto& gpu : gpu_list)
 		{

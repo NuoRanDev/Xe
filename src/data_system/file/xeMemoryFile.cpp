@@ -5,7 +5,7 @@
 
 namespace xe
 {
-	bool MemoryFile::load_file_not_copy_in_memory(byte_t* mem_data, size_t data_size, xeString mem_file_name) noexcept
+	bool MemoryFile::load_file_not_copy_in_memory(byte_t* mem_data, size_t data_size, String mem_file_name) noexcept
 	{
 		if (mem_data == nullptr)
 		{

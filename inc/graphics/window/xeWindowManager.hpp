@@ -13,15 +13,15 @@ namespace xe
 	public:
 		WindowManager(const char* i_exe_name);
 
-		bool create_window(int32_t w, int32_t h, xeString name, bool bordered) noexcept;
+		bool create_window(int32_t w, int32_t h, String name, bool bordered) noexcept;
 
-		Window* get_window(xeString name) noexcept;
+		Window* get_window(String name) noexcept;
 
 		~WindowManager();
 
 	private:
 
-		std::map<xeString, Window*> window_map;
+		std::map<String, Window*> window_map;
 
 		const char* exe_name;
 

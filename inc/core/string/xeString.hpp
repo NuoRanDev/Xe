@@ -1,4 +1,4 @@
-#ifndef _XE_STRING_HPP_
+﻿#ifndef _XE_STRING_HPP_
 #define _XE_STRING_HPP_
 
 
@@ -18,6 +18,11 @@ struct RustString
 namespace xe
 {
 	constexpr int64_t SHORT_STRING_SIZE = 12;
+
+	// kmp is O(m+n)
+	// nomal is O(m*n)
+	// 
+	constexpr int64_t USE_KMP_STRING_SIZE = 32 * 32 + 1;
 
 	class U8StringRef
 	{
@@ -53,7 +58,7 @@ namespace xe
 				load_default_str();
 				return;
 			}
-			load_xe_str_include0(temp_string.data(), temp_string.character_data_size(), temp_string.character_number());
+			load_xe_str_include0(temp_string.data(), temp_string.get_characters_data_size(), temp_string.get_characters_number());
 		}
 
 		U8StringRef& operator=(const U8StringRef& temp_string) noexcept 
@@ -63,7 +68,7 @@ namespace xe
 				this->load_default_str();
 				return *this;
 			}
-			this->load_xe_str_include0(temp_string.data(), temp_string.character_data_size(), temp_string.character_number());
+			this->load_xe_str_include0(temp_string.data(), temp_string.get_characters_data_size(), temp_string.get_characters_number());
 			return *this;
 		}
 
@@ -105,9 +110,9 @@ namespace xe
 
 		bool is_empty() const noexcept;
 
-		[[nodiscard]] int64_t character_number() const noexcept { return characters_number; }
+		[[nodiscard]] int64_t get_characters_number() const noexcept { return characters_number; }
 
-		[[nodiscard]] int64_t character_data_size() const noexcept { return characters_data_size; }
+		[[nodiscard]] int64_t get_characters_data_size() const noexcept { return characters_data_size; }
 
 		void append(unicode_t character) noexcept;
 
@@ -124,6 +129,8 @@ namespace xe
 		[[nodiscard]] std::vector<int64_t> find_all(const utf8_t* pattern, const int64_t size) const noexcept;
 
 		// Find
+		int64_t find_start(const U8StringRef pattern_str) const noexcept { return find_start(pattern_str.data(), pattern_str.get_characters_data_size()); }
+
 		int64_t find_start(const utf8_t* pattern, int64_t pattern_size) const noexcept;
 
 		int64_t find_last(const utf8_t* pattern, int64_t pattern_size) const noexcept;
@@ -143,7 +150,7 @@ namespace xe
 		[[nodiscard]] const char* c_str() const noexcept { return (const char*)characters_data; }
 
 		// exclude end of '\0'
-		[[nodiscard]] const int64_t length() const noexcept { return character_data_size() - 1; }
+		[[nodiscard]] const int64_t length() const noexcept { return characters_data_size - 1; }
 
 		[[nodiscard]] const utf8_t* data()const noexcept { return characters_data; }
 
@@ -269,7 +276,7 @@ namespace xe
 		return out;
 	}
 
-	using xeString = U8StringRef;
+	using String = U8StringRef;
 } // namespace xe is end
 
 

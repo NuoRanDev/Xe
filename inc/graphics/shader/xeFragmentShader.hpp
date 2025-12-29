@@ -11,7 +11,7 @@ namespace xe
 	public:
 		FragmentShader() = default;
 
-		bool load_spirv_shader(byte_t* spirv_data_in, xeString default_entry_function = "main")
+		bool load_spirv_shader(byte_t* spirv_data_in, String default_entry_function = "main")
 		{
 			entry_function = default_entry_function;
 			spirv_data = spirv_data_in;
@@ -19,7 +19,7 @@ namespace xe
 
 	private:
 
-		xeString entry_function;
+		String entry_function;
 		
 		byte_t* spirv_data;
 	};

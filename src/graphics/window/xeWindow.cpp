@@ -28,7 +28,7 @@ namespace xe
 		current_draw_function_index = 0;
 	}
 
-	bool Window::create_window_context(const char* exe_name, int32_t w, int32_t h, xeString name, bool bordered) noexcept
+	bool Window::create_window_context(const char* exe_name, int32_t w, int32_t h, String name, bool bordered) noexcept
 	{
 		init_render_api(exe_name);
 		sdl_window_context = SDL_CreateWindow(name.c_str(), w, h, window_flags);
@@ -134,7 +134,7 @@ namespace xe
 #elif defined(USE_VULKAN)
 		VulkanContext* vk_context = new VulkanContext();
 		uint32_t extension_count = 0;
-		xeString cur_gpu_name;
+		String cur_gpu_name;
 		char const* const* extension = SDL_Vulkan_GetInstanceExtensions(&extension_count);
 		
 		if (!vk_context->init_vulkan_instance(extension, extension_count, exe_name))

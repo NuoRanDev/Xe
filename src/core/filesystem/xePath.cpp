@@ -25,7 +25,7 @@ namespace xe
 		return *this;
 	}
 
-	Path::Path(const xeString& path) noexcept
+	Path::Path(const String& path) noexcept
 	{
 		path_str = path;
 #if defined(_WIN32)
@@ -38,7 +38,7 @@ namespace xe
 #endif
 	}
 
-	Path& Path::operator=(const xeString& path) noexcept
+	Path& Path::operator=(const String& path) noexcept
 	{
 		this->path_str = path;
 #if defined(_WIN32)
