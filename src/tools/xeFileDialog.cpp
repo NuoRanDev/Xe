@@ -23,6 +23,18 @@ namespace xe
 		return Path(xe::String(ref_str));
 	}
 
+	Path FileDialog::pick_file() noexcept
+	{
+		ref_str = rfd_pick_file(u8_dir.path_str.data(), extensions_name, extensions_filter_list.data(), extensions_filter_list.size());
+		return Path(xe::String(ref_str));
+	}
+
+	Path FileDialog::pick_folder() noexcept
+	{
+		ref_str = rfd_pick_folder(u8_dir.path_str.data(), extensions_name, extensions_filter_list.data(), extensions_filter_list.size());
+		return Path(xe::String(ref_str));
+	}
+
 	FileDialog::~FileDialog()
 	{
 		if (ref_str.data != nullptr)

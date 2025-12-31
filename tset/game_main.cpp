@@ -17,6 +17,7 @@ int main(int argc, char* argv[])
 	std::vector<String> str_v;
 	str_v.push_back(String(u8"txt"));
 	str_v.push_back(String(u8"doc"));
+	str_v.push_back(String(u8"docx"));
 
 	Path dir = String(u8"C:\\");
 
@@ -24,7 +25,7 @@ int main(int argc, char* argv[])
 	fd.set_directory(dir);
 	fd.add_filter(String(u8"文本系统 , text list"), str_v);
 
-	String str = fd.save_file().path_str;
+	String str = fd.pick_file().path_str;
 	std::cout << str << "\n";
 
 	return EXIT_SUCCESS; // Success

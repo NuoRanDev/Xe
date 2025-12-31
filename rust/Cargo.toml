@@ -5,18 +5,18 @@ edition = "2024"
 
 [lib]
 name = "xeRustLib"
-crate-type = ["cdylib"]
-#crate-type = ["staticlib"]
+#crate-type = ["cdylib"]
+crate-type = ["staticlib"]
 path = "src/lib.rs"
 
 [dependencies]
 rfd = "0.16.0"
 
-[build]
-target-dir = "../SDK/"
+#[build]
+#target-dir = "../SDK/"
 
 [profile.release]
 strip = true
 lto = true
 opt-level = "z"
-codegen-units = 1
+#codegen-units = 1

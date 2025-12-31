@@ -54,3 +54,55 @@ pub unsafe extern "C" fn rfd_save_file(xe_str_directory: *const c_char , xe_str_
     }
     return rust_string_to_xe_string(out_rust_path);
 }
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn rfd_pick_file(xe_str_directory: *const c_char , xe_str_name: *const c_char, pxe_str_extensions: *const *const c_char, extensions_number: usize) -> XeString
+{
+    let out_xe_str = XeString
+    {
+        data : ptr::null(),
+        size : 0
+    };
+    let out_rust_path;
+    let path_buf_out: std::path::PathBuf;
+
+    let fd= set_config(xe_str_directory, xe_str_name, pxe_str_extensions, extensions_number);
+    match fd.pick_file()
+    {
+        Some(val)=> path_buf_out = val,
+        None=>return out_xe_str,
+    }
+
+    match path_buf_out.to_str() 
+    {
+        Some(val)   => out_rust_path = String::from(val),
+        None=>return out_xe_str,
+    }
+    return rust_string_to_xe_string(out_rust_path);
+}
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn rfd_pick_folder(xe_str_directory: *const c_char , xe_str_name: *const c_char, pxe_str_extensions: *const *const c_char, extensions_number: usize) -> XeString
+{
+    let out_xe_str = XeString
+    {
+        data : ptr::null(),
+        size : 0
+    };
+    let out_rust_path;
+    let path_buf_out: std::path::PathBuf;
+
+    let fd= set_config(xe_str_directory, xe_str_name, pxe_str_extensions, extensions_number);
+    match fd.pick_folder()
+    {
+        Some(val)=> path_buf_out = val,
+        None=>return out_xe_str,
+    }
+
+    match path_buf_out.to_str() 
+    {
+        Some(val)   => out_rust_path = String::from(val),
+        None=>return out_xe_str,
+    }
+    return rust_string_to_xe_string(out_rust_path);
+}

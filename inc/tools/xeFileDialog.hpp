@@ -25,6 +25,10 @@ namespace xe
 
 		Path save_file() noexcept;
 
+		Path pick_folder() noexcept;
+
+		Path pick_file() noexcept;
+
 		~FileDialog();
 
 	private:
