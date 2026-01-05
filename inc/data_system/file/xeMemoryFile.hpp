@@ -1,4 +1,4 @@
-#ifndef _XE_MEMORY_FILE_HPP_
+﻿#ifndef _XE_MEMORY_FILE_HPP_
 #define _XE_MEMORY_FILE_HPP_
 
 #include "type/xeOrdinals.hpp"

@@ -6,3 +6,4 @@
 /rust/Cargo.lock
 /rust/target/*
 /temp/*
+/.vs/
