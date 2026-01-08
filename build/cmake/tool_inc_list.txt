@@ -1,0 +1,18 @@
+Tools:
+cmake
+clang++
+rustc
+cargo : cargo build --release
+
+inc dev:
+core:[core]
+data_system:[data_system ,core]
+logic:[data_system ,core,logic]
+Tools :[tools ,data_system ,core, rust/inc]
+graphics:[tools ,data_system ,core ,logic]
+
+->*.lib/lib*.a
+lib dir-> \SDK\bin\{Debug_cpp, Release_cpp}
+rustlib -> rust\target\release
+
+etc: libspng libsdl3 zlib zlib-ng libjpeg zstd
