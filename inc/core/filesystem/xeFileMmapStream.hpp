@@ -63,7 +63,7 @@ namespace xe
 #if defined(_WIN32)
 		void* hfile_mapping;
 		void* c_dump_file_descriptor;
-#elif defied(__linux__)
+#elif defined(__linux__)
 #else
 #error "SUPPORTED ERROR: NOT SUPPORT THIS SYSTEM!"
 #endif // SYSTEM CHOOSE
