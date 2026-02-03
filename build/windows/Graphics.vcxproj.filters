@@ -19,6 +19,9 @@
     <ClCompile Include="..\..\src\graphics\graphicsAPI\xeVkContext.cpp">
       <Filter>graphics\graphicsAPI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\test\game_main.cpp">
+      <Filter>graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="graphics">

@@ -61,7 +61,7 @@ namespace xe
 	}
 
 	bool VulkanSwapChain::init_swap_chain(VkDevice vk_dev, VkSurfaceKHR vk_surface, uint32_t image_array_size,
-		const uint32_t* pqueue_indexs, size_t queue_indexs_count) noexcept
+		const uint32_t* pqueue_indexs, uint32_t queue_indexs_count) noexcept
 	{
 		VkSwapchainCreateInfoKHR create_info{};
 

@@ -5,15 +5,15 @@
 
 #include <filesystem>
 
-#if defined(_WIN32)
-using OS_STRING = wchar_t;
-#else
-using OS_STRING = utf8_t;
-#endif // defined(_WIN32) IS END
-
-
 namespace xe
 {
+
+#if defined(_WIN32)
+	using OS_STRING = wchar_t;
+#else
+	using OS_STRING = utf8_t;
+#endif // defined(_WIN32) IS END
+
 	class Path final
 	{
 	public:

@@ -139,10 +139,10 @@ namespace xe
 			queue_create_info.queueCount = queue_count;
 			queue_create_info.queueFamilyIndex = static_cast<uint32_t>(graphics_queue_index);
 			queue_create_info_list.push_back(queue_create_info);
-			queue_indexs.push_back(static_cast<uint32_t>(graphics_queue_index));
+			queue_index_list.push_back(static_cast<uint32_t>(graphics_queue_index));
 			queue_create_info.queueFamilyIndex = static_cast<uint32_t>(present_queue_index);
 			queue_create_info_list.push_back(queue_create_info);
-			queue_indexs.push_back(static_cast<uint32_t>(present_queue_index));
+			queue_index_list.push_back(static_cast<uint32_t>(present_queue_index));
 
 			device_create_info.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
 			device_create_info.pQueueCreateInfos = queue_create_info_list.data();
@@ -161,11 +161,17 @@ namespace xe
 
 		bool VulkanContext::create_swap_chian(int32_t h, int32_t w)
 		{
-			if(vk_swap_chain_context.get_swap_chain_info(gpu_list[device_index].second, window_surface))
-			{
-			}
+			bool state = vk_swap_chain_context.get_swap_chain_info(gpu_list[device_index].second, window_surface);
+			if (!state)
+				goto FAILED;
 			vk_swap_chain_context.set_render_area(h, w);
+			state = vk_swap_chain_context.init_swap_chain(vk_device, window_surface,
+				2u, queue_index_list.data(), static_cast<uint32_t>(queue_index_list.size()));
+			if (!state)
+				goto FAILED;
 
+		FAILED:
+			XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeGraphicsAPI", "Get swap info failed!");
 			return false;
 		}
 
@@ -191,10 +197,15 @@ namespace xe
 		bool VulkanContext::get_device_queue_family() noexcept
 		{
 			uint32_t queue_family_count = 0;
-			queue_indexs.resize(4lu);
+			queue_index_list.resize(4lu);
 			vkGetPhysicalDeviceQueueFamilyProperties(gpu_list[device_index].second, &queue_family_count, nullptr);
+			if(queue_family_count)
+			{
+				XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI : VULKAN", "No vulkan queue list");
+			}
 			queue_family_list = dynamic_array<VkQueueFamilyProperties>(queue_family_count);
 			vkGetPhysicalDeviceQueueFamilyProperties(gpu_list[device_index].second, &queue_family_count, queue_family_list.data());
+			return true;
 		}
 
 		bool VulkanContext::get_device_queue_family_support() noexcept

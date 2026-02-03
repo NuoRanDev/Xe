@@ -66,7 +66,7 @@ namespace xe
 			return false;
 
 		case JCS_GRAYSCALE:
-			img_out.create_empty(IMG_FORMAT::GRAYU8, cinfo.image_width, cinfo.image_height);
+			img_out.create_empty(IMG_FORMAT::GRAY_U8, cinfo.image_width, cinfo.image_height);
 			break;
 
 		case JCS_RGB:

@@ -65,7 +65,7 @@ namespace xe
 			uint64_t compute_queue_index = -1;
 			VkQueue present_queue = nullptr;
 			uint64_t present_queue_index = -1;
-			dynamic_array<uint32_t> queue_indexs;
+			dynamic_array<uint32_t> queue_index_list;
 
 			// device queue
 			dynamic_array<VkQueueFamilyProperties> queue_family_list;

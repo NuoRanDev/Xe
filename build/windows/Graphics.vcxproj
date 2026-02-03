@@ -25,6 +25,7 @@
     <ClCompile Include="..\..\src\graphics\testure\xeTesture.cpp" />
     <ClCompile Include="..\..\src\graphics\window\xeWindow.cpp" />
     <ClCompile Include="..\..\src\graphics\window\xeWindowManager.cpp" />
+    <ClCompile Include="..\..\test\game_main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeGraphics.hpp" />

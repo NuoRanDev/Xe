@@ -9,17 +9,11 @@
 
 #include <format>
 
-#if defined(USE_OPENGL)
-constexpr SDL_WindowFlags window_flags = SDL_WINDOW_OPENGL;
-#elif defined(USE_VULKAN)
-#include "graphicsAPI/vulkan/xeVkContext.hpp"
 #include "SDL3/SDL_vulkan.h"
-constexpr SDL_WindowFlags window_flags = SDL_WINDOW_VULKAN;
-#else
-#include "SDL3/SDL_render.h"
-constexpr SDL_WindowFlags window_flags = 0;
-#endif // CHOOSE RENDER API
 
+#include "graphicsAPI/xeVkContext.hpp"
+
+constexpr SDL_WindowFlags window_flags = SDL_WINDOW_VULKAN;
 namespace xe
 {
 	Window::Window()
@@ -48,12 +42,8 @@ namespace xe
 	bool Window::draw_loop()
 	{
 		auto window = std::any_cast<SDL_Window*>(sdl_window_context);
-#if defined(USE_OPENGL)
-#elif defined(USE_VULKAN)
-		auto window_render = std::any_cast<VulkanContext*>(renderer_context);
-#else
-		auto window_renderer = std::any_cast<SDL_Renderer*>(sdl_renderer);
-#endif // RENDER API
+
+		auto window_render = std::any_cast<vulkan::VulkanContext*>(renderer_context);
 
 		SDL_Event event;
 		bool loopShouldStop = false;
@@ -116,23 +106,15 @@ namespace xe
 	{
 		xe_delete_array(is_draw);
 		auto window = std::any_cast<SDL_Window*>(sdl_window_context);
-
-#if defined(USE_OPENGL)
-#elif defined(USE_VULKAN)
-		auto vk_context = std::any_cast<VulkanContext*>(renderer_context);
+		auto vk_context = std::any_cast<vulkan::VulkanContext*>(renderer_context);
 		delete vk_context;
-#else
-		SDL_DestroyRenderer(std::any_cast<SDL_Renderer*>(sdl_renderer));
-#endif // RENDER API
 		SDL_DestroyWindow(window);
 	}
 
 	bool Window::init_render_api(const char* exe_name)
 	{
-#if defined(USE_OPENGL)
 
-#elif defined(USE_VULKAN)
-		VulkanContext* vk_context = new VulkanContext();
+		vulkan::VulkanContext* vk_context = new vulkan::VulkanContext();
 		uint32_t extension_count = 0;
 		String cur_gpu_name;
 		char const* const* extension = SDL_Vulkan_GetInstanceExtensions(&extension_count);
@@ -142,42 +124,19 @@ namespace xe
 			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeUISystem : VULKAN", "Initialization vulkan is faild");
 			return false; // Initialization failed
 		}
-		if (!(vk_context->link_physical_device()))
-		{
-			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeUISystem : VULKAN", "Not supported GPU");
-			return false; // Initialization failed
-		}
-		const auto& gpu_list = vk_context->get_physical_device_list();
-		for (auto& gpu : gpu_list)
-		{
-			if (gpu.get_device_name().find_start(u8"nvidia", 7) != -1)
-			{
-				cur_gpu_name = gpu.get_device_name();
-				return true;
-			}
-		}
-		cur_gpu_name = gpu_list[0].get_device_name();
-		vk_context->pick_up_physical_device(cur_gpu_name);
 		renderer_context = vk_context;
-#else
-#endif // RENDER API
 		return true;
 	}
 
 	bool Window::bind_render_api_in_window()
 	{
 		auto window = std::any_cast<SDL_Window*>(sdl_window_context);
-#if defined(USE_OPENGL)
-#elif defined(USE_VULKAN)
-		auto vk_context = std::any_cast<VulkanContext*>(renderer_context);
-		VkSurfaceKHR vk_surface;
-		SDL_Vulkan_CreateSurface(std::any_cast<SDL_Window*>(sdl_window_context), vk_context->vk_instance, nullptr, &vk_surface);
-		vk_context->link_window_surface(vk_surface);
+		auto vk_context = std::any_cast<vulkan::VulkanContext*>(renderer_context);
+		//VkSurfaceKHR vk_surface;
+		//SDL_Vulkan_CreateSurface(std::any_cast<SDL_Window*>(sdl_window_context), vk_context->vk_instance, nullptr, &vk_surface);
+		//vk_context->link_window_surface(vk_surface);
 		float nu = 1.0f;
 		vk_context->create_logical_device(&nu, 1);
-#else
-		renderer_context = SDL_CreateRenderer(window, NULL);;
-#endif // RENDER API
 		return true;
 	}
 } // namespace xe is end
