@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/sara/Downloads/Xe/build/cmake/build/cmake_install.cmake",
+		"/home/sara/Downloads/Xe/build/cmake/build/core/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

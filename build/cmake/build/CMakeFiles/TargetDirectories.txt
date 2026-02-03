@@ -1,0 +1,5 @@
+/home/sara/Downloads/Xe/build/cmake/build/CMakeFiles/edit_cache.dir
+/home/sara/Downloads/Xe/build/cmake/build/CMakeFiles/rebuild_cache.dir
+/home/sara/Downloads/Xe/build/cmake/build/core/CMakeFiles/Core.dir
+/home/sara/Downloads/Xe/build/cmake/build/core/CMakeFiles/edit_cache.dir
+/home/sara/Downloads/Xe/build/cmake/build/core/CMakeFiles/rebuild_cache.dir
