@@ -1,4 +1,4 @@
-#ifndef _INC_GRAPH_HPP_
+﻿#ifndef _INC_GRAPH_HPP_
 #define _INC_GRAPH_HPP_
 
 #include "type/xeOrdinals.hpp"
@@ -23,7 +23,7 @@ namespace xe
 
 		constexpr Graph() noexcept
 		{
-			static_assert ((U != IMG_FORMAT::GRAY8 || U != IMG_FORMAT::GRAY16), "Can't match data");
+			static_assert ((U != IMG_FORMAT::GRAYU8 || U != IMG_FORMAT::GRAY_U16), "Can't match data");
 			index_max = std::numeric_limits<T>::max();
 			index_min = std::numeric_limits<T>::min();
 			x = 0, y = 0;
@@ -97,9 +97,9 @@ namespace xe
 		T index_min;
 	};
 
-	using GraphBit8 = Graph<uint8_t, IMG_FORMAT::GRAY8>;
+	using GraphBit8 = Graph<uint8_t, IMG_FORMAT::GRAYU8>;
 
-	using GraphBit16 = Graph<uint16_t, IMG_FORMAT::GRAY16>;
+	using GraphBit16 = Graph<uint16_t, IMG_FORMAT::GRAY_U16>;
 
 } // namespace xe is end
 

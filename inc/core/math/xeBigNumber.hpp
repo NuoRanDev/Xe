@@ -1,9 +1,9 @@
-#ifndef _XE_BIG_NUMBER_HPP_
+﻿#ifndef _XE_BIG_NUMBER_HPP_
 #define _XE_BIG_NUMBER_HPP_
 
 #include "type/xeOrdinals.hpp"
+#include "type/xeDataStruction.hpp"
 
-#include <vector>
 #include <cstring>
 
 namespace xe
@@ -74,7 +74,7 @@ namespace xe
 
 		int64_t is_negative;
 
-		std::vector<uint64_t> number_data;
+		dynamic_array<uint64_t> number_data;
 	};
 
 }// namespace xe is end

@@ -3,6 +3,8 @@
 
 #include "filesystem/xePath.hpp"
 
+#include "type/xeDataStruction.hpp"
+
 namespace xe
 {
 	class FileDialog
@@ -21,7 +23,7 @@ namespace xe
 
 		void set_directory(Path& dir) noexcept;
 
-		void add_filter(const String& name, const std::vector<String>& extensions_list) noexcept;
+		void add_filter(const String& name, const dynamic_array<String>& extensions_list) noexcept;
 
 		Path save_file() noexcept;
 
@@ -33,7 +35,7 @@ namespace xe
 
 	private:
 
-		std::vector<const utf8_t*> extensions_filter_list;
+		dynamic_array<const utf8_t*> extensions_filter_list;
 		const utf8_t* extensions_name;
 
 		Path u8_dir;

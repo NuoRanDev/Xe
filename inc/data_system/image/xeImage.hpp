@@ -1,4 +1,4 @@
-#ifndef _XE_IMAGE_HPP_
+﻿#ifndef _XE_IMAGE_HPP_
 #define _XE_IMAGE_HPP_
 
 #include "type/xeOrdinals.hpp"
@@ -12,19 +12,19 @@ namespace xe
 	enum class IMG_FORMAT :uint32_t
 	{
 		NONE			= 0,
-		GRAY8,
-		GA8,
-		GRAY16,
-		GA16,
-		RGB888,
-		RGBA8888,
-		RGB161616,
-		RGBA16161616
+		GRAY_U8,
+		GA_U8,
+		GRAY_U16,
+		GA_U16,
+		RGB_U888,
+		RGBA_U8888,
+		RGB_U161616,
+		RGBA_U16161616
 	};
 
 	constexpr bool is_gray(IMG_FORMAT foramt)
 	{
-		return static_cast<uint32_t>(foramt) < static_cast<uint32_t>(IMG_FORMAT::RGB888);
+		return static_cast<uint32_t>(foramt) < static_cast<uint32_t>(IMG_FORMAT::RGB_U888);
 	}
 
 	constexpr bool has_alpha(IMG_FORMAT format)
@@ -37,15 +37,15 @@ namespace xe
 	{
 		switch(format)
 		{
-		case IMG_FORMAT::GRAY8:			return 1;
-		case IMG_FORMAT::GRAY16:		return 2;
-		case IMG_FORMAT::GA8:			return 2;
-		case IMG_FORMAT::GA16:			return 4;
-		case IMG_FORMAT::RGB888:		return 3;
-		case IMG_FORMAT::RGBA8888:		return 4;
-		case IMG_FORMAT::RGB161616:		return 6;
-		case IMG_FORMAT::RGBA16161616:	return 8;
-		default:						return 0;
+		case IMG_FORMAT::GRAY_U8:			return 1;
+		case IMG_FORMAT::GRAY_U16:			return 2;
+		case IMG_FORMAT::GA_U8:				return 2;
+		case IMG_FORMAT::GA_U16:			return 4;
+		case IMG_FORMAT::RGB_U888:			return 3;
+		case IMG_FORMAT::RGBA_U8888:		return 4;
+		case IMG_FORMAT::RGB_U161616:		return 6;
+		case IMG_FORMAT::RGBA_U16161616:	return 8;
+		default:							return 0;
 		}
 	}
 

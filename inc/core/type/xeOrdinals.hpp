@@ -1,4 +1,4 @@
-#ifndef _XE_ORDINALA_HPP_
+﻿#ifndef _XE_ORDINALA_HPP_
 #define _XE_ORDINALA_HPP_
 
 #include <cstdint>
@@ -18,7 +18,6 @@ namespace xe
 	{
 		std::is_integral<T>::value;
 	};
-
 } // namespace xe is end
 
 #endif // _XE_ORDINALA_HPP_ IS END

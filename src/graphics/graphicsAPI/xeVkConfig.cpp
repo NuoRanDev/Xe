@@ -1,8 +1,7 @@
-#include "graphicsAPI/vulkan/xeVkConfig.hpp"
+﻿#include "graphicsAPI/xeVkConfig.hpp"
 
 #include "log/xeLogOutput.hpp"
-
-#include <vector>
+#include "type/xeOrdinals.hpp"
 
 namespace xe
 {
@@ -10,7 +9,7 @@ namespace xe
 	bool is_support_enable_validation() noexcept
 	{
 		uint32_t instance_layer_present_count = 0;
-		std::vector<VkLayerProperties> layer_props;
+		dynamic_array<VkLayerProperties> layer_props;
 
 		// Get the layer count using a null pointer as the last parameter.
 		vkEnumerateInstanceLayerProperties(&instance_layer_present_count, nullptr);
@@ -18,7 +17,7 @@ namespace xe
 			goto NOT_SUPPORT;
 
 		// Enumerate layers with a valid pointer in the last parameter.
-		layer_props = std::vector<VkLayerProperties>(instance_layer_present_count);
+		layer_props = dynamic_array<VkLayerProperties>(instance_layer_present_count);
 		vkEnumerateInstanceLayerProperties(&instance_layer_present_count, layer_props.data());
 
 		// Make sure selected validation layers are available.

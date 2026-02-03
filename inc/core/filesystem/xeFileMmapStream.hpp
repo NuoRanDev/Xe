@@ -1,4 +1,4 @@
-#ifndef _INC_XE_FILE_MMAP_STREAM_HPP_
+﻿#ifndef _INC_XE_FILE_MMAP_STREAM_HPP_
 #define _INC_XE_FILE_MMAP_STREAM_HPP_
 
 #include "type/xeOrdinals.hpp"
@@ -10,7 +10,7 @@
 
 namespace xe
 {
-	class Mmapfstream
+	class Mmapfstream final
 	{
 	public:
 
@@ -27,8 +27,6 @@ namespace xe
 		const byte_t* get_mmap_ptr() const noexcept { return (const byte_t*)pfile_start; }
 
 		const byte_t* get_mmap_offset_ptr(size_t offset_byte) const noexcept;
-
-		bool get_file_size(const utf8_t* path) noexcept;
 
 		// read file data to dst (copy)
 
@@ -53,7 +51,11 @@ namespace xe
 			return (byte_t*)pfile_start; 
 		}
 
+		const uint64_t get_file_size() const noexcept { return file_size; }
+
 	protected:
+		bool get_file_size(const utf8_t* path) noexcept;
+
 		uint64_t file_size;
 
 		void* pfile_start;

@@ -1,9 +1,10 @@
-#ifndef _XE_ALLOC_HPP_
+﻿#ifndef _XE_ALLOC_HPP_
 #define _XE_ALLOC_HPP_
 
 #include <cstdlib>
 
 #include "type/xeOrdinals.hpp"
+#include "mimalloc.h"
 
 namespace xe
 {

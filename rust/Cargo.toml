@@ -10,10 +10,10 @@ crate-type = ["staticlib"]
 path = "src/lib.rs"
 
 [dependencies]
-rfd = "0.16.0"
+rfd = "0.17.2"
 
 #[build]
-#target-dir = "../SDK/"
+#target-dir = "$/../SDK/"
 
 [profile.release]
 strip = true

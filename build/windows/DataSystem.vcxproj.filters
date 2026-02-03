@@ -14,6 +14,9 @@
     <Filter Include="data_system\file\image">
       <UniqueIdentifier>{cec31fd3-382d-408e-b510-d0c97d5f719f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="data_system\file\audio">
+      <UniqueIdentifier>{489d72db-c4dc-4359-bdf3-3f8223d70cfe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\data_system\file\image\libsnpngAddons.cpp">

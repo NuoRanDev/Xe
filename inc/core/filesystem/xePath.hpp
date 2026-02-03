@@ -3,7 +3,6 @@
 
 #include "string/xeString.hpp"
 
-#include <vector>
 #include <filesystem>
 
 #if defined(_WIN32)

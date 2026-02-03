@@ -21,11 +21,11 @@ namespace xe
 		0x80000000      // U+04000000 - U+7FFFFFFF  
 	};
 
-	inline bool compare_memory(const utf8_t* Lhs, const utf8_t* Rhs, int64_t Length) noexcept
+	inline bool compare_memory(const utf8_t* lhs, const utf8_t* rhs, int64_t length) noexcept
 	{
-		if (Length == 0)
+		if (length == 0)
 			return 0;
-		return std::memcmp(Lhs, Rhs, Length) == 0;
+		return std::memcmp(lhs, rhs, length) == 0;
 	}
 
 	static int utf8_byte_type(utf8_t c) noexcept
@@ -136,9 +136,9 @@ namespace xe
 		}
 	}
 
-	static std::vector<int64_t> compute_prefix(const utf8_t* str, const int64_t start_size, const int64_t end_size, const int64_t segment_size) noexcept
+	static dynamic_array<int64_t> compute_prefix(const utf8_t* str, const int64_t start_size, const int64_t end_size, const int64_t segment_size) noexcept
 	{
-		std::vector<int64_t> pat = std::vector<int64_t>((uint64_t)(end_size - start_size), 0);
+		dynamic_array<int64_t> pat = dynamic_array<int64_t>((uint64_t)(end_size - start_size), 0);
 		int64_t index_char = 0;
 		for (int64_t i = start_size; i < end_size; i += segment_size)
 		{
@@ -151,10 +151,10 @@ namespace xe
 		return pat;
 	}
 
-	static std::vector<int64_t> u8kmp_find_start_all(const utf8_t* main_str, const int64_t main_str_size, const utf8_t* children_str, const int64_t children_str_size) noexcept
+	static dynamic_array<int64_t> u8kmp_find_start_all(const utf8_t* main_str, const int64_t main_str_size, const utf8_t* children_str, const int64_t children_str_size) noexcept
 	{
-		std::vector<int64_t> matches;
-		std::vector<int64_t> next = compute_prefix(children_str, 0, children_str_size, 1ll);
+		dynamic_array<int64_t> matches;
+		dynamic_array<int64_t> next = compute_prefix(children_str, 0, children_str_size, 1ll);
 
 		
 		uint64_t mark_index = 0;
@@ -173,9 +173,9 @@ namespace xe
 		return matches;
 	}
 
-	static std::vector<int64_t> u8_find_simd_start_all(const utf8_t* main_str, const int64_t main_str_size, const utf8_t* children_str, const int64_t children_str_size) noexcept
+	static dynamic_array<int64_t> u8_find_simd_start_all(const utf8_t* main_str, const int64_t main_str_size, const utf8_t* children_str, const int64_t children_str_size) noexcept
 	{
-		std::vector<int64_t> matches;
+		dynamic_array<int64_t> matches;
 		int64_t cur = 0;
 		do
 		{
@@ -321,14 +321,14 @@ namespace xe
 
 	}
 
-	std::vector<int64_t> U8StringRef::find_all(const unicode_t pattern) const noexcept
+	dynamic_array<int64_t> U8StringRef::find_all(const unicode_t pattern) const noexcept
 	{
 		utf8_t utf8_separator[4] = { 0 };
 		auto out_size = utf32_to_utf8(pattern, utf8_separator);
 		if (out_size == 0)
 		{
 			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeCore", "Not input unicode");
-			return std::vector<int64_t>();
+			return dynamic_array<int64_t>();
 		}
 		if (out_size == 1)return find_all(utf8_separator[0]);
 		else
@@ -337,12 +337,12 @@ namespace xe
 		}
 	}
 
-	std::vector<int64_t> U8StringRef::find_all(const U8StringRef pattern) const noexcept
+	dynamic_array<int64_t> U8StringRef::find_all(const U8StringRef pattern) const noexcept
 	{
 		if (pattern.length() == 0)
 		{
 			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeCore", "Found string is null");
-			return std::vector<int64_t>();
+			return dynamic_array<int64_t>();
 		}
 		if (pattern.length() == 1)
 			return find_all((pattern.data())[0]);
@@ -352,15 +352,25 @@ namespace xe
 		}
 	}
 
-	std::vector<int64_t> U8StringRef::find_all(const utf8_t pattern) const noexcept
+	dynamic_array<int64_t> U8StringRef::find_all(const utf8_t pattern) const noexcept
 	{
 		return find_byte_all_memory_int64size(reinterpret_cast<const byte_t*>(characters_data), length(), pattern);
 	}
 
-	std::vector<int64_t> U8StringRef::find_all(const utf8_t* pattern, const int64_t size) const noexcept
+	dynamic_array<int64_t> U8StringRef::find_all(const utf8_t* pattern, const int64_t size) const noexcept
 	{
 		if (size < 32 || (characters_data_size < USE_KMP_STRING_SIZE))
 			u8kmp_find_start_all(characters_data, characters_data_size, pattern, size);
+		return u8_find_simd_start_all(characters_data, characters_data_size, pattern, size);
+	}
+
+	dynamic_array<int64_t> U8StringRef::find_kmp_all(const utf8_t* pattern, const int64_t size) const noexcept
+	{
+		return u8kmp_find_start_all(characters_data, characters_data_size, pattern, size);
+	}
+
+	dynamic_array<int64_t> U8StringRef::find_simd_all(const utf8_t* pattern, const int64_t size) const noexcept
+	{
 		return u8_find_simd_start_all(characters_data, characters_data_size, pattern, size);
 	}
 
@@ -376,15 +386,15 @@ namespace xe
 		return -1;
 	}
 
-	std::vector<U8StringRef> U8StringRef::split(const unicode_t separator) noexcept
+	dynamic_array<U8StringRef> U8StringRef::split(const unicode_t separator) noexcept
 	{
-		std::vector<U8StringRef> output;
+		dynamic_array<U8StringRef> output;
 		return output;
 	}
 
-	std::vector<U8StringRef> U8StringRef::split(U8StringRef separator) noexcept
+	dynamic_array<U8StringRef> U8StringRef::split(U8StringRef separator) noexcept
 	{
-		return std::vector<U8StringRef>();
+		return dynamic_array<U8StringRef>();
 	}
 
 	unicode_t U8StringRef::at(int64_t offset) noexcept
@@ -474,6 +484,7 @@ namespace xe
 		characters_data = nullptr;
 		characters_data_size = 0;
 		characters_number = 0;
+		is_short_string = true;
 	}
 
 	bool U8StringRef::string_long_cmp(const utf8_t* cmp_str, const int64_t cmp_str_size) const noexcept

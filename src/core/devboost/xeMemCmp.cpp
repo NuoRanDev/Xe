@@ -65,9 +65,9 @@ namespace xe
 		return true; // all bytes are equal
 	}
 
-	std::vector<int64_t> find_byte_all_memory_int64size(const byte_t* str, const uint64_t size, const byte_t c) noexcept
+	dynamic_array<int64_t> find_byte_all_memory_int64size(const byte_t* str, const uint64_t size, const byte_t c) noexcept
 	{
-		std::vector<int64_t> result;
+		dynamic_array<int64_t> result;
 		if (size == 0 || str == nullptr)
 			return result;
 		for (int64_t i = 0; i < static_cast<int64_t>(size); i++)

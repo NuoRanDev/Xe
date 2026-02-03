@@ -8,7 +8,7 @@ namespace xe
 		u8_dir = dir;
 	}
 	
-	void FileDialog::add_filter(const String& name, const std::vector<String>& extensions_list) noexcept
+	void FileDialog::add_filter(const String& name, const dynamic_array<String>& extensions_list) noexcept
 	{
 		for (auto & extension: extensions_list)
 		{

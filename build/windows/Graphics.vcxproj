@@ -1,39 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug_cpp|Win32">
-      <Configuration>Debug_cpp</Configuration>
+    <ProjectConfiguration Include="debug|Win32">
+      <Configuration>debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Release_cpp|Win32">
-      <Configuration>Release_cpp</Configuration>
+    <ProjectConfiguration Include="release|Win32">
+      <Configuration>release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug_cpp|x64">
-      <Configuration>Debug_cpp</Configuration>
+    <ProjectConfiguration Include="debug|x64">
+      <Configuration>debug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Release_cpp|x64">
-      <Configuration>Release_cpp</Configuration>
+    <ProjectConfiguration Include="release|x64">
+      <Configuration>release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkConfig.cpp" />
-    <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkContext.cpp" />
-    <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkDevice.cpp" />
-    <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkSwapChain.cpp" />
+    <ClCompile Include="..\..\src\graphics\graphicsAPI\xeVkConfig.cpp" />
+    <ClCompile Include="..\..\src\graphics\graphicsAPI\xeVkContext.cpp" />
+    <ClCompile Include="..\..\src\graphics\graphicsAPI\xeVkSwapChain.cpp" />
     <ClCompile Include="..\..\src\graphics\testure\xeTesture.cpp" />
     <ClCompile Include="..\..\src\graphics\window\xeWindow.cpp" />
     <ClCompile Include="..\..\src\graphics\window\xeWindowManager.cpp" />
-    <ClCompile Include="..\..\tset\game_main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkConfig.hpp" />
-    <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkContext.hpp" />
-    <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkDevice.hpp" />
-    <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkSwapChain.hpp" />
-    <ClInclude Include="..\..\inc\graphics\graphicsAPI\xePhysicalDevice.hpp" />
+    <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeGraphics.hpp" />
+    <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeVkConfig.hpp" />
+    <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeVkContext.hpp" />
+    <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeVkSwapChain.hpp" />
     <ClInclude Include="..\..\inc\graphics\shader\xeFragmentShader.hpp" />
     <ClInclude Include="..\..\inc\graphics\testure\xeTesture.hpp" />
     <ClInclude Include="..\..\inc\graphics\window\xeWindow.hpp" />
@@ -47,26 +44,26 @@
     <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_cpp|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|x64'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_cpp|x64'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
@@ -78,41 +75,41 @@
   </ImportGroup>
   <ImportGroup Label="Shared">
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|Win32'">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release_cpp|Win32'">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|x64'">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release_cpp|x64'">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|x64'">
-    <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <OutDir>$(SolutionDir)..\..\SDK\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
     <ExternalIncludePath>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\geometry\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\;$(SolutionDir)..\..\inc\tools\</ExternalIncludePath>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_cpp|x64'">
-    <OutDir>$(SolutionDir)..\..\SDK\bin\$(Configuration)\</OutDir>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <OutDir>$(SolutionDir)..\..\SDK\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
     <ExternalIncludePath>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\geometry\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\;$(SolutionDir)..\..\inc\tools\</ExternalIncludePath>
   </PropertyGroup>
-  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|x64'">
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
   </PropertyGroup>
-  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release_cpp|x64'">
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='release|x64'">
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgXUseBuiltInApplocalDeps>false</VcpkgXUseBuiltInApplocalDeps>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
@@ -124,7 +121,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_cpp|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -140,24 +137,24 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_cpp|x64'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>USE_VULKAN;SPNG_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\graphics\;$(SolutionDir)..\..\inc\tools\;$(SolutionDir)..\..\inc\core\;$(VK_SDK_PATH)\Include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\graphics\;$(SolutionDir)..\..\inc\tools\;$(SolutionDir)..\..\inc\core\;$(VK_SDK_PATH)\Include\;$(SolutionDir)..\..\3rd\nvrhi\include\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(VK_SDK_PATH)\Lib\;$(SolutionDir)..\..\SDK\bin\$(Configuration)\;$(SolutionDir)..\..\rust\target\debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Tools.lib;xeRustLib.lib;vulkan-1.lib;DataSystem.lib;Core.lib;Logic.lib;turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;Ws2_32.lib;Ole32.lib;shell32.lib;Ntdll.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(VK_SDK_PATH)\Lib\;$(SolutionDir)..\..\SDK\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>nvrhi.lib;Tools.lib;xeRustLib.lib;vulkan-1.lib;DataSystem.lib;Core.lib;Logic.lib;turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;Ws2_32.lib;Ole32.lib;shell32.lib;Ntdll.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_cpp|x64'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -165,7 +162,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>USE_VULKAN;SPNG_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\graphics\;$(SolutionDir)..\..\inc\tools\;$(SolutionDir)..\..\inc\core\;$(VK_SDK_PATH)\Include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\graphics\;$(SolutionDir)..\..\inc\tools\;$(SolutionDir)..\..\inc\core\;$(VK_SDK_PATH)\Include\;$(SolutionDir)..\..\3rd\nvrhi\include\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <Optimization>MinSpace</Optimization>
@@ -176,8 +173,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(VK_SDK_PATH)\Lib\;$(SolutionDir)..\..\SDK\bin\$(Configuration)\;$(SolutionDir)..\..\rust\target\release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Tools.lib;xeRustLib.lib;vulkan-1.lib;DataSystem.lib;Core.lib;Logic.lib;turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;Ws2_32.lib;Ole32.lib;shell32.lib;Ntdll.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(VK_SDK_PATH)\Lib\;$(SolutionDir)..\..\SDK\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>nvrhi.lib;Tools.lib;xeRustLib.lib;vulkan-1.lib;DataSystem.lib;Core.lib;Logic.lib;turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;Ws2_32.lib;Ole32.lib;shell32.lib;Ntdll.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

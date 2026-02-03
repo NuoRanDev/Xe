@@ -1,4 +1,4 @@
-#include "file/image/xeReadImage.hpp"
+﻿#include "file/image/xeReadImage.hpp"
 
 // Thired-party library: libspng
 #include "spng.h"
@@ -80,7 +80,7 @@ namespace xe
 			{
 				spng_decoded_image_size(ctx, SPNG_FMT_G8, &need_new_size);
 				fmt						= SPNG_FMT_RGBA8;
-				chaanel_format			= IMG_FORMAT::RGBA8888;
+				chaanel_format			= IMG_FORMAT::RGBA_U8888;
 				break;
 			}
 			// if (ihdr.bit_depth == 16) 16bit gray is not support, what's fucking crazy man use it!
@@ -90,7 +90,7 @@ namespace xe
 			{
 				spng_decoded_image_size(ctx, SPNG_FMT_RGB8, &need_new_size);
 				fmt						= SPNG_FMT_RGB8;
-				chaanel_format			= IMG_FORMAT::RGB888;
+				chaanel_format			= IMG_FORMAT::RGB_U888;
 				break;
 			}
 			else goto COLOR_NOT_SUPPORT;
@@ -100,14 +100,14 @@ namespace xe
 			{
 				spng_decoded_image_size(ctx, SPNG_FMT_RGBA8, &need_new_size);
 				fmt						= SPNG_FMT_RGBA8;
-				chaanel_format			= IMG_FORMAT::RGBA8888;
+				chaanel_format			= IMG_FORMAT::RGBA_U8888;
 				break;
 			}
 			if (ihdr.bit_depth == 16)
 			{
 				spng_decoded_image_size(ctx, SPNG_FMT_RGBA16, &need_new_size);
 				fmt						= SPNG_FMT_RGBA16;
-				chaanel_format			= IMG_FORMAT::RGBA16161616;
+				chaanel_format			= IMG_FORMAT::RGBA_U16161616;
 				break;
 			}
 			else goto COLOR_NOT_SUPPORT;
@@ -117,14 +117,14 @@ namespace xe
 			{
 				spng_decoded_image_size(ctx, SPNG_FMT_GA8, &need_new_size);
 				fmt						= SPNG_FMT_GA8;
-				chaanel_format			= IMG_FORMAT::GA8;
+				chaanel_format			= IMG_FORMAT::GA_U8;
 				break;
 			}
 			if (ihdr.bit_depth == 16)
 			{
 				spng_decoded_image_size(ctx, SPNG_FMT_GA16, &need_new_size);
 				fmt						= SPNG_FMT_GA16;
-				chaanel_format			= IMG_FORMAT::GA16;
+				chaanel_format			= IMG_FORMAT::GA_U16;
 				break;
 			}
 			else goto COLOR_NOT_SUPPORT;
@@ -133,14 +133,14 @@ namespace xe
 			{
 				spng_decoded_image_size(ctx, SPNG_FMT_RGBA8, &need_new_size);
 				fmt						= SPNG_FMT_RGBA8;
-				chaanel_format			= IMG_FORMAT::RGBA8888;
+				chaanel_format			= IMG_FORMAT::RGBA_U8888;
 				break;
 			}
 			if (ihdr.bit_depth == 16) 
 			{
 				spng_decoded_image_size(ctx, SPNG_FMT_RGBA16, &need_new_size);
 				fmt						= SPNG_FMT_RGBA16;
-				chaanel_format			= IMG_FORMAT::RGBA16161616;
+				chaanel_format			= IMG_FORMAT::RGBA_U16161616;
 				break;
 			}
 			else goto COLOR_NOT_SUPPORT;

@@ -89,5 +89,8 @@
     <ClInclude Include="..\..\inc\core\string\xeRegexp.hpp">
       <Filter>core\string</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\inc\core\type\xeDataStruction.hpp">
+      <Filter>core\type</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

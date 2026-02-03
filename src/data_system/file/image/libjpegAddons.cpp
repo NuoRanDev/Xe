@@ -1,4 +1,4 @@
-#include "file/image/xeReadImage.hpp"
+﻿#include "file/image/xeReadImage.hpp"
 #include "jpeglib.h"
 
 #include "log/xeLogOutput.hpp"
@@ -66,11 +66,11 @@ namespace xe
 			return false;
 
 		case JCS_GRAYSCALE:
-			img_out.create_empty(IMG_FORMAT::GRAY8, cinfo.image_width, cinfo.image_height);
+			img_out.create_empty(IMG_FORMAT::GRAYU8, cinfo.image_width, cinfo.image_height);
 			break;
 
 		case JCS_RGB:
-			img_out.create_empty(IMG_FORMAT::RGB888, cinfo.image_width, cinfo.image_height);
+			img_out.create_empty(IMG_FORMAT::RGB_U888, cinfo.image_width, cinfo.image_height);
 			break;
 
 		default:

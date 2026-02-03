@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\tset\game_main.cpp" />
-    <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkDevice.cpp">
-      <Filter>graphics\graphicsAPI\vulkan</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\graphics\testure\xeTesture.cpp">
       <Filter>graphics\testure</Filter>
     </ClCompile>
@@ -14,14 +10,14 @@
     <ClCompile Include="..\..\src\graphics\window\xeWindow.cpp">
       <Filter>graphics\window</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkConfig.cpp">
-      <Filter>graphics\graphicsAPI\vulkan</Filter>
+    <ClCompile Include="..\..\src\graphics\graphicsAPI\xeVkSwapChain.cpp">
+      <Filter>graphics\graphicsAPI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkContext.cpp">
-      <Filter>graphics\graphicsAPI\vulkan</Filter>
+    <ClCompile Include="..\..\src\graphics\graphicsAPI\xeVkConfig.cpp">
+      <Filter>graphics\graphicsAPI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\graphics\graphicsAPI\vulkan\xeVkSwapChain.cpp">
-      <Filter>graphics\graphicsAPI\vulkan</Filter>
+    <ClCompile Include="..\..\src\graphics\graphicsAPI\xeVkContext.cpp">
+      <Filter>graphics\graphicsAPI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -40,20 +36,8 @@
     <Filter Include="graphics\graphicsAPI">
       <UniqueIdentifier>{90fdb119-fa55-4015-a74d-6aaccc345d05}</UniqueIdentifier>
     </Filter>
-    <Filter Include="graphics\graphicsAPI\vulkan">
-      <UniqueIdentifier>{6adf9721-63f6-45d7-a8e3-200872e9e399}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkConfig.hpp">
-      <Filter>graphics\graphicsAPI\vulkan</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkContext.hpp">
-      <Filter>graphics\graphicsAPI\vulkan</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkDevice.hpp">
-      <Filter>graphics\graphicsAPI\vulkan</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\inc\graphics\shader\xeFragmentShader.hpp">
       <Filter>graphics\shader</Filter>
     </ClInclude>
@@ -66,11 +50,17 @@
     <ClInclude Include="..\..\inc\graphics\window\xeWindow.hpp">
       <Filter>graphics\window</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\inc\graphics\graphicsAPI\xePhysicalDevice.hpp">
+    <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeVkConfig.hpp">
       <Filter>graphics\graphicsAPI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\inc\graphics\graphicsAPI\vulkan\xeVkSwapChain.hpp">
-      <Filter>graphics\graphicsAPI\vulkan</Filter>
+    <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeVkContext.hpp">
+      <Filter>graphics\graphicsAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeVkSwapChain.hpp">
+      <Filter>graphics\graphicsAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeGraphics.hpp">
+      <Filter>graphics\graphicsAPI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

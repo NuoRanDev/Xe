@@ -1,12 +1,12 @@
 ﻿#ifndef _XE_STRING_HPP_
 #define _XE_STRING_HPP_
 
-
-#include <cstdint>
-#include <vector>
+#include <iostream>
+#include <cstring>
 #include <ostream>
 
 #include "type/xeOrdinals.hpp"
+#include "type/xeDataStruction.hpp"
 
 
 struct RustString
@@ -120,13 +120,17 @@ namespace xe
 
 		// Find all
 
-		[[nodiscard]] std::vector<int64_t> find_all(const unicode_t pattern) const noexcept;
+		[[nodiscard]] dynamic_array<int64_t> find_all(const unicode_t pattern) const noexcept;
 
-		[[nodiscard]] std::vector<int64_t> find_all(const U8StringRef pattern) const noexcept;
+		[[nodiscard]] dynamic_array<int64_t> find_all(const U8StringRef pattern) const noexcept;
 
-		[[nodiscard]] std::vector<int64_t> find_all(const utf8_t pattern) const noexcept;
+		[[nodiscard]] dynamic_array<int64_t> find_all(const utf8_t pattern) const noexcept;
 
-		[[nodiscard]] std::vector<int64_t> find_all(const utf8_t* pattern, const int64_t size) const noexcept;
+		[[nodiscard]] dynamic_array<int64_t> find_all(const utf8_t* pattern, const int64_t size) const noexcept;
+
+		[[nodiscard]] dynamic_array<int64_t> find_simd_all(const utf8_t* pattern, const int64_t size) const noexcept;
+
+		[[nodiscard]] dynamic_array<int64_t> find_kmp_all(const utf8_t* pattern, const int64_t size) const noexcept;
 
 		// Find
 		int64_t find_start(const U8StringRef pattern_str) const noexcept { return find_start(pattern_str.data(), pattern_str.get_characters_data_size()); }
@@ -137,9 +141,9 @@ namespace xe
 
 		// Split string by separator
 
-		[[nodiscard]] std::vector<U8StringRef> split(unicode_t separator) noexcept;
+		[[nodiscard]] dynamic_array<U8StringRef> split(unicode_t separator) noexcept;
 
-		[[nodiscard]] std::vector<U8StringRef> split(U8StringRef separator) noexcept;
+		[[nodiscard]] dynamic_array<U8StringRef> split(U8StringRef separator) noexcept;
 
 		[[nodiscard]] unicode_t at(int64_t offset) noexcept;
 
