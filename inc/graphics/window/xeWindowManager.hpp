@@ -1,9 +1,7 @@
-#ifndef _XE_WINDOW_MANAGER_HPP_
+﻿#ifndef _XE_WINDOW_MANAGER_HPP_
 #define _XE_WINDOW_MANAGER_HPP_
 
-#include "window/xeWindow.hpp"
-
-#include <map>
+#include "string/xeString.hpp"
 
 namespace xe
 {
@@ -21,7 +19,7 @@ namespace xe
 
 	private:
 
-		std::map<String, Window*> window_map;
+		dynamic_array<Window*> window_list;
 
 		const char* exe_name;
 

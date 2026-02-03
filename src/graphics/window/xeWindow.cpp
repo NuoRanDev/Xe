@@ -111,7 +111,7 @@ namespace xe
 		SDL_DestroyWindow(window);
 	}
 
-	bool Window::init_render_api(const char* exe_name)
+	bool Window::init_render_api(const char* exe_name) noexcept
 	{
 
 		vulkan::VulkanContext* vk_context = new vulkan::VulkanContext();

@@ -1,4 +1,5 @@
-#include "window/xeWindowManager.hpp"
+﻿#include "window/xeWindowManager.hpp"
+#include "window/xeWindow.hpp"
 
 #include "SDL3/SDL_init.h"
 
@@ -26,13 +27,16 @@ namespace xe
 			XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeUISystem : SDL3", std::format("SDL Init Error: {0}", SDL_GetError()).c_str());
 			xe_delete(new_window);
 		}
-		window_map[name] = new_window;
+		window_list.push_back(new_window);
 		return true;
 	}
 
 	Window* WindowManager::get_window(String name) noexcept
 	{
-		return window_map[name];
+		for(auto &window : window_list)
+		{
+
+		}
 	}
 
 	WindowManager::~WindowManager()
