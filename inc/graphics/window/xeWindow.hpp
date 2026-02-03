@@ -52,7 +52,7 @@ namespace xe
 
 		std::any sdl_window_context;
 
-		bool init_render_api(const char* exe_name);
+		bool init_render_api(const char* exe_name) noexcept;
 
 		bool bind_render_api_in_window();
 
