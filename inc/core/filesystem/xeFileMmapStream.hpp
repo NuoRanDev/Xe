@@ -7,6 +7,9 @@
 #include "filesystem/xePath.hpp"
 
 #include <format>
+#if defined(__linux__)
+#include <sys/stat.h>
+#endif
 
 namespace xe
 {
@@ -64,6 +67,9 @@ namespace xe
 		void* hfile_mapping;
 		void* c_dump_file_descriptor;
 #elif defined(__linux__)
+		struct stat st;
+		// file description
+		int32_t fd = -1;
 #else
 #error "SUPPORTED ERROR: NOT SUPPORT THIS SYSTEM!"
 #endif // SYSTEM CHOOSE

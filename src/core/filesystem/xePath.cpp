@@ -16,7 +16,9 @@ namespace xe
 {
 	Path::Path() noexcept
 	{
+#if defined(_WIN32)
 		native_str = nullptr;
+#endif
 	}
 
 	Path& Path::operator = (const Path& path) noexcept
