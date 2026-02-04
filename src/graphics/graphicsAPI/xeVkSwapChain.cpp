@@ -89,6 +89,7 @@ namespace xe
 		}
 		return true;
 	}
+
 	void VulkanSwapChain::release(VkDevice vk_dev) noexcept
 	{
 		vkDestroySwapchainKHR(vk_dev, vk_swap_chain, nullptr);

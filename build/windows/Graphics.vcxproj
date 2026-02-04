@@ -28,7 +28,6 @@
     <ClCompile Include="..\..\test\game_main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeGraphics.hpp" />
     <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeVkConfig.hpp" />
     <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeVkContext.hpp" />
     <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeVkSwapChain.hpp" />
@@ -142,7 +141,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>USE_VULKAN;SPNG_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MI_OVERRIDE;USE_VULKAN;SPNG_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\graphics\;$(SolutionDir)..\..\inc\tools\;$(SolutionDir)..\..\inc\core\;$(VK_SDK_PATH)\Include\;$(SolutionDir)..\..\3rd\nvrhi\include\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -152,7 +151,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(VK_SDK_PATH)\Lib\;$(SolutionDir)..\..\SDK\$(Configuration)\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>nvrhi.lib;Tools.lib;xeRustLib.lib;vulkan-1.lib;DataSystem.lib;Core.lib;Logic.lib;turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;Ws2_32.lib;Ole32.lib;shell32.lib;Ntdll.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Tools.lib;xeRustLib.lib;vulkan-1.lib;DataSystem.lib;Core.lib;Logic.lib;turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;Ws2_32.lib;Ole32.lib;shell32.lib;Ntdll.lib;zlibd.lib;mimalloc-debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
@@ -161,7 +160,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>USE_VULKAN;SPNG_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MI_OVERRIDE;USE_VULKAN;SPNG_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\graphics\;$(SolutionDir)..\..\inc\tools\;$(SolutionDir)..\..\inc\core\;$(VK_SDK_PATH)\Include\;$(SolutionDir)..\..\3rd\nvrhi\include\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -175,7 +174,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(VK_SDK_PATH)\Lib\;$(SolutionDir)..\..\SDK\$(Configuration)\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>nvrhi.lib;Tools.lib;xeRustLib.lib;vulkan-1.lib;DataSystem.lib;Core.lib;Logic.lib;turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;Ws2_32.lib;Ole32.lib;shell32.lib;Ntdll.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Tools.lib;xeRustLib.lib;vulkan-1.lib;DataSystem.lib;Core.lib;Logic.lib;turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;Ws2_32.lib;Ole32.lib;shell32.lib;Ntdll.lib;zlib.lib;mimalloc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

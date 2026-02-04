@@ -1,5 +1,4 @@
 ﻿#include "window/xeWindowManager.hpp"
-#include "window/xeWindow.hpp"
 
 #include "SDL3/SDL_init.h"
 
@@ -13,37 +12,40 @@ namespace xe
 	{
 		if (!SDL_Init(SDL_INIT_VIDEO))
 		{
-			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeUISystem : SDL3", std::format("Init Error: {0}", SDL_GetError()).c_str());
+			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeWindowManager : SDL3", std::format("Init Error: {0}", SDL_GetError()).c_str());
 		}
 		exe_name = i_exe_name;
 	}
 
-	bool WindowManager::create_window(int32_t w, int32_t h, String name, bool bordered) noexcept
+	Window* WindowManager::create_window(int32_t w, int32_t h, String& title, bool bordered) noexcept
 	{
 		Window* new_window = new Window();
 
-		if (!new_window->create_window_context(exe_name, w, h, name, bordered))
+		if (!new_window->create_window_context(title.data(), w, h, bordered))
 		{
-			XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeUISystem : SDL3", std::format("SDL Init Error: {0}", SDL_GetError()).c_str());
 			xe_delete(new_window);
+			XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeWindowManager : SDL3", std::format("SDL Init Error: {0}", SDL_GetError()).c_str());
+			return nullptr;
 		}
 		window_list.push_back(new_window);
-		return true;
+		return new_window;
 	}
 
-	Window* WindowManager::get_window(String name) noexcept
+	Window* WindowManager::get_window(String& name) noexcept
 	{
-		for(auto &window : window_list)
+		for (auto& window : window_list)
 		{
-
+			if (name == window->get_window_title())
+				return window;
 		}
+		return nullptr;
 	}
 
 	WindowManager::~WindowManager()
 	{
-		for (auto& window : window_map)
+		for (auto& window : window_list)
 		{
-			xe_delete(window.second);
+			xe_delete(window);
 		}
 		SDL_Quit();
 	}

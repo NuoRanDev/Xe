@@ -4,7 +4,8 @@
 #include <cstdlib>
 
 #include "type/xeOrdinals.hpp"
-#include "mimalloc.h"
+#include "mimalloc-override.h"
+//#include "mimalloc-new-delete.h"
 
 namespace xe
 {
@@ -18,7 +19,7 @@ namespace xe
 
 	template<typename T> T* xe_realloc(T* src, size_t size) noexcept
 	{
-		return (T*)realloc(src, sizeof(T) * size);
+		return (T*)mi_realloc(src, sizeof(T) * size);
 	}
 
 	any_type_ptr_t xe_free(any_type_ptr_t src) noexcept;

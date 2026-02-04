@@ -20,7 +20,7 @@ namespace xe
 		public:
 			VulkanContext() = default;
 
-			bool init_vulkan_instance(const char* const* extension, uint32_t extension_number, String exe_name) noexcept;
+			bool init_vulkan_instance(const char* const* extension, uint32_t extension_number, const utf8_t* window_name) noexcept;
 
 			bool find_physical_device() noexcept;
 

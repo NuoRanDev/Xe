@@ -62,8 +62,5 @@
     <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeVkSwapChain.hpp">
       <Filter>graphics\graphicsAPI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeGraphics.hpp">
-      <Filter>graphics\graphicsAPI</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

@@ -10,7 +10,7 @@ namespace xe
 {
 	namespace vulkan
 	{
-		bool VulkanContext::init_vulkan_instance(const char* const* extension, uint32_t extension_number, String exe_name) noexcept
+		bool VulkanContext::init_vulkan_instance(const char* const* extension, uint32_t extension_number, const utf8_t* window_name) noexcept
 		{
 			VkResult result;
 			VkApplicationInfo application_info = {};
@@ -28,7 +28,7 @@ namespace xe
 
 			application_info.sType = VkStructureType::VK_STRUCTURE_TYPE_APPLICATION_INFO;
 			application_info.pNext = nullptr;
-			application_info.pApplicationName = exe_name.c_str();
+			application_info.pApplicationName = reinterpret_cast<const char*>(window_name);
 			application_info.applicationVersion = 0;
 			application_info.pEngineName = "xe";
 			application_info.engineVersion = 0;
@@ -116,6 +116,12 @@ namespace xe
 			VkPhysicalDeviceFeatures device_features = {};
 			VkResult result;
 
+			if (!get_device_queue_family())
+			{
+				XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeGraphicsAPI", "failed to get device queue!");
+				return false;
+			}
+
 			if (!get_device_queue_family_support())
 			{
 				XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI : VULKAN", "failed to find supporting queue!");
@@ -199,7 +205,7 @@ namespace xe
 			uint32_t queue_family_count = 0;
 			queue_index_list.resize(4lu);
 			vkGetPhysicalDeviceQueueFamilyProperties(gpu_list[device_index].second, &queue_family_count, nullptr);
-			if(queue_family_count)
+			if(!queue_family_count)
 			{
 				XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI : VULKAN", "No vulkan queue list");
 			}
@@ -229,7 +235,7 @@ namespace xe
 			for (size_t i = 0; i < queue_family_list.size(); i++)
 			{
 				vkGetPhysicalDeviceSurfaceSupportKHR(gpu_list[device_index].second, static_cast<uint32_t>(i), window_surface, &present_support);
-				if (present_support || i != graphics_queue_index)
+				if (present_support && i != graphics_queue_index)
 				{
 					present_queue_index = static_cast<uint32_t>(i);
 					break;

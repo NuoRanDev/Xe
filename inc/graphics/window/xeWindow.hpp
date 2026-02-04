@@ -15,60 +15,33 @@ namespace xe
 {
 	constexpr int16_t MAX_WINDOW_WIDGET = SHRT_MAX;
 
+	constexpr float DEFAULT_QUEUE_PRIORITIES = 1.0f;
+	constexpr uint32_t DEFAULT_QUEUE_COUNT = 1;
+
 	class Window
 	{
 	public:
 		Window();
 
-		bool create_window_context(const char* exe_name, int32_t w, int32_t h, String name, bool bordered) noexcept;
+		bool create_window_context(const utf8_t* title, int32_t w, int32_t h, bool bordered) noexcept;
 
-		bool draw_loop();
+		const utf8_t* get_window_title() const noexcept;
 
-		void submit_draw_command(std::function<bool(Window*)> draw_cmd, bool is_stop_loop);
+		bool get_window_size(int32_t& w, int32_t& h) const noexcept;
 
-		int32_t get_width();
-
-		int32_t get_height();
-
+		void show();
+		
 		~Window();
 
 	private:
 		
-		friend class WindowManager;
+		uint32_t queue_count;
 
-		friend class Surface;
+		float queue_priorities;
 
-		friend class Texture;
-
-		friend class FragmentShader;
-
-	public:
-		
-		void* get_render() { return std::any_cast<void*>(renderer_context); }
-
-	private:
-		
 		std::any renderer_context;
 
-		std::any sdl_window_context;
-
-		bool init_render_api(const char* exe_name) noexcept;
-
-		bool bind_render_api_in_window();
-
-		GraphBit16 command_map;
-
-		struct RenderCommand
-		{
-			std::function<bool(Window*)> draw_function;
-			bool stop_loop;
-		};
-
-		// thread safe queue
-		std::queue<RenderCommand> window_draw_functions[2];
-		uint32_t current_draw_function_index = 0;
-		std::mutex *is_draw;
-
+		std::any window_context;
 	};
 } // namespace xe is end
 

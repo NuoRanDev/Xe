@@ -90,8 +90,9 @@ namespace xe
 			return false;
 		}
 #elif defined(__linux__)
-		fd = open(reinterpret_cast<const char*>(path.get_native_str()),O_RDONLY);
-		if(fd == -1){
+		fd = open(reinterpret_cast<const char*>(path.get_native_str()), O_RDONLY);
+		if (fd == -1) 
+		{
 			XE_WARNING_OUTPUT(
 				XE_TYPE_NAME_OUTPUT::APP,
 				"xeCore",
@@ -102,13 +103,14 @@ namespace xe
 		fstat(fd, &st);
 		// PROT_READ : 映射区可读
 		// MAP_PRIVATE : 修改内存文件并不会修改底层数据，修改文件仅当前进程有效
-		pfile_start = mmap(nullptr, st.st_size, PROT_READ, MAP_PRIVATE,fd,0);
-		if (pfile_start == MAP_FAILED){
+		pfile_start = mmap(nullptr, st.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+		if (pfile_start == MAP_FAILED) 
+		{
 			XE_WARNING_OUTPUT(
 				XE_TYPE_NAME_OUTPUT::APP,
 				"xeCore",
 				std::format("Map file mapping failed ,SYSTEM ERROR CODE:{0}", errno).c_str());
-				close(fd);
+			close(fd);
 			return false;
 		}
 #endif // _WIN32 FUNCTION IS END

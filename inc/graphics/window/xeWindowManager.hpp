@@ -2,18 +2,18 @@
 #define _XE_WINDOW_MANAGER_HPP_
 
 #include "string/xeString.hpp"
+#include "window/xeWindow.hpp"
 
 namespace xe
 {
-	class Window;
 	class WindowManager
 	{
 	public:
 		WindowManager(const char* i_exe_name);
 
-		bool create_window(int32_t w, int32_t h, String name, bool bordered) noexcept;
+		Window* create_window(int32_t w, int32_t h, String& title, bool bordered = true) noexcept;
 
-		Window* get_window(String name) noexcept;
+		Window* get_window(String& name) noexcept;
 
 		~WindowManager();
 
