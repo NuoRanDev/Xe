@@ -1,4 +1,4 @@
-#ifndef _XE_ERROR_OURPUT_HPP_
+﻿#ifndef _XE_ERROR_OURPUT_HPP_
 #define _XE_ERROR_OURPUT_HPP_
 
 #include <exception>
@@ -27,6 +27,9 @@ namespace xe
 		const char* addon_type, const char* output_text,
 		const char* file, int line, const char* function);
 
+	void XE_CLR_WRITE(const char* src, const char* color = XE_CLR_COLOR::WHITE);
+
+	void XE_CLR_WRITE_LINE(const char* src, const char* color = XE_CLR_COLOR::WHITE);
 
 #define XE_FATAL_OUTPUT(output_type, addon_type, output_text)\
 		XE_CLR_OUTPUT(xe::XE_CLR_COLOR::RED, "FATAL", output_type, addon_type, output_text, __FILE__, __LINE__, __FUNCTION__);\

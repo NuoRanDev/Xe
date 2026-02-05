@@ -4,6 +4,7 @@
 #include "string/xeString.hpp"
 
 #include "graph/graph.hpp"
+#include "type/xeDataStruction.hpp"
 
 #include <cstdint>
 #include <queue>
@@ -30,11 +31,11 @@ namespace xe
 		bool get_window_size(int32_t& w, int32_t& h) const noexcept;
 
 		void show();
-		
+
 		~Window();
 
 	private:
-		
+
 		uint32_t queue_count;
 
 		float queue_priorities;
@@ -42,6 +43,8 @@ namespace xe
 		std::any renderer_context;
 
 		std::any window_context;
+
+		const dynamic_array <const char*> want_extension_properties = { "VK_KHR_swapchain"};
 	};
 } // namespace xe is end
 

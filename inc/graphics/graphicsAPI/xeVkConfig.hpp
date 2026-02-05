@@ -11,7 +11,7 @@
 namespace xe
 {
 	// vulkan version
-	constexpr uint32_t vulkan_version = VK_MAKE_API_VERSION(0, 1, 0, 0);
+	constexpr uint32_t vulkan_version = VK_MAKE_API_VERSION(0, 1, 2, 0);
 	// use NO.0 gpu to default gpu
 	constexpr uint32_t DEFAULT_DEVICE_INDEX = 0;
 

@@ -13,7 +13,10 @@ namespace xe
 	class VulkanSwapChain
 	{
 	public:
-		VulkanSwapChain() = default;
+		VulkanSwapChain() 
+		{
+			vk_swap_chain = nullptr;
+		}
 
 		void set_render_area(int32_t h, int32_t w) noexcept;
 

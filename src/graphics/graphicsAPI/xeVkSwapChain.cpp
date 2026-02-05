@@ -46,7 +46,7 @@ namespace xe
 			XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI: Vulkan", "Get physical device-surface capabilities failed!");
 			return false;
 		}
-		vk_image_count = std::clamp<uint32_t>(2, surface_capabilities.minImageCount, surface_capabilities.maxImageCount);
+		vk_image_count = std::clamp<uint32_t>(3, surface_capabilities.minImageCount, surface_capabilities.maxImageCount);
 		
 		vk_present_mod = VkPresentModeKHR::VK_PRESENT_MODE_FIFO_KHR;
 		for (const auto& present_mod : vk_present_mod_list)
@@ -77,6 +77,7 @@ namespace xe
 		create_info.imageExtent = vk_extent;
 		create_info.minImageCount = vk_image_count;
 		create_info.presentMode = vk_present_mod;
+		create_info.preTransform = vk_surface_transform;
 
 		create_info.pQueueFamilyIndices = pqueue_indexs;
 		create_info.queueFamilyIndexCount = queue_indexs_count;
@@ -92,6 +93,10 @@ namespace xe
 
 	void VulkanSwapChain::release(VkDevice vk_dev) noexcept
 	{
-		vkDestroySwapchainKHR(vk_dev, vk_swap_chain, nullptr);
+		if (vk_swap_chain != nullptr)
+		{
+			vkDestroySwapchainKHR(vk_dev, vk_swap_chain, nullptr);
+			vk_swap_chain = nullptr;
+		}
 	}
 } // namespace xe is end

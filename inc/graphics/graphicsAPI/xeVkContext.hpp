@@ -18,11 +18,16 @@ namespace xe
 		class VulkanContext
 		{
 		public:
-			VulkanContext() = default;
+			VulkanContext() 
+			{
+				instance = nullptr;
+				vk_device = nullptr;
+				window_surface = nullptr;
+			}
 
 			bool init_vulkan_instance(const char* const* extension, uint32_t extension_number, const utf8_t* window_name) noexcept;
 
-			bool find_physical_device() noexcept;
+			bool find_physical_device(const dynamic_array<const char*>& input_want_extension_properties) noexcept;
 
 			bool pick_up_physical_device(const String& gpu_name) noexcept;
 
@@ -49,12 +54,12 @@ namespace xe
 
 			// vulkan base
 			VkInstance instance;
-			VkPhysicalDevice physical_device;
-			// vk gpu
 			VkDevice vk_device;
 			// use NO.0 gpu to default gpu
 			uint64_t device_index = DEFAULT_DEVICE_INDEX;
-			dynamic_array<std::pair<String, VkPhysicalDevice>> gpu_list;
+			dynamic_array<std::pair<String, dynamic_array<char*>>> gpu_info_list;
+			dynamic_array<VkPhysicalDevice> phy_dev_tree;
+			dynamic_array<const char*> want_extension_properties;
 
 			// any of the queues can be null if this context doesn't intend to use them
 			VkQueue graphics_queue = nullptr;

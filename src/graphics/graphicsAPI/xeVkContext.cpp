@@ -3,6 +3,7 @@
 #include "graphicsAPI/xeVkConfig.hpp"
 
 #include "log/xeLogOutput.hpp"
+#include "memory/xeAlloc.hpp"
 
 #include <format>
 
@@ -58,13 +59,15 @@ namespace xe
 			return true;
 		}
 
-		bool VulkanContext::find_physical_device() noexcept
+		bool VulkanContext::find_physical_device(const dynamic_array<const char*>& input_want_extension_properties) noexcept
 		{
 			uint32_t device_count = 0;
 			dynamic_array<VkPhysicalDevice> devices;
 
 			VkPhysicalDeviceProperties device_properties;
 			VkPhysicalDeviceFeatures device_features;
+
+			std::copy(input_want_extension_properties.begin(), input_want_extension_properties.end(), std::back_inserter(want_extension_properties));
 
 			vkEnumeratePhysicalDevices(instance, &device_count, nullptr);
 			if (device_count == 0)
@@ -76,17 +79,56 @@ namespace xe
 			devices.resize(device_count);
 			vkEnumeratePhysicalDevices(instance, &device_count, devices.data());
 
-			for (auto& vk_gpu : devices)
+			for (auto& gpu : devices)
 			{
-				vkGetPhysicalDeviceProperties(vk_gpu, &device_properties);
-				vkGetPhysicalDeviceFeatures(vk_gpu, &device_features);
+				uint32_t extension_property_count = 0;
+				dynamic_array<VkExtensionProperties> extension_properties;
+				dynamic_array<char*> enable_device_extensions;
+				uint32_t is_support_extension_property = 0;
 
-				gpu_list.push_back(std::pair<String, VkPhysicalDevice>(device_properties.deviceName, vk_gpu));
+				vkGetPhysicalDeviceProperties(gpu, &device_properties);
+				vkGetPhysicalDeviceFeatures(gpu, &device_features);
+
+				vkEnumerateDeviceExtensionProperties(gpu,nullptr, &extension_property_count, nullptr);
+				extension_properties.resize(extension_property_count);
+				vkEnumerateDeviceExtensionProperties(gpu, nullptr, &extension_property_count, extension_properties.data());
+
+				char* extension_property_str_space = xe_malloc<char>(extension_property_count * 256);
+				memset(extension_property_str_space, 0, extension_property_count * 256);
+				char* cur_extension_property_str = extension_property_str_space;
+				
+				for (const auto& extension : extension_properties)
+				{
+					if (is_support_extension_property != want_extension_properties.size())
+					{
+						for (const auto& want_extension_propertie : want_extension_properties)//"VK_KHR_swapchain"
+						{
+							if (std::strcmp(extension.extensionName, want_extension_propertie) == 0)
+							{
+								is_support_extension_property++;
+								goto NEXT_EXTERSION;
+							}
+						}
+					}
+					NEXT_EXTERSION:
+					memcpy(cur_extension_property_str, extension.extensionName, 256);
+
+					enable_device_extensions.push_back(cur_extension_property_str);
+					cur_extension_property_str += 256;
+				}
+
+				if(is_support_extension_property == want_extension_properties.size())
+				{
+					gpu_info_list.push_back(std::pair<String, dynamic_array<char*>>(device_properties.deviceName, enable_device_extensions));
+					phy_dev_tree.push_back(gpu);
+				}
 			}
 
-			if (gpu_list.size() == 0)
+			device_index = phy_dev_tree.size() - 1;
+
+			if (phy_dev_tree.size() == 0)
 			{
-				XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI : VULKAN", "failed to find GPUs with Vulkan properties support!");
+				XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI : VULKAN", "failed to find GPUs with wanted Vulkan properties support!");
 				return false;
 			}
 			return true;
@@ -94,9 +136,9 @@ namespace xe
 
 		bool VulkanContext::pick_up_physical_device(const String& gpu_name) noexcept
 		{
-			for (uint64_t i = 0; i < gpu_list.size(); i++)
+			for (uint64_t i = 0; i < gpu_info_list.size(); i++)
 			{
-				if (gpu_name == gpu_list[i].first)
+				if (gpu_name == gpu_info_list[i].first)
 				{
 					device_index = i;
 					return true;
@@ -127,8 +169,13 @@ namespace xe
 				XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI : VULKAN", "failed to find supporting queue!");
 				return false;
 			}
-
-			XE_INFO_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI : VULKAN", std::format("Use GPU [{0}]: {1}", device_index, gpu_list[device_index].first.c_str()).c_str());
+			XE_CLR_WRITE_LINE("GPU INFO", XE_CLR_COLOR::GREEN);
+			XE_CLR_WRITE_LINE(std::format("Use GPU [{0}]: {1}", device_index, gpu_info_list[device_index].first.c_str()).c_str());
+			XE_CLR_WRITE_LINE("VULKAN EXTENSION", XE_CLR_COLOR::BLUE);
+			for (size_t i = 0; i < gpu_info_list[device_index].second.size(); i++)
+			{
+				XE_CLR_WRITE_LINE(std::format("[{0}]:{1}", i, gpu_info_list[device_index].second[i]).c_str(), XE_CLR_COLOR::YELLOW);
+			}
 			/*
 			if (graphics_queue_index == present_queue_index)
 			{
@@ -140,6 +187,7 @@ namespace xe
 			}
 			else
 			*/
+			//queue_index_list.resize(4lu);
 			queue_create_info.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
 			queue_create_info.pQueuePriorities = pqueue_priorities;
 			queue_create_info.queueCount = queue_count;
@@ -154,8 +202,10 @@ namespace xe
 			device_create_info.pQueueCreateInfos = queue_create_info_list.data();
 			device_create_info.queueCreateInfoCount = static_cast<uint32_t>(queue_create_info_list.size());
 			device_create_info.pEnabledFeatures = &device_features;
+			device_create_info.enabledExtensionCount = static_cast<uint32_t>(want_extension_properties.size());
+			device_create_info.ppEnabledExtensionNames = want_extension_properties.data();
 
-			result = vkCreateDevice(gpu_list[device_index].second, &device_create_info, nullptr, &vk_device);
+			result = vkCreateDevice(phy_dev_tree[device_index], &device_create_info, nullptr, &vk_device);
 			if (result != VK_SUCCESS)
 			{
 				XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI : VULKAN", "failed to create logical device!");
@@ -167,23 +217,24 @@ namespace xe
 
 		bool VulkanContext::create_swap_chian(int32_t h, int32_t w)
 		{
-			bool state = vk_swap_chain_context.get_swap_chain_info(gpu_list[device_index].second, window_surface);
+			bool state = vk_swap_chain_context.get_swap_chain_info(phy_dev_tree[device_index], window_surface);
 			if (!state)
-				goto FAILED;
+				goto INIT_SWAP_CHAIN_FAILED;
 			vk_swap_chain_context.set_render_area(h, w);
 			state = vk_swap_chain_context.init_swap_chain(vk_device, window_surface,
-				2u, queue_index_list.data(), static_cast<uint32_t>(queue_index_list.size()));
+				1u, queue_index_list.data(), static_cast<uint32_t>(queue_index_list.size()));
 			if (!state)
-				goto FAILED;
+				goto INIT_SWAP_CHAIN_FAILED;
+			return true;
 
-		FAILED:
+		INIT_SWAP_CHAIN_FAILED:
 			XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeGraphicsAPI", "Get swap info failed!");
 			return false;
 		}
 
 		void VulkanContext::release_surface() noexcept
 		{
-			if (window_surface)
+			if (window_surface != nullptr)
 			{
 				vkDestroySurfaceKHR(instance, window_surface, nullptr);
 			}
@@ -191,26 +242,34 @@ namespace xe
 
 		VulkanContext::~VulkanContext()
 		{
-			vkDestroyDevice(vk_device, nullptr);
+			vk_swap_chain_context.release(vk_device);
 			release_surface();
-			if (instance)
+			if (vk_device != nullptr)
+			{
+				vkDestroyDevice(vk_device, nullptr);
+			}
+			if (instance != nullptr)
 			{
 				vkDestroyInstance(instance, nullptr);
 				instance = nullptr;
+			}
+
+			for (auto& gpu_info : gpu_info_list)
+			{
+				xe_free(gpu_info.second[0]);
 			}
 		}
 
 		bool VulkanContext::get_device_queue_family() noexcept
 		{
 			uint32_t queue_family_count = 0;
-			queue_index_list.resize(4lu);
-			vkGetPhysicalDeviceQueueFamilyProperties(gpu_list[device_index].second, &queue_family_count, nullptr);
+			vkGetPhysicalDeviceQueueFamilyProperties(phy_dev_tree[device_index], &queue_family_count, nullptr);
 			if(!queue_family_count)
 			{
 				XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI : VULKAN", "No vulkan queue list");
 			}
 			queue_family_list = dynamic_array<VkQueueFamilyProperties>(queue_family_count);
-			vkGetPhysicalDeviceQueueFamilyProperties(gpu_list[device_index].second, &queue_family_count, queue_family_list.data());
+			vkGetPhysicalDeviceQueueFamilyProperties(phy_dev_tree[device_index], &queue_family_count, queue_family_list.data());
 			return true;
 		}
 
@@ -234,7 +293,7 @@ namespace xe
 			}
 			for (size_t i = 0; i < queue_family_list.size(); i++)
 			{
-				vkGetPhysicalDeviceSurfaceSupportKHR(gpu_list[device_index].second, static_cast<uint32_t>(i), window_surface, &present_support);
+				vkGetPhysicalDeviceSurfaceSupportKHR(phy_dev_tree[device_index], static_cast<uint32_t>(i), window_surface, &present_support);
 				if (present_support && i != graphics_queue_index)
 				{
 					present_queue_index = static_cast<uint32_t>(i);
