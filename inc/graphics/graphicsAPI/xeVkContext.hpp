@@ -44,6 +44,8 @@ namespace xe
 
 			~VulkanContext();
 
+		public:
+			VkInstance instance;
 		private:
 
 			friend class Window;
@@ -53,7 +55,7 @@ namespace xe
 			bool get_device_queue_family_support() noexcept;
 
 			// vulkan base
-			VkInstance instance;
+			// VkInstance instance;
 			VkDevice vk_device;
 			// use NO.0 gpu to default gpu
 			uint64_t device_index = DEFAULT_DEVICE_INDEX;

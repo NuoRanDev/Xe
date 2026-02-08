@@ -13,9 +13,10 @@ using namespace xe;
 
 int main(int argc, char* argv[])
 {
+#if defined(_WIN32)
 	system("chcp 65001");
 	system("cls");
-
+#endif
 	WindowManager wmg = WindowManager(argv[0]);
 	String window_title = u8"xe";
 	auto win = wmg.create_window(1280, 720, window_title);

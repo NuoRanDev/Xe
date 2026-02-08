@@ -31,4 +31,6 @@ target_sources(Core
             ../../../inc/core/type/xeDataStruction.hpp
             ../../../inc/core/type/xeOrdinals.hpp)
 
+target_link_libraries(Core PRIVATE mimalloc)
+
 target_compile_features(Core PRIVATE cxx_std_20)

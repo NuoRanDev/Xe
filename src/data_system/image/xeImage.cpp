@@ -1,6 +1,8 @@
 #include "image/xeImage.hpp"
 #include "log/xeLogOutput.hpp"
 
+#include <cstring>
+
 namespace xe
 {
 

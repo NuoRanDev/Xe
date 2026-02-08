@@ -3,7 +3,6 @@
 
 #include "string/xeString.hpp"
 
-#include "graph/graph.hpp"
 #include "type/xeDataStruction.hpp"
 
 #include <cstdint>
