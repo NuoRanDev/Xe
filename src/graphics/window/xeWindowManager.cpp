@@ -24,7 +24,7 @@ namespace xe
 		if (!new_window->create_window_context(title.data(), w, h, bordered))
 		{
 			xe_delete(new_window);
-			XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeWindowManager : SDL3", std::format("SDL Init Error: {0}", SDL_GetError()).c_str());
+			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeWindowManager : SDL3", std::format("SDL Init Error: {0}", SDL_GetError()).c_str());
 			return nullptr;
 		}
 		window_list.push_back(new_window);

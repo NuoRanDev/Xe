@@ -21,6 +21,8 @@ namespace xe
 	{
 		queue_count = DEFAULT_QUEUE_COUNT;
 		queue_priorities = DEFAULT_QUEUE_PRIORITIES;
+		window_context = nullptr;
+		renderer_context = nullptr;
 	}
 
 	bool Window::create_window_context(const utf8_t* title, int32_t w, int32_t h, bool bordered) noexcept
@@ -51,7 +53,7 @@ namespace xe
 
 		// show window
 		window = SDL_CreateWindow(reinterpret_cast<const char*>(title), w, h, window_flags);
-		if (!window)
+		if (window == nullptr)
 		{
 			XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeWindow : SDL3", (std::string("Failed to create window: ") + SDL_GetError()).c_str());
 			return false;
@@ -113,7 +115,13 @@ namespace xe
 	{
 		auto window = std::any_cast<SDL_Window*>(window_context);
 		auto vk_context = std::any_cast<vulkan::VulkanContext*>(renderer_context);
-		SDL_DestroyWindow(window);
-		xe_delete(vk_context);
+		if(!window)
+		{
+			SDL_DestroyWindow(window);
+		}
+		if(!vk_context)
+		{
+			xe_delete(vk_context);
+		}
 	}
 } // namespace xe is end
