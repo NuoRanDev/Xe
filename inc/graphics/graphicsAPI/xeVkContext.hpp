@@ -1,4 +1,4 @@
-﻿#ifndef _INC_XE_VK_INSTANCE_HPP_
+﻿#ifndef _INC_XE_VK_CONTEXT_HPP_
 #define _INC_XE_VK_CONTEXT_HPP_
 
 #include "vulkan/vulkan.h"
@@ -86,4 +86,4 @@ namespace xe
 	} // namespace vulkan is end
 } // namespace xe is end
 
-#endif // _INC_XE_VK_INSTANCE_HPP_ IS EOF
+#endif // _INC_XE_VK_CONTEXT_HPP_ IS EOF

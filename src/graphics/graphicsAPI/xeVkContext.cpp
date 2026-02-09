@@ -19,7 +19,7 @@ namespace xe
 
 			uint32_t cur_vulkan_version = vulkan_version;
 
-			if (vkEnumerateInstanceVersion != nullptr && vkEnumerateInstanceVersion(&cur_vulkan_version) != VkResult::VK_SUCCESS)
+			if (vkEnumerateInstanceVersion(&cur_vulkan_version) != VkResult::VK_SUCCESS)
 			{
 				cur_vulkan_version = VK_MAKE_API_VERSION(0, 1, 0, 0);
 				XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI: Vulkan", "Vulkan support is low!")

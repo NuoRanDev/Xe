@@ -31,7 +31,6 @@ namespace xe
 		libjpeg_addons jerr;
 
 		byte_t* image_data = nullptr;
-		uint32_t line_size = 0;
 
 		size_t mem_size = 0;
 		auto mem_data = file.get_file_data(mem_size);
