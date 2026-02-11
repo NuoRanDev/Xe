@@ -7,11 +7,6 @@
 #include <iostream>
 #include <format>
 
-// OUTPUT PATTERN
-#if defined(_DEBUG)
-#define OPEN_CLR
-#endif // defined(_DEBUG)
-
 namespace xe
 {
 
