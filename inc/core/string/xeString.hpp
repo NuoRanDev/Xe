@@ -294,6 +294,26 @@ namespace xe
 		return out;
 	}
 
+	class U16StringRef
+	{
+	public:
+
+		U16StringRef(const U8StringRef& u8_str) noexcept { load_utf8(u8_str); }
+
+		bool load_utf8(const U8StringRef& u8_str) noexcept;
+
+		const utf16le_t* data() const noexcept { return str_data; }
+
+		void release() noexcept;
+
+		~U16StringRef() { release(); }
+	
+	private:
+
+		utf16le_t* str_data;
+		int64_t size;
+	};
+
 	using String = U8StringRef;
 } // namespace xe is end
 

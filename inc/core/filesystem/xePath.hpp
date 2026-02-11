@@ -9,53 +9,33 @@ namespace xe
 {
 
 #if defined(_WIN32)
-	using OS_STRING = wchar_t;
+	using OS_STRING = U16StringRef;
 #else
-	using OS_STRING = utf8_t;
+	using OS_STRING = U8StringRef;
 #endif // defined(_WIN32) IS END
 
-	class Path final
+	namespace Path
 	{
-	public:
-		String path_str;
+		String abs_path(String& path) noexcept;
 
-		Path() noexcept;
+		String base_name(String& path) noexcept;
 
-		Path& operator=(const Path& path) noexcept;
+		bool exists(String& path)  noexcept;
 
-		Path(const String& path) noexcept;
+		uint64_t get_create_time(String& path)  noexcept;
 
-		Path& operator=(const String& path) noexcept;
+		uint64_t get_size(String& path)  noexcept;
 
-		Path abs_path() noexcept;
+		bool is_abs(String& path)  noexcept;
 
-		Path base_name() noexcept;
+		bool is_dir(String& path)  noexcept;
 
-		bool exists() const noexcept;
+		bool is_file(String& path)  noexcept;
 
-		uint64_t get_create_time() const noexcept;
+		std::pair<String, String> split(String& path)  noexcept;
 
-		bool get_size() const noexcept;
-
-		bool is_abs() const noexcept;
-
-		bool is_dir() const noexcept;
-
-		bool is_file() const noexcept;
-
-		std::pair<Path, Path> split() const noexcept;
-
-		const OS_STRING* get_native_str() const noexcept;
-
-		~Path();
-	private:
-#if defined(_WIN32)
-
-		void init_native_str();
-
-		OS_STRING* native_str;
-#endif // windows string is utf16
-	};
+		OS_STRING get_native_str(const String& path)  noexcept;
+	} // namespace Path is end
 } // namespace xe is end
 
 #endif // !_XE_PATH_HPP_

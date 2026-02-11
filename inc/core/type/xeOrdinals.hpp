@@ -10,6 +10,7 @@ namespace xe
 	using byte_t = uint8_t;
 
 	using utf8_t = char8_t;
+	using utf16le_t = wchar_t;
 
 	using any_type_ptr_t = void*;
 

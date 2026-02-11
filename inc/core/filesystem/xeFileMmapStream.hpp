@@ -42,7 +42,7 @@ namespace xe
 			return read(offset_byte, number * sizeof(T), dst);
 		}
 
-		bool open_file(const Path& path) noexcept;
+		bool open_file(const String& path) noexcept;
 
 		void release() noexcept;
 

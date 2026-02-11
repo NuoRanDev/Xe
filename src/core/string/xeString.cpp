@@ -74,7 +74,7 @@ namespace xe
 		return len;
 	}
 
-	static void utf8_to_utf32(utf8_t* src, unicode_t& des) noexcept
+	static void utf8_to_utf32(const utf8_t* src, unicode_t& des) noexcept
 	{
 		if (src == nullptr || (*src) == 0)
 		{
@@ -136,6 +136,79 @@ namespace xe
 		}
 	}
 
+	static bool utf8_to_utf16le(const utf8_t* u8_src, int64_t utf8_str_size, utf16le_t** u16le_dst, int64_t& utf16_str_size) noexcept
+	{
+		int64_t len = utf8_str_size;
+		bool is_ok = true;
+		dynamic_array<utf16le_t> u16str;
+		uint32_t c1;
+		uint32_t c2;
+		uint32_t c3;
+		uint32_t c4;
+		uint32_t code_point;
+		u16str.reserve(utf8_str_size);
+
+		// is having BOM
+		if (len > 3 && u8_src[0] == 0xEF && u8_src[1] == 0xBB && u8_src[2] == 0xBF)
+		{
+			u8_src += 3;
+			len -= 3;
+		}
+
+		for (int64_t i = 0; i < len; ++i)
+		{
+			c1 = u8_src[i];	// Get UTF8
+			if ((c1 & 0x80) == 0)
+			{
+				u16str.push_back(static_cast<utf16le_t>(c1));
+				continue;
+			}
+			switch (c1 & 0xF0)
+			{
+			case 0xF0: // 4 Byte, 0x10000 TO 0x10FFFF
+				c2 = u8_src[++i];
+				c3 = u8_src[++i];
+				c4 = u8_src[++i];
+				code_point = ((c1 & 0x07U) << 18) | ((c2 & 0x3FU) << 12) | ((c3 & 0x3FU) << 6) | (c4 & 0x3FU);
+				if (code_point >= 0x10000)
+				{
+					code_point -= 0x10000;
+					u16str.push_back(static_cast<utf16le_t>((code_point >> 10) | 0xD800U));
+					u16str.push_back(static_cast<utf16le_t>((code_point & 0x03FFU) | 0xDC00U));
+				}
+				else
+				{
+					u16str.push_back(static_cast<utf16le_t>(code_point));
+				}
+				break;
+
+			case 0xE0:
+				c2 = u8_src[++i];
+				c3 = u8_src[++i];
+				code_point = ((c1 & 0x0FU) << 12) | ((c2 & 0x3FU) << 6) | (c3 & 0x3FU);
+				u16str.push_back(static_cast<utf16le_t>(code_point));
+				break;
+
+			case 0xD0:
+			case 0xC0:
+				c2 = u8_src[++i];
+				code_point = ((c1 & 0x1FU) << 12) | ((c2 & 0x3FU) << 6);
+				u16str.push_back(static_cast<utf16le_t>(code_point));
+				break;
+			default:
+				is_ok = false;
+				break;
+			}
+		}
+		if(is_ok)
+		{
+			*u16le_dst = xe_malloc<utf16le_t>(u16str.size() + 1);
+			std::memcpy(*u16le_dst, u16str.data(), u16str.size() * sizeof(utf16le_t));
+			u16le_dst[u16str.size()] = 0;
+		}
+		return is_ok;
+	}
+
 	static dynamic_array<int64_t> compute_prefix(const utf8_t* str, const int64_t start_size, const int64_t end_size, const int64_t segment_size) noexcept
 	{
 		dynamic_array<int64_t> pat = dynamic_array<int64_t>((uint64_t)(end_size - start_size), 0);
@@ -188,7 +261,7 @@ namespace xe
 		return matches;
 	}
 
-	int64_t count_utf8(const utf8_t* utf8, int64_t alloc_size) noexcept
+	static int64_t count_utf8(const utf8_t* utf8, int64_t alloc_size) noexcept
 	{
 		int count = 0;
 		if ((utf8 == nullptr) || (alloc_size == 0) || (utf8[0] == '\0'))
@@ -509,5 +582,22 @@ namespace xe
 			str[str_size++] = static_cast<utf8_t>((number % 10) + '0');
 			number = number / 10;
 		}
+	}
+
+	bool U16StringRef::load_utf8(const U8StringRef& u8_str) noexcept
+	{
+		bool state = utf8_to_utf16le(u8_str.data(), u8_str.get_characters_data_size(), &str_data, size);
+		if (!state)
+		{
+			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeCore", "Utf8 to utf16 failed");
+			str_data = nullptr;
+			size = 0;
+		}
+		return state;
+	}
+
+	void U16StringRef::release() noexcept
+	{
+		xe_free(str_data);
 	}
 } // namespace xe is end

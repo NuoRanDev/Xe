@@ -15,6 +15,7 @@ namespace xe
 			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeWindowManager : SDL3", std::format("Init Error: {0}", SDL_GetError()).c_str());
 		}
 		exe_name = i_exe_name;
+		//SDL_DisplayID* displays = SDL_GetDisplays(&num_displays);
 	}
 
 	Window* WindowManager::create_window(int32_t w, int32_t h, String& title, bool bordered) noexcept
