@@ -1,0 +1,14 @@
+{
+    "version": 4,
+    "configurePresets": [
+        {
+            "name": "XE",
+            "description": "XE Preset",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "IS_BUILD_SAMPLE": "ON"
+            }
+        }
+    ]
+}
