@@ -27,7 +27,6 @@ namespace xe
 
 	bool Window::create_window_context(const utf8_t* title, int32_t w, int32_t h, bool bordered) noexcept
 	{
-		VkSurfaceKHR window_surface;
 		vulkan::VulkanContext *vk_context = new vulkan::VulkanContext();
 		SDL_Window* window;
 		
@@ -42,7 +41,7 @@ namespace xe
 
 		if(!vk_context->init_vulkan_instance(exetensions, exetension_count, title))
 		{
-			XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeWindow", "init vulkan instance failed");
+			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeWindow", "init vulkan instance failed");
 			return false;
 		}
 		if(!vk_context->find_physical_device(want_extension_properties))
@@ -55,19 +54,19 @@ namespace xe
 		window = SDL_CreateWindow(reinterpret_cast<const char*>(title), w, h, window_flags);
 		if (window == nullptr)
 		{
-			XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeWindow : SDL3", (std::string("Failed to create window: ") + SDL_GetError()).c_str());
+			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeWindow : SDL3", (std::string("Failed to create window: ") + SDL_GetError()).c_str());
 			return false;
 		}
 		SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 		SDL_SetWindowBordered(window, bordered);
 
 		// link window surface to vulkan swap chain
-		if (!SDL_Vulkan_CreateSurface(window, vk_context->instance, nullptr, &window_surface))
+
+		if(!vk_context->get_cur_window_surface(&SDL_Vulkan_CreateSurface, window))
 		{
-			XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeWindow : SDL3", (std::string("Failed to create vulkan surface: ") + SDL_GetError()).c_str());
+			XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeWindow : SDL3", "Get window surface failded");
 			return false;
 		}
-		vk_context->get_cur_window_surface(window_surface);
 
 		if (!vk_context->create_logical_device(&queue_priorities, queue_count))
 		{

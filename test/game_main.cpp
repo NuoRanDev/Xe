@@ -18,8 +18,8 @@ int main(int argc, char* argv[])
 	system("cls");
 #endif
 	WindowManager wmg = WindowManager(argv[0]);
-	String window_title = u8"xe测试";
-	auto win = wmg.create_window(1280, 720, window_title);
+	String window_title = nullptr;
+	auto win = wmg.create_window(1280, 720, window_title, false);
 	win->show();
 
 	return EXIT_SUCCESS; // Success

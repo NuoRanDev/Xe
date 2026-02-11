@@ -8,8 +8,10 @@
 
 #include "graphicsAPI/xeVkConfig.hpp"
 #include "graphicsAPI/xeVkSwapChain.hpp"
+#include "SDL3/SDL_vulkan.h"
 
 #include <any>
+#include <functional>
 
 namespace xe
 {
@@ -33,10 +35,9 @@ namespace xe
 
 			bool create_logical_device(float* pqueue_priorities, int32_t queue_count) noexcept;
 
-			void get_cur_window_surface(VkSurfaceKHR i_vk_surface) noexcept
-			{
-				window_surface = i_vk_surface;
-			}
+			bool get_cur_window_surface(
+				std::function<bool(SDL_Window*, VkInstance, VkAllocationCallbacks*, VkSurfaceKHR*)> get_sdl_window_surface, 
+				SDL_Window* sdl_window) noexcept;
 
 			bool create_swap_chian(int32_t h, int32_t w);
 
@@ -44,18 +45,14 @@ namespace xe
 
 			~VulkanContext();
 
-		public:
-			VkInstance instance;
 		private:
-
-			friend class Window;
 
 			bool get_device_queue_family() noexcept;
 
 			bool get_device_queue_family_support() noexcept;
 
 			// vulkan base
-			// VkInstance instance;
+			VkInstance instance;
 			VkDevice vk_device;
 			// use NO.0 gpu to default gpu
 			uint64_t device_index = DEFAULT_DEVICE_INDEX;

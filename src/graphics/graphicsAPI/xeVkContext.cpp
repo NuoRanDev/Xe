@@ -215,6 +215,19 @@ namespace xe
 			return true;
 		}
 
+		bool VulkanContext::get_cur_window_surface(
+			std::function<bool(SDL_Window*, VkInstance, VkAllocationCallbacks*, VkSurfaceKHR*)> get_sdl_window_surface, 
+			SDL_Window* sdl_window) noexcept
+		{
+			bool state = get_sdl_window_surface(sdl_window, instance, nullptr, &window_surface);
+			if (!state)
+			{
+				XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeWindow : SDL3", (std::string("Failed to create vulkan surface: ") + SDL_GetError()).c_str());
+				return false;
+			}
+			return true;
+		}
+
 		bool VulkanContext::create_swap_chian(int32_t h, int32_t w)
 		{
 			bool state = vk_swap_chain_context.get_swap_chain_info(phy_dev_tree[device_index], window_surface);

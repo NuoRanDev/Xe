@@ -28,6 +28,8 @@ namespace xe
 	{
 	public:
 		// Init
+		U8StringRef(std::nullptr_t null_type) { this->load_default_str(); }
+
 		U8StringRef() { load_default_str(); }
 
 		U8StringRef(const char* _c_str) noexcept { load_c_str_add0(_c_str); }
@@ -80,6 +82,12 @@ namespace xe
 				return *this;
 			}
 			this->load_cpp_u8_str_add0(reinterpret_cast<const utf8_t*>(_c_str));
+			return *this;
+		}
+
+		U8StringRef& operator=(std::nullptr_t null_type) noexcept
+		{
+			this->load_default_str();
 			return *this;
 		}
 

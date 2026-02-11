@@ -30,7 +30,7 @@ namespace xe
 		// SET_SURFACE FORMAT:
 		for (const auto& surface_format : surface_formats_list)
 		{
-			if (surface_format.format == VK_FORMAT_R8G8B8A8_SRGB && surface_format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR)
+			if (surface_format.format == VK_FORMAT_R8G8B8A8_SRGB || surface_format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR)
 			{
 				vk_surface_format = surface_format;
 				goto SET_SURFACE_NUMBER;
