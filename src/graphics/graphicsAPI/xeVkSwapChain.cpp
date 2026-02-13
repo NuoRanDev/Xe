@@ -91,12 +91,61 @@ namespace xe
 		return true;
 	}
 
+	bool VulkanSwapChain::create_image_view(VkDevice vk_dev)
+	{
+		for (size_t i = 0; i < vk_testure_list.size(); i++)
+		{
+			VkImageViewCreateInfo view_info = {};
+			view_info.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
+			view_info.image = (vk_testure_list[i]);
+			view_info.viewType = VK_IMAGE_VIEW_TYPE_2D;
+			view_info.format = VK_FORMAT_R8G8B8A8_UNORM;
+			view_info.components.r = VK_COMPONENT_SWIZZLE_IDENTITY;
+			view_info.components.g = VK_COMPONENT_SWIZZLE_IDENTITY;
+			view_info.components.b = VK_COMPONENT_SWIZZLE_IDENTITY;
+			view_info.components.a = VK_COMPONENT_SWIZZLE_IDENTITY;
+			view_info.subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+			view_info.subresourceRange.baseMipLevel = 0;
+			view_info.subresourceRange.levelCount = 1;
+			view_info.subresourceRange.baseArrayLayer = 0;
+			view_info.subresourceRange.layerCount = 1;
+
+			VkImageView texture_image_view;
+			if (vkCreateImageView(vk_dev, &view_info, nullptr, &texture_image_view) != VK_SUCCESS)
+			{
+				XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI: Vulkan", "Failed to create texture image view!");
+				continue;
+			}
+			vk_testure_list_view.push_back(texture_image_view);
+		}
+		return true;
+	}
+
 	void VulkanSwapChain::release(VkDevice vk_dev) noexcept
 	{
+		for (auto texture_image_view : vk_testure_list_view)
+		{
+			vkDestroyImageView(vk_dev, texture_image_view, nullptr);
+		}
+
 		if (vk_swap_chain != nullptr)
 		{
 			vkDestroySwapchainKHR(vk_dev, vk_swap_chain, nullptr);
 			vk_swap_chain = nullptr;
 		}
+	}
+
+	bool VulkanSwapChain::get_testure(VkDevice vk_device)
+	{
+		uint32_t count;
+		if (vkGetSwapchainImagesKHR(vk_device, vk_swap_chain, &count, nullptr) != VK_SUCCESS)
+			goto IMAGE_NOT_FIND;
+		vk_testure_list.resize(count);
+		if (vkGetSwapchainImagesKHR(vk_device, vk_swap_chain, &count, vk_testure_list.data()) != VK_SUCCESS)
+			goto IMAGE_NOT_FIND;
+		return true;
+	IMAGE_NOT_FIND:
+		XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeGraphicsAPI: Vulkan", "Can't find vulkan image!");
+		return false;
 	}
 } // namespace xe is end
