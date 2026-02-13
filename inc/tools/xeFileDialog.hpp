@@ -21,15 +21,15 @@ namespace xe
 			};
 		}
 
-		void set_directory(Path& dir) noexcept;
+		void set_directory(String& dir) noexcept;
 
 		void add_filter(const String& name, const dynamic_array<String>& extensions_list) noexcept;
 
-		Path save_file() noexcept;
+		String save_file() noexcept;
 
-		Path pick_folder() noexcept;
+		String pick_folder() noexcept;
 
-		Path pick_file() noexcept;
+		String pick_file() noexcept;
 
 		~FileDialog();
 
@@ -38,7 +38,7 @@ namespace xe
 		dynamic_array<const utf8_t*> extensions_filter_list;
 		const utf8_t* extensions_name;
 
-		Path u8_dir;
+		String u8_dir;
 
 		RustString ref_str;
 	};

@@ -3,7 +3,7 @@
 
 namespace xe
 {
-	void FileDialog::set_directory(Path& dir) noexcept
+	void FileDialog::set_directory(String& dir) noexcept
 	{
 		u8_dir = dir;
 	}
@@ -17,22 +17,22 @@ namespace xe
 		extensions_name = name.data();
 	}
 
-	Path FileDialog::save_file() noexcept
+	String FileDialog::save_file() noexcept
 	{
-		ref_str = rfd_save_file(u8_dir.path_str.data(), extensions_name, extensions_filter_list.data(), extensions_filter_list.size());
-		return Path(xe::String(ref_str));
+		ref_str = rfd_save_file(u8_dir.data(), extensions_name, extensions_filter_list.data(), extensions_filter_list.size());
+		return xe::String(ref_str);
 	}
 
-	Path FileDialog::pick_file() noexcept
+	String FileDialog::pick_file() noexcept
 	{
-		ref_str = rfd_pick_file(u8_dir.path_str.data(), extensions_name, extensions_filter_list.data(), extensions_filter_list.size());
-		return Path(xe::String(ref_str));
+		ref_str = rfd_pick_file(u8_dir.data(), extensions_name, extensions_filter_list.data(), extensions_filter_list.size());
+		return xe::String(ref_str);
 	}
 
-	Path FileDialog::pick_folder() noexcept
+	String FileDialog::pick_folder() noexcept
 	{
-		ref_str = rfd_pick_folder(u8_dir.path_str.data(), extensions_name, extensions_filter_list.data(), extensions_filter_list.size());
-		return Path(xe::String(ref_str));
+		ref_str = rfd_pick_folder(u8_dir.data(), extensions_name, extensions_filter_list.data(), extensions_filter_list.size());
+		return xe::String(ref_str);
 	}
 
 	FileDialog::~FileDialog()
