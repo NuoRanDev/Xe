@@ -91,7 +91,7 @@ namespace xe
 			return false;
 		}
 #elif defined(__linux__)
-		fd = open(reinterpret_cast<const char*>(path.get_native_str()), O_RDONLY);
+		fd = open(reinterpret_cast<const char*>(Path::get_native_str(path).c_str()), O_RDONLY);
 		if (fd == -1) 
 		{
 			XE_WARNING_OUTPUT(
