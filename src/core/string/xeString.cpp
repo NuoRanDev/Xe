@@ -6,6 +6,7 @@
 #include "memory/xeAlloc.hpp"
 #include "devboost/xeMemCmp.hpp"
 #include "devboost/xeMemFind.hpp"
+#include "devboost/xeMemRemove.hpp"
 
 
 namespace xe
@@ -209,43 +210,6 @@ namespace xe
 		return is_ok;
 	}
 
-	static dynamic_array<int64_t> compute_prefix(const utf8_t* str, const int64_t start_size, const int64_t end_size, const int64_t segment_size) noexcept
-	{
-		dynamic_array<int64_t> pat = dynamic_array<int64_t>((uint64_t)(end_size - start_size), 0);
-		int64_t index_char = 0;
-		for (int64_t i = start_size; i < end_size; i += segment_size)
-		{
-			while (index_char > 0 && str[i] != str[index_char])
-				index_char = pat[index_char - 1];
-			if (str[i] == str[index_char])
-				index_char++;
-			pat[i] = index_char;
-		}
-		return pat;
-	}
-
-	static dynamic_array<int64_t> u8kmp_find_start_all(const utf8_t* main_str, const int64_t main_str_size, const utf8_t* children_str, const int64_t children_str_size) noexcept
-	{
-		dynamic_array<int64_t> matches;
-		dynamic_array<int64_t> next = compute_prefix(children_str, 0, children_str_size, 1ll);
-
-		
-		uint64_t mark_index = 0;
-		for (int64_t i = 0; i < main_str_size; i++) 
-		{
-			while (mark_index > 0 && main_str[i] != children_str[mark_index])
-				mark_index = next[mark_index - 1];
-			if (main_str[i] == children_str[mark_index])
-				mark_index++;
-			if (mark_index == children_str_size)
-			{
-				matches.push_back(i - children_str_size + 1);
-				mark_index = next[mark_index - 1];
-			}
-		}
-		return matches;
-	}
-
 	static dynamic_array<int64_t> u8_find_simd_start_all(const utf8_t* main_str, const int64_t main_str_size, const utf8_t* children_str, const int64_t children_str_size) noexcept
 	{
 		dynamic_array<int64_t> matches;
@@ -350,6 +314,30 @@ namespace xe
 		return characters_number == 0;
 	}
 
+	bool U8StringRef::erase(int64_t index, int64_t count)
+	{
+		int64_t start = 0;
+		int64_t remove_ofs = 0;
+		utf8_t* temp_data = nullptr;
+
+		start = get_u8_data_ofs(index, characters_data);
+		if (start == -1) goto STRING_FORMAT_ERROR;
+		remove_ofs = get_u8_data_ofs(index + count, characters_data + start);
+		if (remove_ofs == -1) goto STRING_FORMAT_ERROR;
+		temp_data = reinterpret_cast<utf8_t*>(memerase(reinterpret_cast<byte_t*>(characters_data), characters_data_size, start, remove_ofs));
+		if (temp_data == nullptr)
+		{
+			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeCore", "String not init");
+			return false;
+		}
+		characters_data = xe_realloc(characters_data, characters_data_size - remove_ofs);
+		characters_data[characters_data_size - remove_ofs - 1] = 0;
+		return true;
+	STRING_FORMAT_ERROR:
+		XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeCore", "String format is broken");
+		return false;
+	}
+
 	void U8StringRef::append(unicode_t character) noexcept
 	{
 		utf8_t output_utf8_str[4] = { 0 };
@@ -431,18 +419,6 @@ namespace xe
 	}
 
 	dynamic_array<int64_t> U8StringRef::find_all(const utf8_t* pattern, const int64_t size) const noexcept
-	{
-		if (size < 32 || (characters_data_size < USE_KMP_STRING_SIZE))
-			u8kmp_find_start_all(characters_data, characters_data_size, pattern, size);
-		return u8_find_simd_start_all(characters_data, characters_data_size, pattern, size);
-	}
-
-	dynamic_array<int64_t> U8StringRef::find_kmp_all(const utf8_t* pattern, const int64_t size) const noexcept
-	{
-		return u8kmp_find_start_all(characters_data, characters_data_size, pattern, size);
-	}
-
-	dynamic_array<int64_t> U8StringRef::find_simd_all(const utf8_t* pattern, const int64_t size) const noexcept
 	{
 		return u8_find_simd_start_all(characters_data, characters_data_size, pattern, size);
 	}
@@ -582,6 +558,30 @@ namespace xe
 			str[str_size++] = static_cast<utf8_t>((number % 10) + '0');
 			number = number / 10;
 		}
+	}
+
+	int64_t U8StringRef::get_u8_data_ofs(int64_t index , utf8_t* cur_str_ptr)
+	{
+		int64_t _cur_number = 0;
+		utf8_t offset = 0;
+		while (_cur_number != index)
+		{
+			int type = utf8_byte_type(*cur_str_ptr);
+			while ((type--) > 1)
+			{
+				cur_str_ptr++;
+				offset++;
+				if (!utf8_bype_is_valid_leading_byte(*cur_str_ptr))
+				{
+					XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeCore", "Utf8 text not coherent");
+					return -1;
+				}
+			}
+			cur_str_ptr++;
+			offset++;
+			_cur_number++;
+		}
+		return offset;
 	}
 
 	bool U16StringRef::load_utf8(const U8StringRef& u8_str) noexcept

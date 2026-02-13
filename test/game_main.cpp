@@ -10,24 +10,15 @@
 #include <ctime>
 
 using namespace xe;
-
-
 int main(int argc, char* argv[])
 {
 #if defined(_WIN32)
 	system("chcp 65001");
 	system("cls");
 #endif
-	// String f_s = u8"C:\\Users\\wunuo\\Desktop\\unzip.py";
-	// Mmapfstream fs;
-	// fs.open_file(f_s);
-	// auto p = fs.get_mmap_ptr();
-	// char py_code[3];
-	// py_code[0] = p[0];
-	// py_code[1] = p[1];
-	// py_code[2] = 0;
-	// std::cout << py_code << std::endl;
-	
+	String str = "鹅鹅鹅二二二呃呃呃2ugugwgduewug98yqwie";
+	str.erase(3, 8);
+	std::cout << str << "\n";	
 #if defined(__linux__)
 		String path = "/home/sara/mnt_disk/16tdisk/music/MP3/Cosmograph - Straight into the lights.mp3";
 		std::cout << "File : " << path << std::endl;

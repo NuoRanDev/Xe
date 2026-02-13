@@ -122,6 +122,8 @@ namespace xe
 
 		[[nodiscard]] int64_t get_characters_data_size() const noexcept { return characters_data_size; }
 
+		bool erase(int64_t index, int64_t count);
+
 		void append(unicode_t character) noexcept;
 
 		void append(U8StringRef append_string) noexcept;
@@ -137,8 +139,6 @@ namespace xe
 		[[nodiscard]] dynamic_array<int64_t> find_all(const utf8_t* pattern, const int64_t size) const noexcept;
 
 		[[nodiscard]] dynamic_array<int64_t> find_simd_all(const utf8_t* pattern, const int64_t size) const noexcept;
-
-		[[nodiscard]] dynamic_array<int64_t> find_kmp_all(const utf8_t* pattern, const int64_t size) const noexcept;
 
 		// Find
 		int64_t find_start(const U8StringRef pattern_str) const noexcept { return find_start(pattern_str.data(), pattern_str.get_characters_data_size()); }
@@ -265,6 +265,9 @@ namespace xe
 		bool string_short_cmp(const utf8_t* cmp_str, int64_t cmp_str_size) const noexcept;
 
 		void integral_to_string_ptr(int64_t number, utf8_t* str, int64_t& str_size) noexcept;
+
+		// input utf-8 index out data offset
+		int64_t get_u8_data_ofs(int64_t index, utf8_t* cur_str_ptr);
 		// 
 		bool is_short_string;
 	};

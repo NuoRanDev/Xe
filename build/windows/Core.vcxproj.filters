@@ -51,6 +51,9 @@
     <ClCompile Include="..\..\src\core\devboost\xeMemFind.cpp">
       <Filter>core\devboost</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\core\devboost\xeMemRemove.cpp">
+      <Filter>core\devboost</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\inc\core\devboost\xeMemCmp.hpp">
@@ -91,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="..\..\inc\core\type\xeDataStruction.hpp">
       <Filter>core\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\core\devboost\xeMemRemove.hpp">
+      <Filter>core\devboost</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

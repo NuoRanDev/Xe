@@ -22,6 +22,7 @@
     <ClCompile Include="..\..\inc\core\devboost\xeMemFind.hpp" />
     <ClCompile Include="..\..\src\core\devboost\xeMemCmp.cpp" />
     <ClCompile Include="..\..\src\core\devboost\xeMemFind.cpp" />
+    <ClCompile Include="..\..\src\core\devboost\xeMemRemove.cpp" />
     <ClCompile Include="..\..\src\core\filesystem\xeFileMmapStream.cpp" />
     <ClCompile Include="..\..\src\core\filesystem\xePath.cpp" />
     <ClCompile Include="..\..\src\core\log\xeLogOutpout.cpp" />
@@ -30,6 +31,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\inc\core\devboost\xeMemCmp.hpp" />
+    <ClInclude Include="..\..\inc\core\devboost\xeMemRemove.hpp" />
     <ClInclude Include="..\..\inc\core\filesystem\xeFileMmapStream.hpp" />
     <ClInclude Include="..\..\inc\core\filesystem\xeFilesystem.hpp" />
     <ClInclude Include="..\..\inc\core\filesystem\xePath.hpp" />
