@@ -4,6 +4,9 @@
 #if defined(_WIN32)
 #include <Windows.h>
 #include <shlwapi.h>
+#elif defined(__linux__)
+#include <unistd.h>
+#include <sys/stat.h> 
 #endif
 
 #if defined(_WIN32)
@@ -18,6 +21,7 @@ namespace xe
 		{
 #if defined(_WIN32)
 #elif defined(__linux__)
+			return String(realpath(path.c_str(), nullptr));
 #endif // OS
 		}
 
@@ -25,6 +29,7 @@ namespace xe
 		{
 #if defined(_WIN32)
 #elif defined(__linux__)
+			return String(basename(path.c_str()));
 #endif // OS
 		}
 
@@ -33,6 +38,7 @@ namespace xe
 #if defined(_WIN32)
 			return static_cast<bool>(PathFileExistsW(get_native_str(path).data()));
 #elif defined(__linux__)
+			return access(path.c_str(), F_OK) == 0;	
 #endif // OS
 		}
 
@@ -40,6 +46,12 @@ namespace xe
 		{
 #if defined(_WIN32)
 #elif defined(__linux__)
+			struct stat file_stat;
+			if (stat(path.c_str(), &file_stat) != 0)
+			{
+				return 0;
+			}
+			return static_cast<uint64_t>(file_stat.st_ctime);
 #endif // OS
 		}
 
@@ -47,6 +59,12 @@ namespace xe
 		{
 #if defined(_WIN32)
 #elif defined(__linux__)
+			struct stat file_stat;
+			if (stat(path.c_str(), &file_stat) != 0)
+			{
+				return 0;
+			}
+			return static_cast<uint64_t>(file_stat.st_size);
 #endif // OS
 		}
 
@@ -54,6 +72,7 @@ namespace xe
 		{
 #if defined(_WIN32)
 #elif defined(__linux__)
+			return path.data()[0] == '/';
 #endif // OS
 		}
 
@@ -61,6 +80,12 @@ namespace xe
 		{
 #if defined(_WIN32)
 #elif defined(__linux__)
+			struct stat file_stat;
+			if (stat(path.c_str(), &file_stat) != 0)
+			{
+				return false;
+			}
+			return S_ISDIR(file_stat.st_mode);
 #endif // OS
 		}
 
@@ -68,6 +93,12 @@ namespace xe
 		{
 #if defined(_WIN32)
 #elif defined(__linux__)
+			struct stat file_stat;
+			if (stat(path.c_str(), &file_stat) != 0)
+			{
+				return false;
+			}
+			return S_ISREG(file_stat.st_mode);
 #endif // OS
 		}
 
@@ -75,6 +106,14 @@ namespace xe
 		{
 #if defined(_WIN32)
 #elif defined(__linux__)
+			if(!exists(path)) return {String(), String()};
+			if(is_dir(path)) return {path, String()};
+			else {
+				String base_name_str = base_name(path);
+				String dir_name_str = path.slice(0, path.get_characters_number() - base_name_str.get_characters_number());
+				return {dir_name_str, base_name_str};
+			}
+
 #endif // OS
 		}
 
