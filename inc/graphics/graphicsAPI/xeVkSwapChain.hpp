@@ -25,10 +25,20 @@ namespace xe
 		bool init_swap_chain(VkDevice vk_dev, VkSurfaceKHR vk_surface, uint32_t image_array_size,
 			const uint32_t* pqueue_indexs, uint32_t queue_indexs_count) noexcept;
 
+		bool create_image_view(VkDevice vk_dev);
+
 		void release(VkDevice vk_dev) noexcept;
-	private:
-		
+
 		VkSwapchainKHR vk_swap_chain;
+
+	private:
+
+		bool get_testure(VkDevice vk_device);
+
+		//
+		dynamic_array<VkImage> vk_testure_list;
+		dynamic_array<VkImageView> vk_testure_list_view;
+
 		VkSurfaceCapabilitiesKHR surface_capabilities;
 
 		VkExtent2D vk_extent;
