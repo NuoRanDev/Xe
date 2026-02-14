@@ -6,6 +6,7 @@ target_sources(Core
     PRIVATE
         ../../../src/core/devboost/xeMemCmp.cpp
         ../../../src/core/devboost/xeMemFind.cpp
+        ../../../src/core/devboost/xeMemRemove.cpp
         ../../../src/core/filesystem/xeFileMmapStream.cpp
         ../../../src/core/filesystem/xePath.cpp
         ../../../src/core/log/xeLogOutpout.cpp
@@ -19,6 +20,7 @@ target_sources(Core
             ../../../inc/core/xeCompiler.hpp
             ../../../inc/core/devboost/xeMemCmp.hpp
             ../../../inc/core/devboost/xeMemFind.hpp
+            ../../../inc/core/devboost/xeMemRemove.hpp
             ../../../inc/core/filesystem/xeFileMmapStream.hpp
             ../../../inc/core/filesystem/xeFilesystem.hpp
             ../../../inc/core/filesystem/xePath.hpp
