@@ -16,8 +16,8 @@ int main(int argc, char* argv[])
 	system("chcp 65001");
 	system("cls");
 #endif
-	String str = "鹅鹅鹅二二二呃呃呃2ugugwgduewug98yqwie";
-	str.erase(3, 8);
+	String str = "1234567890";
+	str.erase(3, 3);
 	std::cout << str << "\n";	
 #if defined(__linux__)
 		String path = "/home/sara/mnt_disk/16tdisk/music/MP3/Cosmograph - Straight into the lights.mp3";
