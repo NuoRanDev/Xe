@@ -322,7 +322,7 @@ namespace xe
 
 		start = get_u8_data_ofs(index, characters_data);
 		if (start == -1) goto STRING_FORMAT_ERROR;
-		remove_ofs = get_u8_data_ofs(index + count, characters_data + start);
+		remove_ofs = get_u8_data_ofs(count, characters_data + start);
 		if (remove_ofs == -1) goto STRING_FORMAT_ERROR;
 		temp_data = reinterpret_cast<utf8_t*>(memerase(reinterpret_cast<byte_t*>(characters_data), characters_data_size, start, remove_ofs));
 		if (temp_data == nullptr)
