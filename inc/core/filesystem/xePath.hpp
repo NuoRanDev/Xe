@@ -22,7 +22,7 @@ namespace xe
 
 		bool exists(String& path)  noexcept;
 
-		uint64_t get_create_time(String& path)  noexcept;
+		std::time_t get_create_time(String& path)  noexcept;
 
 		uint64_t get_size(String& path)  noexcept;
 

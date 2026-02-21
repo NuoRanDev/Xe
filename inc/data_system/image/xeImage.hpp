@@ -77,7 +77,7 @@ namespace xe
 
 		Image& operator=(Image&&) noexcept = default;
 
-		void create_empty(IMG_FORMAT src_format, int32_t src_x, int32_t src_y) noexcept;
+		void create_empty(IMG_FORMAT const src_format, int32_t const src_x, int32_t const src_y) noexcept;
 
 		[[nodiscard]] bool load_data(IMG_FORMAT src_format, const byte_t* src_data, int32_t src_x, int32_t src_y) noexcept;
 

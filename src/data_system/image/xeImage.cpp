@@ -1,4 +1,4 @@
-#include "image/xeImage.hpp"
+﻿#include "image/xeImage.hpp"
 #include "log/xeLogOutput.hpp"
 
 #include <cstring>
@@ -50,7 +50,7 @@ namespace xe
 		}
 	}
 
-	void Image::create_empty(IMG_FORMAT src_format, int32_t src_x, int32_t src_y) noexcept
+	void Image::create_empty(const IMG_FORMAT src_format, const int32_t src_x, const int32_t src_y) noexcept
 	{
 		x = src_x, y = src_y;
 		format = src_format;

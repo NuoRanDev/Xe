@@ -1,14 +1,14 @@
 ﻿#include "file/image/xeReadImage.hpp"
 
-// Thired-party library: libspng
-#include "spng.h"
-
 #include "log/xeLogOutput.hpp"
 #include "type/xeOrdinals.hpp"
 
 #include <cstdint>
 #include <format>
 
+#if defined(USE_PNG)
+// Thired-party library: libspng
+#include "spng.h"
 namespace xe
 {
 	bool read_memory_png_image(const ImageFile& file, Image& img_out) noexcept
@@ -168,3 +168,4 @@ namespace xe
 		return false;
 	}
 }
+#endif // USE_PNG

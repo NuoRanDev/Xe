@@ -24,6 +24,12 @@ namespace xe
 	// 
 	constexpr int64_t USE_KMP_STRING_SIZE = 32 * 32 + 1;
 
+	class U16StringRef;
+	class U8StringRef;
+
+	// default string format
+	using String = U8StringRef;
+
 	class U8StringRef
 	{
 	public:
@@ -208,14 +214,6 @@ namespace xe
 
 		~U8StringRef() { release(); }
 
-	private:
-		// data ptr
-		utf8_t* characters_data;
-		// string size
-		int64_t characters_number;
-		// alloc size
-		int64_t characters_data_size;
-		
 		// default load data
 		void load_default_str() noexcept;
 		// load other xe string
@@ -229,6 +227,15 @@ namespace xe
 		{
 			load_cpp_u8_str_add0(reinterpret_cast<const utf8_t*>(_c_str));
 		}
+
+	private:
+
+		// data ptr
+		utf8_t* characters_data;
+		// string size
+		int64_t characters_number;
+		// alloc size
+		int64_t characters_data_size;
 
 		bool string_long_cmp(const U8StringRef cmp_str) const noexcept
 		{
@@ -305,7 +312,17 @@ namespace xe
 
 		bool load_utf8(const U8StringRef& u8_str) noexcept;
 
+		bool to_utf8(U8StringRef& u8_dst) const noexcept;
+
 		const utf16le_t* data() const noexcept { return str_data; }
+
+		// String's _size is include 0
+		void ptr_resize(int64_t _size) noexcept;
+
+#ifdef _WIN32
+		utf16le_t* get_win32_str_pdata() { return str_data; }
+#endif // _WIN32
+
 
 		void release() noexcept;
 
@@ -314,10 +331,9 @@ namespace xe
 	private:
 
 		utf16le_t* str_data;
+		// include 0
 		int64_t size;
 	};
-
-	using String = U8StringRef;
 } // namespace xe is end
 
 

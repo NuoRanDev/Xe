@@ -137,8 +137,14 @@ namespace xe
 		}
 	}
 
-	static bool utf8_to_utf16le(const utf8_t* u8_src, int64_t utf8_str_size, utf16le_t** u16le_dst, int64_t& utf16_str_size) noexcept
+	static bool utf8_to_utf16le(const utf8_t* u8_src, int64_t utf8_str_size, utf16le_t** u16le_dst, int64_t& utf16le_str_size) noexcept
 	{
+		if (u8_src == nullptr && utf8_str_size == 0)
+		{
+			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeCore", "The utf8 string is empty!")
+			return false;
+		}
+
 		int64_t len = utf8_str_size;
 		bool is_ok = true;
 		dynamic_array<utf16le_t> u16str;
@@ -203,11 +209,87 @@ namespace xe
 		}
 		if(is_ok)
 		{
-			*u16le_dst = xe_malloc<utf16le_t>(u16str.size() + 1);
+			utf16le_str_size = u16str.size() + 1;
+			*u16le_dst = xe_malloc<utf16le_t>(utf16le_str_size);
 			std::memcpy(*u16le_dst, u16str.data(), u16str.size() * sizeof(utf16le_t));
 			u16le_dst[u16str.size()] = 0;
 		}
+		else
+		{
+			utf16le_str_size = 0;
+			*u16le_dst = nullptr;
+		}
 		return is_ok;
+	}
+
+	static bool utf16le_to_utf8(const utf16le_t* u16le_src, int64_t utf16le_str_size, U8StringRef& u8_dst)
+	{
+		if (u16le_src == nullptr && utf16le_str_size == 0)
+		{
+			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeCore", "The utf16 string is empty!")
+			return false; 
+		}
+
+		const utf16le_t* u16le_src_cur = u16le_src;
+		int64_t u16_len = utf16le_str_size;
+		dynamic_array<utf8_t>u8str;
+		
+		// If has bom
+		if (u16le_src_cur[0] == 0xFEFF)
+		{
+			u16le_src_cur += 1;
+			u16_len -= 1;
+		}
+
+		u8str.reserve(u16_len * 3);
+
+		utf16le_t u16char;
+		for (std::u16string::size_type i = 0; i < u16_len; ++i)
+		{
+			// le
+			u16char = u16le_src_cur[i];
+
+			if (u16char < 0x0080) 
+			{
+				// u16char <= 0x007f
+				// U- 0000 0000 ~ 0000 07ff : 0xxx xxxx
+				u8str.push_back((char)(u16char & 0x00FF));
+				continue;
+			}
+			if (u16char >= 0x0080 && u16char <= 0x07FF) 
+			{
+				// * U-00000080 - U-000007FF:  110xxxxx 10xxxxxx
+				u8str.push_back((char)(((u16char >> 6) & 0x1F) | 0xC0));
+				u8str.push_back((char)((u16char & 0x3F) | 0x80));
+				continue;
+			}
+			// if use 2 wchar
+			if (u16char >= 0xD800 && u16char <= 0xDBFF) {
+				// * U-00010000 - U-001FFFFF: 1111 0xxx 10xxxxxx 10xxxxxx 10xxxxxx
+				uint32_t highSur = u16char;
+				uint32_t lowSur = u16le_src_cur[++i];
+				uint32_t codePoint = highSur - 0xD800;
+				codePoint <<= 10;
+				codePoint |= lowSur - 0xDC00;
+				codePoint += 0x10000;
+				// 2 * 2byte
+				u8str.push_back((char)((codePoint >> 18) | 0xF0));
+				u8str.push_back((char)(((codePoint >> 12) & 0x3F) | 0x80));
+				u8str.push_back((char)(((codePoint >> 06) & 0x3F) | 0x80));
+				u8str.push_back((char)((codePoint & 0x3F) | 0x80));
+				continue;
+			}
+			{
+				// * U-0000E000 - U-0000FFFF:  1110xxxx 10xxxxxx 10xxxxxx
+				u8str.push_back((char)(((u16char >> 12) & 0x0F) | 0xE0));
+				u8str.push_back((char)(((u16char >> 6) & 0x3F) | 0x80));
+				u8str.push_back((char)((u16char & 0x3F) | 0x80));
+				continue;
+			}
+		}
+
+		u8_dst.load_rust_str_add0(u8str.data(), u8str.size());
+		return true;
 	}
 
 	static dynamic_array<int64_t> u8_find_simd_start_all(const utf8_t* main_str, const int64_t main_str_size, const utf8_t* children_str, const int64_t children_str_size) noexcept
@@ -594,6 +676,21 @@ namespace xe
 			size = 0;
 		}
 		return state;
+	}
+
+	bool U16StringRef::to_utf8(U8StringRef& u8_dst)  const noexcept
+	{
+		bool state = utf16le_to_utf8(str_data, size, u8_dst);
+		if (!state)
+			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeCore", "Utf16 to utf8 failed");
+		return state;
+	}
+
+	void U16StringRef::ptr_resize(int64_t _size) noexcept
+	{
+		size = _size;
+		str_data = xe_realloc(str_data, size);
+		str_data[_size - 1] = '\0';
 	}
 
 	void U16StringRef::release() noexcept

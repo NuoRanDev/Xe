@@ -100,7 +100,6 @@ namespace xe
 				std::format("Create file mapping failed , SYSTEM ERROR CODE:{0}", errno).c_str());
 			return false;
 		}
-		// 获取文件参数
 		fstat(fd, &st);
 		// PROT_READ : 映射区可读
 		// MAP_PRIVATE : 修改内存文件并不会修改底层数据，修改文件仅当前进程有效

@@ -1,13 +1,15 @@
 ﻿#include "file/image/xeReadImage.hpp"
-#include "jpeglib.h"
 
 #include "log/xeLogOutput.hpp"
 #include "type/xeOrdinals.hpp"
 
 #include <cstdint>
 #include <format>
-
+#if defined(USE_JPEG)
 #include <setjmp.h>
+
+// Thired-party library: libjpeg
+#include "jpeglib.h"
 
 struct libjpeg_addons {
 	struct jpeg_error_mgr pub; /* "public" fields */
@@ -93,4 +95,4 @@ namespace xe
 
 	}
 } // namespace xe is end
-
+#endif // USE_JPEG

@@ -1,4 +1,4 @@
-#include "file/image/xeImgaeFile.hpp"
+﻿#include "file/image/xeImgaeFile.hpp"
 
 #include "log/xeLogOutput.hpp"
 #include "memory/xeAlloc.hpp"
@@ -49,7 +49,7 @@ namespace xe
 
 	void MemoryFile::release() noexcept
 	{
-		if (is_copy_in_memory and file_data != nullptr)
+		if (is_copy_in_memory && file_data != nullptr)
 		{
 			xe_free(file_data);
 		}
