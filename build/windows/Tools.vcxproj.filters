@@ -5,6 +5,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="window">
+      <UniqueIdentifier>{4efda634-d9b5-4f50-ba65-a886e0613b72}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\rust\inc\Rfd.hpp">
@@ -17,6 +20,9 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\tools\xeFileDialog.cpp">
       <Filter>rfd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tools\window\xeWindowConect.cpp">
+      <Filter>window</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

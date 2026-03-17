@@ -19,12 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\data_system\file\audio\xeFlacDec.cpp" />
     <ClCompile Include="..\..\src\data_system\file\image\libjpegAddons.cpp" />
+    <ClCompile Include="..\..\src\data_system\file\image\liblvglDecBmp.cpp" />
     <ClCompile Include="..\..\src\data_system\file\image\libsnpngAddons.cpp" />
+    <ClCompile Include="..\..\src\data_system\file\image\libppm.cpp" />
     <ClCompile Include="..\..\src\data_system\file\xeMemoryFile.cpp" />
     <ClCompile Include="..\..\src\data_system\image\xeImage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\inc\data_system\audio\xeAudio.hpp" />
+    <ClInclude Include="..\..\inc\data_system\file\audio\xeAudioFile.hpp" />
+    <ClInclude Include="..\..\inc\data_system\file\audio\xeReadAudioFile.hpp" />
     <ClInclude Include="..\..\inc\data_system\file\image\xeImgaeFile.hpp" />
     <ClInclude Include="..\..\inc\data_system\file\image\xeReadImage.hpp" />
     <ClInclude Include="..\..\inc\data_system\file\xeMemoryFile.hpp" />
@@ -55,14 +61,14 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>ClangCL</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>ClangCL</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">

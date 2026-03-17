@@ -1,5 +1,6 @@
 ﻿#include "filesystem/xePath.hpp"
 #include "memory/xeAlloc.hpp"
+#include "log/xeLogOutput.hpp"
 
 #if defined(_WIN32)
 #include <Windows.h>
@@ -55,21 +56,23 @@ namespace xe
 #if defined(_WIN32)
 			FILETIME create_time;
 			ULARGE_INTEGER ui;
-			HANDLE h_file_or_dir = CreateFileW(Path::get_native_str(path).data(),
-				GENERIC_WRITE | GENERIC_READ,
-				FILE_SHARE_READ,
-				nullptr,
-				TRUNCATE_EXISTING,
-				FILE_ATTRIBUTE_NORMAL,
-				nullptr);
-			if (h_file_or_dir != INVALID_HANDLE_VALUE)
-			{
+			WIN32_FILE_ATTRIBUTE_DATA wfad;
 
-				GetFileTime(&h_file_or_dir, &create_time, nullptr, nullptr);
+			if(!exists(path))
+			{
+				XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeFilesystem",
+					"File/Dir is not existsed");
+				return -1;
+			}
+			if (GetFileAttributesExW(Path::get_native_str(path).data(), GetFileExInfoStandard, &wfad))
+			{
+				create_time = wfad.ftCreationTime;
 				ui.LowPart = create_time.dwLowDateTime;
 				ui.HighPart = create_time.dwHighDateTime;
 				return ((std::time_t)(ui.QuadPart - 116444736000000000) / 10000000);
 			}
+			XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeFilesystem",
+				std::format("Get file attributses failed , SYSTEM ERROR CODE:{0}", GetLastError()).c_str());
 			return -1;
 #elif defined(__linux__)
 			struct stat file_stat;
@@ -84,12 +87,24 @@ namespace xe
 		uint64_t get_size(String& path)  noexcept
 		{
 #if defined(_WIN32)
-			HANDLE fp = CreateFileW(Path::get_native_str(path).data()
-				, GENERIC_READ, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
 			LARGE_INTEGER info;
-			info.QuadPart = 0;
-			GetFileSizeEx(fp, &info);
-			return info.QuadPart;
+			WIN32_FILE_ATTRIBUTE_DATA wfad;
+
+			if (!exists(path))
+			{
+				XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeFilesystem",
+					"File/Dir is not existsed");
+				return 0;
+			}
+			if (GetFileAttributesExW(Path::get_native_str(path).data(), GetFileExInfoStandard, &wfad))
+			{
+				info.HighPart = wfad.nFileSizeHigh;
+				info.LowPart = wfad.nFileSizeLow;
+				return static_cast<uint64_t>(info.QuadPart);
+			}
+			XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeFilesystem",
+				std::format("Get file attributses failed , SYSTEM ERROR CODE:{0}", GetLastError()).c_str());
+			return 0;
 #elif defined(__linux__)
 			struct stat file_stat;
 			if (stat(path.c_str(), &file_stat) != 0)
@@ -112,6 +127,12 @@ namespace xe
 		bool is_dir(String& path)  noexcept
 		{
 #if defined(_WIN32)
+			DWORD dwat = GetFileAttributesW(Path::get_native_str(path).data());
+			if (dwat == INVALID_FILE_ATTRIBUTES)
+			{
+				XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeFilesystem", "Path is not exist");
+			}
+			return dwat & FILE_ATTRIBUTE_DIRECTORY;
 #elif defined(__linux__)
 			struct stat file_stat;
 			if (stat(path.c_str(), &file_stat) != 0)
@@ -125,6 +146,7 @@ namespace xe
 		bool is_file(String& path)  noexcept
 		{
 #if defined(_WIN32)
+			return !(is_dir(path));
 #elif defined(__linux__)
 			struct stat file_stat;
 			if (stat(path.c_str(), &file_stat) != 0)

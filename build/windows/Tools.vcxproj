@@ -23,6 +23,7 @@
     <ClInclude Include="..\..\rust\inc\Rfd.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\tools\window\xeWindowConect.cpp" />
     <ClCompile Include="..\..\src\tools\xeFileDialog.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

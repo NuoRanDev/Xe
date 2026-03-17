@@ -1,4 +1,4 @@
-#ifndef _XE_IMAGE_FILE_HPP_
+﻿#ifndef _XE_IMAGE_FILE_HPP_
 #define _XE_IMAGE_FILE_HPP_
 
 #include "file/xeMemoryFile.hpp"

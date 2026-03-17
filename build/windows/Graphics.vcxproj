@@ -30,8 +30,9 @@
   <ItemGroup>
     <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeVkConfig.hpp" />
     <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeVkContext.hpp" />
+    <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeVkRender.hpp" />
     <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeVkSwapChain.hpp" />
-    <ClInclude Include="..\..\inc\graphics\shader\xeFragmentShader.hpp" />
+    <ClInclude Include="..\..\inc\graphics\shader\xeShaderGroup.hpp" />
     <ClInclude Include="..\..\inc\graphics\testure\xeTesture.hpp" />
     <ClInclude Include="..\..\inc\graphics\window\xeWindow.hpp" />
     <ClInclude Include="..\..\inc\graphics\window\xeWindowManager.hpp" />

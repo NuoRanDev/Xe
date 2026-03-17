@@ -21,10 +21,7 @@ namespace xe
 		bool load_file_not_copy_in_memory(byte_t* mem_data, size_t data_size, String mem_file_name) noexcept;
 
 		// get image data
-		const byte_t* const get_file_data(size_t& out_data_size) const noexcept;
-
-		// get offset data
-		byte_t* get_write_offset_data(size_t offset) noexcept;
+		const byte_t* const get_file_data(size_t out_data_size) const noexcept;
 
 		// get file name
 		String get_file_name() const noexcept { return file_name; }

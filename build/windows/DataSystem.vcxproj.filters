@@ -14,8 +14,11 @@
     <Filter Include="data_system\file\image">
       <UniqueIdentifier>{cec31fd3-382d-408e-b510-d0c97d5f719f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="data_system\audio">
+      <UniqueIdentifier>{c3bc2db0-5606-4182-a4bb-8f715e9c9f3d}</UniqueIdentifier>
+    </Filter>
     <Filter Include="data_system\file\audio">
-      <UniqueIdentifier>{489d72db-c4dc-4359-bdf3-3f8223d70cfe}</UniqueIdentifier>
+      <UniqueIdentifier>{982d00d7-ed54-4594-999c-4f5a0d135b4a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -31,6 +34,15 @@
     <ClCompile Include="..\..\src\data_system\image\xeImage.cpp">
       <Filter>data_system\image</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\data_system\file\image\liblvglDecBmp.cpp">
+      <Filter>data_system\file\image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\data_system\file\audio\xeFlacDec.cpp">
+      <Filter>data_system\file\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\data_system\file\image\libppm.cpp">
+      <Filter>data_system\file\image</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\inc\data_system\file\xeMemoryFile.hpp">
@@ -44,6 +56,15 @@
     </ClInclude>
     <ClInclude Include="..\..\inc\data_system\image\xeImage.hpp">
       <Filter>data_system\image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\data_system\file\audio\xeReadAudioFile.hpp">
+      <Filter>data_system\file\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\data_system\audio\xeAudio.hpp">
+      <Filter>data_system\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\data_system\file\audio\xeAudioFile.hpp">
+      <Filter>data_system\file\audio</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

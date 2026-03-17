@@ -41,7 +41,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\inc\graphics\shader\xeFragmentShader.hpp">
+    <ClInclude Include="..\..\inc\graphics\shader\xeShaderGroup.hpp">
       <Filter>graphics\shader</Filter>
     </ClInclude>
     <ClInclude Include="..\..\inc\graphics\testure\xeTesture.hpp">
@@ -60,6 +60,9 @@
       <Filter>graphics\graphicsAPI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeVkSwapChain.hpp">
+      <Filter>graphics\graphicsAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeVkRender.hpp">
       <Filter>graphics\graphicsAPI</Filter>
     </ClInclude>
   </ItemGroup>

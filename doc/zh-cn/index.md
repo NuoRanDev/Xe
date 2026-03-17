@@ -16,8 +16,8 @@ zstd|压缩并打包程序资产
 * #### Visual Studio (msbuild) 
     通常情况下 windows 默认构建方式是 MD/MDd (即静态链接C/C++依赖库) ，因此在 windows 下 XE 引擎生成的二进制文件在不刻意更改的情况下为 MD(d)方式。
     ##### 构建步骤:
-    - 下载 vcpkg。
-    + 根据调用库列表下载对应的第三方库。 注：windows构建默认为MD，再加之引擎调用第三方库众多，通过静态链接能减少二进制文件体积，因此应下载库类型为 :x64-windows-static-md。
+    + 下载 vcpkg。
+    + 根据调用库列表下载对应的第三方库。 注：windows构建默认为MD，再加之引擎调用第三方库较多，通过静态链接能减少二进制文件体积，因此应下载库类型为 :x64-windows-static-md。
     + 启动 visual studio并设置graphics为启动项目，并构建此项目，生成的二进制位置为SDK下。
 
 ### Linux

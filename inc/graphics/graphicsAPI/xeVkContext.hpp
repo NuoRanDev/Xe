@@ -8,6 +8,8 @@
 
 #include "graphicsAPI/xeVkConfig.hpp"
 #include "graphicsAPI/xeVkSwapChain.hpp"
+#include "shader/xeShaderGroup.hpp"
+
 #include "SDL3/SDL_vulkan.h"
 
 #include <any>
@@ -40,6 +42,12 @@ namespace xe
 				SDL_Window* sdl_window) noexcept;
 
 			bool create_swap_chian(int32_t h, int32_t w);
+
+			bool create_image_view();
+
+			void add_sheader_command(ShaderGroup sheader_group_info) noexcept;
+
+			void release_all_shader();
 
 			void release_surface() noexcept;
 

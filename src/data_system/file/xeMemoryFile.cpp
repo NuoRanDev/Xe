@@ -21,7 +21,7 @@ namespace xe
 		return true;
 	}
 
-	const byte_t* const MemoryFile::get_file_data(size_t& out_data_size) const noexcept
+	const byte_t* const MemoryFile::get_file_data(size_t out_data_size) const noexcept
 	{
 		if (file_data == nullptr)
 		{
@@ -33,18 +33,6 @@ namespace xe
 		}
 		out_data_size = file_data_size;
 		return file_data;
-	}
-
-	byte_t* MemoryFile::get_write_offset_data(size_t offset) noexcept
-	{
-		if (file_data == nullptr || offset >= file_data_size)
-		{
-			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP,
-				"xeDataSystem",
-				"Image file data is empty or offset is out of range");
-			return nullptr;
-		}
-		return file_data + offset;
 	}
 
 	void MemoryFile::release() noexcept
