@@ -11,7 +11,7 @@ namespace xe
 		{
 			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP,
 				"xeDataSystem",
-				"Image file data is empty");
+				"Memory file data is empty");
 			return false;
 		}
 		file_data = mem_data;
@@ -21,13 +21,13 @@ namespace xe
 		return true;
 	}
 
-	const byte_t* const MemoryFile::get_file_data(size_t out_data_size) const noexcept
+	const byte_t* const MemoryFile::get_file_data(size_t& out_data_size) const noexcept
 	{
 		if (file_data == nullptr)
 		{
 			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP,
 				"xeDataSystem",
-				"Image file data is empty");
+				"Memory file data is empty");
 			out_data_size = 0;
 			return nullptr;
 		}

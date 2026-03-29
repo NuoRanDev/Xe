@@ -10,8 +10,6 @@
 #include <unistd.h>
 #endif // OS inc
 
-#include <filesystem>
-
 namespace xe
 {
 	const byte_t *Mmapfstream::get_mmap_offset_ptr(size_t offset_byte) const noexcept
@@ -26,9 +24,9 @@ namespace xe
 		return (byte_t *)pfile_start + offset_byte;
 	}
 
-	bool Mmapfstream::get_file_size(const utf8_t *path) noexcept
+	bool Mmapfstream::get_file_size(const String &path) noexcept
 	{
-		if (!std::filesystem::exists(path))
+		if (!Path::exists(path))
 		{
 			XE_INFO_OUTPUT(
 				XE_TYPE_NAME_OUTPUT::APP,
@@ -36,7 +34,15 @@ namespace xe
 				"Can't find file");
 			return false;
 		}
-		file_size = std::filesystem::file_size(path);
+		if(!Path::is_file(path))
+		{
+			XE_INFO_OUTPUT(
+				XE_TYPE_NAME_OUTPUT::APP,
+				"xeCore",
+				"Not file");
+			return false;
+		}
+		file_size = Path::get_size(path);
 		return true;
 	}
 

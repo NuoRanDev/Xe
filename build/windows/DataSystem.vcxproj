@@ -19,7 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\data_system\file\audio\xeFlacDec.cpp" />
+    <ClCompile Include="..\..\src\data_system\audio\xeAudio.cpp" />
+    <ClCompile Include="..\..\src\data_system\file\audio\libDrFlac.cpp" />
     <ClCompile Include="..\..\src\data_system\file\image\libjpegAddons.cpp" />
     <ClCompile Include="..\..\src\data_system\file\image\liblvglDecBmp.cpp" />
     <ClCompile Include="..\..\src\data_system\file\image\libsnpngAddons.cpp" />

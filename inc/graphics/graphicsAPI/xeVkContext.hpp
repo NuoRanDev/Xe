@@ -45,9 +45,9 @@ namespace xe
 
 			bool create_image_view();
 
-			void add_sheader_command(ShaderGroup sheader_group_info) noexcept;
+			//void add_sheader_command(ShaderGroup sheader_group_info) noexcept;
 
-			void release_all_shader();
+			//void release_all_shader();
 
 			void release_surface() noexcept;
 

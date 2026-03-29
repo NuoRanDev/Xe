@@ -251,11 +251,6 @@ namespace xe
 			return false;
 		}
 
-		void VulkanContext::add_sheader_command(ShaderGroup sheader_group_info) noexcept
-		{
-			
-		}
-
 		void VulkanContext::release_surface() noexcept
 		{
 			if (window_surface != nullptr)
@@ -266,7 +261,7 @@ namespace xe
 
 		VulkanContext::~VulkanContext()
 		{
-			release_all_shader();
+			//release_all_shader();
 			vk_swap_chain_context.release(vk_device);
 			release_surface();
 			if (vk_device != nullptr)

@@ -10,7 +10,8 @@
 
 namespace xe
 {
-	namespace vulkan
+	/*
+		namespace vulkan
 	{
 		// NOTE: THE SHADER COMMAND IS TEMP DATA IN MMAP FROM FILE
 		// THIS CLASS NOT DELETE SHARDE DATA
@@ -79,6 +80,8 @@ namespace xe
 			VkShaderModule vk_frag_mod;
 		};
 	}// namespace vulkan is end
+	*/
+
 } // namespace xe is end
 
 

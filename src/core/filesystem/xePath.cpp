@@ -42,7 +42,7 @@ namespace xe
 #endif // OS
 		}
 
-		bool exists(String& path)  noexcept
+		bool exists(const String& path)  noexcept
 		{
 #if defined(_WIN32)
 			return static_cast<bool>(PathFileExistsW(get_native_str(path).data()));
@@ -51,7 +51,7 @@ namespace xe
 #endif // OS
 		}
 
-		std::time_t get_create_time(String& path)  noexcept
+		std::time_t get_create_time(const String& path)  noexcept
 		{
 #if defined(_WIN32)
 			FILETIME create_time;
@@ -84,7 +84,7 @@ namespace xe
 #endif // OS
 		}
 
-		uint64_t get_size(String& path)  noexcept
+		uint64_t get_size(const String& path)  noexcept
 		{
 #if defined(_WIN32)
 			LARGE_INTEGER info;
@@ -115,7 +115,7 @@ namespace xe
 #endif // OS
 		}
 
-		bool is_abs(String& path)  noexcept
+		bool is_abs(const String& path)  noexcept
 		{
 #if defined(_WIN32)
 			return ('A' <= path.data()[0] && path.data()[0] <= 'Z');
@@ -124,7 +124,7 @@ namespace xe
 #endif // OS
 		}
 
-		bool is_dir(String& path)  noexcept
+		bool is_dir(const String& path)  noexcept
 		{
 #if defined(_WIN32)
 			DWORD dwat = GetFileAttributesW(Path::get_native_str(path).data());
@@ -143,7 +143,7 @@ namespace xe
 #endif // OS
 		}
 
-		bool is_file(String& path)  noexcept
+		bool is_file(const String& path)  noexcept
 		{
 #if defined(_WIN32)
 			return !(is_dir(path));

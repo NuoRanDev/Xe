@@ -37,11 +37,14 @@
     <ClCompile Include="..\..\src\data_system\file\image\liblvglDecBmp.cpp">
       <Filter>data_system\file\image</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\data_system\file\audio\xeFlacDec.cpp">
+    <ClCompile Include="..\..\src\data_system\file\audio\libDrFlac.cpp">
       <Filter>data_system\file\audio</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\data_system\file\image\libppm.cpp">
       <Filter>data_system\file\image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\data_system\audio\xeAudio.cpp">
+      <Filter>data_system\audio</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

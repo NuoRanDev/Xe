@@ -20,17 +20,17 @@ namespace xe
 
 		String base_name(String& path) noexcept;
 
-		bool exists(String& path)  noexcept;
+		bool exists(const String& path)  noexcept;
 
-		std::time_t get_create_time(String& path)  noexcept;
+		std::time_t get_create_time(const String& path)  noexcept;
 
-		uint64_t get_size(String& path)  noexcept;
+		uint64_t get_size(const String& path)  noexcept;
 
-		bool is_abs(String& path)  noexcept;
+		bool is_abs(const String& path)  noexcept;
 
-		bool is_dir(String& path)  noexcept;
+		bool is_dir(const String& path)  noexcept;
 
-		bool is_file(String& path)  noexcept;
+		bool is_file(const String& path)  noexcept;
 
 		std::pair<String, String> split(String& path)  noexcept;
 

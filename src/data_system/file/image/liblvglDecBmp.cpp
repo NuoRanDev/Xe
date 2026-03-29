@@ -16,8 +16,10 @@ namespace xe
 		uint32_t h;
 		// bmp header
 		byte_t headers[54];
+		//
+		size_t sz;
 
-		std::memcpy(headers, file.get_file_data(0), 54);
+		std::memcpy(headers, file.get_file_data(sz), 54);
 
 		if (0x42 != headers[0] || 0x4d != headers[1])
 		{

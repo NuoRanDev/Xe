@@ -57,7 +57,7 @@ namespace xe
 		const uint64_t get_file_size() const noexcept { return file_size; }
 
 	protected:
-		bool get_file_size(const utf8_t* path) noexcept;
+		bool get_file_size(const String& path) noexcept;
 
 		uint64_t file_size;
 

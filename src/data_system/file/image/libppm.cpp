@@ -5,5 +5,7 @@
 namespace xe
 {
 	bool read_memory_ppm_image(const ImageFile& file, Image& img_out) noexcept
-	{}
+	{
+		return true;
+	}
 } // namespace xe is end
