@@ -570,7 +570,8 @@ namespace xe
 
 	void U8StringRef::release() noexcept
 	{
-		xe_free(characters_data);
+		if (characters_data != nullptr)
+			xe_free(characters_data);
 		characters_data = nullptr;
 		characters_data_size = 0;
 		characters_number = 0;

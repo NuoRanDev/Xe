@@ -59,7 +59,7 @@ namespace xe
 			load_rust_str_add0(rust_str.data, rust_str.size);
 		}
 
-		U8StringRef(const U8StringRef& temp_string) noexcept
+		U8StringRef(const U8StringRef& temp_string)
 		{
 			if(temp_string.is_empty())
 			{
