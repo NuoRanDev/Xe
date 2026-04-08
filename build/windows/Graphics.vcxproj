@@ -19,19 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\graphics\graphicsAPI\xeVkConfig.cpp" />
-    <ClCompile Include="..\..\src\graphics\graphicsAPI\xeVkContext.cpp" />
-    <ClCompile Include="..\..\src\graphics\graphicsAPI\xeVkSwapChain.cpp" />
     <ClCompile Include="..\..\src\graphics\testure\xeTesture.cpp" />
     <ClCompile Include="..\..\src\graphics\window\xeWindow.cpp" />
     <ClCompile Include="..\..\src\graphics\window\xeWindowManager.cpp" />
     <ClCompile Include="..\..\test\game_main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeVkConfig.hpp" />
-    <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeVkContext.hpp" />
-    <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeVkRender.hpp" />
-    <ClInclude Include="..\..\inc\graphics\graphicsAPI\xeVkSwapChain.hpp" />
     <ClInclude Include="..\..\inc\graphics\shader\xeShaderGroup.hpp" />
     <ClInclude Include="..\..\inc\graphics\testure\xeTesture.hpp" />
     <ClInclude Include="..\..\inc\graphics\window\xeWindow.hpp" />
@@ -92,12 +85,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
     <OutDir>$(SolutionDir)..\..\SDK\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
-    <ExternalIncludePath>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\geometry\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\;$(SolutionDir)..\..\inc\tools\</ExternalIncludePath>
+    <ExternalIncludePath>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\geometry\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\;$(SolutionDir)..\..\inc\tools\;$(SolutionDir)..\..\3rd\inc\</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
     <OutDir>$(SolutionDir)..\..\SDK\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
-    <ExternalIncludePath>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\geometry\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\;$(SolutionDir)..\..\inc\tools\</ExternalIncludePath>
+    <ExternalIncludePath>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\geometry\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\;$(SolutionDir)..\..\inc\tools\;$(SolutionDir)..\..\3rd\inc\</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
     <VcpkgUseStatic>true</VcpkgUseStatic>
@@ -144,7 +137,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>MI_OVERRIDE;USE_VULKAN;SPNG_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\graphics\;$(SolutionDir)..\..\inc\tools\;$(SolutionDir)..\..\inc\core\;$(VK_SDK_PATH)\Include\;$(SolutionDir)..\..\3rd\nvrhi\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\graphics\;$(SolutionDir)..\..\inc\tools\;$(SolutionDir)..\..\inc\core\;$(VK_SDK_PATH)\Include\;$(SolutionDir)..\..\3rd\nvrhi\include\;$(SolutionDir)..\..\3rd\inc\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -152,8 +145,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(VK_SDK_PATH)\Lib\;$(SolutionDir)..\..\SDK\$(Configuration)\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Tools.lib;vulkan-1.lib;DataSystem.lib;Core.lib;Logic.lib;turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;Ws2_32.lib;Ole32.lib;shell32.lib;Ntdll.lib;Propsys.lib;Mfplat.lib;Mfreadwrite.lib;mfuuid.lib;zlibd.lib;mimalloc-debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(VK_SDK_PATH)\Lib\;$(SolutionDir)..\..\SDK\$(Configuration)\;$(SolutionDir)..\..\3rd\bin\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Tools.lib;vulkan-1.lib;DataSystem.lib;Core.lib;Logic.lib;turbojpeg.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;Ws2_32.lib;Ole32.lib;shell32.lib;Ntdll.lib;Propsys.lib;spng_static.lib;SDL3-staticd.lib;zlibd.lib;mimalloc-debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
@@ -164,7 +157,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>MI_OVERRIDE;USE_VULKAN;SPNG_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\graphics\;$(SolutionDir)..\..\inc\tools\;$(SolutionDir)..\..\inc\core\;$(VK_SDK_PATH)\Include\;$(SolutionDir)..\..\3rd\nvrhi\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\rust\inc\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\graphics\;$(SolutionDir)..\..\inc\tools\;$(SolutionDir)..\..\inc\core\;$(VK_SDK_PATH)\Include\;$(SolutionDir)..\..\3rd\nvrhi\include\;$(SolutionDir)..\..\3rd\inc\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <Optimization>MinSpace</Optimization>
@@ -176,8 +169,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(VK_SDK_PATH)\Lib\;$(SolutionDir)..\..\SDK\$(Configuration)\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Tools.lib;vulkan-1.lib;DataSystem.lib;Core.lib;Logic.lib;turbojpeg.lib;spng_static.lib;SDL3-static.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;Ws2_32.lib;Ole32.lib;shell32.lib;Ntdll.lib;Propsys.lib;Mfplat.lib;Mfreadwrite.lib;mfuuid.lib;zlib.lib;mimalloc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(VK_SDK_PATH)\Lib\;$(SolutionDir)..\..\SDK\$(Configuration)\;$(SolutionDir)..\..\3rd\bin\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Tools.lib;vulkan-1.lib;DataSystem.lib;Core.lib;Logic.lib;turbojpeg.lib;Shlwapi.lib;Avrt.lib;Setupapi.lib;Winmm.lib;Version.lib;Imm32.lib;User32.lib;Ws2_32.lib;Ole32.lib;shell32.lib;Ntdll.lib;Propsys.lib;spng_static.lib;SDL3-static.lib;zlib.lib;mimalloc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

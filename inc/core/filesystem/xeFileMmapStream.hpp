@@ -42,7 +42,7 @@ namespace xe
 			return read(offset_byte, number * sizeof(T), dst);
 		}
 
-		bool open_file(const String& path) noexcept;
+		bool open_file(const Path& path) noexcept;
 
 		void release() noexcept;
 
@@ -57,7 +57,7 @@ namespace xe
 		const uint64_t get_file_size() const noexcept { return file_size; }
 
 	protected:
-		bool get_file_size(const String& path) noexcept;
+		bool get_file_size(const Path& path) noexcept;
 
 		uint64_t file_size;
 

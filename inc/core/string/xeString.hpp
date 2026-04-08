@@ -308,6 +308,8 @@ namespace xe
 	{
 	public:
 
+		U16StringRef() = default;
+
 		U16StringRef(const U8StringRef& u8_str) noexcept { load_utf8(u8_str); }
 
 		bool load_utf8(const U8StringRef& u8_str) noexcept;

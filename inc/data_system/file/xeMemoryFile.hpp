@@ -18,7 +18,7 @@ namespace xe
 		MemoryFile& operator=(MemoryFile&&) noexcept = default;
 
 		// load image file
-		bool load_file_not_copy_in_memory(byte_t* mem_data, size_t data_size, String mem_file_name) noexcept;
+		bool load_file_not_copy_in_memory(byte_t* mem_data, size_t data_size, String& mem_file_name) noexcept;
 
 		// get image data
 		const byte_t* const get_file_data(size_t& out_data_size) const noexcept;

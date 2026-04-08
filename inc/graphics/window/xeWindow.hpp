@@ -1,8 +1,6 @@
 ﻿#ifndef _XE_WINDOW_HPP_
 #define _XE_WINDOW_HPP_
 
-#include "string/xeString.hpp"
-
 #include "type/xeDataStruction.hpp"
 
 #include <cstdint>
@@ -13,7 +11,7 @@
 
 namespace xe
 {
-	constexpr int16_t MAX_WINDOW_WIDGET = SHRT_MAX;
+	//constexpr int16_t MAX_WINDOW_WIDGET = SHRT_MAX;
 
 	constexpr float DEFAULT_QUEUE_PRIORITIES = 1.0f;
 	constexpr uint32_t DEFAULT_QUEUE_COUNT = 1;
@@ -43,7 +41,7 @@ namespace xe
 
 		std::any window_context;
 
-		const dynamic_array <const char*> want_extension_properties = { "VK_KHR_swapchain"};
+		//const dynamic_array <const char*> want_extension_properties = { "VK_KHR_swapchain"};
 	};
 } // namespace xe is end
 

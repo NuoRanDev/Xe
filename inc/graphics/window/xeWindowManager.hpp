@@ -9,7 +9,7 @@ namespace xe
 	class WindowManager
 	{
 	public:
-		WindowManager(const char* i_exe_name);
+		WindowManager(char** argv) noexcept;
 
 		Window* create_window(int32_t w, int32_t h, String& title, bool bordered = true) noexcept;
 
@@ -23,7 +23,10 @@ namespace xe
 
 		dynamic_array<Window*> window_list;
 
+		uint32_t* displays;
+
 		const char* exe_name;
+		int32_t cmd_number;
 
 	};
 } // namespace xe is end

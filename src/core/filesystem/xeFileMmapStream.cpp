@@ -24,9 +24,9 @@ namespace xe
 		return (byte_t *)pfile_start + offset_byte;
 	}
 
-	bool Mmapfstream::get_file_size(const String &path) noexcept
+	bool Mmapfstream::get_file_size(const Path &path) noexcept
 	{
-		if (!Path::exists(path))
+		if (!path.exists())
 		{
 			XE_INFO_OUTPUT(
 				XE_TYPE_NAME_OUTPUT::APP,
@@ -34,7 +34,7 @@ namespace xe
 				"Can't find file");
 			return false;
 		}
-		if(!Path::is_file(path))
+		if(!path.is_file())
 		{
 			XE_INFO_OUTPUT(
 				XE_TYPE_NAME_OUTPUT::APP,
@@ -42,7 +42,7 @@ namespace xe
 				"Not file");
 			return false;
 		}
-		file_size = Path::get_size(path);
+		file_size = path.get_size();
 		return true;
 	}
 
@@ -59,14 +59,14 @@ namespace xe
 		return true;
 	}
 
-	bool Mmapfstream::open_file(const String &path) noexcept
+	bool Mmapfstream::open_file(const Path &path) noexcept
 	{
-		if (!get_file_size(path.data()))
+		if (!get_file_size(path))
 			return false;
 #if defined(_WIN32)
-		auto win_str = Path::get_native_str(path);
+		auto win_str = path.get_native_str();
 		c_dump_file_descriptor = CreateFileW(
-			win_str.data(),
+			win_str,
 			GENERIC_READ,
 			0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 		if (c_dump_file_descriptor == nullptr)
@@ -97,13 +97,13 @@ namespace xe
 			return false;
 		}
 #elif defined(__linux__)
-		fd = open(reinterpret_cast<const char*>(Path::get_native_str(path).c_str()), O_RDONLY);
+		fd = open(reinterpret_cast<const char*>(path.get_native_str(path)), O_RDONLY);
 		if (fd == -1) 
 		{
 			XE_WARNING_OUTPUT(
 				XE_TYPE_NAME_OUTPUT::APP,
 				"xeCore",
-				std::format("Create file mapping failed , SYSTEM ERROR CODE:{0}", errno).c_str());
+				std::format("Create file mapping failed , SYSTEM ERROR CODE:{0}", errno)..c_str());
 			return false;
 		}
 		fstat(fd, &st);

@@ -82,10 +82,7 @@ namespace xe
 			cur_data += read_size;
 			all_read_size += read_size;
 		}
-		size = (all_read_size - 1) * sizeof(T);
-#ifdef _DEBUG
-		memcpy(out_data, "PCM-DEBUG", 10);
-#endif // _DEBUG
+		size = need_byte_size;
 
 		drflac_close(flac_context);
 		return reinterpret_cast<byte_t*>(out_data);

@@ -8,14 +8,14 @@
 
 namespace xe
 {
-	WindowManager::WindowManager(const char* i_exe_name)
+	WindowManager::WindowManager(char** argv) noexcept
 	{
 		if (!SDL_Init(SDL_INIT_VIDEO))
 		{
 			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeWindowManager : SDL3", std::format("Init Error: {0}", SDL_GetError()).c_str());
 		}
-		exe_name = i_exe_name;
-		//SDL_DisplayID* displays = SDL_GetDisplays(&num_displays);
+		exe_name = argv[0];
+		displays = SDL_GetDisplays(&displays_count);
 	}
 
 	Window* WindowManager::create_window(int32_t w, int32_t h, String& title, bool bordered) noexcept
@@ -48,6 +48,7 @@ namespace xe
 		{
 			xe_delete(window);
 		}
+		SDL_free(displays);
 		SDL_Quit();
 	}
 } // namespace xe is end

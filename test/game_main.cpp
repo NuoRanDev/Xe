@@ -15,28 +15,30 @@
 #include <ctime>
 
 using namespace xe;
-int main(int argc, char* argv[])
+int main(int argc, char** argv)
 {
 #if defined(_WIN32)
 	system("chcp 65001");
 	system("cls");
 #endif
 
-	String path = "C:\\Users\\wunuo\\Desktop\\In the HALL OF THE MOU - PHILHARMONIA ORCHESTRA of Hamburg.flac";
-	auto c = Path::base_name(path);
-	time_t create_time = static_cast<time_t>(Path::get_create_time(path));
+	String spath = u8"C:\\Users\\wunuo\\Desktop\\audio.flac";
+	//String path = "C:\\Users\\wunuo\\Desktop\\In the HALL OF THE MOU - PHILHARMONIA ORCHESTRA of Hamburg.flac";
+	Path path = Path(spath);
+	time_t create_time = path.get_create_time();
 
-	std::cout << "File : " << path << std::endl;
+	std::cout << "File : " << spath << std::endl;
 	// std::cout << "Create time : " << std::ctime(&create_time);
-	std::cout << "Size : " << Path::get_size(path) / 1024 << " KiB " << std::endl;
+	std::cout << "Size : " << path.get_size() / 1024 << " KiB " << std::endl;
 
 	Mmapfstream flac_file = Mmapfstream();
 	flac_file.open_file(path);
 
 	AudioFile adf;
 	size_t sz;
+	String u8_s = u8"Flac test";
 	auto flac_data = flac_file.data(sz);
-	adf.load_file_not_copy_in_memory(flac_data, sz, "Flac test");
+	adf.load_file_not_copy_in_memory(flac_data, sz, u8_s);
 
 	PcmBlock pcm;
 	read_memory_flac_audio_all_pcm(adf, pcm);
@@ -64,11 +66,11 @@ int main(int argc, char* argv[])
 	//音频数据
 	ALuint buffer;
 	//音频格式 AL_FORMAT_STEREO
-	ALenum audioFormat = AL_FORMAT_MONO_FLOAT32;
+	ALenum audioFormat =  AL_FORMAT_MONO_FLOAT32; // AL_FORMAT_STEREO_FLOAT32;//AL_FORMAT_MONO_FLOAT32;
 	//声道数目
 	ALshort channels = pcm.header.channels;
 	//是否循环播放
-	ALboolean loop = 1;
+	ALboolean loop = false;
 	//播放源的位置
 	ALfloat position[] = { 0.0f,0.0f,0.0f };
 	//播放的速度
@@ -95,12 +97,16 @@ int main(int argc, char* argv[])
 	alSourcei(source, AL_LOOPING, loop);
 	//播放音乐
 	alSourcePlay(source);
-	std::this_thread::sleep_for(std::chrono::minutes(1000));
+	//std::this_thread::sleep_for(std::chrono::minutes(1000));
+	
+	xe::WindowManager wmsg = xe::WindowManager(argv);
+	auto name = xe::String("sasas");
+	auto win = wmsg.create_window(600, 800, name);
+	win->show();
+
 	alDeleteSources(1, &source);
 	alDeleteBuffers(1, &buffer);
 	alcDestroyContext(context);
 	alcCloseDevice(device);
-	return 0;
-
 	return EXIT_SUCCESS; // Success
 }

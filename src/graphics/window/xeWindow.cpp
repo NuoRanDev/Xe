@@ -11,8 +11,6 @@
 
 #include "SDL3/SDL_vulkan.h"
 
-#include "graphicsAPI/xeVkContext.hpp"
-
 constexpr SDL_WindowFlags window_flags = SDL_WINDOW_VULKAN;
 
 namespace xe
@@ -27,7 +25,6 @@ namespace xe
 
 	bool Window::create_window_context(const utf8_t* title, int32_t w, int32_t h, bool bordered) noexcept
 	{
-		vulkan::VulkanContext *vk_context = new vulkan::VulkanContext();
 		SDL_Window* window;
 		
 		// create vulkan instance
@@ -36,17 +33,6 @@ namespace xe
 		if (exetensions == nullptr)
 		{
 			XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::LIB, "xeWindow : SDL3", "Can't find vulkan exetrnsions");
-			return false;
-		}
-
-		if(!vk_context->init_vulkan_instance(exetensions, exetension_count, title))
-		{
-			XE_FATAL_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeWindow", "init vulkan instance failed");
-			return false;
-		}
-		if(!vk_context->find_physical_device(want_extension_properties))
-		{
-			XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeWindow", "Can't find support vulkan device");
 			return false;
 		}
 
@@ -62,25 +48,8 @@ namespace xe
 
 		// link window surface to vulkan swap chain
 
-		if(!vk_context->get_cur_window_surface(&SDL_Vulkan_CreateSurface, window))
-		{
-			XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeWindow : SDL3", "Get window surface failded");
-			return false;
-		}
 
-		if (!vk_context->create_logical_device(&queue_priorities, queue_count))
-		{
-			XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeWindow", "Create vulkan logical device faided");
-			return false;
-		}
-		
-		if(!vk_context->create_swap_chian(w, h))
-		{
-			XE_ERROR_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeWindow", "Create vulkan swap chain faided");
-			return false;
-		}
-
-		renderer_context = vk_context;
+		//renderer_context = vk_context;
 		window_context = window;
 
 		return true;
@@ -113,14 +82,10 @@ namespace xe
 	Window::~Window()
 	{
 		auto window = std::any_cast<SDL_Window*>(window_context);
-		auto vk_context = std::any_cast<vulkan::VulkanContext*>(renderer_context);
+		//auto vk_context = std::any_cast<vulkan::VulkanContext*>(renderer_context);
 		if(!window)
 		{
 			SDL_DestroyWindow(window);
-		}
-		if(!vk_context)
-		{
-			xe_delete(vk_context);
 		}
 	}
 } // namespace xe is end
