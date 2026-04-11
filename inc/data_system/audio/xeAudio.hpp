@@ -25,7 +25,7 @@ namespace xe
 		PCM_SAMPLE_TYPE sample_type;
 
 		uint32_t sample_rate;
-		uint32_t channels;
+		uint32_t channels = 1;
 	};
 
 	struct PcmBlock

@@ -19,10 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\logic\graph\graph.cpp" />
+    <ClInclude Include="..\..\inc\sound\audio_steam\xePcmStream.hpp" />
+    <ClInclude Include="..\..\inc\sound\xeAudioObject.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\inc\logic\graph\graph.hpp" />
+    <ClCompile Include="..\..\inc\sound\xeAudioPlayerInstance.hpp" />
+    <ClCompile Include="..\..\src\sound\audio_steam\xePcmStream.cpp" />
+    <ClCompile Include="..\..\src\sound\xeAudioPlayerInstance.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -79,12 +82,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
     <OutDir>$(SolutionDir)..\..\SDK\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
-    <ExternalIncludePath>$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\core\</ExternalIncludePath>
+    <ExternalIncludePath>$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\sound\;$(SolutionDir)..\..\inc\core\</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
     <OutDir>$(SolutionDir)..\..\SDK\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)OBJ\$(ShortProjectName)\$(Platform)$(Configuration)\</IntDir>
-    <ExternalIncludePath>$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\core\</ExternalIncludePath>
+    <ExternalIncludePath>$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\sound\;$(SolutionDir)..\..\inc\core\</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
     <VcpkgUseStatic>true</VcpkgUseStatic>
@@ -128,7 +131,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\inc\sound\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -148,7 +151,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\inc\logic\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\inc\sound\;$(SolutionDir)..\..\inc\data_system\;$(SolutionDir)..\..\inc\core\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>

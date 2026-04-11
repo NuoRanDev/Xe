@@ -8,7 +8,6 @@
 #include <AL/al.h>
 #include <AL/alc.h>
 #include <AL/alext.h>
-
 #include <format>
 #include <iostream>
 #include <fstream>
@@ -44,23 +43,23 @@ int main(int argc, char** argv)
 	read_memory_flac_audio_all_pcm(adf, pcm);
 	flac_file.release();
 
-
 	ALCdevice* device = NULL;
 	ALCcontext* context = NULL;
 	device = alcOpenDevice(NULL);
 	if (!device) {
-		fprintf(stderr, "fail to open device\n");
+		//rintf(stderr, "fail to open device\n");
 		return -1;
 	}
 	context = alcCreateContext(device, NULL);
 	if (!context) {
-		fprintf(stderr, "fail to create context.\n");
+		//fprintf(stderr, "fail to create context.\n");
 		return -1;
 	}
 	alcMakeContextCurrent(context);
 	if (alGetError() != AL_NO_ERROR) {
 		return -1;
 	}
+	
 	//音频播放源
 	ALuint source;
 	//音频数据
@@ -83,6 +82,7 @@ int main(int argc, char** argv)
 	{
 		return -1;
 	}
+
 	//为source绑定数据
 	alSourcei(source, AL_BUFFER, buffer);
 	//音高倍数
@@ -97,7 +97,8 @@ int main(int argc, char** argv)
 	alSourcei(source, AL_LOOPING, loop);
 	//播放音乐
 	alSourcePlay(source);
-	//std::this_thread::sleep_for(std::chrono::minutes(1000));
+	xe_free(pcm.pcm_data);
+	puts("free");
 	
 	xe::WindowManager wmsg = xe::WindowManager(argv);
 	auto name = xe::String("sasas");
@@ -106,7 +107,6 @@ int main(int argc, char** argv)
 
 	alDeleteSources(1, &source);
 	alDeleteBuffers(1, &buffer);
-	alcDestroyContext(context);
-	alcCloseDevice(device);
+	
 	return EXIT_SUCCESS; // Success
 }
