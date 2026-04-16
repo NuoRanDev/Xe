@@ -37,6 +37,7 @@
     <ClInclude Include="..\..\inc\core\filesystem\xePath.hpp" />
     <ClInclude Include="..\..\inc\core\log\xeLogOutput.hpp" />
     <ClInclude Include="..\..\inc\core\math\xeBigNumber.hpp" />
+    <ClInclude Include="..\..\inc\core\math\xeMathVector.hpp" />
     <ClInclude Include="..\..\inc\core\memory\xeAlloc.hpp" />
     <ClInclude Include="..\..\inc\core\memory\xeDiskMemoryPool.hpp" />
     <ClInclude Include="..\..\inc\core\string\xeRegexp.hpp" />

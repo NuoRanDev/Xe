@@ -3,8 +3,6 @@
 
 #include "type/xeOrdinals.hpp"
 
-#include "memory/xeAlloc.hpp"
-
 #include <vector>
 #include <map>
 
@@ -17,11 +15,11 @@ namespace xe
 #if defined(USE_MIMALLOC)
 	template<class struction1> using dynamic_array = std::vector<struction1, mi_stl_allocator<struction1>>;
 
-	template<class struction1, class struction2> using map = std::map<struction1, struction2, mi_stl_allocator<std::pair<struction1, struction2>>>;
+	template<class struction1, class struction2> using fast_map = std::map<struction1, struction2, mi_stl_allocator<std::pair<struction1, struction2>>>;
 #else
 	template<class struction1> using dynamic_array = std::vector<struction1>;
 
-	template<class struction1, class struction2> using map = std::map<struction1, struction2>;
+	template<class struction1, class struction2> using fast_map = std::map<struction1, struction2>;
 #endif // USE_MIMALLOC
 
 } // namespace xe is end

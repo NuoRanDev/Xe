@@ -3,6 +3,7 @@
 #include "SDL3/SDL_init.h"
 
 #include "log/xeLogOutput.hpp"
+#include "memory/xeAlloc.hpp"
 
 #include <format>
 

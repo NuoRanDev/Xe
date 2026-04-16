@@ -2,16 +2,17 @@
 #include "Rfd.hpp"
 #include "log/xeLogOutput.hpp"
 #include "filesystem/xeFileMmapStream.hpp"
-#include "xeFileDialog.hpp"
+#include "xeAudioPlayerInstance.hpp"
+#include "xeSoundSource.hpp"
 #include "file/audio/xeReadAudioFile.hpp"
 
-#include <AL/al.h>
-#include <AL/alc.h>
-#include <AL/alext.h>
 #include <format>
 #include <iostream>
 #include <fstream>
 #include <ctime>
+#include <cmath>
+
+#define  _CRT_SECURE_NO_WARNINGS
 
 using namespace xe;
 int main(int argc, char** argv)
@@ -27,7 +28,7 @@ int main(int argc, char** argv)
 	time_t create_time = path.get_create_time();
 
 	std::cout << "File : " << spath << std::endl;
-	// std::cout << "Create time : " << std::ctime(&create_time);
+	std::cout << "Create time : " << std::ctime(&create_time);
 	std::cout << "Size : " << path.get_size() / 1024 << " KiB " << std::endl;
 
 	Mmapfstream flac_file = Mmapfstream();
@@ -43,70 +44,59 @@ int main(int argc, char** argv)
 	read_memory_flac_audio_all_pcm(adf, pcm);
 	flac_file.release();
 
-	ALCdevice* device = NULL;
-	ALCcontext* context = NULL;
-	device = alcOpenDevice(NULL);
-	if (!device) {
-		//rintf(stderr, "fail to open device\n");
-		return -1;
-	}
-	context = alcCreateContext(device, NULL);
-	if (!context) {
-		//fprintf(stderr, "fail to create context.\n");
-		return -1;
-	}
-	alcMakeContextCurrent(context);
-	if (alGetError() != AL_NO_ERROR) {
-		return -1;
-	}
+	AudioPlayerInstance a_instc;
+	a_instc.init();
 	
-	//音频播放源
-	ALuint source;
-	//音频数据
-	ALuint buffer;
-	//音频格式 AL_FORMAT_STEREO
-	ALenum audioFormat =  AL_FORMAT_MONO_FLOAT32; // AL_FORMAT_STEREO_FLOAT32;//AL_FORMAT_MONO_FLOAT32;
-	//声道数目
-	ALshort channels = pcm.header.channels;
-	//是否循环播放
-	ALboolean loop = false;
-	//播放源的位置
-	ALfloat position[] = { 0.0f,0.0f,0.0f };
-	//播放的速度
-	ALfloat velocity[] = { 0.0f,0.0f,0.0f };
-	alGenBuffers(1, &buffer);
-	alGenSources(1, &source);
-	alBufferData(buffer, audioFormat, pcm.pcm_data, pcm.data_size,  pcm.header.sample_rate);
+	SoundSource sscrc = SoundSource();
+	sscrc.lood_audio(pcm);
+	sscrc.set_gain(1.0f);
+	sscrc.set_is_loop(true);
+	sscrc.set_pitch(1.0f);
+	
+	vec3f v;
+	vec3f pos;
+	float pi = 3.1415926f;
+	float w = pi / 4;
+	float r = 10;
 
-	if (alGetError() != AL_NO_ERROR) 
+	auto start = std::chrono::system_clock::now();
+	std::chrono::duration<double>diff;
+	
+	sscrc.play();
+	using std::cout, std::endl;
+	using std::chrono::duration_cast, std::chrono::system_clock;
+	using std::chrono::milliseconds, std::chrono::seconds;
+
+	while(true)
 	{
-		return -1;
+		auto ms_cpp =
+			duration_cast<milliseconds>(system_clock::now().time_since_epoch())
+			.count();
+		double ms = (double)ms_cpp / 1000.0 ;
+		double st = (w * ms) - ((long long)((w * ms) / (2 * pi)) * (2 * pi));
+		v = { w * r * cosf((float)(st)-pi / 2) ,
+			w * r * sinf((float)(st)-pi / 2),
+			0
+		};
+		sscrc.set_velocity(v);
+		pos = { cosf((float)st) * r ,
+			 sinf((float)st) * r,
+			0
+		};
+		std::cout << "v Vx: " << v.x << " Vy: " << v.y << " Vz: " << v.z << "\n";
+		std::cout << "pos x: " << pos.x << " y: " << pos.y << " z: " << pos.z << "\n";
+		// windos
+		system("cls");
+		// linux
+		//system("clear");
+		sscrc.set_position(pos);
 	}
-
-	//为source绑定数据
-	alSourcei(source, AL_BUFFER, buffer);
-	//音高倍数
-	alSourcef(source, AL_PITCH, 1.0f);
-	//声音的增益
-	alSourcef(source, AL_GAIN, 1.0f);
-	//设置位置
-	alSourcefv(source, AL_POSITION, position);
-	//设置声音移动速度
-	alSourcefv(source, AL_VELOCITY, velocity);
-	//设置是否循环播放
-	alSourcei(source, AL_LOOPING, loop);
-	//播放音乐
-	alSourcePlay(source);
-	xe_free(pcm.pcm_data);
-	puts("free");
-	
+	/*
 	xe::WindowManager wmsg = xe::WindowManager(argv);
 	auto name = xe::String("sasas");
 	auto win = wmsg.create_window(600, 800, name);
-	win->show();
+	win->show();*/
 
-	alDeleteSources(1, &source);
-	alDeleteBuffers(1, &buffer);
 	
 	return EXIT_SUCCESS; // Success
 }

@@ -98,5 +98,8 @@
     <ClInclude Include="..\..\inc\core\devboost\xeMemRemove.hpp">
       <Filter>core\devboost</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\inc\core\math\xeMathVector.hpp">
+      <Filter>core\math</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

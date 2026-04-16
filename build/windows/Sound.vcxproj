@@ -20,12 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\inc\sound\audio_steam\xePcmStream.hpp" />
-    <ClInclude Include="..\..\inc\sound\xeAudioObject.hpp" />
+    <ClInclude Include="..\..\inc\sound\xeSoundSource.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\inc\sound\xeAudioPlayerInstance.hpp" />
     <ClCompile Include="..\..\src\sound\audio_steam\xePcmStream.cpp" />
     <ClCompile Include="..\..\src\sound\xeAudioPlayerInstance.cpp" />
+    <ClCompile Include="..\..\src\sound\xeSoundSource.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

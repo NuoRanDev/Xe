@@ -10,7 +10,7 @@
     <ClInclude Include="..\..\inc\sound\audio_steam\xePcmStream.hpp">
       <Filter>audio_steam</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\inc\sound\xeAudioObject.hpp" />
+    <ClInclude Include="..\..\inc\sound\xeSoundSource.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\inc\sound\xeAudioPlayerInstance.hpp" />
@@ -18,5 +18,6 @@
     <ClCompile Include="..\..\src\sound\audio_steam\xePcmStream.cpp">
       <Filter>audio_steam</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\sound\xeSoundSource.cpp" />
   </ItemGroup>
 </Project>
