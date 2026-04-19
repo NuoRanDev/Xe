@@ -15,13 +15,17 @@ namespace xe
 
 	any_type_ptr_t xe_only_realloc(any_type_ptr_t src, size_t byte_size) noexcept;
 
+	any_type_ptr_t xe_olny_aligned_alloc(size_t alignment, size_t byte_size) noexcept;
+
+	any_type_ptr_t xe_olny_aligned_realloc(any_type_ptr_t src, size_t alignment, size_t byte_size) noexcept;
+
 	// malloc
 	template<typename T> T* xe_malloc(size_t size) noexcept
 	{
 		return (T*)xe_only_malloc(sizeof(T) * size);
 	}
 
-	template<typename T> T* xe_realloc(T* src, size_t size) noexcept
+	template<typename T> T* xe_realloc(any_type_ptr_t src, size_t size) noexcept
 	{
 		return (T*)xe_only_realloc(src, sizeof(T) * size);
 	}

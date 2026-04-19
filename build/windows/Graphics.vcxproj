@@ -27,6 +27,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\inc\graphics\shader\xeShaderGroup.hpp" />
     <ClInclude Include="..\..\inc\graphics\testure\xeTesture.hpp" />
+    <ClInclude Include="..\..\inc\graphics\vulkan\xeVulkan.hpp" />
     <ClInclude Include="..\..\inc\graphics\window\xeWindow.hpp" />
     <ClInclude Include="..\..\inc\graphics\window\xeWindowManager.hpp" />
   </ItemGroup>

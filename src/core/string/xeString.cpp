@@ -412,7 +412,7 @@ namespace xe
 			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeCore", "String not init");
 			return false;
 		}
-		characters_data = xe_realloc(characters_data, characters_data_size - remove_ofs);
+		characters_data = xe_realloc<utf8_t>(characters_data, characters_data_size - remove_ofs);
 		characters_data[characters_data_size - remove_ofs - 1] = 0;
 		return true;
 	STRING_FORMAT_ERROR:
@@ -690,7 +690,7 @@ namespace xe
 	void U16StringRef::ptr_resize(int64_t _size) noexcept
 	{
 		size = _size;
-		str_data = xe_realloc(str_data, size);
+		str_data = xe_realloc<utf16le_t>(str_data, size);
 		str_data[_size - 1] = '\0';
 	}
 

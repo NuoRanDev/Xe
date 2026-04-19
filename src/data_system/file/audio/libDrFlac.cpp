@@ -2,6 +2,7 @@
 #include "type/xeOrdinals.hpp"
 
 #include "file/audio/xeReadAudioFile.hpp"
+#include "memory/xeAlloc.hpp"
 
 #include <type_traits>
 #include <format>

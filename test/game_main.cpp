@@ -6,15 +6,61 @@
 #include "xeSoundSource.hpp"
 #include "file/audio/xeReadAudioFile.hpp"
 
+#include <vulkan/xeVulkan.hpp>
+#include <SDL3/SDL_vulkan.h>
+
 #include <format>
 #include <iostream>
 #include <fstream>
 #include <ctime>
 #include <cmath>
 
-#define  _CRT_SECURE_NO_WARNINGS
-
 using namespace xe;
+
+vec3f v;
+vec3f pos;
+float pi = 3.1415926f;
+float w = pi / 10;
+float r = 10;
+
+void rander(SoundSource& ssrc, double ms)
+{
+	double st = (w * ms) - ((long long)((w * ms) / (2 * pi)) * (2 * pi));
+	v = { w * r * cosf((float)(st)-pi / 2) ,
+		w * r * sinf((float)(st)-pi / 2),
+		0
+	};
+	ssrc.set_velocity(v);
+	pos = { cosf((float)st) * r ,
+		 sinf((float)st) * r,
+		0
+	};
+	std::cout << "v Vx: " << v.x << " Vy: " << v.y << " Vz: " << v.z << "\n";
+	std::cout << "pos x: " << pos.x << " y: " << pos.y << " z: " << pos.z << "\n";
+	// windos
+	system("cls");
+}
+
+void fakerander(SoundSource& ssrc, double ms)
+{
+	double st = (w * ms) - ((long long)((w * ms) / (2 * pi)) * (2 * pi));
+	v = {
+		sinf((float)st) * r,
+		0,
+		0
+	};
+	ssrc.set_velocity(v);
+	pos = {
+		cosf((float)st) * r ,
+		0,
+		0
+	};
+	std::cout << "v Vx: " << v.x << " Vy: " << v.y << " Vz: " << v.z << "\n";
+	std::cout << "pos x: " << pos.x << " y: " << pos.y << " z: " << pos.z << "\n";
+	// windos
+	system("cls");
+}
+
 int main(int argc, char** argv)
 {
 #if defined(_WIN32)
@@ -30,6 +76,10 @@ int main(int argc, char** argv)
 	std::cout << "File : " << spath << std::endl;
 	std::cout << "Create time : " << std::ctime(&create_time);
 	std::cout << "Size : " << path.get_size() / 1024 << " KiB " << std::endl;
+
+	VulkanContext vtx = { 0 };
+	init_vulkan_instance(vtx, u8"name", &SDL_Vulkan_GetInstanceExtensions);
+	find_gpu(vtx);
 
 	Mmapfstream flac_file = Mmapfstream();
 	flac_file.open_file(path);
@@ -52,16 +102,8 @@ int main(int argc, char** argv)
 	sscrc.set_gain(1.0f);
 	sscrc.set_is_loop(true);
 	sscrc.set_pitch(1.0f);
-	
-	vec3f v;
-	vec3f pos;
-	float pi = 3.1415926f;
-	float w = pi / 4;
-	float r = 10;
 
-	auto start = std::chrono::system_clock::now();
-	std::chrono::duration<double>diff;
-	
+	auto start = std::chrono::system_clock::now();	
 	sscrc.play();
 	using std::cout, std::endl;
 	using std::chrono::duration_cast, std::chrono::system_clock;
@@ -72,21 +114,10 @@ int main(int argc, char** argv)
 		auto ms_cpp =
 			duration_cast<milliseconds>(system_clock::now().time_since_epoch())
 			.count();
-		double ms = (double)ms_cpp / 1000.0 ;
-		double st = (w * ms) - ((long long)((w * ms) / (2 * pi)) * (2 * pi));
-		v = { w * r * cosf((float)(st)-pi / 2) ,
-			w * r * sinf((float)(st)-pi / 2),
-			0
-		};
-		sscrc.set_velocity(v);
-		pos = { cosf((float)st) * r ,
-			 sinf((float)st) * r,
-			0
-		};
-		std::cout << "v Vx: " << v.x << " Vy: " << v.y << " Vz: " << v.z << "\n";
-		std::cout << "pos x: " << pos.x << " y: " << pos.y << " z: " << pos.z << "\n";
-		// windos
-		system("cls");
+		double ms = (double)ms_cpp / 1000.0;
+
+		rander(sscrc, ms);
+		//fakerander(sscrc, ms);
 		// linux
 		//system("clear");
 		sscrc.set_position(pos);

@@ -44,5 +44,8 @@
     <ClInclude Include="..\..\inc\graphics\window\xeWindow.hpp">
       <Filter>graphics\window</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\inc\graphics\vulkan\xeVulkan.hpp">
+      <Filter>graphics\vulkan</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

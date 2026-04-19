@@ -1,26 +1,32 @@
 ﻿#include "memory/xeAlloc.hpp"
 
-#if defined(USE_MIMALLOC)
 #include "mimalloc-override.h"
-#else
-#include <cstdlib>
-#endif // USE_MIMALLOC
 
 namespace xe
 {
 	any_type_ptr_t xe_only_malloc(size_t byte_size) noexcept
 	{
-		return malloc(byte_size);
+		return mi_malloc(byte_size);
 	}
 
 	any_type_ptr_t xe_only_realloc(any_type_ptr_t src, size_t byte_size) noexcept
 	{
-		return realloc(src, byte_size);
+		return mi_realloc(src, byte_size);
 	}
 
 	any_type_ptr_t xe_free(any_type_ptr_t src) noexcept
 	{
-		if (src != nullptr)free(src);
+		if (src != nullptr)mi_free(src);
 		return nullptr;
+	}
+
+	any_type_ptr_t xe_olny_aligned_alloc(size_t alignment,size_t byte_size) noexcept
+	{
+		return mi_aligned_alloc(alignment, byte_size);
+	}
+
+	any_type_ptr_t xe_olny_aligned_realloc(any_type_ptr_t src, size_t alignment, size_t byte_size) noexcept
+	{
+		return mi_realloc_aligned(src, alignment, byte_size);
 	}
 }
