@@ -78,8 +78,8 @@ int main(int argc, char** argv)
 	std::cout << "Size : " << path.get_size() / 1024 << " KiB " << std::endl;
 
 	VulkanContext vtx = { 0 };
-	init_vulkan_instance(vtx, u8"name", &SDL_Vulkan_GetInstanceExtensions);
-	find_gpu(vtx);
+	//init_vulkan_instance(vtx, u8"name", &SDL_Vulkan_GetInstanceExtensions);
+	//find_gpu(vtx);
 
 	Mmapfstream flac_file = Mmapfstream();
 	flac_file.open_file(path);

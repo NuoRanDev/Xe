@@ -18,14 +18,6 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\inc\tools\xeFileDialog.hpp" />
-    <ClInclude Include="..\..\rust\inc\Rfd.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\src\tools\window\xeWindowConect.cpp" />
-    <ClCompile Include="..\..\src\tools\xeFileDialog.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
