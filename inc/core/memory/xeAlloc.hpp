@@ -3,8 +3,6 @@
 
 #define USE_MIMALLOC
 
-#include <cstdlib>
-
 #include "type/xeOrdinals.hpp"
 
 //#include "mimalloc-new-delete.h"

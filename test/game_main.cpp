@@ -1,5 +1,4 @@
 ﻿#include "window/xeWindowManager.hpp"
-#include "Rfd.hpp"
 #include "log/xeLogOutput.hpp"
 #include "filesystem/xeFileMmapStream.hpp"
 #include "xeAudioPlayerInstance.hpp"
@@ -68,7 +67,7 @@ int main(int argc, char** argv)
 	system("cls");
 #endif
 
-	String spath = u8"C:\\Users\\wunuo\\Desktop\\audio.flac";
+	/*
 	//String path = "C:\\Users\\wunuo\\Desktop\\In the HALL OF THE MOU - PHILHARMONIA ORCHESTRA of Hamburg.flac";
 	Path path = Path(spath);
 	time_t create_time = path.get_create_time();
@@ -76,11 +75,8 @@ int main(int argc, char** argv)
 	std::cout << "File : " << spath << std::endl;
 	std::cout << "Create time : " << std::ctime(&create_time);
 	std::cout << "Size : " << path.get_size() / 1024 << " KiB " << std::endl;
-
-	VulkanContext vtx = { 0 };
-	//init_vulkan_instance(vtx, u8"name", &SDL_Vulkan_GetInstanceExtensions);
-	//find_gpu(vtx);
-
+	
+	
 	Mmapfstream flac_file = Mmapfstream();
 	flac_file.open_file(path);
 
@@ -96,7 +92,7 @@ int main(int argc, char** argv)
 
 	AudioPlayerInstance a_instc;
 	a_instc.init();
-	
+
 	SoundSource sscrc = SoundSource();
 	sscrc.lood_audio(pcm);
 	sscrc.set_gain(1.0f);
@@ -122,12 +118,32 @@ int main(int argc, char** argv)
 		//system("clear");
 		sscrc.set_position(pos);
 	}
-	/*
+
 	xe::WindowManager wmsg = xe::WindowManager(argv);
+	VulkanContext vtx = { 0 };
+	uint32_t c;
+	auto vc = SDL_Vulkan_GetInstanceExtensions(&c);
+	init_vulkan_instance(vtx, u8"name", vc, c);
+	find_gpu(vtx);
 	auto name = xe::String("sasas");
 	auto win = wmsg.create_window(600, 800, name);
 	win->show();*/
 
+	String spath = u8"C:\\Users\\wunuxx喔xxx喔xo\\D\\喔\\eskxx喔xtop\\喔\\audio.flac";
+	String cstr = u8"xx喔x";
+
+	spath = spath + cstr + u8"gsg六xgs";
+	std::cout << spath << "\n";
+
+	auto ch = U'喔';
+	auto crr = spath.split(cstr);
+	auto brr = spath.split(ch);
+	for (const auto& is_s : crr)
+	{
+		std::cout << is_s << "\n";
+	}
+	
+	puts("end");
 	
 	return EXIT_SUCCESS; // Success
 }

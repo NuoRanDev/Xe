@@ -38,24 +38,6 @@ namespace xe
 		.onFree = dr_free,
 	};
 
-	static void cb_dr_free(void* data)
-	{
-		drflac_free(data, &dr_flac_alloc_cb_struct);
-	}
-
-#ifdef _DEBUG
-	static void put_float(float* pcm_data, size_t size)
-	{
-		auto df = reinterpret_cast<float*>(pcm_data);
-		for (size_t i = 0; i < size / 4; i = i + 4)
-		{
-			std::cout << df[i] << "  " << df[i + 1] << "  " << df[i + 2] << "  " << df[i + 3] << "\n";
-			//	std::cout << (int64_t)(df[i]) << "  " << (int64_t)(df[i + 1]) << "  " << (int64_t)(df[i + 2]) << "  " << (int64_t)(df[i + 3]) << "\n";
-		}
-	}
-#endif // _DEBUG
-
-
 	template<typename T> 
 	byte_t* type_drflac_full_read(drflac* flac_context, uint64_t& size,
 		drflac_uint64(*drflac_read_pcm_frames_type_extension)(drflac*, drflac_uint64, T*))

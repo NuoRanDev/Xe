@@ -8,13 +8,6 @@
 #include "type/xeOrdinals.hpp"
 #include "type/xeDataStruction.hpp"
 
-
-struct RustString
-{
-	int64_t size;
-	const xe::utf8_t* data;
-};
-
 namespace xe
 {
 	constexpr int64_t SHORT_STRING_SIZE = 12;
@@ -32,7 +25,10 @@ namespace xe
 
 	class U8StringRef
 	{
+		friend class U8StringRef;
+
 	public:
+
 		// Init
 		U8StringRef(std::nullptr_t null_type) { this->load_default_str(); }
 
@@ -42,21 +38,11 @@ namespace xe
 
 		U8StringRef(const utf8_t* str) noexcept { load_cpp_u8_str_add0(str); }
 
-		U8StringRef(const utf8_t* str, int64_t str_size) noexcept { load_rust_str_add0(str, str_size); }
+		U8StringRef(const utf8_t* str, int64_t str_size) noexcept { load_seq_no_0_str_add0(str, str_size); }
 
 		U8StringRef(const utf8_t* str, int64_t str_size, int64_t input_character_number) noexcept
 		{
 			load_xe_str_include0(str, str_size, input_character_number);
-		}
-
-		U8StringRef(RustString rust_str) noexcept
-		{
-			if (rust_str.data == nullptr)
-			{
-				load_default_str();
-				return;
-			}
-			load_rust_str_add0(rust_str.data, rust_str.size);
 		}
 
 		U8StringRef(const U8StringRef& temp_string)
@@ -69,6 +55,8 @@ namespace xe
 			load_xe_str_include0(temp_string.data(), temp_string.get_characters_data_size(), temp_string.get_characters_number());
 		}
 
+		U8StringRef(U8StringRef&& src) noexcept;
+
 		U8StringRef& operator=(const U8StringRef& temp_string) noexcept 
 		{
 			if (temp_string.is_empty())
@@ -77,6 +65,15 @@ namespace xe
 				return *this;
 			}
 			this->load_xe_str_include0(temp_string.data(), temp_string.get_characters_data_size(), temp_string.get_characters_number());
+			return *this;
+		}
+
+		U8StringRef operator=(U8StringRef&& src) noexcept
+		{
+			characters_number = src.characters_number;
+			characters_data_size = src.characters_data_size;
+			characters_data = std::move(src.characters_data);
+			src.clear_moved_str();
 			return *this;
 		}
 
@@ -108,17 +105,6 @@ namespace xe
 			return *this;
 		}
 
-		U8StringRef& operator=(const RustString& rust_str) noexcept
-		{
-			if (rust_str.data == nullptr)
-			{
-				this->load_default_str();
-				return *this;
-			}
-			this->load_rust_str_add0(rust_str.data, rust_str.size);
-			return *this;
-		}
-
 		// range: include start exclude end
 		[[nodiscard]] U8StringRef slice(int64_t start, int64_t end) const noexcept;
 
@@ -132,22 +118,25 @@ namespace xe
 
 		void append(unicode_t character) noexcept;
 
-		void append(U8StringRef append_string) noexcept;
+		void append(const U8StringRef& append_string) noexcept
+		{
+			append(append_string.data(), append_string.get_characters_data_size(), append_string.get_characters_number());
+		}
+
+		void append(const utf8_t* append_string, int64_t append_size, int64_t append_chacharacters_number) noexcept;
 
 		// Find all
 
 		[[nodiscard]] dynamic_array<int64_t> find_all(const unicode_t pattern) const noexcept;
 
-		[[nodiscard]] dynamic_array<int64_t> find_all(const U8StringRef pattern) const noexcept;
+		[[nodiscard]] dynamic_array<int64_t> find_all(const U8StringRef& pattern) const noexcept;
 
 		[[nodiscard]] dynamic_array<int64_t> find_all(const utf8_t pattern) const noexcept;
 
 		[[nodiscard]] dynamic_array<int64_t> find_all(const utf8_t* pattern, const int64_t size) const noexcept;
 
-		[[nodiscard]] dynamic_array<int64_t> find_simd_all(const utf8_t* pattern, const int64_t size) const noexcept;
-
 		// Find
-		int64_t find_start(const U8StringRef pattern_str) const noexcept { return find_start(pattern_str.data(), pattern_str.get_characters_data_size()); }
+		int64_t find_start(const U8StringRef& pattern_str) const noexcept { return find_start(pattern_str.data(), pattern_str.get_characters_data_size()); }
 
 		int64_t find_start(const utf8_t* pattern, int64_t pattern_size) const noexcept;
 
@@ -157,7 +146,11 @@ namespace xe
 
 		[[nodiscard]] dynamic_array<U8StringRef> split(unicode_t separator) noexcept;
 
-		[[nodiscard]] dynamic_array<U8StringRef> split(U8StringRef separator) noexcept;
+		[[nodiscard]] dynamic_array<U8StringRef> split(U8StringRef& separator) noexcept;
+
+		[[nodiscard]] dynamic_array<U8StringRef> split(const utf8_t* separator, int64_t separator_characters_data_size, int64_t separator_characters_number)noexcept;
+
+		[[nodiscard]] dynamic_array<U8StringRef> split(dynamic_array<int64_t>& separator_list, int64_t step_jmp) noexcept;
 
 		[[nodiscard]] unicode_t at(int64_t offset) noexcept;
 
@@ -210,6 +203,14 @@ namespace xe
 			load_data(characters, str_size, str_size);
 		}
 
+		inline U8StringRef operator+(const U8StringRef& string) noexcept
+		{
+			this->append(string);
+			return *this;
+		}
+
+		U8StringRef operator+(const utf8_t* string) noexcept;
+
 		void release() noexcept;
 
 		~U8StringRef() { release(); }
@@ -220,8 +221,8 @@ namespace xe
 		void load_xe_str_include0(const utf8_t* xe_utf8_str, int64_t xe_str_size, int64_t input_character_number) noexcept;
 		// load cpp char8_t style utf8 string
 		void load_cpp_u8_str_add0(const utf8_t* c_utf8_str) noexcept;
-		// load rust string
-		void load_rust_str_add0(const utf8_t* xe_rust_str, int64_t rust_str_size);
+		// load seq_no_0 string
+		void load_seq_no_0_str_add0(const utf8_t* xe_seq_no_0_str, int64_t seq_no_0_str_size);
 		// load c style string
 		void load_c_str_add0(const char* _c_str) noexcept
 		{
@@ -237,7 +238,9 @@ namespace xe
 		// alloc size
 		int64_t characters_data_size;
 
-		bool string_long_cmp(const U8StringRef cmp_str) const noexcept
+		void clear_moved_str() noexcept;
+
+		bool string_long_cmp(const U8StringRef& cmp_str) const noexcept
 		{
 			return string_long_cmp(cmp_str.data(), cmp_str.length());
 		}
@@ -254,7 +257,7 @@ namespace xe
 
 		bool string_long_cmp(const utf8_t* cmp_str, int64_t cmp_str_size) const noexcept;
 
-		bool string_short_cmp(const U8StringRef cmp_str) noexcept
+		bool string_short_cmp(const U8StringRef& cmp_str) noexcept
 		{
 			return string_short_cmp(cmp_str.data(), cmp_str.length());
 		}
@@ -278,18 +281,6 @@ namespace xe
 		// 
 		bool is_short_string;
 	};
-
-	[[nodiscard]] inline U8StringRef& operator+(U8StringRef& buffer, U8StringRef string)
-	{
-		buffer.append(string);
-		return buffer;
-	}
-
-	[[nodiscard]] inline U8StringRef& operator+(U8StringRef& buffer, const char* string)
-	{
-		buffer.append(U8StringRef(string));
-		return buffer;
-	}
 
 	// std::cout << <U8StringRef>
 	[[nodiscard]] inline std::ostream& operator<<(std::ostream& out, const U8StringRef& string)

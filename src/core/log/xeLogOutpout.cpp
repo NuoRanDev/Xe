@@ -4,6 +4,7 @@
 #define OPEN_CLR
 #endif // is defined _DEBUG
 
+#include <exception>
 #include <iostream>
 #include <format>
 
@@ -29,5 +30,15 @@ namespace xe
 #endif // OPEN_CLR
 		std::string out_text = std::string(color_string) + "< " + output_type + " " + addon_type + " -> " + output_text + "> in " + address + "\n";
 		return;
+	}
+
+	void XE_CLR_OUTPUT_EXIT(
+		const char* color, const char* color_string,
+		const char* output_type,
+		const char* addon_type, const char* output_text,
+		const char* file, int line, const char* function)
+	{
+		XE_CLR_OUTPUT(color, color_string, output_type, addon_type, output_text, file, line, function);
+		std::terminate();
 	}
 } // namespace xe is end

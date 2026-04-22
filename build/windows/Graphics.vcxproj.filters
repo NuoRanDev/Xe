@@ -13,6 +13,9 @@
     <ClCompile Include="..\..\test\game_main.cpp">
       <Filter>graphics</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\graphics\vulkan\xeVulkan.cpp">
+      <Filter>graphics\vulkan</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="graphics">
