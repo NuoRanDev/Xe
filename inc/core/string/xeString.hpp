@@ -12,11 +12,6 @@ namespace xe
 {
 	constexpr int64_t SHORT_STRING_SIZE = 12;
 
-	// kmp is O(m+n)
-	// nomal is O(m*n)
-	// 
-	constexpr int64_t USE_KMP_STRING_SIZE = 32 * 32 + 1;
-
 	class U16StringRef;
 	class U8StringRef;
 
@@ -133,7 +128,9 @@ namespace xe
 
 		[[nodiscard]] dynamic_array<int64_t> find_all(const utf8_t pattern) const noexcept;
 
-		[[nodiscard]] dynamic_array<int64_t> find_all(const utf8_t* pattern, const int64_t size) const noexcept;
+		[[nodiscard]] dynamic_array<int64_t> find_all(const utf8_t* pattern, const int64_t pattern_size) const noexcept;
+
+		[[nodiscard]] dynamic_array<int64_t> find_all_ofs(const utf8_t* pattern, const int64_t pattern_size) const noexcept;
 
 		// Find
 		int64_t find_start(const U8StringRef& pattern_str) const noexcept { return find_start(pattern_str.data(), pattern_str.get_characters_data_size()); }
@@ -148,9 +145,11 @@ namespace xe
 
 		[[nodiscard]] dynamic_array<U8StringRef> split(U8StringRef& separator) noexcept;
 
-		[[nodiscard]] dynamic_array<U8StringRef> split(const utf8_t* separator, int64_t separator_characters_data_size, int64_t separator_characters_number)noexcept;
+		[[nodiscard]] dynamic_array<U8StringRef> 
+			split(const utf8_t* separator, int64_t separator_characters_data_size)noexcept;
 
-		[[nodiscard]] dynamic_array<U8StringRef> split(dynamic_array<int64_t>& separator_list, int64_t step_jmp) noexcept;
+		[[nodiscard]] dynamic_array<U8StringRef>
+			split(dynamic_array<int64_t>& separator_list, int64_t separator_characters_data_size) noexcept;
 
 		[[nodiscard]] unicode_t at(int64_t offset) noexcept;
 
@@ -328,7 +327,5 @@ namespace xe
 		int64_t size;
 	};
 } // namespace xe is end
-
-
 
 #endif // _XE_STRING_HPP_ IS EOF

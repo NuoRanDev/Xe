@@ -139,7 +139,7 @@ namespace xe
 
 	static bool utf8_to_utf16le(const utf8_t* u8_src, int64_t utf8_str_size, utf16le_t** u16le_dst, int64_t& utf16le_str_size) noexcept
 	{
-		if (u8_src == nullptr && utf8_str_size == 0)
+		if (u8_src == nullptr || utf8_str_size == 0)
 		{
 			XE_WARNING_OUTPUT(XE_TYPE_NAME_OUTPUT::APP, "xeCore", "The utf8 string is empty!")
 			return false;
@@ -235,7 +235,7 @@ namespace xe
 		dynamic_array<utf8_t>u8str;
 		
 		// If has bom
-		if (u16le_src_cur[0] == 0xFEFF)
+		if (u16le_src_cur == nullptr || u16le_src_cur[0] == 0xFEFF)
 		{
 			u16le_src_cur += 1;
 			u16_len -= 1;
@@ -491,6 +491,23 @@ namespace xe
 		return matches;
 	}
 
+	dynamic_array<int64_t> U8StringRef::find_all_ofs(const utf8_t* pattern, const int64_t pattern_size) const noexcept
+	{
+		dynamic_array<int64_t> matches;
+		int64_t cur = 0;
+		int64_t ofs = 0;
+		do
+		{
+			ofs = memfind_start(reinterpret_cast<const byte_t*>(pattern), reinterpret_cast<const byte_t*>(characters_data + cur), pattern_size, characters_data_size);
+			if (ofs == -1)
+				break;
+			cur += ofs;
+			matches.push_back(cur);
+			cur += pattern_size;
+		} while (cur < (characters_data_size - pattern_size));
+		return matches;
+	}
+
 	int64_t U8StringRef::find_start(const utf8_t* pattern, int64_t pattern_size) const noexcept
 	{
 		if (pattern_size > characters_data_size)
@@ -511,43 +528,48 @@ namespace xe
 	{
 		utf8_t utf8_separator[4] = { 0 };
 		auto out_size = utf32_to_utf8(separator, utf8_separator);
-		return split(utf8_separator, out_size, 1);
+		return split(utf8_separator, out_size);
 	}
 
 	dynamic_array<U8StringRef> U8StringRef::split(U8StringRef& separator) noexcept
 	{
-		return split(separator.data(), separator.characters_data_size - 1, separator.characters_number);
+		return split(separator.data(), separator.characters_data_size - 1);
 	}
 
-	dynamic_array<U8StringRef> U8StringRef::split(const utf8_t* separator, int64_t separator_characters_data_size, int64_t separator_characters_number) noexcept
+	dynamic_array<U8StringRef> U8StringRef::split(const utf8_t* separator, int64_t separator_characters_data_size) noexcept
 	{
-		dynamic_array<int64_t> matches = find_all(separator, separator_characters_data_size);
+		dynamic_array<int64_t> matches = find_all_ofs(separator, separator_characters_data_size);
+		dynamic_array<U8StringRef> output = dynamic_array<U8StringRef>();
 		if (matches.size() == 0)
 		{
-			dynamic_array<U8StringRef> output = dynamic_array<U8StringRef>();
-			output.push_back(std::move(U8StringRef(characters_data, characters_data_size, characters_number)));
+			output.push_back(U8StringRef(characters_data, characters_data_size, characters_number));
 			return output;
 		}
 		else
 		{
-			return split(matches, separator_characters_number);
+			output = split(matches, separator_characters_data_size);
+			return output;
 		}
 	}
 
-	dynamic_array<U8StringRef> U8StringRef::split(dynamic_array<int64_t>& separator_list, int64_t step_jmp) noexcept
+	dynamic_array<U8StringRef> U8StringRef::split(dynamic_array<int64_t>& separator_list, int64_t separator_characters_data_size) noexcept
 	{
 		int64_t cur_number = 0;
+		int64_t segment_size = 0;
+		size_t i;
 		dynamic_array<U8StringRef> output = dynamic_array<U8StringRef>();
-		for (size_t i = 0; i < separator_list.size(); i++)
+		for (i = 0; i < separator_list.size(); i++)
 		{
-			if (separator_list[i] - cur_number > 0)
+			segment_size = separator_list[i] - cur_number;
+			if (segment_size > 0)
 			{
-				output.push_back(std::move(this->slice(cur_number, separator_list[i])));
+				output.push_back(String(data() + cur_number, segment_size));
 			}
-			cur_number = separator_list[i] + step_jmp;
+			cur_number = separator_list[i] + separator_characters_data_size;
 		}
-		if (cur_number != characters_number - step_jmp)
-			output.push_back(std::move(this->slice(cur_number, characters_number)));
+		segment_size = characters_data_size - cur_number;
+		if (segment_size > 0)
+			output.push_back(String(data() + cur_number, segment_size));
 		return output;
 	}
 
